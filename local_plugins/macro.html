@@ -1,0 +1,10 @@
+
+
+{% macro ref_github(name) -%}
+<div style="font-size:120%;margin-top:0.5em;margin-left:2em;">
+- `link::{{cgp_github}}cgp/includeadv::{lib:cgp, root:'cgp/library/cgp/', research_file:'{{name}}'}[{{name}}]`
+</div>
+<div style="font-size:85%; color:gray; margin-left:4.5em;">
+includeadv::{lib:cgp, root:'cgp/library/cgp/', research_file:'{{name}}'}
+</div>
+{%- endmacro %}

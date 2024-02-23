@@ -1,0 +1,119 @@
+{% set pageTitle = 'Mat' %}
+{% set tocTitle = 'Mat' %}
+
+{% extends "theme/template/base.html" %}
+
+
+{% block content %}
+
+
+
+
+= Mat
+
+Structure and functions associated to 2/3/4D matrices are provided as **mat2**, **mat3** and **mat4** (following mostly GLSL naming convention). Components of mat are stored as float. <br>
+**mat3** is conceptually similar to a `struct mat3 { vec3 {xx,xy,xz}, vec3{yx,yy,yz}, vec3{zx,zy,zz} }` where the vectors are along the row/lines. Direct access to individial parameter is obtained via mat3(kx,ky).
+
+::nl
+
+Similarily to vec, **mat2** (2 \(\times\) 2 matrix), **mat3** (3 \(\times\) 3), and **mat4** (4 \(\times\) 4) structures are provided.
+
+== Code Reference
+
+**mat**2/3/4 are special types of the generic container `matrix_stack` with specific dimensions and containing floats. 
+
+::nl
+
+{{ref_github('matrix_stack.hpp')}}
+** Applies to generic mat
+{{ref_github('mat2.hpp')}}
+{{ref_github('mat3.hpp')}}
+{{ref_github('mat4.hpp')}}
+
+
+== Initialization
+
+code::[c++]
+// Direct full initialization
+mat3 A = { 1.1f, 2.5f, 2.0f,
+          -2.1f, 4.1f, 1.5f,
+           3.0f, 1.0f, 3.5f};
+
+// Initialize a diagonal matrix (identity in this case)
+mat3 B = mat3(1.0f);
+
+// Default initialization as zero matrix
+mat3 Z;
+code::[-]
+
+__Note that in full initialization, orders set the rows from left to right similarily to usual mathematical writing (at the opposite of glsl using column vectors).__
+
+== Display
+
+code::[c++]
+// Display matrix components (all the components)
+std::cout<< A <<std::endl;
+
+// Display matrix in pretty mode (row/column)
+std::cout<< str_pretty(B) <<std::endl;
+code::[-]
+
+
+== Component access
+
+**mat** can be accessed using (col,row) indexing similarily to usual mathematical notation.
+
+code::[c++]
+// A(i,j) = A(column, row)
+std::cout<< A(2,1) <<std::endl; // Displays 1.0
+
+A(0,0) =  2.0f;
+A(1,0) =  3.0f;
+A(0,1) = -1.0f;
+// Now A is the matrix
+// A = { 2.0f, -1.0f, 2.0f,
+//       3.0f,  4.1f, 1.5f,
+//       3.0f,  1.0f, 3.5f};
+
+// Indexing matrix as a contiguous vector using mat[i]
+// A[0] == 2.0f
+// A[1] == -1.0f
+// ...
+// A[8] == 3.5f
+code::[-]
+
+== Access to row and col as vectors
+
+code::[c++]
+// Access to row and column
+vec3 c0 = A.col(0); // first column = {2,3,3}
+vec3 r1 = A.row(1); // second row   = {3, 4.1, 1.5}
+code::[-]
+
+== Products
+
+code::[c++]
+// Matrix-vector product
+vec3 x = {1,2,3};
+vec3 y = A * x;   // = {12.1, 10.6, 15.5}
+
+mat3 B; // default initialization as matrix identity
+
+// Matrix product
+mat3 C = A * B;
+code::[-]
+
+
+
+== Linear Algebra
+
+code::[c++]
+// Helper function
+mat3 At = transpose(A); // matrix transpose
+mat3 iA = inverse(A);   // matrix inverse: A*iA = identity
+float d = det(A);       // matrix determinant = 13.1
+code::[-]
+
+
+
+{% endblock %}

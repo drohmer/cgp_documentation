@@ -1,0 +1,25 @@
+{% set pageTitle = 'Camera Controller' %}
+{% set tocTitle = 'Camera Controller' %}
+
+{% extends "theme/template/base.html" %}
+
+
+{% block content %}
+
+
+= Camera Controller
+
+== Code Reference
+
+{{ref_github('camera_controller_orbit.hpp')}}
+{{ref_github('camera_controller_orbit_euler.hpp')}}
+
+::nl
+
+{{ref_github('camera_controller_first_person.hpp')}}
+{{ref_github('camera_controller_first_person_euler.hpp')}}
+
+{{ref_github('camera_controller_fly_mode.hpp')}}
+{{ref_github('camera_controller_2d_displacement.hpp')}}
+
+{% endblock %}

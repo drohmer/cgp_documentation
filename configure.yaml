@@ -1,0 +1,11 @@
+---
+source_directory: 'src/'
+site_directory: '_site/'
+theme: 'static_website_lhtml/theme_templates/webpage-frame/'
+plugin: ['static_website_lhtml/plugins/menu.py', 'static_website_lhtml/plugins/pre_include.py', 'static_website_lhtml/plugins/redirection_first_page.py', 'static_website_lhtml/plugins/title_submenu.py', 'static_website_lhtml/plugins/code_include.py']
+plugin_arg: 
+  includeadv:
+    cgp: 'https://github.com/drohmer/cgp'
+  pre_include: ['local_plugins/macro.html']
+keywords:
+  cgp_github: 'https://github.com/drohmer/cgp/blob/main/library/'

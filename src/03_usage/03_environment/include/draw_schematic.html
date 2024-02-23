@@ -1,0 +1,31 @@
+<style>
+  .draw_comment {color:gray; margin-left:1.5em; font-style:italic; font-size:90%; }
+</style>
+
+<div style="display:inline-block; vertical-align:middle; text-align:left; margin-right:2em; border:2px solid black; border-radius:0.5em; padding:0.5em;background-color:rgb(250,250,250);">
+  **draw(<span style="color:blue">drawable</span>, <span style="color:red">environment</span>)** <br> <br>
+  <div style="margin-left: 2em;">
+      
+      1) Set **current shader** attached to <span style="color:blue">drawable</span> element
+      ::(.draw_comment) glUseProgram( drawable.shader ) ::
+      <br>
+      2.a) Send **uniforms** parameters attached to the **<span style="color:blue">drawable</span>** element
+      ::(.draw_comment) glUniform( drawable.[parameters] ) ... on transform and shading values ::
+      <br>
+      2.b) Send **uniforms** parameters attached to the **<span style="color:red">environment</span>**
+      ::(.draw_comment)  glUniform( environment.[parameters] ) ... ::
+      <br>
+      3) Set texture of the <span style="color:blue">drawable</span> element
+      ::(.draw_comment)  glBindTexture(GL_TEXTURE_2D, drawable.texture) ::
+      <br>
+      4) **Draw** calls on the <span style="color:blue">drawable</span> vbo (data already stored on the GPU)
+      ::(.draw_comment)  glBindVertexArray( drawable.vao ) ::
+      ::(.draw_comment)  glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, drawable.connectivity) ::
+      ::(.draw_comment)  glDrawElements(GL_TRIANGLES) ::
+      <br>
+      5) Cleaning buffers state
+      ::(.draw_comment)  glBindVertexArray(0) ::
+      ::(.draw_comment)  glBindTexture(GL_TEXTURE_2D, 0) ::
+      <br>
+  </div>
+</div>

@@ -1,0 +1,122 @@
+{% set pageTitle = 'Affine' %}
+{% set tocTitle = 'Affine' %}
+
+{% extends "theme/template/base.html" %}
+
+
+{% block content %}
+
+
+
+
+= Affine
+
+CGP provide also a set of helper structure to handle the combination of rotation, translation and scaling. Each transformation type is store and can be set individually, while the general structures can be combined together and apply to vectors __as if__ it was a matrix.
+
+== Code Reference
+
+{{ref_github('affine_rt.hpp')}}
+{{ref_github('affine_rts.hpp')}}
+{{ref_github('affine.hpp')}}
+
+
+
+== Structures
+
+The structure **affine_rt** (for Rotation-Translation) and **affine_rts** (for Rotation-Translation-Scaling) are available to this effect and can be combined together. 
+
+
+::[text-align:center;]
+
+::(.struct)
+::(.struct-name) 
+struct affine_rt
+::
+  ::(.struct-content)
+  rotation_transform <strong>rotation</strong> <br>
+  vec3 <strong>translation</strong>
+  ::
+::
+
+::(.struct)
+::(.struct-name) 
+struct affine_rts
+::
+  ::(.struct-content)
+  rotation_transform <strong>rotation</strong> <br>
+  vec3 <strong>translation</strong> <br>  
+  float <strong>scaling</strong>
+  ::
+::
+
+::
+
+::nl
+
+**affine** is a more general container that adds non-homogeneous scaling.  
+* __affine transforms cannot be combined together as the result may contain shearing.__
+
+::[text-align:center;]
+
+::(.struct)
+::(.struct-name) 
+struct affine
+::
+  ::(.struct-content)
+  rotation_transform <strong>rotation</strong> <br>
+  vec3 <strong>translation</strong> <br>
+  float <strong>scaling</strong> <br>
+  vec3 <strong>scaling_xyz</strong> <br>
+  ::
+::
+
+::
+
+== Usage
+
+
+
+code::[c++]
+affine_rts A;
+A.rotation = rotation_transform::from_axis_angle({ 1,0,0 }, Pi / 4);
+A.translation = { 1,1,2 };
+A.scaling = 1.1f;
+
+affine_rts B;
+B.rotation = rotation_transform::from_axis_angle({ 0,1,0 }, Pi / 6);
+B.translation = { 2,1,0 };
+B.scaling = 2.0f;
+
+// Combine the affine transforms using operator *
+affine_rts C = A * B;
+
+// The corresponding components of C can be obtained as
+// C.rotation, C.translation, C.scaling
+
+// Apply an affine transform to a vec3
+vec3 p = C* vec3{ -3,2,0 };
+//  assume that the vector is (-3,2,0,1) in homogeneous coordinates
+
+// Retrieve the 4x4 matrix corresponding to the transform
+mat4 T = C.matrix();
+code::[-]
+
+::nl
+
+A possible use of **affine_rt** is to encode in a concise way a rotation with respect to a point (different from the origin).
+
+code::[c++]
+rotation_transform R; // Some rotation
+vec3 c = { 1,2,3 }; // A position around which the rotation is applied
+
+// Encode a "rotation around a given center"
+affine_rt T = rotation_around_center(R, c);
+
+// Apply the transformation to some coordinates
+vec3 p = T * vec3{ 1.1f, 2.1f, 1.5f };
+code::[-]
+
+
+
+
+{% endblock %}

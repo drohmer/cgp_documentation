@@ -1,0 +1,152 @@
+{% set pageTitle = 'Vec' %}
+{% set tocTitle = 'Vec' %}
+
+{% extends "theme/template/base.html" %}
+
+
+{% block content %}
+
+
+= Vec
+
+Basic structure and functions associated to 2/3/4D vectors are provided as **vec2**, **vec3** and **vec4** (following mostly GLSL naming convention). Components of vec are stored as float. <br>
+**vec3** is conceptually similar to a `struct vec3{ float x,y,z; }` with direct access to its parameter (similarily for vec2/4).
+
+::[height:2em]::
+
+::[text-align:center;]
+
+::(.struct)
+::(.struct-name) 
+struct vec2
+::
+  ::(.struct-content) 
+    float <strong>x</strong> <br>
+    float <strong>y</strong> 
+  ::
+::
+
+::(.struct)
+::(.struct-name) 
+struct vec3
+::
+  ::(.struct-content)
+  float <strong>x</strong> <br>
+  float <strong>y</strong> <br>
+  float <strong>z</strong>
+  ::
+::
+
+::(.struct)
+::(.struct-name) 
+struct vec4
+::
+  ::(.struct-content)
+  float <strong>x</strong> <br>
+  float <strong>y</strong> <br>
+  float <strong>z</strong> <br>
+  float <strong>w</strong>
+  ::
+::
+
+<br>
+<em>Conceptual structure of vec2/3/4</em>
+
+::
+
+== Code Reference
+
+**vec**2/3/4 are special types of the generic container `numarray_stack` with specific dimension and containing floats.
+
+::nl
+
+{{ref_github('numarray_stack.hpp')}}
+** Applies to generic vec
+{{ref_github('numarray_stack2.hpp')}}
+{{ref_github('numarray_stack3.hpp')}}
+{{ref_github('numarray_stack4.hpp')}}
+{{ref_github('vec2.hpp')}}
+{{ref_github('vec3.hpp')}}
+{{ref_github('vec4.hpp')}}
+
+
+
+
+
+== Elements
+
+code::[c++]
+vec3 p = {1.1f, 2.0f, -2.5f}; // declaring a vector
+// or vec3 p = vec3(1.1f, 2.0f, -2.5f);
+// or vec3 p = vec3{1.1f, 2.0f, -2.5f};
+
+p.x = 0.5f;   // Access component as .x, .y, .z
+p[1] = -2.5f; // Access component as [0]/[1]/[2]
+p.z = p[0]+1;
+
+std::cout<<p<<std::endl; // Displays 0.5 -2.5 1.5
+code::[-]
+
+== Vector operations
+
+
+
+code::[c++]
+vec3 p = {1.0f, -1.5f, 2.0f};
+p = 4 * p;           // p = {4,-6,8}
+p = p / 2.0f;        // p = {2,-3,4}
+p = p + vec3(1,1,1); // p = {3,-2,5}
+p = -p;              // p = {-3,2,-5}
+p = p * vec3(2,1,-1) // p = {-6,2,5} componentwise multiplication
+
+// Operators can be chained
+vec3 p2 = ( 2*p + vec3(1,0,2)/2.0f ) / 1.2f;
+code::[-]
+
+::nl
+
+Signatures in `numarray_stack.hpp`
+code::[c++]
+includeadv::{lib:cgp, filepath:cgp/library/cgp/02_numarray/numarray_stack/implementation/numarray_stack.hpp, research:'operator+(numarray_stack<T, N> const& a, numarray_stack<T, N> const& b)'}
+includeadv::{lib:cgp, filepath:cgp/library/cgp/02_numarray/numarray_stack/implementation/numarray_stack.hpp, research:'operator-(numarray_stack<T, N> const& a, numarray_stack<T, N> const& b)'}
+includeadv::{lib:cgp, filepath:cgp/library/cgp/02_numarray/numarray_stack/implementation/numarray_stack.hpp, research:'operator*(numarray_stack<T, N> const& a, float b)'}
+includeadv::{lib:cgp, filepath:cgp/library/cgp/02_numarray/numarray_stack/implementation/numarray_stack.hpp, research:'operator*(float a, numarray_stack<T, N> const& b)'}
+includeadv::{lib:cgp, filepath:cgp/library/cgp/02_numarray/numarray_stack/implementation/numarray_stack.hpp, research:'operator/(numarray_stack<T, N> const& a, float b)'}
+code::[-]
+
+
+
+== Norm
+code::[c++]
+vec3 a = {1,2,3};
+float f = norm(a);      // norm ||a|| = sqrt(dot(a,a))
+vec3  g = normalize(a); // return the unit norm vector a / ||a|| (doesn't change vector a)
+code::[-]
+
+::nl
+
+Signatures in `numarray_stack.hpp`
+code::[c++]
+includeadv::{lib:cgp, filepath:cgp/library/cgp/02_numarray/numarray_stack/implementation/numarray_stack.hpp, research:'normalize'}
+includeadv::{lib:cgp, filepath:cgp/library/cgp/02_numarray/numarray_stack/implementation/numarray_stack.hpp, research:'norm('}
+code::[-]
+
+== Dot and cross products
+code::[c++]
+vec3 a = {1,2,3};
+vec3 b = {1,2,-1};
+
+float d = dot(a, b);    // dot product a.b = 2
+vec3  e = cross(a,b);   // cross product a x b = {-8,4,0}
+code::[-]
+
+::nl
+
+Signatures in `link::https://github.com/drohmer/cgp/blob/main/library/cgp/05_vec/vec3/vec3.hpp[vec3.hpp]`
+code::[c++]
+includeadv::{lib:cgp, filepath:cgp/library/cgp/05_vec/vec3/vec3.hpp, research:'dot'}
+includeadv::{lib:cgp, filepath:cgp/library/cgp/05_vec/vec3/vec3.hpp, research:'cross'}
+code::[-]
+
+
+{% endblock %}

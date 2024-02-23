@@ -1,0 +1,479 @@
+{% set pageTitle = 'CGP - Example code' %}
+{% set tocTitle = 'Example code' %}
+
+{% extends "theme/template/base.html" %}
+
+
+{% block content %}
+
+
+<style>
+    .title {
+        margin-top: 2em;
+        font-weight: bold;
+    }
+    .path {
+        color: gray;
+        font-size: 90%;
+        margin-left: 1em;
+        font-style: italic;
+    }
+    .wrap {
+        margin-top: 0.5em;
+    }
+    .illustration {
+        display: inline-block;
+        border: 2px solid rgb(200,200,200);
+        border-radius: 10px;
+        padding: 5px;
+    }
+    .explanation {
+        display: inline-block;
+        width: calc(100% - 300px - 2em);
+        vertical-align: top;
+        color: rgb(80,80,80);
+        margin-left: 0.5em;
+    }
+    @media (max-width: 950px) {
+        .explanation{
+            margin-top: 0.5em;
+            display:block;
+            width: 100%;
+        }
+    }
+</style>
+
+= Example codes
+
+Several example code are provided with the library in the directory <strong><a href="https://github.com/drohmer/CGP/tree/main/examples">scenes/examples/</a></strong>.
+
+<br>
+
+<em>The library is currently updated: some examples on the github page may differs from the one presented here.</em>
+
+== CGP Example
+
+<div class="entry">
+<div class="title">
+Basic test scene
+</div>
+<div class="path">
+examples/00_cgp_example
+</div>
+<div class="wrap">
+<div class="illustration">
+img::assets/cgp_example.jpg[width:100%; max-width:300px;]
+</div>
+<div class="explanation">
+Example of basic default 3D scene.
+</div>
+</div>
+</div>
+
+
+
+== CGP Usage
+
+__Direct use of CGP structures to achieve various effects.__
+
+<div class="entry">
+<div class="title">
+Load external file (.obj)
+</div>
+<div class="path">
+examples/01_cgp_usage/01_basic_usage/03_mesh_load_file_obj
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/01_cgp_usage/01_basic_usage/03_mesh_load_file_obj">
+img::assets/load_file_obj.jpg[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+This code shows the use of the function mesh_load_file_obj() to load an external mesh file. The resulting mesh can also have a texture.
+</div>
+</div>
+</div>
+
+
+
+<div class="entry">
+<div class="title">
+Evolving shape
+</div>
+<div class="path">
+examples/01_cgp_usage/01_basic_usage/04_shape_evolving_dynamically
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/01_cgp_usage/01_basic_usage/04_shape_evolving_dynamically">
+videoplay::assets/shape_dynamic.mp4[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+This code shows the use of mesh_drawable.update() to change dynamically the shape at every frame. The deformation is applied on the CPU and then transfered to the GPU.
+
+(an even more efficient approach would be to directly apply the deformation in the shader - see shader_effects for an example)
+</div>
+</div>
+</div>
+
+
+
+<div class="entry">
+<div class="title">
+Hierarchy
+</div>
+<div class="path">
+examples/01_cgp_usage/02_hierarchy/01_hierarchy_with_textures
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/01_cgp_usage/02_hierarchy/01_hierarchy_with_textures">
+videoplay::assets/hierarchy.mp4[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+This code shows the use of several textures attached to different shapes of a hierarchy.
+</div>
+</div>
+</div>
+
+
+<div class="entry">
+<div class="title">
+Marching Cube - Static
+</div>
+<div class="path">
+examples/marching_cubes/01_marching_cube_simple
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/examples/marching_cubes/01_marching_cube_simple">
+img::assets/marching_cube_static.jpg[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+Example of simple marching cube applied to an arbitrary function (a blobby function here) within a fixed domain.
+</div>
+</div>
+</div>
+
+<div class="entry">
+<div class="title">
+Marching Cube - Dynamic update
+</div>
+<div class="path">
+examples/marching_cubes/02_marching_cube_dynamic
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/examples/marching_cubes/02_marching_cube_dynamic">
+videoplay::assets/marching_cube_dynamic.mp4[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+Example of marching cube updated dynamically when the field function is modified via the GUI. The surface is made of triangle soup (duplicated vertices on shared triangle edges), and the normals are obtained from the field gradients computed from finite differences.
+The structures used in the example are more involved compared to the simple call to marching_cube, but it is compatible with more efficient update.
+</div>
+</div>
+</div>
+
+
+== Camera
+
+__Extending the camera toward additional behavior.__
+
+
+<div class="entry">
+<div class="title">
+Fly mode
+</div>
+<div class="path">
+examples/02_camera/01_camera_fly_mode
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/02_camera/01_camera_fly_mode">
+videoplay::assets/fly_mode.mp4[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+This code shows the possibility to navigate in a "fly-mode" using the key arrows: left/right/up/down.
+</div>
+</div>
+</div>
+
+
+
+<div class="entry">
+<div class="title">
+Multiple cameras
+</div>
+<div class="path">
+examples/02_camera/02_multiple_scene_and_cameras
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/02_camera/02_multiple_scene_and_cameras">
+videoplay::assets/multiple_cameras.mp4[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+This code shows the use of several cameras to display the same shapes under different viewpoints. The text quad and the cube are first displayed using the standard camera, and then displayed using a fixed camera and under orthographic projection. Such display can be usefull to display some persistant information in the viewspace.
+</div>
+</div>
+</div>
+
+
+
+== Shader effects
+
+__Using custom shaders beyond the default mesh display with Phong shading.__
+
+
+
+<div class="entry">
+<div class="title">
+Shader deformation
+</div>
+<div class="path">
+examples/03_shader_effects/01_shader_deformation
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/03_shader_effects/01_shader_deformation">
+videoplay::assets/shader_deformation.mp4[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+This code shows a procedural deformation fully computed in the vertex shader. A regular flat grid is displayed at each frame, and a deformation is applied in the vertex shader based on a time variable.
+</div>
+</div>
+</div>
+    
+
+
+
+
+
+<div class="entry">
+<div class="title">
+Multiple shaders
+</div>
+<div class="path">
+examples/03_shader_effects/02_multiple_shaders
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/03_shader_effects/02_multiple_shaders">
+img::assets/multiple_shaders.jpg[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+This code shows the use of two different shaders. This allows to display a given shape with different effects.
+</div>
+</div>
+</div>
+
+
+
+
+<div class="entry">
+<div class="title">
+Transparent billboards
+</div>
+<div class="path">
+examples/03_shader_effects/03_transparent_billboards
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/03_shader_effects/03_transparent_billboards">
+videoplay::assets/transparent_billboards.mp4[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+This code uses a shader to display partly transparent textures. The code illustrates this use to display complex foliage of a pine tree.
+</div>
+</div>
+</div>
+
+
+
+
+<div class="entry">
+<div class="title">
+Multi-texturing
+</div>
+<div class="path">
+examples/03_shader_effects/04_multiple_textures_with_blending
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/03_shader_effects/04_multiple_textures_with_blending">
+img::assets/multiple_textures.jpg[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+This code shows the use of a shader using two textures. The two textures are blended together in multiplying their respective color. The amount of blending is modified based on the (u,v) coordinates.
+</div>
+</div>
+</div>
+
+
+
+
+<div class="entry">
+<div class="title">
+Multiple lights and fog
+</div>
+<div class="path">
+examples/03_shader_effects/05_multiple_lights
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/03_shader_effects/05_multiple_lights">
+videoplay::assets/multiple_lights.mp4[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+This code shows the use of a shader handling mutliple light sources. Each source has a color, and their power decrease with the distance. The shader also integrates a global fog-like effect.
+</div>
+</div>
+</div>
+    
+
+
+
+<div class="entry">
+<div class="title">
+Multipass and FrameBuffer
+</div>
+<div class="path">
+examples/03_shader_effects/06_framebuffer_multipass
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/03_shader_effects/06_framebuffer_multipass">
+videoplay::assets/framebuffer.mp4[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+This code shows a multi-pass render using a Frame Buffer. In a first pass a scene is render and stored as a texture. In the second pass, the image is filtered using a second derivative convolution kernel and displayed finally on screen.
+</div>
+</div>
+</div>
+
+
+== Classical effects
+
+__Additional standard OpenGL effects implemented in the CGP context.__
+
+<div class="entry">
+<div class="title">
+Skybox
+</div>
+<div class="path">
+examples/04_classical_effects/01_skybox
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/04_classical_effects/01_skybox">
+videoplay::assets/skybox.mp4[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+Simple use of the class skybox_drawable to display a skybox (using 6 textures) in your scene.
+</div>
+</div>
+</div>
+
+
+
+
+
+<div class="entry">
+<div class="title">
+Environment map
+</div>
+<div class="path">
+examples/04_classical_effects/02_environment_map
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/04_classical_effects/02_environment_map">
+videoplay::assets/environment_mapping.mp4[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+This code shows the use of environment (/reflection) mapping. A "Skybox" is displayed in the background = a cube with a seamless environment texture that follows the user. And the main shape is displayed with a reflective mapping (the normal of the shape indicates which part of the texture is displayed).
+</div>
+</div>
+</div>
+
+
+<div class="entry">
+<div class="title">
+Shadow map
+</div>
+<div class="path">
+examples/04_classical_effects/03_shadow
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/04_classical_effects/03_shadow">
+videoplay::assets/shadow_map.mp4[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+This code shows the use of two pass rendering to generate shadows. A shadow map is first initialized from the light viewpoint using an orthographic projection. Then the shadow map is used when displaying the shape to adapt their color.
+</div>
+</div>
+</div>
+
+== Sketching
+
+__Example of direct drawings on screen.__
+
+<div class="entry">
+<div class="title">
+2D Point click
+</div>
+<div class="path">
+examples/05_sketching/01_point_click
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/05_sketching/01_point_click">
+videoplay::assets/point_click.mp4[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+Display a small point at every click on the mouse on screen. The scene is handled in 2D under orthographic projection.
+</div>
+</div>
+</div>
+
+
+
+<div class="entry">
+<div class="title">
+2D Curve sketch
+</div>
+<div class="path">
+examples/05_sketching/02_curve_sketch
+</div>
+<div class="wrap">
+<div class="illustration">
+<a href="https://github.com/drohmer/CGP/tree/main/scenes/examples/05_sketching/02_curve_sketch">
+videoplay::assets/curve_sketch.mp4[width:100%; max-width:300px;]
+</a>
+</div>
+<div class="explanation">
+Example of direct curve sketching on screen. The sketch is done in the 2D space under an orthographic projection. Each sketched stroke is handled as a curve_dynamic_drawable.
+</div>
+</div>
+</div>
+
+
+{% endblock %}

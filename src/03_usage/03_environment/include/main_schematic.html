@@ -1,0 +1,79 @@
+
+<style>
+    .c {color:gray;}
+    .input, .scene {font-weight: bold; color:blue;}
+    .call {color: red;}
+</style>
+
+<div style="display:inline-block; vertical-align:middle; text-align:left; margin-right:2em;">
+main.cpp
+<div style="border:2px solid black; border-radius:0.5em; padding:0.5em;">
+    span::(.c)// custom scene :: <br>
+    scene_structure span::(.scene) scene :: <br>
+  
+    <br>
+  
+    <div style="background-color:rgb(240,240,240); padding:0.25em;">
+    <strong>main()</strong> <br>
+    <div style="margin-left:1.5em;">
+
+      <div style="background-color:rgb(255,230,240)">
+      span::(.c)// Initialization :: <br>
+      <em>Window creation ...</em> <br>
+      <span class="scene">scene</span>.<span class="call">initialize</span>() <br>
+      </div>
+      <br>
+      <div style="background-color:rgb(255,255,240)">
+      span::(.c)// Animation loop :: <br>
+      while( active ) <br>
+      <div style="margin-left:1em;">
+        <em>Initialize frame ...</em> <br>
+        <span class="scene">scene</span>.<span class="call">display_gui</span>() <br>
+        <span class="scene">scene</span>.<span class="call">display_frame</span>() <br>
+      </div>
+      </div>
+      
+    </div>
+    </div>
+    <br>
+    <div style="background-color:rgb(240,240,240); padding:0.25em;">
+    <strong>mouse/key callbacks()</strong> <br>
+    <div style="margin-left:1em;">
+        update span::(.input) inputs :: <br>
+    </div>
+    </div>
+  
+  </div>
+</div>
+
+<div style="display:inline-block; vertical-align:middle; text-align:left;">
+<span class="scene">scene</span>.hpp
+<div style="border:2px solid black; border-radius:0.5em; padding:0.5em;">
+    struct scene_structure <br>
+    <div style="margin-left:1.5em;">
+        
+        span::(.c)// Elements of the global scene :: <br>
+        scene_environment <strong>environment</strong> <br>
+        span::(.c)// Storage for gui state :: <br>
+        gui_parameters <strong>gui</strong> <br>
+        span::(.c)// user key/mouse inputs state :: <br>
+        input_interaction_parameters <strong> inputs </strong> <br>
+        <br>
+        span::(.c)// Data :: <br>
+        mesh_drawable ... <br>
+
+        <br>
+        span::(.c)// Function :: <br>
+        <span class="call">initialize</span>() <br>
+        <span class="call">display_gui</span>() <br>
+        <span class="call">display_frame</span>() <br>
+        <br>
+        span::(.c)// Mouse/Keyboard function :: <br>
+        mouse_move_event() <br>
+        keyboard_event() <br>
+        ...
+        
+    </div>
+   
+</div>
+</div>

@@ -1,0 +1,326 @@
+{% set pageTitle = 'Scene Configuration' %}
+{% set tocTitle = 'Scene Configuration' %}
+
+{% extends "theme/template/base.html" %}
+
+
+{% block content %}
+
+
+= Scene Configuration
+
+Most example scenes comes with a standard environment and compilation script allowing various parameterization from the default setup.
+
+
+== GUI Dimension
+
+A default GUI (with buttons, checkbox, sliders, etc) is provided with each scene, and allows to interact with general parameters. Depending on the dimension and resolution of your window you may want to expand or reduce the size of it.
+
+::nl
+
+A zoom factor on the GUI can be dynamically adapted via the slider `Window->Gui Scale`. 
+
+::nl
+
+::[text-align:center]
+img::assets/gui.png[width:100%; max-width:250px;]
+::
+
+::nl
+
+You can also adapt the default scale factor when starting the program in changing the value of the variable:
+
+File `environment.cpp`
+code::[c++]
+float project::gui_scale = 1.0f;
+code::[-]
+
+== Window Dimension
+
+The initial window dimension is set to one half of your screen dimension.
+This initial value can be modified with the following variables
+
+::nl
+
+File `environment.cpp`
+code::[c++]
+float project::initial_window_size_width  = 0.5f; 
+float project::initial_window_size_height = 0.5f;
+code::[-]
+
+* - If the values are in \([0,1]\), they are interpreted as ratio of the current screen dimension.
+* - If the values are \(>1\), they are interpreted as absolute pixel values.
+
+
+== Animation loop refresh rate
+
+The animation loop is by default limited to a maximum of 60 frame per seconds.
+This behavior can be dynamically controled via the GUI `Window->FPS limiting`,  `FPS limit`, `vsync`. Or in the code with the following variables
+
+File `environment.cpp`
+code::[c++]
+bool project::fps_limiting = true;
+float project::fps_max = 60.0f;
+bool project::vsync = true;     
+code::[-]
+
+* - `fps_limiting` indicates if a software limitation of the FPS is applied.
+* - `fps_max` is the maximal number of FPS imposed when `fps_limiting==true`
+::[font-size:85%; color:gray; font-style:italic;]
+** This limitation takes place in the file `main.cpp` 
+::[margin-left:5em;]
+code::[c++]
+if(project::fps_limiting){
+    while (glfwGetTime() < lasttime + 1.0 / project::fps_max) {	}
+    lasttime = glfwGetTime();
+}
+code::[-]
+::
+::
+* - `vsync` indicates if that the maximal number of FPS is limited and synchronized with the monitor refresh rate.
+
+::[height:2em;]::
+
+Note: To may achieve very high FPS values in disabling `fps_limiting` and `vsync`. However, going above the monitor refresh rate doesn't improve the visual quality (it can actually decrease is via link::https://en.wikipedia.org/wiki/Screen_tearing[screen tearing artifact]).
+
+
+== Camera Position and Orientation
+
+
+The raw view matrix is stored in `environment.camera_view` variable, and used at each draw call.
+::nl
+
+File `environment.hpp`
+code::[c++]
+struct environment_structure
+{	
+	// The position of a light
+	mat4 camera_view;
+
+    // ...
+};
+code::[-]
+
+::[height:2em;]::
+
+The raw matrix is often controled in an interactive scene by a higher-level structure, typically `camera_controller_orbit_euler` or 
+`camera_controller_orbit` that are defined in `scene.cpp`.
+
+::[height::1em;]::
+
+ex.
+code::[c++]
+struct scene_structure : scene_inputs_generic 
+{
+	camera_controller_orbit camera_control;
+    // ...
+};
+code::[-]
+
+
+The position and orientation of the camera can be retrieved in the scene via 
+
+
+code::[c++]
+// Camera position
+[vec3] camera_control.camera_model.position();
+// Front/Up/Right vector
+[vec3] camera_control.camera_model.front()/up()/right();
+// Give the 4x4 view matrix
+[mat4] camera_control.camera_model.matrix_view();
+// Give the 4x4 camera frame matrix
+[mat4] camera_control.camera_model.matrix_frame();
+// Give the camera orientation as rotation
+[rotation_transform] camera_control.camera_model.orientation();
+code::[-]
+
+The camera orientation can be set via the `look_at` function:
+
+code::[c++]
+camera_control.look_at(vec3 eye, vec3 target, vec3 up);
+code::[-]
+
+You can change the initial position and orientation of the camera in the start of the scene
+
+code::[c++]
+void scene_structure::initialize()
+{
+    camera_control.initialize(inputs, window); // Give access to the inputs and window global state to the camera controler
+
+    // Change here the look_at(eye,target,up) to start with a different viewpoint
+    camera_control.look_at({ 3.0f, 2.0f, 2.0f }, {0,0,0}, {0,0,1});
+
+    // ...
+}
+code::[-]
+
+
+== Camera Controller Type
+
+Camera are handled via a higher-level structure called `camera_controller`. 
+* - The camera controller are specific to the scene and defined in `scene.hpp`.
+* - A camera controller can directly handle the direct mouse and keyboard inputs and convert it to a camera transformation. The result is written in the `environment.camera_view`.
+* - A camera controller contains itself a `camera_model` that stores the degrees of freedom of the camera that depends on its type.
+
+::[height:1em;]::
+
+Several camera controller are provided by the library. The main ones are 
+* - `camera_controller_orbit_euler`: Camera that rotates around a fixed central point. The orientation rely on Euler angle with a specific up direction. Usefull to see terrain-like scene with a clear horizontal and vertical direction.
+* - `camera_controller_orbit`: Camera that rotates around a fixed central point. The orientation is free and follows ArcBall representation.
+
+::[height:2em;]::
+
+You can change the type of camera controller in modifying its type in `scene.hpp``
+
+code::[c++]
+struct scene_structure : scene_inputs_generic {
+
+    // Change its type if you want a different type of control
+    camera_controller_orbit camera_control;
+    // ex. camera_controller_orbit camera_control;
+
+code::[-]
+
+
+
+::[height:2em;]::
+
+::[font-size:85%; font-style:italic;]
+Rem. Other types of specialized camera controller are provided if needed:
+
+
+* - `camera_controller_first_person_euler`: Models a moving camera in a first-person mode (rotate around its own position). The rotation is handled via Euler angle.
+* - `camera_controller_first_person`: Models a moving camera in a first-person mode (rotate around its own position). The rotation is free.
+* - `camera_controller_fly_mode`: Models a moving camera in a first-person mode using standard fly-like paradigm in moving forward with a specific speed, while rotating using roll and pitch. (this controler is a specialized version of camera_controller_first_person).
+* - `camera_controller_2d_displacement`: Models a motion restricted in 2D displacement.
+::
+
+
+
+
+== Light Position
+
+A single positional light is proposed by default with position stored in 
+::[height:1em;]::
+
+File `environment.hpp`
+code::[c++]
+struct environment_structure
+{	
+	// The position of a light
+	vec3 light = {1,1,1};
+
+    // ...
+};
+code::[-]
+
+::[height:1em;]::
+
+The position of the light can be controled in the scene. Most of the scenes set the light to follow dynamically the camera position.
+
+::[height:1em;]::
+
+File `scene.cpp`
+code::[c++]
+void scene_structure::display_frame()
+{
+	// Set the light to the current position of the camera
+	environment.light = camera_control.camera_model.position();
+
+    // ...
+}
+code::[-]
+
+
+== Background Color
+
+The background color is set to white by default as a variable of the `environment_structure`. 
+It can be change dynamically using
+
+code::[c++]
+environment.background_color = {r,g,b}; // with {r,g,b} your new color
+code::[-]
+
+::[height:2em;]::
+
+The variable is used at each new frame to clear the buffer of color in the file `main.cpp`
+
+code::[c++]
+vec3 const& background_color = scene.environment.background_color;
+glClearColor(background_color.x, background_color.y, background_color.z, 1.0f);
+glClear(GL_COLOR_BUFFER_BIT);
+glClear(GL_DEPTH_BUFFER_BIT);
+glEnable(GL_DEPTH_TEST);
+code::[-]
+
+
+
+== Filepath to assets
+
+Depending on the path where the executable file is run, the local access to the assets (shaders, texture, meshes, etc.) need to be adapted.
+
+::[height:1em;]::
+
+To ease this process, the global variable `project::path` stores the relative path between the current run location, and the directory that contain the assets.
+
+::[height:1em;]::
+
+You can use this variable when reading at run-time the content of a file (ex. loading a shader, a texture,e tc.). The local path is then `project::path+filepath`, where `filepath` is your path  from the root directory.
+
+::[height:1em;]::
+
+Examples:
+code::[c++]
+drawable.initialize_data_on_gpu(mesh_load_file_obj(project::path + "assets/mesh.obj"));
+quad.shader.load(project::path+"shaders/myShader/myShader.vert.glsl",
+project::path+"shaders/myShader/myShader.frag.glsl");
+code::[-]
+
+::[height:1em;]::
+
+This variable is updated in start of the program in trying multiple possibilities of local paths. You may write on top it in specific cases.
+
+
+
+==(#kjd) CGP debug mode
+
+Structure of CGP such as `numarray` have built-in index bounds check at run-time when querying `array[k]`. When detected, the error raises an exception indicating the error, and can be traced back in your IDE.
+
+::[height:1em;]::
+
+The bound checking on every access can, however, impact performance. 
+* The bound check can be disabled globally in uncommenting the following line in `CMakeLists.txt`
+
+code::[cmake]
+# add_definitions(-DCGP_NO_DEBUG)
+code::[-]
+
+::[height:2em;]::
+
+Rem. 
+* - You may also selectively skip a bounded-checked access using `array.at(k)` instead of `array[k]`.
+::[color:gray; font-size:85%; font-style:italic;]
+** Note that this convention is the opposite to the std::vector/std::array that uses by default un-checked access, while activating exception using link::https://en.cppreference.com/w/cpp/container/vector/at[at()].
+::
+* - Once disabled, beware that out-of-bound access won't be detected, and can lead to undefined behaviors and segmentation faults.
+
+
+== OpenGL version
+
+The code load by default OpenGL in version 3.3. The library is compatible and set with more recent OpenGL version if needed.
+
+::[height:1em;]::
+
+The OpenGL version can be changed in the `CMakeLists.txt`
+
+code::[cmake]
+# Set the OpenGL Compatibility Version
+add_definitions(-DCGP_OPENGL_3_3)   # for OpenGL 3.3
+# add_definitions(-DCGP_OPENGL_4_1) # for OpenGL 4.1
+# add_definitions(-DCGP_OPENGL_4_3) # for OpenGL 4.3
+# add_definitions(-DCGP_OPENGL_4_6) # for OpenGL 4.6
+code::[-]
+
+Uncomment the line for the requested OpenGL and recompile the code to get the updated version.
+
+{% endblock %}

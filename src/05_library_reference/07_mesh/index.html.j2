@@ -1,0 +1,66 @@
+{% set pageTitle = 'Mesh' %}
+{% set tocTitle = 'Mesh' %}
+
+{% extends "theme/template/base.html" %}
+
+
+{% block content %}
+
+
+= Mesh
+
+
+A structure **mesh** contains vector of data (numarray) to represent a triangulated shape with per vertex position, normal, color, and uv-coordinates. The data are stored contiguously on the CPU RAM and can be directly accessed and modified in the code.
+
+::[text-align:center;]
+
+::(.struct)
+::(.struct-name) 
+struct mesh
+::
+  ::(.struct-content)
+  numarray&lt;vec3&gt; <strong>position</strong> <br>
+  numarray&lt;vec3&gt; <strong>normal</strong> <br>
+  numarray&lt;vec3&gt; <strong>color</strong> <br>
+  numarray&lt;vec2&gt; <strong>uv</strong> <br> <br>
+  numarray&lt;int3&gt; <strong>connectivity</strong>
+  ::
+::
+
+<br>
+<em>Data structure of a mesh <br>(uint3 is a triplet of positive integers)</em>
+
+::
+
+== Code Reference
+
+
+{{ref_github('mesh.hpp')}}
+
+
+== Vertex properties access
+
+code::[c++]
+mesh quad;
+quad.position = { {0,0,0}, {1,0,0}, {1,1,0}, {0,1,0} };
+quad.connectivity = { {0,1,2}, {0,2,3} };
+
+quad.fill_empty_field();  // Fill all the buffers (normals, color, etc) with default values.
+code::[-]
+
+== Mesh Primitives
+
+Basic triangulated primitives are pre-coded
+
+code::[c++]
+mesh sphere_mesh = mesh_primitive_sphere();
+mesh cylinder_mesh = mesh_primitive_cylinder();
+mesh cube_mesh = mesh_primitive_cube();
+...
+code::[-]
+
+link::[See all mesh primitives]
+
+
+
+{% endblock %}

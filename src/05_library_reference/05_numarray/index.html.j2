@@ -1,0 +1,87 @@
+{% set pageTitle = 'Numarray' %}
+{% set tocTitle = 'Numarray' %}
+
+{% extends "theme/template/base.html" %}
+
+
+{% block content %}
+
+
+= Numarray
+
+CGP library propose the use of generic vector-like containers for contiguous data in memory `cgp::numarray` (and `cgp::numarray_stack`) that are simple wrappers above `std::vector` (resp. `std::array`).
+
+::nl
+
+The use of numarray and numarray_stack are similar to their std equivalent, but provide additional helpers such as enforced bound check when accessing an element, and operators `*,+,-,/` implemented by default over all the elements.
+
+
+
+
+
+
+::[text-align:center;]
+
+::(.struct)
+::(.struct-name) 
+struct numarray&lt;T&gt;
+::
+  ::(.struct-content)
+  std::vector&lt;T&gt; data
+  ::
+::
+
+::(.struct)
+::(.struct-name) 
+struct numarray_stack&lt;T,int&gt;
+::
+  ::(.struct-content)
+  std::array&lt;T,int&gt; data
+  ::
+::
+
+<br>
+<em>buffer and buffer_stack are similar to contiguous containers of std, but propose additional helper functions and error checkings.</em>
+
+
+::
+
+== Code Reference
+
+
+
+
+
+
+
+{{ref_github('numarray.hpp')}}
+** Dynamic stored array similar to `std::vector`
+{{ref_github('numarray_stack.hpp')}}
+** Static stored array similar to `std::array`
+
+
+
+
+
+== Usage
+
+
+
+
+code::[c++]
+  numarray<vec3> C;         // Similar to std::vector<vec3>
+  C.push_back({ 0,3,1 }); // push-back similar to std::vector
+  C.push_back({ { 2,3,1 }, { 1,2,0 }, { 2,1,1 } }); // Can add multiple elements at once
+  std::cout << C << std::endl; // Default print-out on the terminal
+  C[2] = { 3,2,1 }; // Element access (assert-check that the index 2 exists)
+  C.resize(8);      // Resize similar to std::vector
+
+
+  numarray_stack<vec2, 2> D; // Similar to std::array<vec2,2>
+  D[0] = { 2,1 }; // Element access with bound check
+  D[1] = { 4,5 };
+  std::cout << D << std::endl; // Default print-out on the terminal
+code::[-]
+
+
+{% endblock %}

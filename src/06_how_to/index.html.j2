@@ -1,0 +1,93 @@
+{% set pageTitle = 'How to' %}
+{% set tocTitle = 'How to' %}
+
+{% extends "theme/template/base.html" %}
+
+
+{% block content %}
+
+
+= How to
+
+== Display a mesh
+
+* **1/ Create a persistent variable** (e.g. a variable of the class `scene_structure`) of type `mesh_drawable`
+
+::[margin-left:3em; margin-top:1em; margin-bottom:2em;]
+
+File `scene.hpp`
+code::[c++]
+scene_structure {
+    // ...
+    mesh_drawable my_shape_drawable;
+}
+code::[-]
+
+::
+
+* **2/ Create a mesh** at initialization stage with the expected structure. Then **initialize the `mesh_drawable`** with the data from the `mesh`.
+
+::[margin-left:3em; margin-top:1em; margin-bottom:2em;]
+
+File `scene.cpp`, function `initialize()`
+code::[c++]
+void scene_structure::initialize() {
+    
+    // ...
+
+    // Create a mesh
+    mesh my_shape = mesh_primitive_sphere();
+
+    // Initialize the mesh_drawable using the created mesh
+    my_shape_drawable.initialize_data_on_gpu(my_shape);
+
+    // Note:
+    //   - 'my_shape' is a temporary variable, it will be removed from the memory at the end of the initialize() function
+    //   - 'my_shape_drawable' is a variable of the class, it is persistent and can be used in the other methods of the class.
+
+}
+code::[-]
+
+::
+
+
+* **3/ Call the `draw()` function** on the `mesh_drawable` in the animation loop
+
+::[margin-left:3em; margin-top:1em; margin-bottom:2em;]
+
+File `scene.cpp`, function `display_frame()`
+code::[c++]
+void scene_structure::display_frame() {
+    
+    // ...
+
+    // Create a mesh
+    draw(my_shape_drawable, environment);
+}
+code::[-]
+
+::
+
+== Apply a transformation to the mesh
+
+== Deform the vertices of the mesh
+
+== Compute the normals
+
+== Set a texture
+
+== Add an additional texture
+
+== Use instancing
+
+== Active transparency
+
+
+== Load a mesh from a file
+
+
+== Change the camera
+
+== Modify the user input
+
+{% endblock %}

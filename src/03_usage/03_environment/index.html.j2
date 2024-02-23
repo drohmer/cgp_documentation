@@ -1,0 +1,40 @@
+{% set pageTitle = 'Environment' %}
+{% set tocTitle = 'Environment' %}
+
+{% extends "theme/template/base.html" %}
+
+
+{% block content %}
+
+
+= Environment
+
+== General scene organization
+
+While CGP does not impose the general structure of the scene that can be made from scratch, the example 3D scenes uses a shared generic initialization pattern and scene structure organized as
+
+* - A main files (main.cpp) that starts the program, load basic elements (camera, shaders, etc), run the animation loop and receive the key/mouse callbacks.
+* - A scene class (scene.cpp and scene.hpp) that contains the specific data and behavior of the example.
+
+<br>
+
+::[text-align:center;]
+include::src/03_usage/03_environment/include/main_schematic.html[]
+::
+
+
+
+::[height:2em;]::
+
+
+The main file has (in large part) the same fundamental functions through all the examples and calls the following scene custom functions
+* - **Initialize**() that handles the initialization of the meshes, mesh_drawable, files loading, etc. This function is called only once at the beginning of the program.
+* - **display_gui**() that displays (using ImGUI library) and update the state of checkboxs, sliders, etc. associated to GUI interface. This function is called at every frame within the animation loop.
+* - **display_frame**() that contains the draw calls of the scene as well as other computation needed through the runtime. This function is also called at every frame of the animation loop.
+
+<br>
+
+The scene structure handles the custom data of the examples, as well as the storage of the state of the gui elements (parameter **gui**), and a specific element **environment** used to store the shared parameters of the visual scene (camera, light, etc).
+
+
+{% endblock %}

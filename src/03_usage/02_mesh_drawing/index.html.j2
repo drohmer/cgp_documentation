@@ -1,0 +1,245 @@
+{% set pageTitle = 'Mesh Drawing' %}
+{% set tocTitle = 'Mesh Drawing' %}
+
+{% extends "theme/template/base.html" %}
+
+
+{% block content %}
+
+
+= Mesh Drawing
+
+The library handles mesh along two main type of classes: ::nl
+
+* - A class link::../../05_library_reference/07_mesh/index.html[`mesh`] that stores the vertex data (position, normal, uv, etc.) on the CPU.  This class can be used to initialize a mesh and modify their individual vertex value, but cannot be displayed directly. ::nl
+* - A class link::../../05_library_reference/08_mesh_drawable/index.html[`mesh_drawable`] that stores the OpenGL buffers (VBOs, VAO, textures, etc.), and some uniform variables (global shape color, model matrix, etc.). This class is used to display efficiently the corresponding mesh, but the vertex value cannot be directly accessed via the code.
+
+
+
+
+
+
+== Display a mesh
+
+The process to display a primitive in a standard scene structure is the following.
+
+* **1)** **Create** a shared variable of type __mesh_drawable__ in the class scene (e.g.  in `scene.hpp`)
+
+code::[c++]
+struct scene_structure {
+    // ...
+    cgp::mesh_drawable cube_drawable; 
+    // ...
+}
+code::[-]
+
+<br>
+
+* **2)** **Initialize** the mesh_drawable variable in the __initialize__ function
+
+code::[c++]
+void scene_structure::initialize()
+{
+    // ...
+
+    // Create a temporary mesh structure
+    mesh cube = mesh_primitive_cube();
+    //   - Create the primitive as mesh
+
+
+    // Initialize the mesh_drawable from the mesh
+    cube_drawable.initialize_data_on_gpu(cube);
+    // This initialize the OpenGL buffers on cube_drawable from the data stored in the variable cube
+}
+code::[-]
+
+* __Notes__
+* - __The mesh structure stores the data in buffers (numarray) accessible in the main memory RAM. It is a convenient to manipulate the buffers in the code, but the data cannot be displayed as it is.__
+* - __The mesh_drawable stores the identifiers of the buffers objects sent to the GPU memory (+ some additional uniform data). At the oppositve of the mesh structure, the buffer data cannot be manipulated via mesh_drawable, but it can be displayed.__
+* - __The **mesh_drawable.initialize_data_on_gpu(mesh)** send all the buffers stored in the mesh structure in RAM to the GPU memory, and keep the VBO identifiers. The initialize function consists of a series of glBufferData calls.__
+
+<br><br>
+
+
+* **3) Call the drawing** of the mesh_drawable variable in the `display_frame` function
+
+::(.code-with-output)
+::(.part-code)
+code::[c++]
+void scene_structure::display_frame()
+{
+    // ...
+
+    draw(shape, environment);
+    // Note: environment is a variable that contains the scene parameters
+    //  ex. camera, light, etc.
+}
+code::[-]
+::
+::(.part-output)
+img::assets/cube.jpg[width:100%; max-width:250px;]
+::
+::
+
+::[height:2em;]::
+
+The position, orientation, color and shading of the shape can be modified using the parameters attached to the mesh_drawable class. These parameters are sent as uniform values to the default shader.
+
+::(.code-with-output)
+::(.part-code)
+code::[c++]
+void scene_structure::display()
+{
+    // ...
+
+	// change the color parameter
+	shape.material.color = { 1.0f, 1.0f, 0.8f};
+	// change the translation parameter
+	shape.model.translation = { 1.5f,0,0 };
+
+	// the current color is used when calling draw(...)
+	draw(shape, environment); 
+
+	// a wireframe call is also available by default
+	draw_wireframe(shape, environment);
+}
+code::[-]
+::
+::[width:60%;]
+img::assets/cube_offset.jpg[width:100%;]
+::
+::
+
+== Draw call
+
+The display a drawable entity follows the main general steps: Set current shader, send uniform parameters, display calls. Two variables are needed for the `draw(...)` function 
+
+* - The **drawable** element to be displayed (ex. a `mesh_drawable`) storing the VBO identifier of the data, as well as some parameters used as uniforms for the shader. This element also stores the id of the shader to be used.
+* - An **environment** that describes elements that are needed for the shader, but are not depending directly of the element itself (typically shared through all the objects of the scene).
+
+<br>
+
+The draw call of a __mesh_drawable__ element can be summarized as follows <br>
+
+<br>
+
+::[text-align:center;]
+include::src/03_usage/02_mesh_drawing/include/draw_schematic.html[]
+::
+
+
+
+
+== Environment variable
+
+The **environment** structure describes the variables and states that are necessary to draw an element and is used by the shader, but does conceptually depends on the global scene rather than an individual element. 
+
+<br><br>
+Pre-existing scene provide a typical default basic environment
+
+code::[c++]
+struct environment_structure : environment_generic_structure
+{
+
+	// Color of the background of the scene
+	vec3 background_color = {1,1,1}; // Used in the main program
+
+	// The position/orientation of a camera that can rotates freely around a specific position
+	mat4 camera_view;
+
+	// A projection structure (perspective or orthogonal projection)
+	mat4 camera_projection;
+
+	// The position of a light
+	vec3 light = {1,1,1};
+
+};
+code::[-]
+
+The parameters of the environment variable are sent as uniform values to the shader for each displayed object (via environment.send_opengl_uniform(shader)). The value of these parameters can be modified at each frame to represent an animated camera.
+
+<br>
+
+During the draw call, the environment parameters are sent to the shader via the function 
+code::[c++]
+void opengl_uniform(GLuint shader, scene_environment const& scene)
+code::[-]
+
+::nl ::nl
+
+Custom environment can be defined by the user in adding new variables and setting an associated opengl_uniform function.
+
+::nl
+
+A generic type `uniform_generic_structure` can also be used to add new uniform parameters to an existing environment structure without re-definition.
+
+{{ref_github('uniform.hpp')}}
+
+::nl
+
+code::[c++]
+struct environment_structure
+{
+
+    // ...
+
+    // generic container for uniform values (pairs of string/value)
+    uniform_generic_structure uniform_generic;
+};
+code::[-]
+
+== GUI
+
+The interface is using **link::https://github.com/ocornut/imgui[ImGui]** library. <br>
+
+* - The state of the variables can be stored in the __gui_parameters__ structure, and therefore shared in the scene class.
+* - The gui elements are created in the __display_gui__ function using direct ImGui calls.
+* - The use of the gui elements that impacts the display of drawable elements can be typically handled in the __display()__ function.
+
+<br>
+
+An example of simple use of the gui is the following
+
+code::[c++]
+// In scene.hpp
+struct gui_parameters {
+	bool display_frame      = true;
+	bool display_wireframe  = false;
+};
+code::[-]
+
+code::[c++]
+// In scene.cpp
+void scene_structure::display_gui()
+{
+	ImGui::Checkbox("Frame", &gui.display_frame);
+	ImGui::Checkbox("Wireframe", &gui.display_wireframe);
+	ImGui::SliderFloat("Translation", &shape.model.translation.x, -2.0f, 2.0f);
+}
+code::[-]
+
+code::[c++]
+// In scene.cpp
+void scene_structure::display_frame()
+{
+    // ...
+	draw(shape, environment); 
+	if(gui.display_wireframe)
+		draw_wireframe(shape, environment);
+}
+code::[-]
+
+<br>
+
+
+videoplay::assets/gui.mp4[width:100%; max-width:600px;]
+
+
+
+
+
+
+
+
+
+{% endblock %}

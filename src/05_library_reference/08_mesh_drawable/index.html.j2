@@ -1,0 +1,45 @@
+{% set pageTitle = 'Mesh Drawable' %}
+{% set tocTitle = 'Mesh Drawable' %}
+
+{% extends "theme/template/base.html" %}
+
+
+{% block content %}
+
+
+= Mesh Drawable
+
+The structure **mesh_drawable** automatically converts the data of **mesh** into GPU compatible VBOs, and attach shader-related elements such as shader program, texture image, and uniform variables. **mesh_drawable** can be displayed using the **draw()** function.
+
+::[text-align:center;]
+
+::(.struct)
+::(.struct-name) 
+struct mesh_drawable
+::
+  ::(.struct-content)
+  <em style="color:gray">// OpenGL VBOs - per vertex attributes</em> <br>
+  <strong>vbo_position</strong> <br>
+  <strong>vbo_normal</strong> <br>
+  <strong>vbo_color</strong> <br>
+  <strong>vbo_uv</strong> <br> <br>
+  <strong>ebo_connectivity</strong> <br> <br>
+  <strong>shader, texture</strong> <br> <br> 
+  
+  <em style="color:gray">// Uniform parameters</em> <br>
+  affine <strong>model</strong> <br>
+  material_structure <strong>material</strong>   
+  ::
+::
+
+<br>
+<em>Conceptual structure of a mesh_drawable</em>
+
+::
+
+== Code Reference
+
+{{ref_github('mesh_drawable.hpp')}}
+
+
+{% endblock %}

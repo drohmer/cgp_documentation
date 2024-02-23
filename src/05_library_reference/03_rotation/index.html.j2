@@ -1,0 +1,94 @@
+{% set pageTitle = 'Rotation' %}
+{% set tocTitle = 'Rotation' %}
+
+{% extends "theme/template/base.html" %}
+
+
+{% block content %}
+
+
+= Rotation
+
+
+The struct `rotation_transform` is provided as a helper structure to store and manipulate rotations. It stores internally a unit quaternion, but can be applied to a vector using the semantic of the matrix-vector product.
+
+== Code Reference
+
+
+{{ref_github('rotation_transform.hpp')}}
+{{ref_github('quaternion.hpp')}}
+
+
+== Usage
+
+
+code::[c++]
+// Parameterize two rotations by an axis and an angle
+rotation_transform R1 = rotation_transform::from_axis_angle({ 1,0,0 }, Pi / 6);
+rotation_transform R2 = rotation_transform::from_axis_angle({ 0,1,0 }, Pi / 4);
+
+// Product between rotation is the composition of the rotation
+rotation_transform R = R1 * R2;
+
+// Product rotation_structure * vec3 applies the rotation to the vector
+vec3 rotated = R * vec3({ 1,1,1 });
+
+// The 3x3 matrix of the rotation can also be extracted at any time from a rotation_transform
+mat3 M = R.matrix();
+code::[-]
+
+
+== Initialization
+
+Quick initialization from axis-angle as a free function
+code::[c++]
+rotation_transform rotation_axis_angle(vec3 const& axis, float angle);
+code::[-]
+
+::nl
+
+
+The rotation can be initialized using various parameterization using dedicated static functions
+
+code::[c++]
+// From a given axis (vec3) and angle (float)
+rotation_transform::from_axis_angle(vec3{x,y,z}, float{angle}); 
+
+// From a quaternion
+rotation_transform::from_quaternion(quaternion{x,y,z,w}); 
+
+// From a 3x3 matrix
+rotation_transform::from_matrix(mat3{xx,xy,xz, yx,yy, ..., zz});
+code::[-]
+
+::[height:2em]::
+
+In addition, helper functions provides easy construction of rotation as mapping between unit vectors <br> <br>
+
+* - A rotation (non unique) transforming a vector \(e\) into a target one \(e_t\) 
+** The matrix \(R\) such that \(e_t=R\,e\) (with \(\|e\|=\|e_t\|=1\))
+
+::[margin-left:2em]
+code::[c++]
+rotation_transform::from_vector_transform(vec3{ex,ey,ez}, vec3{etx,ety,etz});
+code::[-]
+::
+
+::[height:2em]::
+
+* - The rotation (unique) transforming two orthonormal basis vectors \((e_1,e_2)\) into \((e_{1t},e_{2t})\) 
+** The matrix \(R\) such that \(e_{1t}=R\,e_1\) and \(e_{2t}=R\,e_2\) assuming \(\|e_{1/2}\|=\|e_{1t/2t}\|=1\), \(e_1\cdot e_2=0\) and \(e_{1t}\cdot e_{2t}=0\)
+::[margin-left:2em]
+code::[c++]
+rotation_transform::from_frame_transform(e1, e2, e1t, e2t);
+code::[-]
+::
+
+== Code
+
+code::[c++]
+include::code/cgp/library/cgp/09_geometric_transformation/rotation_transform/rotation_transform.hpp[]
+code::[-]
+
+
+{% endblock %}

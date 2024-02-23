@@ -1,0 +1,74 @@
+{% set pageTitle = 'Common Classes' %}
+{% set tocTitle = 'Common Classes' %}
+
+{% extends "theme/template/base.html" %}
+
+
+{% block content %}
+
+
+{% macro Reference(url) %}
+::[font-weight:bold;]
+link::{{url}}[Go to Reference]
+::
+{% endmacro %}
+
+
+= Common Classes
+
+== affine
+
+* {{Reference('../../05_library_reference/04_affine/index.html')}}
+
+{{ref_github('affine_rt.hpp')}}
+{{ref_github('affine_rts.hpp')}}
+{{ref_github('affine.hpp')}}
+
+== grid
+
+* {{Reference('../../05_library_reference/06_grid/index.html')}}
+
+{{ref_github('grid_2D.hpp')}}
+{{ref_github('grid_3D.hpp')}}
+
+
+== mat
+
+* {{Reference('../../05_library_reference/02_mat/index.html')}}
+{{ref_github('mat2.hpp')}}
+{{ref_github('mat3.hpp')}}
+{{ref_github('mat4.hpp')}}
+
+== numarray
+
+* {{Reference('../../05_library_reference/05_numarray/index.html')}}
+
+== numarray_stack
+
+* {{Reference('../../05_library_reference/05_numarray/index.html')}}
+
+== rotation_transform
+
+* {{Reference('../../05_library_reference/03_rotation/index.html')}}
+{{ref_github('rotation_transform.hpp')}}
+{{ref_github('quaternion.hpp')}}
+
+== vec
+
+
+* {{Reference('../../05_library_reference/01_vec/index.html')}}
+{{ref_github('vec2.hpp')}}
+{{ref_github('vec3.hpp')}}
+{{ref_github('vec4.hpp')}}
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
