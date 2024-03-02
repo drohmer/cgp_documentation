@@ -11,7 +11,7 @@
 
 == Display a mesh
 
-* **1/ Create a persistent variable** (e.g. a variable of the class `scene_structure`) of type `mesh_drawable`
+* **1/ Create a persistent variable** (e.g. a variable of the class `scene_structure`) of type `{{linkTo_mesh_drawable}}`
 
 ::[margin-left:3em; margin-top:1em; margin-bottom:2em;]
 
@@ -25,7 +25,7 @@ code::[-]
 
 ::
 
-* **2/ Create a mesh** at initialization stage with the expected structure. Then **initialize the `mesh_drawable`** with the data from the `mesh`.
+* **2/ Create a {{linkTo_mesh}}** at initialization stage with the expected structure. Then **initialize the `mesh_drawable`** with the data from the `mesh`.
 
 ::[margin-left:3em; margin-top:1em; margin-bottom:2em;]
 
@@ -68,15 +68,187 @@ code::[-]
 
 ::
 
-== Apply a transformation to the mesh
+== Apply a transformation to a mesh
 
-== Deform the vertices of the mesh
+
+=== Possibility 1: On the GPU via uniform parameter
+
+The first possibility is to use the default uniform parameters `[mesh_drawable].model` associated to the `mesh_drawable` structure to apply a transformation at the drawing stage.
+
+::nl ::nl
+
+__Example:__
+code::[c++]
+my_shape_drawable.model.translation = {1,0,0}; 
+my_shape_drawable.model.rotation = rotation_axis_angle({0,1,0}, Pi/4.0f);
+my_shape_drawable.model.scale = 2.0f;
+code::[-]
+
+::nl
+
+`[mesh_drawable].model` is a structure of type `{{linkTo_affine}}` allowing to set a value for a **translation** (vec3), a **rotation** (rotation_transform), and a homogeneous scaling (float).
+
+::nl
+
+
+
+
+==== Principle
+
+`my_shape_drawable.model` is a simple variable storing a value for translation/rotation/scaling. It is conceptually similar to writing in a \(4 \times 4\) matrix in a more intuitive way.
+
+::nl
+
+When the function `draw(my_shape_drawable, ...)` is called, the parameter `[mesh_drawable].model` is used to generate a `mat4` transformation which is sent as uniform parameter in the shader. Common shaders receives this parameters as `uniform mat4 model;` and apply the model matrix to all vertex positions.
+
+::nl
+
+__Common use in the default shaders:__
+code::[glsl]
+uniform mat4 model;
+// ...
+void main(){
+    // The position of the vertex in the world space
+    vec4 position = model * vec4(vertex_position, 1.0);
+
+    // ...
+}
+code::[-]
+
+
+==== Concept and Usage
+
+Applying a transformation using `my_shape_drawable.model` is extremely efficient.
+* - Changing the value of the `model` variable consists in writing a value in a variable. No loop over the vertices is performed.
+* - All the computation of the transformation is performed by the GPU at the drawing stage.
+
+::nl
+
+Additional remarks:
+* - Beware that the line `my_shape_drawable.model.translation = xxx;` does not apply an actual process of translation on the vertices, it simply write a value in a variable. The actual translation is performed by the shader when calling the `draw()` function using the current value of the translation.
+* - Every `mesh_drawable` are associated to a model variable. By default the translation is set to zero, saling to 1, and rotation to the identity.
+* - If you re-write on the variable along two consecutive lines, only the last value will be used. If you want to apply a combination of transformation, you need to express it on the variable itself.
+
+::nl
+
+Example: This code only display my_shape_drawable with a translation of \((0,0,1)\), and not \((1,0,1)\).
+code::[c++]
+my_shape_drawable.model.translation = {1,0,0}; 
+my_shape_drawable.model.translation = {0,0,1}; // rewrite on a variable
+
+draw(my_shape_drawable, environment);
+code::[-]
+
+::nl
+
+Example: This code applies a translation of \((1,0,1)\) to my_shape_drawable.  
+code::[c++]
+my_shape_drawable.model.translation  = vec3{1,0,0} + vec3{0,0,1};
+
+// Or alternatively 
+my_shape_drawable.model.translation  = {1,0,0}; 
+my_shape_drawable.model.translation += {0,0,1}; // add a value to the variable
+
+draw(my_shape_drawable, environment);
+code::[-]
+
+Example: In the case of rotations and scaling:
+code::[c++]
+my_shape_drawable.model.rotation  = rotation_1 * rotation_2; 
+my_shape_drawable.model.scaling = scale_1 + scale_2;
+
+draw(my_shape_drawable, environment);
+code::[-]
+
+==== Advanced:
+
+For advanced use requiering more degrees of freedom than standard translation/rotation/scaling, a general `mat4` structure is also provided as `[mesh_drawable].supplementary_model_matrix`.
+A `mat4` structure allows more general transformation than a `affine_rts`, but is less intuitive to use.
+
+The final transformation sent to the shader is the matrix resulting from the product:
+code::[c++]
+mat4 M = hierarchy_transform_model.matrix() * supplementary_model_matrix * model.matrix()
+// model: the default way to apply a transformation on a mesh_drawable
+// supplementary_model_matrix: the generic matrix allowing additional degrees of freedom.
+// hierarchy_transform_model: matrix dedicated to handle hierarchical transforms.
+code::[-]
+
+::nl
+
+=== Possibility 2: On the CPU, writing new positions
+
+The second possibility is to directly modify the vertices of the `mesh` structure, on the CPU memory, before converting it to a `mesh_drawable`. 
+
+
+::nl
+
+Example in the `initialize()` function:
+code::[c++]
+for(int k=0; k<my_mesh.position.size(); ++k) {
+	my_mesh.position[k] = //... any value or transformation
+}
+
+my_mesh_drawable.initialize_data_on_gpu(camel_mesh);
+code::[-]
+
+==== Concept and Usage
+
+This method is usefull when the transformation is not a simple translation/rotation/scaling, but a more complex process that cannot be expressed as a combination of the standard transformation.
+
+::nl
+
+Although very generic, this approach is more costly than the use of the `model` variable. It requires to loop over all the vertices of the mesh and to perform the transformation on the CPU. This approach can be used at the initialization stage, but should be not be applied in the animation loop (`[mesh_drawable].initialize_data_on_gpu` should not be called in the animation loop).
+
+
+
+== Deform vertices of a mesh
 
 == Compute the normals
 
+=== On a mesh structure
+
+The `{{linkTo_mesh}}` structure stores the set per-vertex normal in the variable `[mesh].normal` as `numarray`.
+`mesh` provides the function `[mesh].normal_update()` that computes automatically normals based on the position and connectivity of the triangles. The per-vertex normal \(n_i\) is copmputed as \(n_i = \sum_{t\in \mathcal{N}_i} n_t ,\)
+with \(\mathcal{N}_i\) the set of triangles indices that share the vertex \(i\), and \(n_t\) is the per-triangle normal. Then \(n_i\) is normalized to have a unit length.
+
+::nl
+
+=== Update on a mesh_drawable
+
+When the normals of a `mesh_drawable` need to be updated during the animation loop, the function `[mesh_drawable].camel.vbo_normal.update([numarray<vec3>])` can be called.
+
+::nl
+
+Example:
+code::[c++]
+void scene_structure::display_frame()
+{
+    // Update some normals
+    //   my_mesh.normal = ...
+
+    // Then update the normals of the mesh_drawable
+    my_mesh_drawable.vbo_normal.update(my_mesh.normal);
+}
+code::[-]
+
+Remark: The numarray storing the normals on the CPU must be stored throughout the scene animation in order to apply such update.
+
 == Set a texture
 
+Load a 2D texture from a file in "assets/my_texture.jpg", and assign it to a mesh_drawable:
+code::[c++]
+[mesh_drawable].texture.load_and_initialize_texture_2d_on_gpu(project::path+"assets/my_texture.jpg");
+code::[-]
+
 == Add an additional texture
+
+Load an additional texture to be used in the shader under the uniform name "texture_2":
+code::[c++]
+[mesh_drawable].supplementary_texture["texture_2"].load_and_initialize_texture_2d_on_gpu(project::path+"assets/your_texture.jpg");
+code::[-]
+
+See example link::{{pathTo_example}}#multi_texturing_l2[Multi-texturing].
+
 
 == Use instancing
 

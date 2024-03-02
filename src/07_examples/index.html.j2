@@ -1,11 +1,15 @@
 {% set pageTitle = 'CGP - Example code' %}
 {% set tocTitle = 'Example code' %}
+{% set title_id = 'example' %}
 
 {% extends "theme/template/base.html" %}
 
 
 {% block content %}
 
+{% macro url_example(name) -%}
+https://github.com/drohmer/cgp_examples/tree/main/examples/{{name}}
+{%- endmacro %}
 
 <style>
     .title {
@@ -58,11 +62,11 @@ Direct download: [link::https://imagecomputing.net/cgp/examples/cgp_examples.zip
 == Transparent billboards
 </div>
 <div class="path">
-examples/01_transparent_billboards
+link::{{url_example('01_transparent_billboards')}}[examples/01_transparent_billboards]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/01_transparent_billboards">
+<a href="{{url_example('01_transparent_billboards')}}">
 videoplay::assets/transparent_billboards.mp4[width:100%; max-width:300px;]
 </a>
 </div>
@@ -79,11 +83,11 @@ This code uses a shader to display partly transparent textures. The code illustr
 == Marching Cube - Static
 </div>
 <div class="path">
-examples/02_marching_cubes/01_marching_cube_simple
+link::{{url_example('02_marching_cubes/01_marching_cube_simple')}}[examples/02_marching_cubes/01_marching_cube_simple]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/02_marching_cubes/01_marching_cube_simple">
+<a href="{{url_example('02_marching_cubes/01_marching_cube_simple')}}">
 img::assets/marching_cube_static.jpg[width:100%; max-width:300px;]
 </a>
 </div>
@@ -98,11 +102,11 @@ Example of simple marching cube applied to an arbitrary function (a blobby funct
 == Marching Cube - Dynamic update
 </div>
 <div class="path">
-examples/02_marching_cubes/02_marching_cube_dynamic
+link::{{url_example('02_marching_cubes/02_marching_cube_dynamic')}}[examples/02_marching_cubes/02_marching_cube_dynamic]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/02_marching_cubes/02_marching_cube_dynamic">
+<a href="{{url_example('02_marching_cubes/02_marching_cube_dynamic')}}">
 videoplay::assets/marching_cube_dynamic.mp4[width:100%; max-width:300px;]
 </a>
 </div>
@@ -119,11 +123,11 @@ The structures used in the example are more involved compared to the simple call
 == Shader deformation
 </div>
 <div class="path">
-examples/03_shaders/01_deformation
+link::{{url_example('03_shaders/01_deformation')}}[examples/03_shaders/01_deformation]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/03_shaders/01_deformation">
+<a href="{{url_example('03_shaders/01_deformation')}}">
 videoplay::assets/shader_deformation.mp4[width:100%; max-width:300px;]
 </a>
 </div>
@@ -140,11 +144,11 @@ This code shows a procedural deformation fully computed in the vertex shader. A 
 == Multi-texturing
 </div>
 <div class="path">
-examples/03_shaders/02_multi_texture
+link::{{url_example('03_shaders/02_multi_texture')}}[examples/03_shaders/02_multi_texture]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/03_shaders/02_multi_texture">
+<a href="{{url_example('03_shaders/02_multi_texture')}}">
 img::assets/multiple_textures.jpg[width:100%; max-width:300px;]
 </a>
 </div>
@@ -160,11 +164,11 @@ This code shows the use of a shader using two textures. The two textures are ble
 == 2D Curve sketch
 </div>
 <div class="path">
-examples/04_sketch/02_2d_curve
+link::{{url_example('04_sketch/02_2d_curve')}}[examples/04_sketch/02_2d_curve]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/04_sketch/02_2d_curve">
+<a href="{{url_example('04_sketch/02_2d_curve')}}">
 videoplay::assets/curve_sketch.mp4[width:100%; max-width:300px;]
 </a>
 </div>
@@ -182,11 +186,11 @@ Example of direct curve sketching on screen. The sketch is done in the 2D space 
 == Skybox
 </div>
 <div class="path">
-examples/05_environment_map/01_skybox
+link::{{url_example('05_environment_map/01_skybox')}}[examples/05_environment_map/01_skybox]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/05_environment_map/01_skybox">
+<a href="{{url_example('05_environment_map/01_skybox')}}">
 videoplay::assets/skybox.mp4[width:100%; max-width:300px;]
 </a>
 </div>
@@ -205,11 +209,11 @@ Simple use of the class skybox_drawable to display a skybox (using 6 textures) i
 == Environment map
 </div>
 <div class="path">
-examples/05_environment_map/02_environment_map
+link::{{url_example('05_environment_map/02_environment_map')}}[examples/05_environment_map/02_environment_map]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/05_environment_map/02_environment_map">
+<a href="{{url_example('05_environment_map/02_environment_map')}}">
 videoplay::assets/environment_mapping.mp4[width:100%; max-width:300px;]
 </a>
 </div>
@@ -226,11 +230,11 @@ This code shows the use of environment (/reflection) mapping. A "Skybox" is disp
 == Multi-Pass Image Filter
 </div>
 <div class="path">
-examples/06_multipass/01_image_filter
+link::{{url_example('06_multipass/01_image_filter')}}[examples/06_multipass/01_image_filter]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/06_multipass/01_image_filter">
+<a href="{{url_example('06_multipass/01_image_filter')}}">
 videoplay::assets/image_filter.mp4[width:100%; max-width:300px;]
 </a>
 </div>
@@ -245,11 +249,11 @@ This code shows a multi-pass render using a Frame Buffer. In a first pass a scen
 == Image Filter - Basic Effects
 </div>
 <div class="path">
-examples/06_multipass/02_image_filter_basic_effects
+link::{{url_example('06_multipass/02_image_filter_basic_effects')}}[examples/06_multipass/02_image_filter_basic_effects]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/06_multipass/02_image_filter_basic_effects">
+<a href="{{url_example('06_multipass/02_image_filter_basic_effects')}}">
 img::assets/image_effects.jpg[width:100%; max-width:300px;]
 </a>
 </div>
@@ -265,11 +269,11 @@ Each effect is generated by a shader that is dynamically loaded from the gui.
 == Multi-Pass chaining effects
 </div>
 <div class="path">
-examples/06_multipass/03_image_filters_chain
+link::{{url_example('06_multipass/03_image_filters_chain')}}[examples/06_multipass/03_image_filters_chain]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/06_multipass/03_image_filters_chain">
+<a href="{{url_example('06_multipass/03_image_filters_chain')}}">
 img::assets/image_effect_chain.jpg[width:100%; max-width:300px;]
 </a>
 </div>
@@ -284,11 +288,11 @@ This code shows a 3-pass rendering using two consecutive Frame Buffer and two co
 == Camera Fly Mode
 </div>
 <div class="path">
-examples/07_camera/01_camera_fly_mode
+link::{{url_example('07_camera/01_camera_fly_mode')}}[examples/07_camera/01_camera_fly_mode]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/07_camera/01_camera_fly_mode">
+<a href="{{url_example('07_camera/01_camera_fly_mode')}}">
 videoplay::assets/fly_mode.mp4[width:100%; max-width:300px;]
 </a>
 </div>
@@ -303,11 +307,11 @@ This code shows the possibility to navigate in a "fly-mode" using the key arrows
 == Camera 2D Displacement 
 </div>
 <div class="path">
-examples/07_camera/02_camera_2d_displacement
+link::{{url_example('07_camera/02_camera_2d_displacement')}}[examples/07_camera/02_camera_2d_displacement]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/07_camera/02_camera_2d_displacement">
+<a href="{{url_example('07_camera/02_camera_2d_displacement')}}">
 img::assets/2d_displacement.jpg[width:100%; max-width:300px;]
 </a>
 </div>
@@ -323,11 +327,11 @@ This code shows the possibility to navigate on a 2D plan using standard game-lik
 == Instancing (basic)
 </div>
 <div class="path">
-examples/08_instancing/01_instancing_position
+link::{{url_example('08_instancing/01_instancing_position')}}[examples/08_instancing/01_instancing_position]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/08_instancing/01_instancing_position">
+<a href="{{url_example('08_instancing/01_instancing_position')}}">
 img::assets/instancing.jpg[width:100%; max-width:300px;]
 </a>
 </div>
@@ -342,11 +346,11 @@ This code shows an example of use of Instancing to display a large quantity of s
 == Instancing (procedural)
 </div>
 <div class="path">
-examples/08_instancing/02_instancing_procedural
+link::{{url_example('08_instancing/02_instancing_procedural')}}[examples/08_instancing/02_instancing_procedural]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/08_instancing/02_instancing_procedural">
+<a href="{{url_example('08_instancing/02_instancing_procedural')}}">
 videoplay::assets/instancing_procedural.mp4[width:100%; max-width:300px;]
 </a>
 </div>
@@ -362,11 +366,11 @@ This code shows an example of use of Instancing to display a large number of sim
 == Advanced OBJ Loader
 </div>
 <div class="path">
-examples/09_mesh_loading/
+link::{{url_example('09_mesh_loading')}}[examples/09_mesh_loading]
 </div>
 <div class="wrap">
 <div class="illustration">
-<a href="https://github.com/drohmer/cgp/tree/main/examples/09_mesh_loading">
+<a href="{{url_example('09_mesh_loading')}}">
 img::assets/obj_loader.jpg[width:100%; max-width:300px;]
 </a>
 </div>
