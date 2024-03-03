@@ -208,7 +208,15 @@ Although very generic, this approach is more costly than the use of the `model` 
 === On a mesh structure
 
 The `{{linkTo_mesh}}` structure stores the set per-vertex normal in the variable `[mesh].normal` as `numarray`.
-`mesh` provides the function `[mesh].normal_update()` that computes automatically normals based on the position and connectivity of the triangles. The per-vertex normal \(n_i\) is copmputed as \(n_i = \sum_{t\in \mathcal{N}_i} n_t ,\)
+`mesh` provides the function 
+code::[c++]
+[mesh].normal_update() 
+code::[-]
+that computes automatically normals based on the position and connectivity of the triangles. 
+
+::nl
+
+The per-vertex normal \(n_i\) is copmputed as \(n_i = \sum_{t\in \mathcal{N}_i} n_t ,\)
 with \(\mathcal{N}_i\) the set of triangles indices that share the vertex \(i\), and \(n_t\) is the per-triangle normal. Then \(n_i\) is normalized to have a unit length.
 
 ::nl
