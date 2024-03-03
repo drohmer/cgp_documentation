@@ -252,11 +252,151 @@ See example link::{{pathTo_example}}#multi_texturing_l2[Multi-texturing].
 
 == Use instancing
 
-== Active transparency
+Calling the function 
+code::[c++]
+draw([mesh_drawable], environment, [int] N_instance);
+code::[-]
+automatically starts the drawing of N-instances of the `mesh_drawable`.
 
+::nl
+
+::[font-size:85%; color:gray;]
+Remark:
+This call is conceptually similar to the following code, but is much more efficient in avoiding the sequential draw calls.
+code::[c++]
+for(int gl_InstanceID=0; gl_InstanceID<N_instance; ++gl_InstanceID)
+    draw([mesh_drawable], environment);
+code::[-]
+::
+
+::nl 
+
+**Additional links**
+
+* - See examples link::{{pathTo_example}}#instancing_basic_l2[Instancing Basic], link::{{pathTo_example}}#instancing_procedura_l2[Instancing Procedural]
+* - link::https://www.khronos.org/opengl/wiki/Vertex_Rendering#Instancing[OpenGL technical description]
+* - link::https://learnopengl.com/Advanced-OpenGL/Instancing[Tutorial on instancing with OpenGL]
+
+=== Controlling instancing
+
+The different instances can be controled within the shader via the built-in GLSL variable `link::https://www.khronos.org/opengl/wiki/Vertex_Rendering#Instancing[gl_InstanceID]`.
+
+::nl
+
+Additional per-instance data can be transfert from the C++ program to the GPU using the supplementary VBO data:
+
+code::[c++]
+[mesh_drawable].initialize_supplementary_data_on_gpu([numarray<vec2/3/4>] data, /*location*/ 4, /*divisor*/ 1);
+code::[-]
+
+With the corresponding parameters in the shader
+code::[glsl]
+// Standard inputs
+// layout (location = 0) in vec3 vertex_position;
+// layout (location = 1) in vec3 vertex_normal;
+// layout (location = 2) in vec3 vertex_color; 
+// layout (location = 3) in vec2 vertex_uv; 
+
+// Dedicated input for instanced data
+layout (location = 4) in vec2/3/4 instanced_data; 
+code::[-]
+
+* - The `numarray` data can store any type of value used in the shader. The size of the array must be, at least, `N_instance`.
+* - The second parameter `location` is the index identifier of the corresponding variable. 
+::[font-size:85%; color:gray; font-style:italic;]
+** The location starts typically at 4 (after the standard position, normal, color, uv), and continue with 5, 6, etc.
+::
+* - The third parameter `divisor` should be 1 when the entries of the numarray are spread to all instances.
+::[font-size:85%; color:gray; font-style:italic;]
+** - divisor = 0: is used when the array entries varies for each vertex (default value).
+** - divisor = 1: is used when the array entries varies for each isntance.
+::
+
+
+== Activate transparency
+
+=== Semi-transparency 
+
+Use the following code structure to activate color blending for semi-transparent objetcs:
+
+code::[c++]
+void scene_structure::display_frame() {
+
+    /** 1) Display first all non transparent objects: **/
+    //   draw(my_shapes, ...);
+    //   ... 
+    // 
+
+    /** 2) Display at the end semi-transparent objects **/
+
+    // Color blending activation
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    // Depth buffer writing de-activation
+    glDepthMask(false); 
+
+    // Optional: Set the global transparency value on the shape (applies on top of its color and texture)
+    //  transparent_shape.material.alpha = 0.5f; //0:fully transparent, 1:fully opaque
+
+    // Draw transparent shape
+    draw(transparent_shape, environment);
+
+    // Re-activate standard drawing parameters
+    glDepthMask(true);
+    glDisable(GL_BLEND);
+
+}
+code::[-]
+
+=== Impostor effect
+
+Impostor/Billboards with pure opaque and pure transparent textures can be handled in the shader using the `discard` call.
+
+::nl 
+
+See the example link::{{pathTo_example}}#transparent_billboar_l2[Transparent Billboards]
 
 == Load a mesh from a file
 
+A simple default `obj` file loader is proposed within CGP with the following syntax
+
+::nl
+
+__Example in the case of a mesh in 'assets/my_mesh.obj'__
+code::[c++]
+mesh my_mesh = mesh_load_file_obj(project::path + "assets/my_mesh.obj");
+code::[-]
+
+::nl
+
+Remark: 
+* - The loader only reads the `.obj` file, not the `.mtl`. Materials and textures need to be set manually.
+* - Multiple objects are merged into a single mesh.
+
+=== Advanced loader
+
+For the cases where multiple objects parts with different textures are in the same file, an advanced loader is also available using the following syntax:
+
+::nl
+
+__Example with a file in `assets/directory/filename.obj` and its associated `.mtl` file:__
+code::[c++]
+std::vector<mesh_obj_advanced_loader::shape_element_node> struct_shape = 
+  mesh_load_file_obj_advanced(project::path + "assets/directory/", "filename.obj");
+std::vector<cgp::mesh_drawable> shapes_drawable = 
+  mesh_obj_advanced_loader::convert_to_mesh_drawable(struct_shape);
+code::[-]
+
+{{ref_github('obj_advanced.hpp')}}
+
+::nl
+
+Note: The advanced loader uses the external library `link::https://github.com/tinyobjloader/tinyobjloader[tinyobjloader]`
+
+::nl
+
+See example link::{{pathTo_example}}#advanced_obj_loader_l2[Advanced OBJ Loader]
 
 == Change the camera
 
