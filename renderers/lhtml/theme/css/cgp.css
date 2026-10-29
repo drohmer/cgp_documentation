@@ -27,17 +27,21 @@
 /* side menu: type names of the Reference section */
 .nav-link.mono { font-family: var(--font-mono); font-size: 13.5px; }
 
-/* side menu, more compact than the docs theme (close to Starlight): 125 entries */
-.nav, .nav-children { gap: 0; }
-.nav-link { padding: 4px 10px; font-size: 14px; line-height: 1.35; }
-.nav-link.mono { font-size: 13px; }
-.nav-link.mono[href*="/reference/functions/"] { font-family: inherit; font-size: 14px; font-style: italic; }
-.nav-section { margin-top: 6px; }
-.nav-section-title { padding: 4px 10px; font-size: 15.5px; }
-.nav-children { margin: 1px 0 2px 14px; }
-.nav-subgroup { margin-top: 0; }
-.nav-subgroup-title { padding: 4px 10px; font-size: 14px; }
-.nav-group summary { padding: 4px 10px; }
+/* side menu, more compact than the docs theme (close to Starlight): 125 entries. On wide
+   screens only: on phones, the theme makes the entries large enough for a finger */
+.nav-link.mono[href*="/reference/functions/"] { font-family: inherit; font-style: italic; }
+@media (min-width: 861px) {
+  .nav, .nav-children { gap: 0; }
+  .nav-link { padding: 4px 10px; font-size: 14px; line-height: 1.35; }
+  .nav-link.mono { font-size: 13px; }
+  .nav-link.mono[href*="/reference/functions/"] { font-size: 14px; }
+  .nav-section { margin-top: 6px; }
+  .nav-section-title { padding: 4px 10px; font-size: 15.5px; }
+  .nav-children { margin: 1px 0 2px 14px; }
+  .nav-subgroup { margin-top: 0; }
+  .nav-subgroup-title { padding: 4px 10px; font-size: 14px; }
+  .nav-group summary { padding: 4px 10px; }
+}
 
 figure.demo figcaption { margin-top: 10px; font-size: 14px; color: var(--muted); line-height: 1.5; }
 
@@ -109,6 +113,12 @@ figure.demo.has-shot .demo-poster:hover .demo-play { transform: translate(-50%, 
 .type-stats a { flex: 1 1 140px; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-soft); font-size: 14px; }
 .type-stats a:hover { border-color: var(--accent); text-decoration: none; }
 .type-stats strong { display: block; font-size: 1.45rem; color: var(--text); line-height: 1.2; }
+/* on phones, the three counts on one line of text (links to the lists), not three cards */
+@media (max-width: 700px) {
+  .type-stats { gap: 4px 14px; margin-top: 10px; }
+  .type-stats a { flex: none; padding: 0; border: 0; font-size: 14px; }
+  .type-stats strong { display: inline; font-size: 14px; margin-right: 3px; }
+}
 
 .members { display: grid; gap: 4px; }
 .member-block h3 { margin-top: 1.2em !important; font-size: 1rem !important; color: var(--text-soft); }
