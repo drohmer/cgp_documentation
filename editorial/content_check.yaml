@@ -16,6 +16,8 @@ ignore:
   - instance_position
   - GL_*
   - GLFW_*
+  - GLAD_*
+  - std430
   - gl_Position
   - vertex_position
   - view
@@ -33,6 +35,8 @@ ignore:
   - MACOS_GLFW_PRECOMPILED
   - CGP_NO_DEBUG
   - CGP_ERROR_EXCEPTION
+  - CGP_OPENGL_*
+  - opengl_check
   # Template scene of cgp-2027/src (not part of the library)
   - scene_structure
   - environment_structure

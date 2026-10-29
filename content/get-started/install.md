@@ -174,6 +174,14 @@ camera controls, and opens a window titled "CGP Display" showing a red sphere, a
 cylinder and the coordinate frame. Close the window (or press Ctrl+C in the terminal) to stop
 the program.
 
+## Choose the OpenGL version
+
+CGP targets **OpenGL 3.3** by default, which works everywhere, including macOS and the web.
+To use OpenGL 4.1, 4.3 or 4.6 (compute shaders, debug messages of the driver...), replace the
+compile definition `CGP_OPENGL_3_3` by `CGP_OPENGL_4_3` (for instance) in *CMakeLists.txt* or
+the *Makefile*, then rebuild the whole project. Details and examples:
+[Use a newer version of OpenGL](../how-to/use-a-newer-opengl-version.md).
+
 ## Build for the web (Emscripten)
 
 A CGP program can be compiled to WebAssembly and run in a browser (WebGL 2). Install and

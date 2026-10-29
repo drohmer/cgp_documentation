@@ -343,3 +343,6 @@ a.code-ref:hover code { border-bottom-style: solid; }
 .cgp-codeimg__image img { display: block; width: 100%; height: auto; margin: 0; border-radius: 6px; }
 .cgp-codeimg__image figcaption { margin: 6px 4px 0; font-size: 13px; color: #555; text-align: center; }
 @media (max-width: 700px) { .cgp-codeimg { grid-template-columns: 1fr; } .cgp-codeimg__image { max-width: 360px; justify-self: center; } }
+
+/* tables: an identifier of the first column is not broken in the middle (CGP_OPENGL_3_3) */
+.doc table td:first-child code { white-space: nowrap; overflow-wrap: normal; word-break: normal; }

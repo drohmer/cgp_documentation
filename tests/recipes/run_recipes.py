@@ -28,7 +28,10 @@ APPLY = HERE / "apply_recipe.py"
 # Pages whose code blocks are not all applied at once.
 #   skip: segment indices (printed by apply_recipe.py) not applied
 #   before: pages applied first (a recipe that builds on another one)
+#   opengl: the compile definition of the OpenGL version (instead of CGP_OPENGL_3_3): the
+#           project is rebuilt from scratch with it (compiled only: may not run on this machine)
 SPECIAL = {
+    "use-a-newer-opengl-version": {"opengl": "CGP_OPENGL_4_3"},
     "apply-a-texture": {"skip": [3]},                       # step 3, wrap-mode variant below
     "apply-a-texture-wrap": {"page": "how-to/apply-a-texture.md", "skip": [1]},
     "reflect-the-environment": {"before": ["how-to/add-a-skybox.md"]},
@@ -117,6 +120,10 @@ def main():
         run(["rsync", "-a", "--delete", f"{base}/", f"{d}/"])
         (d / "project").unlink(missing_ok=True)
         problems = apply_spec(spec, d)
+        if not problems and spec.get("opengl"):
+            makefile = d / "Makefile"
+            makefile.write_text(makefile.read_text().replace("CGP_OPENGL_3_3", spec["opengl"]))
+            run(["make", "clean"], cwd=d)
         if not problems:
             r = run(["make", "-j8"], cwd=d)
             text = r.stdout + r.stderr
