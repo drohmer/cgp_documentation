@@ -81,6 +81,12 @@ must have been compiled before (`make demos`). The documentation of 2024 is kept
 `/cgp/archive-2024/`, and its old URLs redirect to the new site (nginx). `DEPLOY_HOST`,
 `DEPLOY_DIR` and `DEPLOY_URL` set another target.
 
+The build also writes what helps search engines and AI tools find and read the site
+(`renderers/lhtml/scripts/gen_discovery.py`): the favicon (`renderers/lhtml/static/`), the
+canonical URL and Open Graph tags of each page, `sitemap.xml`, `llms.txt` (the pages with their
+description) and `llms-full.txt` (the whole documentation, reference included, in one Markdown
+file). Their URLs point to the public site (`CGP_SITE_URL`).
+
 ## Commands
 
 ```sh

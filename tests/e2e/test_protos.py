@@ -30,6 +30,7 @@ import functools
 import http.server
 import json
 import os
+import re
 import socketserver
 import sys
 import threading
@@ -482,6 +483,37 @@ def check_not_found(page, base, cfg, res):
     return f"{len(links)} links"
 
 
+def check_discovery(page, base, cfg, res):
+    """lhtml: sitemap.xml lists every page of the site, each page has a canonical URL and its
+    favicon loads, llms.txt links every page of the sitemap and llms-full.txt holds the guides
+    and the reference (renderers/lhtml/scripts/gen_discovery.py)."""
+    dist = os.path.join(ROOT, cfg["dist"])
+    site = "https://graphicscomputing.fr/cgp/"
+    locs = re.findall(r"<loc>(.*?)</loc>", open(os.path.join(dist, "sitemap.xml"), encoding="utf-8").read())
+    pages = set()
+    for d, _, files in os.walk(dist):
+        rel = os.path.relpath(d, dist).replace(os.sep, "/")
+        if "index.html" in files and rel.split("/")[0] not in ("assets", "pagefind", "theme"):
+            pages.add(site + ("" if rel == "." else rel + "/"))
+    for p in sorted(pages - set(locs))[:5]:
+        res["broken_links"].append(f"sitemap.xml: page missing {p}")
+    llms = open(os.path.join(dist, "llms.txt"), encoding="utf-8").read()
+    for p in sorted(u for u in locs if f"({u})" not in llms)[:5]:
+        res["broken_links"].append(f"llms.txt: page missing {p}")
+    full = open(os.path.join(dist, "llms-full.txt"), encoding="utf-8").read()
+    for needle in ("Page: Add a skybox", "## vec3", "`T norm(numarray_stack<T,N> const& v)`"):
+        if needle not in full:
+            res["broken_links"].append(f"llms-full.txt: no {needle!r}")
+    page.goto(base + cfg["pages"]["howto"], wait_until=LOAD)
+    canonical = page.evaluate("document.querySelector('link[rel=canonical]')?.href")
+    if canonical != site + cfg["pages"]["howto"].lstrip("/").replace("index.html", ""):
+        res["broken_links"].append(f"{cfg['pages']['howto']}: canonical {canonical}")
+    icon = page.evaluate("document.querySelector('link[rel=icon]')?.href")
+    if not icon or page.request.get(icon).status != 200:
+        res["broken_links"].append(f"{cfg['pages']['howto']}: favicon {icon} not found")
+    return f"{len(locs)} pages in sitemap.xml"
+
+
 def check_breadcrumb(page, base, cfg, res):
     """A how-to page shows Section > Group > Page above its title, outside the search index; the
     section links to the How-to index, the group to its heading there."""
@@ -654,6 +686,8 @@ def run_proto(name, cfg, browser, report):
         lap("howto_index")
         res["breadcrumb"] = check_breadcrumb(page, base, cfg, res)
         res["not_found"] = check_not_found(page, base, cfg, res)
+        if name == "lhtml":
+            res["discovery"] = check_discovery(page, base, cfg, res)
         lap("breadcrumb")
 
         # --- figures of the types (types.yaml): shown on the reference page and loaded

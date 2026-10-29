@@ -9,7 +9,9 @@
    pages/, the content assets, and the reference pages generated from
    ../../build/api.json (scripts/gen_reference.py); write the deck;
 3. lhtml-site -i configure.yaml;
-4. Pagefind over dist/.
+4. favicon, canonical and Open Graph tags, sitemap.xml, llms.txt and llms-full.txt
+   (scripts/gen_discovery.py);
+5. Pagefind over dist/.
 """
 import os
 import re
@@ -28,6 +30,7 @@ BIN = Path(sys.executable).parent
 
 sys.path.insert(0, str(HERE / 'scripts'))
 sys.path.insert(0, str(HERE / 'plugins'))
+import gen_discovery  # noqa: E402
 import gen_reference  # noqa: E402
 from cgp_content import has_math  # noqa: E402
 
@@ -176,6 +179,10 @@ def main():
     # the copy of the sources in the site is not part of the site
     for leftover in (HERE / 'dist').rglob('*.md.j2'):
         leftover.unlink()
+    order = [line[4:] for line in (BUILD / 'deck.yaml').read_text(encoding='utf-8').splitlines()
+             if line.startswith('  - ')]
+    n = gen_discovery.main(HERE / 'dist', order, CONTENT, API, HERE / 'static', base_url or '/')
+    step(f'favicon, head tags, sitemap.xml, llms.txt, llms-full.txt ({n} pages)')
     subprocess.run([sys.executable, '-m', 'pagefind', '--site', str(HERE / 'dist'), '--quiet'], check=True)
     step('pagefind index done')
     print(f'Built dist/ in {time.perf_counter() - t0:.2f}s')
