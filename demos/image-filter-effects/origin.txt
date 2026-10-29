@@ -1,0 +1,8 @@
+Origin: CGP example of github.com/drohmer/epita_ani3d_lab_code-2027
+(examples/06_multipass/02_image_filter_basic_effects, commit bbe7095), code unchanged.
+Assets reduced to fit the web demo:
+ - palm_tree/palm_tree.obj (palm tree by Emmanuel Puybaret / eTeks and Scopia, CC BY 3.0, see
+   palm_tree/LICENSE.TXT): coordinates rounded (3 decimals for v and vt), the normals
+   (stored unnormalized, about 0.002 long) normalized and rounded to 2 decimals, duplicates
+   merged, comment, object, group and material lines removed; same faces (8.2 -> 4.0 MB);
+ - wood.jpg: resized from 2398 x 2400 to 512 x 512 (1.4 MB -> 94 KB).

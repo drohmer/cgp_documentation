@@ -1,0 +1,29 @@
+---
+// Override of Starlight's PageTitle: a breadcrumb Section > Group > Page above the title, the
+// section shown as an eyebrow label (as lhtml does). Section and group come from the front
+// matter (`section`, `group`; the reference pages pass them to StarlightPage). Section and group
+// link to the index page of the section when there is one (How-to, Reference), the group to its
+// heading there. Not indexed by the search (data-pagefind-ignore). Same markup and rules as the
+// lhtml template (renderers/lhtml/theme/template/base.html).
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+
+const route = Astro.locals.starlightRoute;
+const data = route.entry.data as any;
+const section: string | undefined = data.section;
+const group: string | undefined = data.group;
+const SECTION_URLS: Record<string, string> = { 'How-to': '/how-to/', Reference: '/reference/' };
+const secUrl = section ? SECTION_URLS[section] : undefined;
+const path = Astro.url.pathname.replace(/index\.html$/, '');
+const isIndex = !!secUrl && path === secUrl;
+const groupId = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+---
+{section && (
+	<nav class="breadcrumb not-content" aria-label="Breadcrumb" data-pagefind-ignore>
+		<ol>
+			<li class="bc-section">{secUrl && !isIndex ? <a href={secUrl}>{section}</a> : section}</li>
+			{group && <li>{secUrl ? <a href={`${secUrl}#${groupId(group)}`}>{group}</a> : group}</li>}
+			{!isIndex && <li aria-current="page">{data.title}</li>}
+		</ol>
+	</nav>
+)}
+<Default />

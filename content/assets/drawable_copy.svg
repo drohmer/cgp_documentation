@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 430" width="700" height="430">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .v { font-family: Menlo, Consolas, monospace; font-size: 13px; }
+    .b { font-weight: bold; }
+    .cpu { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.5; }
+    .gpu { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.5; }
+    .buf { fill: #fff7ec; stroke: #e0912f; stroke-width: 1.2; }
+    .uni { fill: #eee5f8; stroke: #9c6ade; stroke-width: 1.2; }
+    .sh { fill: #dff0dc; stroke: #5aa55a; stroke-width: 1.5; }
+    .ar { stroke: #e07b1a; stroke-width: 2; fill: none; marker-end: url(#ar); }
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+  </defs>
+
+  <text x="20" y="24" class="b" style="fill:#2b66ad">C++ structs (CPU memory)</text>
+  <text x="440" y="24" class="b" style="fill:#a85000">GPU memory</text>
+
+  <!-- drawable a -->
+  <rect x="20" y="40" width="290" height="176" rx="8" class="cpu"/>
+  <text x="34" y="62" class="b" style="fill:#2b66ad">mesh_drawable a</text>
+  <rect x="34" y="72" width="262" height="24" class="buf"/><text x="42" y="89" class="m">vao, vbo_*, ebo</text><text x="288" y="89" class="v" text-anchor="end" style="fill:#a85000">ids 4..9</text>
+  <rect x="34" y="100" width="262" height="24" class="buf"/><text x="42" y="117" class="m">shader</text><text x="288" y="117" class="v" text-anchor="end" style="fill:#a85000">id 3</text>
+  <rect x="34" y="128" width="262" height="24" class="buf"/><text x="42" y="145" class="m">texture</text><text x="288" y="145" class="v" text-anchor="end" style="fill:#a85000">id 1</text>
+  <rect x="34" y="156" width="262" height="24" class="uni"/><text x="42" y="173" class="m">model.translation</text><text x="288" y="173" class="v" text-anchor="end" style="fill:#7b48c4">{0,0,0}</text>
+  <rect x="34" y="184" width="262" height="24" class="uni"/><text x="42" y="201" class="m">material.color</text><text x="288" y="201" class="v" text-anchor="end" style="fill:#7b48c4">{1,0,0}</text>
+
+  <!-- drawable b = a -->
+  <rect x="20" y="240" width="290" height="176" rx="8" class="cpu"/>
+  <text x="34" y="262" class="b" style="fill:#2b66ad">mesh_drawable b = a</text>
+  <rect x="34" y="272" width="262" height="24" class="buf"/><text x="42" y="289" class="m">vao, vbo_*, ebo</text><text x="288" y="289" class="v" text-anchor="end" style="fill:#a85000">ids 4..9</text>
+  <rect x="34" y="300" width="262" height="24" class="buf"/><text x="42" y="317" class="m">shader</text><text x="288" y="317" class="v" text-anchor="end" style="fill:#a85000">id 3</text>
+  <rect x="34" y="328" width="262" height="24" class="buf"/><text x="42" y="345" class="m">texture</text><text x="288" y="345" class="v" text-anchor="end" style="fill:#a85000">id 1</text>
+  <rect x="34" y="356" width="262" height="24" class="uni"/><text x="42" y="373" class="m">model.translation</text><text x="288" y="373" class="v" text-anchor="end" style="fill:#7b48c4">{1,0,0}</text>
+  <rect x="34" y="384" width="262" height="24" class="uni"/><text x="42" y="401" class="m">material.color</text><text x="288" y="401" class="v" text-anchor="end" style="fill:#7b48c4">{0,0,1}</text>
+
+  <!-- GPU objects -->
+  <rect x="440" y="40" width="240" height="376" rx="8" class="gpu"/>
+  <rect x="460" y="76" width="200" height="96" rx="4" class="buf"/>
+  <text x="560" y="98" class="in b" text-anchor="middle" style="fill:#a85000">buffers 4..9</text>
+  <text x="560" y="120" class="in" text-anchor="middle">VAO, one VBO per</text>
+  <text x="560" y="138" class="in" text-anchor="middle">attribute, EBO:</text>
+  <text x="560" y="156" class="in" text-anchor="middle">the vertices</text>
+  <rect x="460" y="206" width="200" height="60" rx="4" class="sh"/>
+  <text x="560" y="230" class="in b" text-anchor="middle" style="fill:#2a7330">program 3</text>
+  <text x="560" y="250" class="in" text-anchor="middle">default_shader</text>
+  <rect x="460" y="300" width="200" height="60" rx="4" class="buf"/>
+  <text x="560" y="324" class="in b" text-anchor="middle" style="fill:#a85000">texture 1</text>
+  <text x="560" y="344" class="in" text-anchor="middle">default_texture</text>
+
+  <!-- ids -> GPU objects -->
+  <line x1="300" y1="84" x2="456" y2="114" class="ar"/>
+  <line x1="300" y1="284" x2="456" y2="140" class="ar"/>
+  <line x1="300" y1="112" x2="456" y2="226" class="ar"/>
+  <line x1="300" y1="312" x2="456" y2="246" class="ar"/>
+  <line x1="300" y1="140" x2="456" y2="320" class="ar"/>
+  <line x1="300" y1="340" x2="456" y2="340" class="ar"/>
+
+</svg>

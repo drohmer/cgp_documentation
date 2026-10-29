@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 430" width="700" height="430">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .cm { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #666666; }
+    .b { font-weight: bold; }
+    .s { font-size: 13px; }
+    .px { stroke: #fff; stroke-width: 2; }
+    .byte { stroke: #6b9bd8; stroke-width: 1; }
+    .hl { fill: none; stroke: #e07b1a; stroke-width: 3; }
+    .ax { stroke: #888; stroke-width: 1.5; fill: none; marker-end: url(#ag); }
+  </style>
+  <defs>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker>
+  </defs>
+
+  <text x="20" y="24" class="b" style="fill:#2b66ad">image_structure im: width x height pixels, bytes in im.data</text>
+
+  <!-- axes: x to the right, y downward -->
+  <path d="M70,52 L290,52" class="ax"/>
+  <text x="294" y="57" class="s">x</text>
+  <path d="M48,70 L48,232" class="ax"/>
+  <text x="44" y="250" class="s">y</text>
+  <text x="95" y="46" class="s" text-anchor="middle">0</text><text x="145" y="46" class="s" text-anchor="middle">1</text><text x="195" y="46" class="s" text-anchor="middle">2</text><text x="245" y="46" class="s" text-anchor="middle">3</text>
+  <text x="62" y="100" class="s" text-anchor="end">0</text><text x="62" y="150" class="s" text-anchor="end">1</text><text x="62" y="200" class="s" text-anchor="end">2</text>
+
+  <!-- 4 x 3 pixels -->
+  <rect x="70" y="70" width="50" height="50" class="px" fill="#4a86d0"/>
+  <rect x="120" y="70" width="50" height="50" class="px" fill="#6b9bd8"/>
+  <rect x="170" y="70" width="50" height="50" class="px" fill="#a9c7ee"/>
+  <rect x="220" y="70" width="50" height="50" class="px" fill="#e3eefb"/>
+  <rect x="70" y="120" width="50" height="50" class="px" fill="#5aa55a"/>
+  <rect x="120" y="120" width="50" height="50" class="px" fill="#9fcf8f"/>
+  <rect x="170" y="120" width="50" height="50" class="px" fill="#dff0dc"/>
+  <rect x="220" y="120" width="50" height="50" class="px" fill="#f4f9cf"/>
+  <rect x="70" y="170" width="50" height="50" class="px" fill="#e07b1a"/>
+  <rect x="120" y="170" width="50" height="50" class="px" fill="#efa760"/>
+  <rect x="170" y="170" width="50" height="50" class="px" fill="#f7cfa3"/>
+  <rect x="220" y="170" width="50" height="50" class="px" fill="#fdebd6"/>
+  <rect x="171.5" y="71.5" width="47" height="47" class="hl"/>
+  <text x="195" y="100" class="m b" text-anchor="middle" style="fill:#333">2,0</text>
+
+  <!-- fields -->
+  <text x="330" y="84" class="m">im.width</text><text x="460" y="84" class="cm">// 4</text>
+  <text x="330" y="106" class="m">im.height</text><text x="460" y="106" class="cm">// 3</text>
+  <text x="330" y="128" class="m">im.color_type</text><text x="460" y="128" class="cm">// image_color_type::rgba</text>
+  <text x="330" y="150" class="m">im.data</text><text x="460" y="150" class="cm">// numarray&lt;unsigned char&gt;</text>
+  <text x="330" y="186" class="in">pixel (0,0) is the top-left one: the first</text>
+  <text x="330" y="206" class="in">row of the file. <tspan class="b">No vertical flip</tspan> on load.</text>
+  <text x="330" y="236" class="in"><tspan class="m">image_load_file</tspan>: .png gives rgba,</text>
+  <text x="330" y="256" class="in">.jpg / .jpeg give rgb.</text>
+
+  <!-- bytes -->
+  <text x="20" y="286" class="s">im.data: rows from top to bottom, 4 bytes per pixel (rgba) or 3 (rgb)</text>
+  <g>
+    <rect x="20" y="296" width="40" height="30" class="byte" fill="#4a86d0" fill-opacity="0.35"/><rect x="60" y="296" width="40" height="30" class="byte" fill="#4a86d0" fill-opacity="0.35"/><rect x="100" y="296" width="40" height="30" class="byte" fill="#4a86d0" fill-opacity="0.35"/><rect x="140" y="296" width="40" height="30" class="byte" fill="#4a86d0" fill-opacity="0.35"/>
+    <rect x="180" y="296" width="40" height="30" class="byte" fill="#6b9bd8" fill-opacity="0.35"/><rect x="220" y="296" width="40" height="30" class="byte" fill="#6b9bd8" fill-opacity="0.35"/><rect x="260" y="296" width="40" height="30" class="byte" fill="#6b9bd8" fill-opacity="0.35"/><rect x="300" y="296" width="40" height="30" class="byte" fill="#6b9bd8" fill-opacity="0.35"/>
+    <rect x="340" y="296" width="40" height="30" class="byte" fill="#a9c7ee" fill-opacity="0.35"/><rect x="380" y="296" width="40" height="30" class="byte" fill="#a9c7ee" fill-opacity="0.35"/><rect x="420" y="296" width="40" height="30" class="byte" fill="#a9c7ee" fill-opacity="0.35"/><rect x="460" y="296" width="40" height="30" class="byte" fill="#a9c7ee" fill-opacity="0.35"/>
+    <rect x="500" y="296" width="40" height="30" class="byte" fill="#e3eefb"/><rect x="540" y="296" width="40" height="30" class="byte" fill="#e3eefb"/><rect x="580" y="296" width="40" height="30" class="byte" fill="#e3eefb"/><rect x="620" y="296" width="40" height="30" class="byte" fill="#e3eefb"/>
+  </g>
+  <rect x="341.5" y="297.5" width="157" height="27" class="hl"/>
+  <g>
+    <text x="40" y="316" class="m" text-anchor="middle">r</text><text x="80" y="316" class="m" text-anchor="middle">g</text><text x="120" y="316" class="m" text-anchor="middle">b</text><text x="160" y="316" class="m" text-anchor="middle">a</text>
+    <text x="200" y="316" class="m" text-anchor="middle">r</text><text x="240" y="316" class="m" text-anchor="middle">g</text><text x="280" y="316" class="m" text-anchor="middle">b</text><text x="320" y="316" class="m" text-anchor="middle">a</text>
+    <text x="360" y="316" class="m" text-anchor="middle">r</text><text x="400" y="316" class="m" text-anchor="middle">g</text><text x="440" y="316" class="m" text-anchor="middle">b</text><text x="480" y="316" class="m" text-anchor="middle">a</text>
+    <text x="520" y="316" class="m" text-anchor="middle">r</text><text x="560" y="316" class="m" text-anchor="middle">g</text><text x="600" y="316" class="m" text-anchor="middle">b</text><text x="640" y="316" class="m" text-anchor="middle">a</text>
+  </g>
+  <text x="680" y="316" class="m" text-anchor="middle">...</text>
+  <text x="100" y="344" class="s" text-anchor="middle">pixel (0,0)</text>
+  <text x="260" y="344" class="s" text-anchor="middle">pixel (1,0)</text>
+  <text x="420" y="344" class="s b" text-anchor="middle" style="fill:#a85000">pixel (2,0): data[8..11]</text>
+  <text x="580" y="344" class="s" text-anchor="middle">pixel (3,0)</text>
+
+  <!-- code -->
+  <text x="20" y="378" class="m">image_structure im = image_load_file(project::path + "assets/photo.png");</text>
+  <text x="20" y="398" class="m">unsigned char r = im.data[4*(x + im.width*y) + 0];</text><text x="452" y="398" class="cm">// rgba</text>
+  <text x="20" y="418" class="m">grid_2D&lt;vec3&gt; g; convert(im, g);</text><text x="300" y="418" class="cm">// g(x,y): rgb in [0,1], same layout</text>
+</svg>

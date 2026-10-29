@@ -1,0 +1,51 @@
+---
+// One page per group of function_groups.yaml: the public functions that take or return
+// none of the documented types (rand_uniform, read_text_file, marching_cube...).
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import FnEntry from '../../../components/FnEntry.astro';
+import { functionGroups, resolveEntries, groupByCategory } from '../../../lib/api.mjs';
+
+export function getStaticPaths() {
+	return functionGroups().map((g) => ({ params: { group: g.name }, props: { g } }));
+}
+
+const { g } = Astro.props as { g: any };
+const entries = resolveEntries(g.functions);
+const byCat = groupByCategory(entries);
+const nFns = entries.full.length + entries.compact.length;
+const headings = byCat.map((c) => ({ depth: 2, slug: `fn-${c.cat}`, text: `${c.label} (${c.count})` }));
+---
+<StarlightPage frontmatter={{ title: g.title, description: g.short, section: 'Reference', group: g.under, tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 2 } }} headings={headings}>
+	<p class="type-short">{g.short}</p>
+	<div class="fn-filter not-content">
+		<label for="fn-filter" class="sr-only">Filter functions</label>
+		<input id="fn-filter" type="search" placeholder={`Filter the ${nFns} functions (name, signature, description)`} autocomplete="off" />
+		<span class="fn-filter__count" aria-live="polite"></span>
+	</div>
+	{byCat.map((c) => (
+		<section class="fn-group" data-cat={c.cat}>
+			<h2 id={`fn-${c.cat}`}>{c.label}</h2>
+			<div class="fn-list not-content">{c.groups.map((o: any) => <FnEntry fns={o.fns} />)}</div>
+		</section>
+	))}
+</StarlightPage>
+
+<script>
+	const input = document.getElementById('fn-filter') as HTMLInputElement | null;
+	if (input) {
+		const entries = [...document.querySelectorAll<HTMLElement>('.fn-entry')];
+		const groups = [...document.querySelectorAll<HTMLElement>('.fn-group')];
+		const count = document.querySelector('.fn-filter__count')!;
+		input.addEventListener('input', () => {
+			const terms = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+			let shown = 0;
+			for (const e of entries) {
+				const ok = terms.every((w) => e.dataset.search!.includes(w));
+				e.hidden = !ok;
+				if (ok) shown++;
+			}
+			for (const g of groups) g.hidden = !g.querySelector('.fn-entry:not([hidden])');
+			count.textContent = terms.length ? `${shown} / ${entries.length}` : '';
+		});
+	}
+</script>

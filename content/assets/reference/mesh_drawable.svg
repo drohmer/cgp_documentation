@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 620" width="700" height="620">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 14px; fill: #666666; }
+    .in { fill: #333; }
+    .b { font-weight: bold; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .s { font-size: 13px; }
+    .gpu { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.5; }
+    .buf { fill: #fff7ec; stroke: #e0912f; stroke-width: 1.2; }
+    .vao { fill: #fff7ec; stroke: #e0912f; stroke-width: 1.2; }
+    .uni { fill: #eee5f8; stroke: #9c6ade; stroke-width: 1.5; }
+    .sep { stroke: #d8c8ee; stroke-width: 1; }
+    .ae { stroke: #9c6ade; stroke-width: 1.6; fill: none; marker-end: url(#ae); }
+  </style>
+  <defs>
+    <marker id="ae" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9c6ade"/></marker>
+  </defs>
+
+  <text x="20" y="24" class="b" style="fill:#a85000">GPU data: filled once by initialize_data_on_gpu(mesh, shader, texture)</text>
+
+  <rect x="20" y="36" width="660" height="138" rx="8" class="gpu"/>
+  <rect x="32" y="52" width="112" height="26" class="buf"/><text x="88" y="70" class="m" text-anchor="middle">vbo_position</text>
+  <rect x="152" y="52" width="100" height="26" class="buf"/><text x="202" y="70" class="m" text-anchor="middle">vbo_normal</text>
+  <rect x="260" y="52" width="92" height="26" class="buf"/><text x="306" y="70" class="m" text-anchor="middle">vbo_color</text>
+  <rect x="360" y="52" width="72" height="26" class="buf"/><text x="396" y="70" class="m" text-anchor="middle">vbo_uv</text>
+  <rect x="448" y="52" width="170" height="26" class="buf" style="stroke-dasharray:4 3"/><text x="533" y="70" class="m" text-anchor="middle">supplementary_vbo[k]</text>
+  <text x="88" y="96" class="s" text-anchor="middle">location 0</text>
+  <text x="202" y="96" class="s" text-anchor="middle">location 1</text>
+  <text x="306" y="96" class="s" text-anchor="middle">location 2</text>
+  <text x="396" y="96" class="s" text-anchor="middle">location 3</text>
+  <text x="533" y="96" class="s" text-anchor="middle">location 4+k (optional)</text>
+
+  <rect x="32" y="114" width="140" height="26" class="buf"/><text x="102" y="132" class="m" text-anchor="middle">ebo_connectivity</text>
+  <text x="182" y="132" class="s in">.size = number of triangles</text>
+  <rect x="448" y="114" width="50" height="26" class="vao"/><text x="473" y="132" class="m" text-anchor="middle">vao</text>
+  <text x="508" y="132" class="s in">VBO to location table</text>
+  <text x="32" y="162" class="s">draw issues glDrawElements(GL_TRIANGLES, 3 * ebo_connectivity.size, ...)</text>
+
+  <text x="20" y="206" class="b" style="fill:#7b48c4">Per-draw parameters: sent by draw(drawable, environment)</text>
+
+  <rect x="20" y="218" width="660" height="304" rx="8" class="uni"/>
+  <text x="36" y="240" class="s b">field of mesh_drawable</text>
+  <text x="270" y="240" class="s b">default</text>
+  <text x="420" y="240" class="s b">uniform name in the shader</text>
+
+  <!-- shader / textures -->
+  <text x="36" y="266" class="m">shader</text>
+  <text x="270" y="266" class="s">default_shader</text>
+  <path d="M376,262 H412" class="ae"/>
+  <text x="420" y="266" class="s in">glUseProgram (program)</text>
+
+  <text x="36" y="292" class="m">texture</text>
+  <text x="270" y="292" class="s">white image</text>
+  <path d="M356,288 H412" class="ae"/>
+  <text x="420" y="292" class="m">image_texture</text><text x="534" y="292" class="s">unit 0</text>
+
+  <text x="36" y="318" class="m">supplementary_texture[name]</text>
+  <path d="M340,314 H412" class="ae"/>
+  <text x="420" y="318" class="m">name</text><text x="460" y="318" class="s">units 1, 2, ...</text>
+
+  <line x1="32" y1="330" x2="668" y2="330" class="sep"/>
+
+  <!-- model -->
+  <text x="36" y="352" class="m">model</text><text x="84" y="352" class="s">(affine)</text>
+  <text x="270" y="352" class="s">identity</text>
+  <text x="36" y="376" class="m">supplementary_model_matrix</text>
+  <text x="270" y="376" class="s">identity</text>
+  <text x="36" y="400" class="m">hierarchy_transform_model</text>
+  <text x="270" y="400" class="s">identity</text>
+  <path d="M340,348 L370,348 L412,370" class="ae"/>
+  <path d="M340,372 H412" class="ae"/>
+  <path d="M340,396 L370,396 L412,376" class="ae"/>
+  <text x="420" y="378" class="m">model</text>
+  <text x="472" y="378" class="s">(one mat4)</text>
+
+  <line x1="32" y1="412" x2="668" y2="412" class="sep"/>
+
+  <!-- material -->
+  <text x="36" y="434" class="m">material.color</text>
+  <text x="270" y="434" class="s">(1, 1, 1)</text>
+  <path d="M340,430 H412" class="ae"/>
+  <text x="420" y="434" class="m">material.color</text>
+
+  <text x="36" y="458" class="m">material.alpha</text>
+  <text x="270" y="458" class="s">1</text>
+  <path d="M340,454 H412" class="ae"/>
+  <text x="420" y="458" class="m">material.alpha</text>
+
+  <text x="36" y="482" class="m">material.phong</text>
+  <text x="270" y="482" class="s">0.3 0.6 0.3 64</text>
+  <path d="M370,478 H412" class="ae"/>
+  <text x="420" y="482" class="m">material.phong.*</text>
+
+  <text x="36" y="506" class="m">material.texture_settings</text>
+  <path d="M340,502 H412" class="ae"/>
+  <text x="420" y="506" class="m">material.texture_settings.*</text>
+
+  <text x="20" y="546" class="s">model sent = hierarchy_transform_model * supplementary_model_matrix * model</text>
+  <text x="20" y="566" class="s">phong = ambient, diffuse, specular, specular_exponent</text>
+  <text x="20" y="586" class="s">texture_settings: active, inverse_v, two_sided are sent as use_texture, texture_inverse_v, two_sided</text>
+  <text x="20" y="610" class="s" style="fill:#a85000">initialize_data_on_gpu resets model, material and supplementary_model_matrix</text>
+</svg>

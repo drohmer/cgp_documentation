@@ -1,0 +1,285 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "$id": "cgp-docmodel/api.schema.json",
+ "title": "CGP API model",
+ "description": "Contract between cgp-docmodel (producer) and the renderers (consumers). Bump schema_version on any breaking change.",
+ "type": "object",
+ "required": ["schema_version", "library", "generator", "categories", "aliases", "functions", "excluded", "types", "function_groups", "content_links"],
+ "additionalProperties": false,
+ "properties": {
+  "schema_version": {"const": "1.7"},
+  "library": {"type": "string"},
+  "generator": {
+   "type": "object",
+   "required": ["doxygen", "doxygen_warnings", "source"],
+   "additionalProperties": false,
+   "properties": {
+    "doxygen": {"type": "string"},
+    "doxygen_warnings": {"type": "integer", "minimum": 0},
+    "source": {
+     "type": "object",
+     "required": ["commit", "dirty"],
+     "additionalProperties": false,
+     "properties": {"commit": {"type": ["string", "null"]}, "dirty": {"type": "boolean"}}
+    }
+   }
+  },
+  "categories": {"type": "array", "items": {"$ref": "#/$defs/category"}, "minItems": 1},
+  "aliases": {"type": "object", "additionalProperties": {"type": "string"}},
+  "functions": {"type": "array", "items": {"$ref": "#/$defs/function"}},
+  "excluded": {
+   "type": "array",
+   "items": {
+    "type": "object", "required": ["key", "reason"], "additionalProperties": false,
+    "properties": {"key": {"type": "string"}, "reason": {"type": "string"}}
+   }
+  },
+  "types": {"type": "object", "additionalProperties": {"$ref": "#/$defs/type"}},
+  "function_groups": {"type": "object", "additionalProperties": {
+   "type": "object", "required": ["name", "title", "short", "under", "functions"], "additionalProperties": false,
+   "properties": {"name": {"type": "string"}, "title": {"type": "string"}, "short": {"type": "string"},
+                  "under": {"description": "Group of the Reference that lists the page: a group of the types, or Utilities.", "type": "string"},
+                  "functions": {"type": "array", "items": {"type": "object", "required": ["id"],
+                                "additionalProperties": false, "properties": {"id": {"type": "string"}}}}}}},
+  "content_links": {
+   "description": "Inline code span of content/*.md (exact text) -> its target in the reference (crossrefs.py).",
+   "type": "object", "additionalProperties": {"$ref": "#/$defs/link_target"}
+  }
+ },
+ "$defs": {
+  "page_ref": {
+   "description": "A page of the reference: a type page (type) or a page of function_groups (group), and the list of the page (rel).",
+   "type": "object",
+   "required": ["type", "group", "rel"],
+   "additionalProperties": false,
+   "properties": {
+    "type": {"type": ["string", "null"]},
+    "group": {"type": ["string", "null"]},
+    "rel": {"enum": ["takes", "returns", "operators", "functions"]}
+   }
+  },
+  "link_target": {
+   "type": "object",
+   "required": ["kind", "type", "group", "rel", "id"],
+   "additionalProperties": false,
+   "properties": {
+    "kind": {"enum": ["type", "function", "method", "field"]},
+    "type": {"type": ["string", "null"]},
+    "group": {"type": ["string", "null"]},
+    "rel": {"enum": ["takes", "returns", "operators", "functions", null]},
+    "id": {"type": ["string", "null"], "description": "function id, method id or field id (anchor on the page); null for a type"}
+   }
+  },
+  "category": {"enum": ["construct", "transform", "compute", "draw", "convert", "io", "access", "operator", "other"]},
+  "rule": {"enum": ["name:operator", "name:draw*", "name:io", "name:convert", "name:access", "name:factory",
+                    "returns:void", "returns:scalar", "returns:same-type-as-a-parameter",
+                    "returns:documented-type-from-scalars", "fallback"]},
+  "param": {
+   "type": "object",
+   "required": ["type", "name", "default"],
+   "additionalProperties": false,
+   "properties": {
+    "type": {"type": "string", "minLength": 1},
+    "name": {"type": "string"},
+    "default": {"type": ["string", "null"]}
+   }
+  },
+  "variant": {
+   "type": "object",
+   "required": ["id", "signature"],
+   "additionalProperties": false,
+   "properties": {"id": {"type": "string"}, "signature": {"type": "string"}}
+  },
+  "callable_props": {
+   "id": {"type": "string", "pattern": "^fn-[a-z0-9-]*-[0-9a-f]{8}$"},
+   "key": {"type": "string"},
+   "name": {"type": "string", "minLength": 1},
+   "namespace": {"type": "string"},
+   "owner": {"type": ["string", "null"]},
+   "static": {"type": "boolean"},
+   "const": {"type": "boolean"},
+   "template": {"type": "string"},
+   "tparams": {"type": "array", "items": {"type": "string"}},
+   "ret": {"type": "string"},
+   "params": {"type": "array", "items": {"$ref": "#/$defs/param"}},
+   "params_source": {"enum": ["header", "doxygen"]},
+   "signature": {"type": "string"},
+   "module": {"type": "string", "pattern": "^[0-9]{2}_"},
+   "file": {"type": "string", "pattern": "\\.(hpp|h)$"},
+   "line": {"type": "integer", "minimum": 1},
+   "source_url": {"type": "string", "format": "uri", "pattern": "^https://github.com/drohmer/cgp-2027/blob/"},
+   "brief": {"type": "string"},
+   "detail": {"type": "string"},
+   "primary": {"type": "boolean"},
+   "variants": {"type": "array", "items": {"$ref": "#/$defs/variant"}},
+   "variant_of": {"type": "string"}
+  },
+  "variant_rule": {
+   "if": {"properties": {"primary": {"const": false}}},
+   "then": {"required": ["variant_of"], "properties": {"variants": {"maxItems": 0}}}
+  },
+  "function": {
+   "type": "object",
+   "allOf": [{"$ref": "#/$defs/variant_rule"}],
+   "required": ["id", "key", "name", "namespace", "owner", "static", "const", "template", "tparams", "ret",
+                "params", "params_source", "signature", "module", "file", "line", "source_url", "brief", "detail",
+                "primary", "variants", "description", "description_source", "category", "category_source",
+                "category_rule", "home"],
+   "properties": {
+    "id": {"$ref": "#/$defs/callable_props/id"},
+    "key": {"type": "string"},
+    "name": {"type": "string", "minLength": 1},
+    "namespace": {"enum": ["cgp", "cgp::loader"]},
+    "owner": {"type": "null"},
+    "static": {"type": "boolean"},
+    "const": {"type": "boolean"},
+    "template": {"type": "string"},
+    "tparams": {"$ref": "#/$defs/callable_props/tparams"},
+    "ret": {"type": "string"},
+    "params": {"$ref": "#/$defs/callable_props/params"},
+    "params_source": {"$ref": "#/$defs/callable_props/params_source"},
+    "signature": {"type": "string"},
+    "module": {"$ref": "#/$defs/callable_props/module"},
+    "file": {"$ref": "#/$defs/callable_props/file"},
+    "line": {"$ref": "#/$defs/callable_props/line"},
+    "source_url": {"$ref": "#/$defs/callable_props/source_url"},
+    "brief": {"type": "string"},
+    "detail": {"type": "string"},
+    "primary": {"type": "boolean"},
+    "variants": {"$ref": "#/$defs/callable_props/variants"},
+    "variant_of": {"type": "string"},
+    "description": {"type": ["string", "null"]},
+    "description_source": {"enum": ["curated", "source", "missing"]},
+    "category": {"$ref": "#/$defs/category"},
+    "category_source": {"enum": ["curated", "heuristic"]},
+    "category_rule": {"oneOf": [{"$ref": "#/$defs/rule"}, {"type": "null"}]},
+    "home": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/page_ref"}],
+             "description": "Page documenting the function in full (null for a variant)"}
+   },
+   "additionalProperties": false
+  },
+  "method": {
+   "type": "object",
+   "allOf": [{"$ref": "#/$defs/variant_rule"}],
+   "required": ["id", "key", "name", "owner", "static", "const", "template", "tparams", "ret", "params",
+                "params_source", "signature", "file", "line", "source_url", "brief", "primary", "variants",
+                "ctor", "inherited_from", "description", "description_source"],
+   "properties": {
+    "id": {"$ref": "#/$defs/callable_props/id"},
+    "key": {"type": "string"},
+    "name": {"type": "string", "minLength": 1},
+    "namespace": {"type": "string"},
+    "owner": {"type": "string"},
+    "static": {"type": "boolean"},
+    "const": {"type": "boolean"},
+    "template": {"type": "string"},
+    "tparams": {"$ref": "#/$defs/callable_props/tparams"},
+    "ret": {"type": "string"},
+    "params": {"$ref": "#/$defs/callable_props/params"},
+    "params_source": {"$ref": "#/$defs/callable_props/params_source"},
+    "signature": {"type": "string"},
+    "module": {"type": "string"},
+    "file": {"type": "string"},
+    "line": {"type": "integer", "minimum": 0},
+    "source_url": {"type": "string", "format": "uri"},
+    "brief": {"type": "string"},
+    "detail": {"type": "string"},
+    "primary": {"type": "boolean"},
+    "variants": {"$ref": "#/$defs/callable_props/variants"},
+    "variant_of": {"type": "string"},
+    "ctor": {"type": "boolean"},
+    "inherited_from": {"type": ["string", "null"]},
+    "description": {"type": ["string", "null"]},
+    "description_source": {"enum": ["curated", "source", "missing"]}
+   },
+   "additionalProperties": false
+  },
+  "field": {
+   "type": "object",
+   "required": ["id", "key", "name", "type", "static", "brief", "initializer", "inherited_from", "description", "description_source"],
+   "additionalProperties": false,
+   "properties": {
+    "id": {"type": "string", "pattern": "^field-[A-Za-z0-9_]+$"},
+    "key": {"type": "string"},
+    "description": {"type": ["string", "null"]},
+    "description_source": {"enum": ["curated", "source", "missing"]},
+    "name": {"type": "string", "minLength": 1},
+    "type": {"type": "string"},
+    "static": {"type": "boolean"},
+    "brief": {"type": "string"},
+    "initializer": {"type": "string"},
+    "inherited_from": {"type": ["string", "null"]}
+   }
+  },
+  "relation": {
+   "type": "array",
+   "items": {
+    "type": "object",
+    "required": ["id", "generic", "via", "shared"],
+    "additionalProperties": false,
+    "properties": {"id": {"type": "string"}, "generic": {"type": "boolean"},
+                   "via": {"type": ["string", "null"]}, "shared": {"type": ["string", "null"]}}
+   }
+  },
+  "type": {
+   "type": "object",
+   "required": ["name", "canonical", "group", "short", "family_of", "figures", "struct", "takes", "returns", "operators", "guides", "tasks"],
+   "additionalProperties": false,
+   "properties": {
+    "name": {"type": "string"},
+    "canonical": {"type": "string"},
+    "group": {"type": "string"},
+    "short": {"type": "string"},
+    "family_of": {"oneOf": [{"type": "null"}, {"type": "array", "items": {"type": "string"}, "minItems": 1}]},
+    "figures": {"type": "array", "items": {"type": "object", "required": ["src", "caption"], "additionalProperties": false,
+                "properties": {"src": {"type": "string"}, "caption": {"type": "string"}}}},
+    "struct": {
+     "oneOf": [
+      {"type": "null"},
+      {
+       "type": "object",
+       "required": ["compound", "bases", "brief", "detail", "fields", "methods", "module", "file", "line", "source_url"],
+       "additionalProperties": false,
+       "properties": {
+        "compound": {"type": "string"},
+        "bases": {"type": "array", "items": {"type": "string"}},
+        "brief": {"type": "string"},
+        "detail": {"type": "string"},
+        "fields": {"type": "array", "items": {"$ref": "#/$defs/field"}},
+        "methods": {"type": "array", "items": {"$ref": "#/$defs/method"}},
+        "module": {"type": "string"},
+        "file": {"type": "string"},
+        "line": {"type": "integer"},
+        "source_url": {"type": "string", "format": "uri"}
+       }
+      }
+     ]
+    },
+    "takes": {"$ref": "#/$defs/relation"},
+    "returns": {"$ref": "#/$defs/relation"},
+    "operators": {"$ref": "#/$defs/relation"},
+    "guides": {
+     "description": "Content pages citing the type, a member or a function whose home is the type (crossrefs.py).",
+     "type": "array",
+     "items": {"type": "object", "required": ["path", "title", "section"], "additionalProperties": false,
+               "properties": {"path": {"type": "string", "pattern": "\\.md$"}, "title": {"type": "string"},
+                              "section": {"enum": ["get-started", "understand", "how-to", "examples"]}}}
+    },
+    "tasks": {
+     "description": "Common operations on the type (types.yaml `tasks`): a verb, code spans linked to the reference, an optional guide page (crossrefs.py).",
+     "type": "array",
+     "items": {"type": "object", "required": ["do", "use", "guide"], "additionalProperties": false,
+               "properties": {
+                "do": {"type": "string"},
+                "use": {"type": "array", "minItems": 1,
+                        "items": {"type": "object", "required": ["code", "link"], "additionalProperties": false,
+                                  "properties": {"code": {"type": "string"}, "link": {"$ref": "#/$defs/link_target"}}}},
+                "guide": {"oneOf": [{"type": "null"},
+                                    {"type": "object", "required": ["path", "title", "section"], "additionalProperties": false,
+                                     "properties": {"path": {"type": "string", "pattern": "\\.md$"}, "title": {"type": "string"},
+                                                    "section": {"enum": ["get-started", "understand", "how-to", "examples"]}}}]}}}
+    }
+   }
+  }
+ }
+}

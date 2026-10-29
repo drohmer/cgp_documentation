@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 470 300" width="470" height="300" font-family="sans-serif" font-size="14">
+  <!-- One cell of the N x N grid of create_surface: vertex (ku,kv) is stored at idx = kv + N*ku -->
+  <polygon points="150,240 310,80 150,80" fill="#4a90d9" fill-opacity="0.25" stroke="#888888" stroke-width="2"/>
+  <polygon points="150,240 310,240 310,80" fill="#e0823d" fill-opacity="0.25" stroke="#888888" stroke-width="2"/>
+  <defs>
+    <marker id="cb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#4a90d9"/></marker>
+    <marker id="co" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e0823d"/></marker>
+  </defs>
+  <!-- counter-clockwise order of the vertices of each triangle -->
+  <path d="M191,104 A13,13 0 1 0 178,117" fill="none" stroke="#4a90d9" stroke-width="1.6" marker-end="url(#cb)"/>
+  <path d="M301,168 A13,13 0 1 0 288,181" fill="none" stroke="#e0823d" stroke-width="1.6" marker-end="url(#co)"/>
+  <g fill="#888888">
+    <circle cx="150" cy="240" r="5"/>
+    <circle cx="310" cy="240" r="5"/>
+    <circle cx="310" cy="80" r="5"/>
+    <circle cx="150" cy="80" r="5"/>
+    <text x="140" y="264" text-anchor="end">idx</text>
+    <text x="320" y="264">idx + N</text>
+    <text x="320" y="72">idx + 1 + N</text>
+    <text x="140" y="72" text-anchor="end">idx + 1</text>
+    <text x="190" y="128" fill="#2b66ad">triangle_1</text>
+    <text x="236" y="208" fill="#a85000">triangle_2</text>
+    <text x="340" y="292" text-anchor="middle">ku + 1 (u grows)</text>
+    <text x="150" y="292" text-anchor="middle">ku</text>
+    <text x="40" y="244" text-anchor="middle">kv</text>
+    <text x="40" y="84" text-anchor="middle">kv + 1</text>
+  </g>
+  <g stroke="#888888" stroke-width="1.5" fill="#888888">
+    <line x1="370" y1="200" x2="430" y2="200"/>
+    <polygon points="430,195 440,200 430,205"/>
+    <line x1="370" y1="200" x2="370" y2="140"/>
+    <polygon points="365,140 370,130 375,140"/>
+  </g>
+  <g fill="#888888">
+    <text x="444" y="205">u</text>
+    <text x="366" y="124">v</text>
+  </g>
+</svg>

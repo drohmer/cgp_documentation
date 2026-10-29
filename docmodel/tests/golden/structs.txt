@@ -1,0 +1,945 @@
+affine | compound affine | bases -
+affine | field | float scaling
+affine | field | rotation_transform rotation
+affine | field | vec3 scaling_xyz
+affine | field | vec3 translation
+affine | method | affine::affine()
+affine | method | affine::affine(affine_rt const&)
+affine | method | affine::affine(affine_rts const&)
+affine | method | affine::affine(rotation_transform const&,vec3 const&,float,vec3 const&)
+affine | method | affine::from_matrix(mat4 const&)
+affine | method | affine::matrix() const
+affine | method | affine::set_rotation(rotation_transform const&)
+affine | method | affine::set_scaling(float)
+affine | method | affine::set_scaling_xyz(vec3 const&)
+affine | method | affine::set_translation(vec3 const&)
+affine_rt | compound affine_rt | bases -
+affine_rt | field | rotation_transform rotation
+affine_rt | field | vec3 translation
+affine_rt | method | affine_rt::affine_rt()
+affine_rt | method | affine_rt::affine_rt(rotation_transform const&)
+affine_rt | method | affine_rt::affine_rt(rotation_transform const&,vec3 const&)
+affine_rt | method | affine_rt::from_matrix(mat4 const&)
+affine_rt | method | affine_rt::matrix() const
+affine_rt | method | affine_rt::set_rotation(rotation_transform const&)
+affine_rt | method | affine_rt::set_translation(vec3 const&)
+affine_rts | compound affine_rts | bases -
+affine_rts | field | float scaling
+affine_rts | field | rotation_transform rotation
+affine_rts | field | vec3 translation
+affine_rts | method | affine_rts::affine_rts()
+affine_rts | method | affine_rts::affine_rts(affine_rt const&)
+affine_rts | method | affine_rts::affine_rts(rotation_transform const&,vec3 const&,float)
+affine_rts | method | affine_rts::matrix() const
+affine_rts | method | affine_rts::set_rotation(rotation_transform const&)
+affine_rts | method | affine_rts::set_scaling(float)
+affine_rts | method | affine_rts::set_translation(vec3 const&)
+bounding_box | compound bounding_box | bases -
+bounding_box | field | vec3 p_max
+bounding_box | field | vec3 p_min
+bounding_box | method | bounding_box::collide(bounding_box const&,bounding_box const&)
+bounding_box | method | bounding_box::extends(float)
+bounding_box | method | bounding_box::extends(float,float,float)
+bounding_box | method | bounding_box::extends(vec3 const&)
+bounding_box | method | bounding_box::initialize(mesh const&)
+bounding_box | method | bounding_box::initialize(numarray<vec3> const&)
+bounding_box | method | bounding_box::inside(vec3 const&) const
+camera_controller_first_person | compound camera_controller_first_person | bases camera_controller_generic_base
+camera_controller_first_person | field | bool is_active | from camera_controller_generic_base
+camera_controller_first_person | field | camera_first_person camera_model
+camera_controller_first_person | field | float rotation_speed
+camera_controller_first_person | field | float translation_speed
+camera_controller_first_person | field | input_devices* inputs | from camera_controller_generic_base
+camera_controller_first_person | field | window_structure* window | from camera_controller_generic_base
+camera_controller_first_person | method | camera_controller_first_person::action_keyboard()
+camera_controller_first_person | method | camera_controller_first_person::action_mouse_move()
+camera_controller_first_person | method | camera_controller_first_person::camera() const (+1 variant)
+camera_controller_first_person | method | camera_controller_first_person::doc_usage() const
+camera_controller_first_person | method | camera_controller_first_person::idle_frame()
+camera_controller_first_person | method | camera_controller_first_person::look_at(vec3 const&,vec3 const&,vec3 const&)
+camera_controller_first_person | method | camera_controller_generic_base::action_mouse_click() | from camera_controller_generic_base
+camera_controller_first_person | method | camera_controller_generic_base::initialize(input_devices&,window_structure&) | from camera_controller_generic_base
+camera_controller_first_person_euler | compound camera_controller_first_person_euler | bases camera_controller_generic_base
+camera_controller_first_person_euler | field | bool is_active | from camera_controller_generic_base
+camera_controller_first_person_euler | field | camera_first_person_euler camera_model
+camera_controller_first_person_euler | field | input_devices* inputs | from camera_controller_generic_base
+camera_controller_first_person_euler | field | window_structure* window | from camera_controller_generic_base
+camera_controller_first_person_euler | method | camera_controller_first_person_euler::action_keyboard()
+camera_controller_first_person_euler | method | camera_controller_first_person_euler::action_mouse_move()
+camera_controller_first_person_euler | method | camera_controller_first_person_euler::camera() const (+1 variant)
+camera_controller_first_person_euler | method | camera_controller_first_person_euler::doc_usage() const
+camera_controller_first_person_euler | method | camera_controller_first_person_euler::idle_frame()
+camera_controller_first_person_euler | method | camera_controller_first_person_euler::look_at(vec3 const&,vec3 const&,vec3 const&)
+camera_controller_first_person_euler | method | camera_controller_first_person_euler::set_rotation_axis(vec3 const&)
+camera_controller_first_person_euler | method | camera_controller_first_person_euler::set_rotation_axis_x()
+camera_controller_first_person_euler | method | camera_controller_first_person_euler::set_rotation_axis_y()
+camera_controller_first_person_euler | method | camera_controller_first_person_euler::set_rotation_axis_z()
+camera_controller_first_person_euler | method | camera_controller_generic_base::action_mouse_click() | from camera_controller_generic_base
+camera_controller_first_person_euler | method | camera_controller_generic_base::initialize(input_devices&,window_structure&) | from camera_controller_generic_base
+camera_controller_fly_mode | compound camera_controller_fly_mode | bases camera_controller_first_person
+camera_controller_fly_mode | field | bool is_active | from camera_controller_generic_base
+camera_controller_fly_mode | field | camera_first_person camera_model | from camera_controller_first_person
+camera_controller_fly_mode | field | float pitch
+camera_controller_fly_mode | field | float roll
+camera_controller_fly_mode | field | float rotation_speed | from camera_controller_first_person
+camera_controller_fly_mode | field | float speed
+camera_controller_fly_mode | field | float speed_increase
+camera_controller_fly_mode | field | float speed_max
+camera_controller_fly_mode | field | float speed_min
+camera_controller_fly_mode | field | float translation_speed | from camera_controller_first_person
+camera_controller_fly_mode | field | input_devices* inputs | from camera_controller_generic_base
+camera_controller_fly_mode | field | window_structure* window | from camera_controller_generic_base
+camera_controller_fly_mode | method | camera_controller_first_person::action_keyboard() | from camera_controller_first_person
+camera_controller_fly_mode | method | camera_controller_first_person::camera() const (+1 variant) | from camera_controller_first_person
+camera_controller_fly_mode | method | camera_controller_first_person::look_at(vec3 const&,vec3 const&,vec3 const&) | from camera_controller_first_person
+camera_controller_fly_mode | method | camera_controller_fly_mode::action_mouse_move()
+camera_controller_fly_mode | method | camera_controller_fly_mode::doc_usage() const
+camera_controller_fly_mode | method | camera_controller_fly_mode::idle_frame()
+camera_controller_fly_mode | method | camera_controller_generic_base::action_mouse_click() | from camera_controller_generic_base
+camera_controller_fly_mode | method | camera_controller_generic_base::initialize(input_devices&,window_structure&) | from camera_controller_generic_base
+camera_controller_orbit | compound camera_controller_orbit | bases camera_controller_generic_base
+camera_controller_orbit | field | bool is_active | from camera_controller_generic_base
+camera_controller_orbit | field | camera_orbit camera_model
+camera_controller_orbit | field | input_devices* inputs | from camera_controller_generic_base
+camera_controller_orbit | field | window_structure* window | from camera_controller_generic_base
+camera_controller_orbit | method | camera_controller_generic_base::action_keyboard() | from camera_controller_generic_base
+camera_controller_orbit | method | camera_controller_generic_base::action_mouse_click() | from camera_controller_generic_base
+camera_controller_orbit | method | camera_controller_generic_base::initialize(input_devices&,window_structure&) | from camera_controller_generic_base
+camera_controller_orbit | method | camera_controller_orbit::action_mouse_move()
+camera_controller_orbit | method | camera_controller_orbit::camera() const (+1 variant)
+camera_controller_orbit | method | camera_controller_orbit::doc_usage() const
+camera_controller_orbit | method | camera_controller_orbit::idle_frame()
+camera_controller_orbit | method | camera_controller_orbit::look_at(vec3 const&,vec3 const&,vec3 const&)
+camera_controller_orbit_euler | compound camera_controller_orbit_euler | bases camera_controller_generic_base
+camera_controller_orbit_euler | field | bool is_active | from camera_controller_generic_base
+camera_controller_orbit_euler | field | camera_orbit_euler camera_model
+camera_controller_orbit_euler | field | input_devices* inputs | from camera_controller_generic_base
+camera_controller_orbit_euler | field | window_structure* window | from camera_controller_generic_base
+camera_controller_orbit_euler | method | camera_controller_generic_base::action_keyboard() | from camera_controller_generic_base
+camera_controller_orbit_euler | method | camera_controller_generic_base::action_mouse_click() | from camera_controller_generic_base
+camera_controller_orbit_euler | method | camera_controller_generic_base::initialize(input_devices&,window_structure&) | from camera_controller_generic_base
+camera_controller_orbit_euler | method | camera_controller_orbit_euler::action_mouse_move()
+camera_controller_orbit_euler | method | camera_controller_orbit_euler::camera() const (+1 variant)
+camera_controller_orbit_euler | method | camera_controller_orbit_euler::doc_usage() const
+camera_controller_orbit_euler | method | camera_controller_orbit_euler::idle_frame()
+camera_controller_orbit_euler | method | camera_controller_orbit_euler::look_at(vec3 const&,vec3 const&,vec3 const&)
+camera_controller_orbit_euler | method | camera_controller_orbit_euler::set_rotation_axis(vec3 const&)
+camera_controller_orbit_euler | method | camera_controller_orbit_euler::set_rotation_axis_x()
+camera_controller_orbit_euler | method | camera_controller_orbit_euler::set_rotation_axis_y()
+camera_controller_orbit_euler | method | camera_controller_orbit_euler::set_rotation_axis_z()
+camera_first_person | compound camera_first_person | bases camera_generic_base
+camera_first_person | field | rotation_transform orientation_camera
+camera_first_person | field | vec3 position_camera
+camera_first_person | method | camera_first_person::camera_first_person()
+camera_first_person | method | camera_first_person::look_at(vec3 const&,vec3 const&,vec3 const&)
+camera_first_person | method | camera_first_person::manipulator_rotate_roll_pitch_yaw(float,float,float)
+camera_first_person | method | camera_first_person::manipulator_translate_front(float)
+camera_first_person | method | camera_first_person::manipulator_translate_in_plane(vec2 const&)
+camera_first_person | method | camera_first_person::orientation() const
+camera_first_person | method | camera_first_person::position() const
+camera_first_person | method | camera_generic_base::front() const | from camera_generic_base
+camera_first_person | method | camera_generic_base::matrix_frame() const | from camera_generic_base
+camera_first_person | method | camera_generic_base::matrix_view() const | from camera_generic_base
+camera_first_person | method | camera_generic_base::right() const | from camera_generic_base
+camera_first_person | method | camera_generic_base::to_frame() const | from camera_generic_base
+camera_first_person | method | camera_generic_base::up() const | from camera_generic_base
+camera_first_person_euler | compound camera_first_person_euler | bases camera_generic_base
+camera_first_person_euler | field | float pitch
+camera_first_person_euler | field | float roll
+camera_first_person_euler | field | float yaw
+camera_first_person_euler | field | vec3 axis_of_rotation
+camera_first_person_euler | field | vec3 position_camera
+camera_first_person_euler | method | camera_first_person_euler::camera_first_person_euler()
+camera_first_person_euler | method | camera_first_person_euler::look_at(vec3 const&,vec3 const&)
+camera_first_person_euler | method | camera_first_person_euler::manipulator_rotate_roll_pitch_yaw(float,float,float)
+camera_first_person_euler | method | camera_first_person_euler::manipulator_translate_front(float)
+camera_first_person_euler | method | camera_first_person_euler::manipulator_translate_in_plane(vec2 const&)
+camera_first_person_euler | method | camera_first_person_euler::manipulator_twist_rotation_axis(float)
+camera_first_person_euler | method | camera_first_person_euler::orientation() const
+camera_first_person_euler | method | camera_first_person_euler::position() const
+camera_first_person_euler | method | camera_first_person_euler::set_rotation_axis(vec3)
+camera_first_person_euler | method | camera_generic_base::front() const | from camera_generic_base
+camera_first_person_euler | method | camera_generic_base::matrix_frame() const | from camera_generic_base
+camera_first_person_euler | method | camera_generic_base::matrix_view() const | from camera_generic_base
+camera_first_person_euler | method | camera_generic_base::right() const | from camera_generic_base
+camera_first_person_euler | method | camera_generic_base::to_frame() const | from camera_generic_base
+camera_first_person_euler | method | camera_generic_base::up() const | from camera_generic_base
+camera_orbit | compound camera_orbit | bases camera_generic_base
+camera_orbit | field | float distance_to_center
+camera_orbit | field | rotation_transform orientation_camera
+camera_orbit | field | vec3 center_of_rotation
+camera_orbit | method | camera_generic_base::front() const | from camera_generic_base
+camera_orbit | method | camera_generic_base::matrix_frame() const | from camera_generic_base
+camera_orbit | method | camera_generic_base::matrix_view() const | from camera_generic_base
+camera_orbit | method | camera_generic_base::right() const | from camera_generic_base
+camera_orbit | method | camera_generic_base::to_frame() const | from camera_generic_base
+camera_orbit | method | camera_generic_base::up() const | from camera_generic_base
+camera_orbit | method | camera_orbit::camera_orbit()
+camera_orbit | method | camera_orbit::look_at(vec3 const&,vec3 const&,vec3 const&)
+camera_orbit | method | camera_orbit::manipulator_rotate_arcball(vec2 const&,vec2 const&)
+camera_orbit | method | camera_orbit::manipulator_rotate_roll_pitch_yaw(float,float,float)
+camera_orbit | method | camera_orbit::manipulator_scale_distance_to_center(float)
+camera_orbit | method | camera_orbit::manipulator_translate_front(float)
+camera_orbit | method | camera_orbit::manipulator_translate_in_plane(vec2 const&)
+camera_orbit | method | camera_orbit::orientation() const
+camera_orbit | method | camera_orbit::position() const
+camera_orbit_euler | compound camera_orbit_euler | bases camera_generic_base
+camera_orbit_euler | field | float distance_to_center
+camera_orbit_euler | field | float pitch
+camera_orbit_euler | field | float roll
+camera_orbit_euler | field | float yaw
+camera_orbit_euler | field | vec3 axis_of_rotation
+camera_orbit_euler | field | vec3 center_of_rotation
+camera_orbit_euler | method | camera_generic_base::front() const | from camera_generic_base
+camera_orbit_euler | method | camera_generic_base::matrix_frame() const | from camera_generic_base
+camera_orbit_euler | method | camera_generic_base::matrix_view() const | from camera_generic_base
+camera_orbit_euler | method | camera_generic_base::right() const | from camera_generic_base
+camera_orbit_euler | method | camera_generic_base::to_frame() const | from camera_generic_base
+camera_orbit_euler | method | camera_generic_base::up() const | from camera_generic_base
+camera_orbit_euler | method | camera_orbit_euler::camera_orbit_euler()
+camera_orbit_euler | method | camera_orbit_euler::look_at(vec3 const&,vec3 const&)
+camera_orbit_euler | method | camera_orbit_euler::manipulator_rotate_roll_pitch_yaw(float,float,float)
+camera_orbit_euler | method | camera_orbit_euler::manipulator_scale_distance_to_center(float)
+camera_orbit_euler | method | camera_orbit_euler::manipulator_translate_front(float)
+camera_orbit_euler | method | camera_orbit_euler::manipulator_translate_in_plane(vec2 const&)
+camera_orbit_euler | method | camera_orbit_euler::manipulator_twist_rotation_axis(float)
+camera_orbit_euler | method | camera_orbit_euler::orientation() const
+camera_orbit_euler | method | camera_orbit_euler::position() const
+camera_orbit_euler | method | camera_orbit_euler::set_rotation_axis(vec3)
+camera_projection_orthographic | compound camera_projection_orthographic | bases -
+camera_projection_orthographic | field | float aspect_ratio
+camera_projection_orthographic | field | float bottom
+camera_projection_orthographic | field | float left
+camera_projection_orthographic | field | float right
+camera_projection_orthographic | field | float top
+camera_projection_orthographic | field | float z_max
+camera_projection_orthographic | field | float z_min
+camera_projection_orthographic | method | camera_projection_orthographic::matrix() const
+camera_projection_orthographic | method | camera_projection_orthographic::matrix_inverse() const
+camera_projection_perspective | compound camera_projection_perspective | bases -
+camera_projection_perspective | field | float aspect_ratio
+camera_projection_perspective | field | float depth_max
+camera_projection_perspective | field | float depth_min
+camera_projection_perspective | field | float field_of_view
+camera_projection_perspective | method | camera_projection_perspective::matrix() const
+camera_projection_perspective | method | camera_projection_perspective::matrix_inverse() const
+curve_drawable | compound curve_drawable | bases -
+curve_drawable | field | GLuint vao
+curve_drawable | field | affine model
+curve_drawable | field | curve_drawable_display_type display_type
+curve_drawable | field | opengl_shader_structure default_shader
+curve_drawable | field | opengl_shader_structure shader
+curve_drawable | field | opengl_vbo_structure vbo_position
+curve_drawable | field | vec3 color
+curve_drawable | method | curve_drawable::clear()
+curve_drawable | method | curve_drawable::initialize_data_on_gpu(numarray<vec3> const&,opengl_shader_structure const&)
+curve_drawable | method | curve_drawable::send_opengl_uniform(bool) const
+curve_drawable_dynamic_extend | compound curve_drawable_dynamic_extend | bases curve_drawable
+curve_drawable_dynamic_extend | field | GLuint vao | from curve_drawable
+curve_drawable_dynamic_extend | field | affine model | from curve_drawable
+curve_drawable_dynamic_extend | field | curve_drawable_display_type display_type | from curve_drawable
+curve_drawable_dynamic_extend | field | int N_valid_points
+curve_drawable_dynamic_extend | field | opengl_shader_structure default_shader | from curve_drawable
+curve_drawable_dynamic_extend | field | opengl_shader_structure shader | from curve_drawable
+curve_drawable_dynamic_extend | field | opengl_vbo_structure vbo_position | from curve_drawable
+curve_drawable_dynamic_extend | field | vec3 color | from curve_drawable
+curve_drawable_dynamic_extend | method | curve_drawable::send_opengl_uniform(bool) const | from curve_drawable
+curve_drawable_dynamic_extend | method | curve_drawable_dynamic_extend::clear()
+curve_drawable_dynamic_extend | method | curve_drawable_dynamic_extend::curve_drawable_dynamic_extend()
+curve_drawable_dynamic_extend | method | curve_drawable_dynamic_extend::initialize_data_on_gpu(int,opengl_shader_structure const&)
+curve_drawable_dynamic_extend | method | curve_drawable_dynamic_extend::push_back(vec3 const&)
+environment_generic_structure | compound environment_generic_structure | bases -
+environment_generic_structure | field | bool default_expected_uniform
+environment_generic_structure | method | environment_generic_structure::send_opengl_uniform(opengl_shader_structure const&,bool) const
+frame | compound frame | bases -
+frame | field | rotation_transform orientation
+frame | field | vec3 position
+frame | method | frame::frame()
+frame | method | frame::frame(affine_rt const&)
+frame | method | frame::frame(rotation_transform const&,vec3 const&)
+frame | method | frame::frame(vec3 const&,vec3 const&,vec3 const&)
+frame | method | frame::matrix() const
+frame | method | frame::ux() const
+frame | method | frame::uy() const
+frame | method | frame::uz() const
+grid_2D | compound grid_2D | bases -
+grid_2D | field | int2 dimension
+grid_2D | field | numarray<T> data
+grid_2D | method | grid_2D::at(int) const (+1 variant)
+grid_2D | method | grid_2D::begin() const (+1 variant)
+grid_2D | method | grid_2D::cbegin() const
+grid_2D | method | grid_2D::cend() const
+grid_2D | method | grid_2D::clear()
+grid_2D | method | grid_2D::end() const (+1 variant)
+grid_2D | method | grid_2D::fill(T const&)
+grid_2D | method | grid_2D::from_buffer(numarray<T> const&,int,int)
+grid_2D | method | grid_2D::grid_2D()
+grid_2D | method | grid_2D::grid_2D(int)
+grid_2D | method | grid_2D::grid_2D(int,int)
+grid_2D | method | grid_2D::grid_2D(int2 const&)
+grid_2D | method | grid_2D::index_to_offset(int,int) const
+grid_2D | method | grid_2D::offset_to_index(int) const
+grid_2D | method | grid_2D::operator()(int,int) const (+1 variant)
+grid_2D | method | grid_2D::operator()(int2 const&) const (+1 variant)
+grid_2D | method | grid_2D::operator[](int2 const&) const (+1 variant)
+grid_2D | method | grid_2D::resize(int)
+grid_2D | method | grid_2D::resize(int,int)
+grid_2D | method | grid_2D::resize(int2 const&)
+grid_2D | method | grid_2D::size() const
+grid_3D | compound grid_3D | bases -
+grid_3D | field | int3 dimension
+grid_3D | field | numarray<T> data
+grid_3D | method | grid_3D::begin() const (+1 variant)
+grid_3D | method | grid_3D::cbegin() const
+grid_3D | method | grid_3D::cend() const
+grid_3D | method | grid_3D::clear()
+grid_3D | method | grid_3D::coeff(int) const (+1 variant)
+grid_3D | method | grid_3D::coeff(int,int,int) const (+1 variant)
+grid_3D | method | grid_3D::end() const (+1 variant)
+grid_3D | method | grid_3D::fill(T const&)
+grid_3D | method | grid_3D::from_array(numarray<T> const&,int,int,int)
+grid_3D | method | grid_3D::grid_3D()
+grid_3D | method | grid_3D::grid_3D(int)
+grid_3D | method | grid_3D::grid_3D(int,int,int)
+grid_3D | method | grid_3D::grid_3D(int3 const&)
+grid_3D | method | grid_3D::index_to_offset(int,int,int) const
+grid_3D | method | grid_3D::index_to_offset(int3 const&) const
+grid_3D | method | grid_3D::offset_to_index(int) const
+grid_3D | method | grid_3D::operator()(int,int,int) const (+1 variant)
+grid_3D | method | grid_3D::operator()(int3 const&) const (+1 variant)
+grid_3D | method | grid_3D::operator[](int3 const&) const (+1 variant)
+grid_3D | method | grid_3D::resize(int)
+grid_3D | method | grid_3D::resize(int,int,int)
+grid_3D | method | grid_3D::resize(int3 const&)
+grid_3D | method | grid_3D::size() const
+hierarchy_mesh_drawable | compound hierarchy_mesh_drawable | bases -
+hierarchy_mesh_drawable | field | std::map<std::string,int> name_map
+hierarchy_mesh_drawable | field | std::vector<hierarchy_mesh_drawable_node> elements
+hierarchy_mesh_drawable | method | hierarchy_mesh_drawable::add(hierarchy_mesh_drawable_node const&)
+hierarchy_mesh_drawable | method | hierarchy_mesh_drawable::add(mesh_drawable const&,std::string const&,std::string const&,affine_rts const&)
+hierarchy_mesh_drawable | method | hierarchy_mesh_drawable::add(mesh_drawable const&,std::string const&,std::string const&,vec3 const&,rotation_transform const&)
+hierarchy_mesh_drawable | method | hierarchy_mesh_drawable::hierarchy_display() const
+hierarchy_mesh_drawable | method | hierarchy_mesh_drawable::operator[](std::string const&) const (+1 variant)
+hierarchy_mesh_drawable | method | hierarchy_mesh_drawable::update_local_to_global_coordinates()
+hierarchy_mesh_drawable_node | compound hierarchy_mesh_drawable_node | bases -
+hierarchy_mesh_drawable_node | field | affine_rts transform_local
+hierarchy_mesh_drawable_node | field | mesh_drawable drawable
+hierarchy_mesh_drawable_node | field | std::string name
+hierarchy_mesh_drawable_node | field | std::string name_parent
+image_structure | compound image_structure | bases -
+image_structure | field | image_color_type color_type
+image_structure | field | int height
+image_structure | field | int width
+image_structure | field | numarray<unsigned char> data
+image_structure | method | image_structure::image_structure()
+image_structure | method | image_structure::image_structure(unsigned int,unsigned int,image_color_type,numarray<unsigned char> const&)
+image_structure | method | image_structure::mirror_horizontal() const
+image_structure | method | image_structure::mirror_vertical() const
+image_structure | method | image_structure::rotate_90_degrees_clockwise() const
+image_structure | method | image_structure::rotate_90_degrees_counterclockwise() const
+image_structure | method | image_structure::subimage(int,int,int,int) const
+input_devices | compound input_devices | bases -
+input_devices | field | float time_interval
+input_devices | field | inputs_keyboard_parameters keyboard
+input_devices | field | inputs_mouse_parameters mouse
+inputs_keyboard_last_action_parameter | compound inputs_keyboard_last_action_parameter | bases -
+inputs_keyboard_last_action_parameter | field | int action
+inputs_keyboard_last_action_parameter | field | int key
+inputs_keyboard_last_action_parameter | method | inputs_keyboard_last_action_parameter::is_pressed(char) const
+inputs_keyboard_last_action_parameter | method | inputs_keyboard_last_action_parameter::is_pressed(int) const
+inputs_keyboard_last_action_parameter | method | inputs_keyboard_last_action_parameter::is_pressed(std::string const&) const
+inputs_keyboard_last_action_parameter | method | inputs_keyboard_last_action_parameter::is_released(char) const
+inputs_keyboard_last_action_parameter | method | inputs_keyboard_last_action_parameter::is_released(int) const
+inputs_keyboard_last_action_parameter | method | inputs_keyboard_last_action_parameter::is_released(std::string const&) const
+inputs_keyboard_parameters | compound inputs_keyboard_parameters | bases -
+inputs_keyboard_parameters | field | bool ctrl
+inputs_keyboard_parameters | field | bool down
+inputs_keyboard_parameters | field | bool left
+inputs_keyboard_parameters | field | bool right
+inputs_keyboard_parameters | field | bool shift
+inputs_keyboard_parameters | field | bool up
+inputs_keyboard_parameters | field | inputs_keyboard_last_action_parameter last_action
+inputs_keyboard_parameters | field | std::set<int> pressed_keys_storage
+inputs_keyboard_parameters | method | inputs_keyboard_parameters::inputs_keyboard_parameters()
+inputs_keyboard_parameters | method | inputs_keyboard_parameters::is_pressed(char) const
+inputs_keyboard_parameters | method | inputs_keyboard_parameters::is_pressed(int) const
+inputs_keyboard_parameters | method | inputs_keyboard_parameters::is_pressed(std::string const&) const
+inputs_keyboard_parameters | method | inputs_keyboard_parameters::update_from_glfw_key(int,int)
+inputs_mouse_parameters | compound inputs_mouse_parameters | bases -
+inputs_mouse_parameters | field | bool on_gui
+inputs_mouse_parameters | field | float scroll
+inputs_mouse_parameters | field | inputs_mouse_cursor_click_parameters click
+inputs_mouse_parameters | field | inputs_mouse_cursor_position_parameters position
+intersection_structure | compound intersection_structure | bases -
+intersection_structure | field | bool valid
+intersection_structure | field | vec3 normal
+intersection_structure | field | vec3 position
+mat2 | compound matrix_stack<float,2,2> | bases -
+mat2 | field | numarray_stack<numarray_stack<float,2>,2> data
+mat2 | method | matrix_stack::at(int) const (+1 variant)
+mat2 | method | matrix_stack::at(int,int) const (+1 variant)
+mat2 | method | matrix_stack::at_offset(int) const (+1 variant)
+mat2 | method | matrix_stack::at_offset_unsafe(int) const (+1 variant)
+mat2 | method | matrix_stack::begin() const (+1 variant)
+mat2 | method | matrix_stack::build_constant(float)
+mat2 | method | matrix_stack::build_diagonal(float)
+mat2 | method | matrix_stack::build_diagonal(float,float)
+mat2 | method | matrix_stack::build_diagonal(vec2 const&)
+mat2 | method | matrix_stack::build_identity()
+mat2 | method | matrix_stack::build_rotation(float)
+mat2 | method | matrix_stack::build_scaling(float)
+mat2 | method | matrix_stack::build_scaling(float,float)
+mat2 | method | matrix_stack::build_scaling(vec2 const&)
+mat2 | method | matrix_stack::build_zero()
+mat2 | method | matrix_stack::cbegin() const
+mat2 | method | matrix_stack::cend() const
+mat2 | method | matrix_stack::coeff(int) const (+1 variant)
+mat2 | method | matrix_stack::coeff(int,int) const (+1 variant)
+mat2 | method | matrix_stack::dimension() const
+mat2 | method | matrix_stack::end() const (+1 variant)
+mat2 | method | matrix_stack::fill(float)
+mat2 | method | matrix_stack::matrix_stack()
+mat2 | method | matrix_stack::matrix_stack(float)
+mat2 | method | matrix_stack::matrix_stack(float,float)
+mat2 | method | matrix_stack::matrix_stack(float,float,float,float)
+mat2 | method | matrix_stack::matrix_stack(numarray_stack<float,4> const&)
+mat2 | method | matrix_stack::matrix_stack(numarray_stack<vec2,2> const&)
+mat2 | method | matrix_stack::matrix_stack(std::initializer_list<float> const&)
+mat2 | method | matrix_stack::matrix_stack(std::initializer_list<vec2> const&)
+mat2 | method | matrix_stack::matrix_stack(vec2 const&,vec2 const&)
+mat2 | method | matrix_stack::matrix_stack<N1_arg,N2_arg>(matrix_stack<float,N1_arg,N2_arg> const&)
+mat2 | method | matrix_stack::operator()(int) const (+1 variant)
+mat2 | method | matrix_stack::operator()(int,int) const (+1 variant)
+mat2 | method | matrix_stack::operator[](int) const (+1 variant)
+mat2 | method | matrix_stack::remove_row_column(int,int) const
+mat2 | method | matrix_stack::set_block<N1_arg,N2_arg>(matrix_stack<float,N1_arg,N2_arg> const&,int,int)
+mat2 | method | matrix_stack::size() const
+mat3 | compound matrix_stack<float,3,3> | bases -
+mat3 | field | numarray_stack<numarray_stack<float,3>,3> data
+mat3 | method | matrix_stack::at(int) const (+1 variant)
+mat3 | method | matrix_stack::at(int,int) const (+1 variant)
+mat3 | method | matrix_stack::at_offset(int) const (+1 variant)
+mat3 | method | matrix_stack::at_offset_unsafe(int) const (+1 variant)
+mat3 | method | matrix_stack::begin() const (+1 variant)
+mat3 | method | matrix_stack::build_constant(float)
+mat3 | method | matrix_stack::build_diagonal(float)
+mat3 | method | matrix_stack::build_diagonal(float,float,float)
+mat3 | method | matrix_stack::build_diagonal(vec3 const&)
+mat3 | method | matrix_stack::build_identity()
+mat3 | method | matrix_stack::build_rotation_from_axis_angle(vec3 const&,float)
+mat3 | method | matrix_stack::build_rotation_from_quaternion(quaternion const&)
+mat3 | method | matrix_stack::build_scaling(float)
+mat3 | method | matrix_stack::build_scaling(float,float,float)
+mat3 | method | matrix_stack::build_scaling(vec3 const&)
+mat3 | method | matrix_stack::build_zero()
+mat3 | method | matrix_stack::cbegin() const
+mat3 | method | matrix_stack::cend() const
+mat3 | method | matrix_stack::coeff(int) const (+1 variant)
+mat3 | method | matrix_stack::coeff(int,int) const (+1 variant)
+mat3 | method | matrix_stack::dimension() const
+mat3 | method | matrix_stack::end() const (+1 variant)
+mat3 | method | matrix_stack::fill(float)
+mat3 | method | matrix_stack::matrix_stack()
+mat3 | method | matrix_stack::matrix_stack(float)
+mat3 | method | matrix_stack::matrix_stack(float,float,float)
+mat3 | method | matrix_stack::matrix_stack(float,float,float,float,float,float,float,float,float)
+mat3 | method | matrix_stack::matrix_stack(numarray_stack<float,9> const&)
+mat3 | method | matrix_stack::matrix_stack(numarray_stack<vec3,3> const&)
+mat3 | method | matrix_stack::matrix_stack(std::initializer_list<float> const&)
+mat3 | method | matrix_stack::matrix_stack(std::initializer_list<vec3> const&)
+mat3 | method | matrix_stack::matrix_stack(vec3 const&,vec3 const&,vec3 const&)
+mat3 | method | matrix_stack::matrix_stack<N1_arg,N2_arg>(matrix_stack<float,N1_arg,N2_arg> const&)
+mat3 | method | matrix_stack::operator()(int) const (+1 variant)
+mat3 | method | matrix_stack::operator()(int,int) const (+1 variant)
+mat3 | method | matrix_stack::operator[](int) const (+1 variant)
+mat3 | method | matrix_stack::remove_row_column(int,int) const
+mat3 | method | matrix_stack::set_block<N1_arg,N2_arg>(matrix_stack<float,N1_arg,N2_arg> const&,int,int)
+mat3 | method | matrix_stack::size() const
+mat4 | compound matrix_stack<float,4,4> | bases -
+mat4 | field | numarray_stack<numarray_stack<float,4>,4> data
+mat4 | method | matrix_stack::apply_scaling(float)
+mat4 | method | matrix_stack::apply_scaling_to_block_linear(float)
+mat4 | method | matrix_stack::apply_scaling_to_block_translation(float)
+mat4 | method | matrix_stack::apply_transform_to_block_linear(mat3 const&)
+mat4 | method | matrix_stack::apply_translation(vec3 const&)
+mat4 | method | matrix_stack::at(int,int) const (+1 variant)
+mat4 | method | matrix_stack::at_offset(int) const (+1 variant)
+mat4 | method | matrix_stack::at_offset_unsafe(int) const (+1 variant)
+mat4 | method | matrix_stack::begin() const (+1 variant)
+mat4 | method | matrix_stack::build_affine(mat3 const&,vec3 const&)
+mat4 | method | matrix_stack::build_constant(float)
+mat4 | method | matrix_stack::build_diagonal(float)
+mat4 | method | matrix_stack::build_diagonal(float,float,float,float)
+mat4 | method | matrix_stack::build_diagonal(vec4 const&)
+mat4 | method | matrix_stack::build_identity()
+mat4 | method | matrix_stack::build_linear(mat3 const&)
+mat4 | method | matrix_stack::build_rotation_from_axis_angle(vec3 const&,float)
+mat4 | method | matrix_stack::build_rotation_from_quaternion(quaternion const&)
+mat4 | method | matrix_stack::build_scaling(float)
+mat4 | method | matrix_stack::build_scaling(float,float,float)
+mat4 | method | matrix_stack::build_scaling(vec3 const&)
+mat4 | method | matrix_stack::build_translation(float,float,float)
+mat4 | method | matrix_stack::build_translation(vec3 const&)
+mat4 | method | matrix_stack::build_zero()
+mat4 | method | matrix_stack::cbegin() const
+mat4 | method | matrix_stack::cend() const
+mat4 | method | matrix_stack::coeff(int) const (+1 variant)
+mat4 | method | matrix_stack::coeff(int,int) const (+1 variant)
+mat4 | method | matrix_stack::col_w() const
+mat4 | method | matrix_stack::col_w_vec3() const
+mat4 | method | matrix_stack::col_x() const
+mat4 | method | matrix_stack::col_x_vec3() const
+mat4 | method | matrix_stack::col_y() const
+mat4 | method | matrix_stack::col_y_vec3() const
+mat4 | method | matrix_stack::col_z() const
+mat4 | method | matrix_stack::col_z_vec3() const
+mat4 | method | matrix_stack::dimension() const
+mat4 | method | matrix_stack::end() const (+1 variant)
+mat4 | method | matrix_stack::fill(float)
+mat4 | method | matrix_stack::get_block_linear() const
+mat4 | method | matrix_stack::get_block_translation() const
+mat4 | method | matrix_stack::inverse_assuming_rigid_transform() const
+mat4 | method | matrix_stack::matrix_stack()
+mat4 | method | matrix_stack::matrix_stack(float)
+mat4 | method | matrix_stack::matrix_stack(float,float,float,float)
+mat4 | method | matrix_stack::matrix_stack(float,float,float,float,float,float,float,float,float,float,float,float,float,float,float,float)
+mat4 | method | matrix_stack::matrix_stack(mat3 const&)
+mat4 | method | matrix_stack::matrix_stack(numarray_stack<float,16> const&)
+mat4 | method | matrix_stack::matrix_stack(numarray_stack<numarray_stack<float,4>,4> const&)
+mat4 | method | matrix_stack::matrix_stack(std::initializer_list<float> const&)
+mat4 | method | matrix_stack::matrix_stack(std::initializer_list<numarray_stack<float,4>> const&)
+mat4 | method | matrix_stack::matrix_stack(vec4 const&,vec4 const&,vec4 const&,vec4 const&)
+mat4 | method | matrix_stack::matrix_stack<N1_arg,N2_arg>(matrix_stack<float,N1_arg,N2_arg> const&)
+mat4 | method | matrix_stack::operator()(int) const (+1 variant)
+mat4 | method | matrix_stack::operator()(int,int) const (+1 variant)
+mat4 | method | matrix_stack::operator[](int) const (+1 variant)
+mat4 | method | matrix_stack::remove_row_column(int,int) const
+mat4 | method | matrix_stack::row_w() const (+1 variant)
+mat4 | method | matrix_stack::row_w_vec3() const
+mat4 | method | matrix_stack::row_x() const (+1 variant)
+mat4 | method | matrix_stack::row_x_vec3() const
+mat4 | method | matrix_stack::row_y() const (+1 variant)
+mat4 | method | matrix_stack::row_y_vec3() const
+mat4 | method | matrix_stack::row_z() const (+1 variant)
+mat4 | method | matrix_stack::row_z_vec3() const
+mat4 | method | matrix_stack::set_block<N1_arg,N2_arg>(matrix_stack<float,N1_arg,N2_arg> const&,int,int)
+mat4 | method | matrix_stack::set_block_linear(mat3 const&)
+mat4 | method | matrix_stack::set_block_linear_as_rotation(vec3 const&,float)
+mat4 | method | matrix_stack::set_block_linear_as_scaling(float)
+mat4 | method | matrix_stack::set_block_linear_as_scaling(float,float,float)
+mat4 | method | matrix_stack::set_block_linear_as_scaling(vec3 const&)
+mat4 | method | matrix_stack::set_block_translation(float,float,float)
+mat4 | method | matrix_stack::set_block_translation(vec3 const&)
+mat4 | method | matrix_stack::set_diagonal(float)
+mat4 | method | matrix_stack::set_diagonal(float,float,float,float)
+mat4 | method | matrix_stack::set_identity()
+mat4 | method | matrix_stack::set_zeros()
+mat4 | method | matrix_stack::size() const
+mat4 | method | matrix_stack::transform_position(vec3 const&) const
+mat4 | method | matrix_stack::transform_vector(vec3 const&) const
+matN | compound matrix_stack | bases -
+matN | field | numarray_stack<numarray_stack<T,N2>,N1> data
+matN | method | matrix_stack::at(int,int) const (+1 variant)
+matN | method | matrix_stack::at_offset(int) const (+1 variant)
+matN | method | matrix_stack::at_offset_unsafe(int) const (+1 variant)
+matN | method | matrix_stack::begin() const (+1 variant)
+matN | method | matrix_stack::build_identity()
+matN | method | matrix_stack::cbegin() const
+matN | method | matrix_stack::cend() const
+matN | method | matrix_stack::coeff(int) const (+1 variant)
+matN | method | matrix_stack::coeff(int,int) const (+1 variant)
+matN | method | matrix_stack::diagonal(numarray_stack<T,std::min(N1,N2)> const&)
+matN | method | matrix_stack::dimension() const
+matN | method | matrix_stack::end() const (+1 variant)
+matN | method | matrix_stack::fill(T const&)
+matN | method | matrix_stack::matrix_stack()
+matN | method | matrix_stack::matrix_stack(numarray_stack<T,N1*N2> const&)
+matN | method | matrix_stack::matrix_stack(numarray_stack<numarray_stack<T,N2>,N1> const&)
+matN | method | matrix_stack::matrix_stack(std::initializer_list<T> const&)
+matN | method | matrix_stack::matrix_stack(std::initializer_list<numarray_stack<T,N2>> const&)
+matN | method | matrix_stack::matrix_stack<N1_arg,N2_arg>(matrix_stack<T,N1_arg,N2_arg> const&)
+matN | method | matrix_stack::operator()(int) const (+1 variant)
+matN | method | matrix_stack::operator()(int,int) const (+1 variant)
+matN | method | matrix_stack::operator[](int) const (+1 variant)
+matN | method | matrix_stack::remove_row_column(int,int) const
+matN | method | matrix_stack::set_block<N1_arg,N2_arg>(matrix_stack<T,N1_arg,N2_arg> const&,int,int)
+matN | method | matrix_stack::size() const
+material_mesh_drawable_phong | compound material_mesh_drawable_phong | bases -
+material_mesh_drawable_phong | field | float alpha
+material_mesh_drawable_phong | field | phong_parameters phong
+material_mesh_drawable_phong | field | texture_settings_parameters texture_settings
+material_mesh_drawable_phong | field | vec3 color
+material_mesh_drawable_phong | method | material_mesh_drawable_phong::send_opengl_uniform(opengl_shader_structure const&,bool) const
+mesh | compound mesh | bases -
+mesh | field | numarray<uint3> connectivity
+mesh | field | numarray<vec2> uv
+mesh | field | numarray<vec3> color
+mesh | field | numarray<vec3> normal
+mesh | field | numarray<vec3> position
+mesh | method | mesh::apply_transform(affine const&)
+mesh | method | mesh::apply_transform(affine_rt const&)
+mesh | method | mesh::apply_transform(affine_rts const&)
+mesh | method | mesh::apply_transform(mat3 const&)
+mesh | method | mesh::apply_transform(mat4 const&)
+mesh | method | mesh::centered()
+mesh | method | mesh::fill_empty_field()
+mesh | method | mesh::flip_connectivity()
+mesh | method | mesh::get_bounding_box_position(vec3&,vec3&) const
+mesh | method | mesh::normal_update()
+mesh | method | mesh::normalize_size_to_position()
+mesh | method | mesh::push_back(mesh const&)
+mesh | method | mesh::rotate(vec3 const&,float)
+mesh | method | mesh::scale(float)
+mesh | method | mesh::scale(float,float,float)
+mesh | method | mesh::translate(float,float,float)
+mesh | method | mesh::translate(vec3 const&)
+mesh_drawable | compound mesh_drawable | bases -
+mesh_drawable | field | GLuint vao
+mesh_drawable | field | affine model
+mesh_drawable | field | affine_rts hierarchy_transform_model
+mesh_drawable | field | mat4 supplementary_model_matrix
+mesh_drawable | field | material_mesh_drawable_phong material
+mesh_drawable | field | opengl_ebo_structure ebo_connectivity
+mesh_drawable | field | opengl_shader_structure default_shader
+mesh_drawable | field | opengl_shader_structure shader
+mesh_drawable | field | opengl_texture_image_structure default_texture
+mesh_drawable | field | opengl_texture_image_structure texture
+mesh_drawable | field | opengl_vbo_structure vbo_color
+mesh_drawable | field | opengl_vbo_structure vbo_normal
+mesh_drawable | field | opengl_vbo_structure vbo_position
+mesh_drawable | field | opengl_vbo_structure vbo_uv
+mesh_drawable | field | std::map<std::string,opengl_texture_image_structure> supplementary_texture
+mesh_drawable | field | std::vector<opengl_vbo_structure> supplementary_vbo
+mesh_drawable | method | mesh_drawable::clear()
+mesh_drawable | method | mesh_drawable::initialize_data_on_gpu(mesh const&,opengl_shader_structure const&,opengl_texture_image_structure const&)
+mesh_drawable | method | mesh_drawable::initialize_supplementary_data_on_gpu<T>(numarray<T> const&,GLuint,GLuint)
+mesh_drawable | method | mesh_drawable::send_opengl_uniform(bool) const
+mesh_drawable | method | mesh_drawable::update_supplementary_data_on_gpu<T>(numarray<T> const&,GLuint,int)
+numarray | compound numarray | bases -
+numarray | field | std::vector<T> data
+numarray | method | numarray::at(int) const (+1 variant)
+numarray | method | numarray::begin() const (+1 variant)
+numarray | method | numarray::cbegin() const
+numarray | method | numarray::cend() const
+numarray | method | numarray::clear()
+numarray | method | numarray::coeff(int) const (+1 variant)
+numarray | method | numarray::end() const (+1 variant)
+numarray | method | numarray::fill(T const&)
+numarray | method | numarray::linespace(T const&,T const&,int)
+numarray | method | numarray::numarray()
+numarray | method | numarray::numarray(int)
+numarray | method | numarray::numarray(std::initializer_list<T>)
+numarray | method | numarray::numarray(std::vector<T> const&)
+numarray | method | numarray::operator()(int) const (+1 variant)
+numarray | method | numarray::operator[](int) const (+1 variant)
+numarray | method | numarray::push_back(T const&)
+numarray | method | numarray::push_back(numarray<T> const&)
+numarray | method | numarray::resize(int)
+numarray | method | numarray::resize_clear(int)
+numarray | method | numarray::size() const
+opengl_ebo_structure | compound opengl_ebo_structure | bases opengl_gpu_buffer
+opengl_ebo_structure | field | GLenum type | from opengl_gpu_buffer
+opengl_ebo_structure | field | GLuint id | from opengl_gpu_buffer
+opengl_ebo_structure | field | GLuint size | from opengl_gpu_buffer
+opengl_ebo_structure | field | opengl_gpu_buffer_details details | from opengl_gpu_buffer
+opengl_ebo_structure | method | opengl_ebo_structure::initialize_data_on_gpu(numarray<uint3> const&)
+opengl_ebo_structure | method | opengl_gpu_buffer::bind() const | from opengl_gpu_buffer
+opengl_ebo_structure | method | opengl_gpu_buffer::clear() | from opengl_gpu_buffer
+opengl_ebo_structure | method | opengl_gpu_buffer::unbind() const | from opengl_gpu_buffer
+opengl_fbo_structure | compound opengl_fbo_structure | bases -
+opengl_fbo_structure | field | GLint viewport_backup
+opengl_fbo_structure | field | GLuint depth_buffer_id
+opengl_fbo_structure | field | GLuint emscripten_color_attachment_id
+opengl_fbo_structure | field | GLuint id
+opengl_fbo_structure | field | int height
+opengl_fbo_structure | field | int width
+opengl_fbo_structure | field | opengl_fbo_mode mode
+opengl_fbo_structure | field | opengl_texture_image_structure texture
+opengl_fbo_structure | method | opengl_fbo_structure::bind() const
+opengl_fbo_structure | method | opengl_fbo_structure::clear()
+opengl_fbo_structure | method | opengl_fbo_structure::initialize()
+opengl_fbo_structure | method | opengl_fbo_structure::unbind() const
+opengl_fbo_structure | method | opengl_fbo_structure::update_screen_size(int,int)
+opengl_gpu_buffer | compound opengl_gpu_buffer | bases -
+opengl_gpu_buffer | field | GLenum type
+opengl_gpu_buffer | field | GLuint id
+opengl_gpu_buffer | field | GLuint size
+opengl_gpu_buffer | field | opengl_gpu_buffer_details details
+opengl_gpu_buffer | method | opengl_gpu_buffer::bind() const
+opengl_gpu_buffer | method | opengl_gpu_buffer::clear()
+opengl_gpu_buffer | method | opengl_gpu_buffer::unbind() const
+opengl_shader_structure | compound opengl_shader_structure | bases -
+opengl_shader_structure | field | GLuint id
+opengl_shader_structure | method | opengl_shader_structure::clear()
+opengl_shader_structure | method | opengl_shader_structure::clear_cache_uniform_location()
+opengl_shader_structure | method | opengl_shader_structure::debug_dump_cache_uniform_location()
+opengl_shader_structure | method | opengl_shader_structure::load(std::string const&,std::string const&,bool)
+opengl_shader_structure | method | opengl_shader_structure::load_from_inline_text(std::string const&,std::string const&,bool*)
+opengl_shader_structure | method | opengl_shader_structure::query_uniform_location(std::string const&) const
+opengl_texture_image_structure | compound opengl_texture_image_structure | bases -
+opengl_texture_image_structure | field | GLenum texture_type
+opengl_texture_image_structure | field | GLint format
+opengl_texture_image_structure | field | GLuint id
+opengl_texture_image_structure | field | int height
+opengl_texture_image_structure | field | int width
+opengl_texture_image_structure | method | opengl_texture_image_structure::bind() const
+opengl_texture_image_structure | method | opengl_texture_image_structure::clear()
+opengl_texture_image_structure | method | opengl_texture_image_structure::initialize_cubemap_on_gpu(image_structure const&,image_structure const&,image_structure const&,image_structure const&,image_structure const&,image_structure const&)
+opengl_texture_image_structure | method | opengl_texture_image_structure::initialize_texture_2d_on_gpu(grid_2D<vec3> const&,GLint,GLint,bool,GLint,GLint)
+opengl_texture_image_structure | method | opengl_texture_image_structure::initialize_texture_2d_on_gpu(image_structure const&,GLint,GLint,bool,GLint,GLint)
+opengl_texture_image_structure | method | opengl_texture_image_structure::initialize_texture_2d_on_gpu(int,int,GLint,GLenum,GLint,GLint,GLint,GLint)
+opengl_texture_image_structure | method | opengl_texture_image_structure::load_and_initialize_texture_2d_on_gpu(std::string const&,GLint,GLint,bool,GLint,GLint)
+opengl_texture_image_structure | method | opengl_texture_image_structure::unbind() const
+opengl_texture_image_structure | method | opengl_texture_image_structure::update(grid_2D<vec3> const&)
+opengl_texture_image_structure | method | opengl_texture_image_structure::update(image_structure const&)
+opengl_texture_image_structure | method | opengl_texture_image_structure::update_wrap(GLint,GLint) const
+opengl_vbo_structure | compound opengl_vbo_structure | bases opengl_gpu_buffer
+opengl_vbo_structure | field | GLenum type | from opengl_gpu_buffer
+opengl_vbo_structure | field | GLuint divisor
+opengl_vbo_structure | field | GLuint id | from opengl_gpu_buffer
+opengl_vbo_structure | field | GLuint size | from opengl_gpu_buffer
+opengl_vbo_structure | field | opengl_gpu_buffer_details details | from opengl_gpu_buffer
+opengl_vbo_structure | method | opengl_gpu_buffer::bind() const | from opengl_gpu_buffer
+opengl_vbo_structure | method | opengl_gpu_buffer::clear() | from opengl_gpu_buffer
+opengl_vbo_structure | method | opengl_gpu_buffer::unbind() const | from opengl_gpu_buffer
+opengl_vbo_structure | method | opengl_vbo_structure::initialize_data_on_gpu(numarray<vec2> const&,GLuint)
+opengl_vbo_structure | method | opengl_vbo_structure::initialize_data_on_gpu(numarray<vec3> const&,GLuint)
+opengl_vbo_structure | method | opengl_vbo_structure::initialize_data_on_gpu(numarray<vec4> const&,GLuint)
+opengl_vbo_structure | method | opengl_vbo_structure::update(numarray<vec2> const&,int)
+opengl_vbo_structure | method | opengl_vbo_structure::update(numarray<vec3> const&,int)
+opengl_vbo_structure | method | opengl_vbo_structure::update(numarray<vec4> const&,int)
+phong_parameters | compound phong_parameters | bases -
+phong_parameters | field | float ambient
+phong_parameters | field | float diffuse
+phong_parameters | field | float specular
+phong_parameters | field | float specular_exponent
+picking_structure | compound picking_structure | bases -
+picking_structure | field | bool active
+picking_structure | field | int index
+picking_structure | field | vec2 screen_clicked
+picking_structure | field | vec3 normal
+picking_structure | field | vec3 position
+picking_structure | field | vec3 ray_direction
+picking_structure | field | vec3 ray_origin
+picking_structure | method | picking_structure::picking_structure()
+quaternion | compound quaternion | bases numarray_stack<float,4>
+quaternion | field | T w | from numarray_stack<float,4>
+quaternion | field | T x | from numarray_stack<float,4>
+quaternion | field | T y | from numarray_stack<float,4>
+quaternion | field | T z | from numarray_stack<float,4>
+quaternion | method | numarray_stack::at(int) const (+1 variant) | from numarray_stack<float,4>
+quaternion | method | numarray_stack::begin() const (+1 variant) | from numarray_stack<float,4>
+quaternion | method | numarray_stack::cbegin() const | from numarray_stack<float,4>
+quaternion | method | numarray_stack::cend() const | from numarray_stack<float,4>
+quaternion | method | numarray_stack::coeff(int) const (+1 variant) | from numarray_stack<float,4>
+quaternion | method | numarray_stack::end() const (+1 variant) | from numarray_stack<float,4>
+quaternion | method | numarray_stack::fill(T const&) | from numarray_stack<float,4>
+quaternion | method | numarray_stack::operator()(int) const (+1 variant) | from numarray_stack<float,4>
+quaternion | method | numarray_stack::operator[](int) const (+1 variant) | from numarray_stack<float,4>
+quaternion | method | numarray_stack::size() const | from numarray_stack<float,4>
+quaternion | method | numarray_stack::xy() const | from numarray_stack<float,4>
+quaternion | method | numarray_stack::xyz() const | from numarray_stack<float,4>
+quaternion | method | numarray_stack::xz() const | from numarray_stack<float,4>
+quaternion | method | numarray_stack::yz() const | from numarray_stack<float,4>
+rotation_transform | compound rotation_transform | bases -
+rotation_transform | field | quaternion data
+rotation_transform | method | rotation_transform::convert_axis_angle_to_matrix(vec3 const&,float)
+rotation_transform | method | rotation_transform::convert_axis_angle_to_quaternion(vec3 const&,float)
+rotation_transform | method | rotation_transform::convert_matrix_to_axis_angle(mat3 const&,vec3&,float&)
+rotation_transform | method | rotation_transform::convert_matrix_to_quaternion(mat3 const&)
+rotation_transform | method | rotation_transform::convert_quaternion_to_axis_angle(quaternion const&,vec3&,float&)
+rotation_transform | method | rotation_transform::convert_quaternion_to_matrix(quaternion const&)
+rotation_transform | method | rotation_transform::from_axis_angle(vec3 const&,float)
+rotation_transform | method | rotation_transform::from_frame_transform(vec3 const&,vec3 const&,vec3 const&,vec3 const&)
+rotation_transform | method | rotation_transform::from_matrix(mat3 const&)
+rotation_transform | method | rotation_transform::from_quaternion(quaternion const&)
+rotation_transform | method | rotation_transform::from_vector_transform(vec3 const&,vec3 const&)
+rotation_transform | method | rotation_transform::get_quaternion() const
+rotation_transform | method | rotation_transform::lerp(rotation_transform const&,rotation_transform const&,float const)
+rotation_transform | method | rotation_transform::matrix() const
+rotation_transform | method | rotation_transform::matrix_col_x() const
+rotation_transform | method | rotation_transform::matrix_col_y() const
+rotation_transform | method | rotation_transform::matrix_col_z() const
+rotation_transform | method | rotation_transform::matrix_row_x() const
+rotation_transform | method | rotation_transform::matrix_row_y() const
+rotation_transform | method | rotation_transform::matrix_row_z() const
+rotation_transform | method | rotation_transform::rotation_transform()
+rotation_transform | method | rotation_transform::rotation_transform(quaternion const&)
+rotation_transform | method | rotation_transform::to_axis_angle(vec3&,float&) const
+skybox_drawable | compound skybox_drawable | bases -
+skybox_drawable | field | GLuint vao
+skybox_drawable | field | affine model
+skybox_drawable | field | float alpha_color_blending
+skybox_drawable | field | mat3 skybox_rotation
+skybox_drawable | field | opengl_ebo_structure ebo_connectivity
+skybox_drawable | field | opengl_shader_structure shader
+skybox_drawable | field | opengl_texture_image_structure texture
+skybox_drawable | field | opengl_vbo_structure vbo_position
+skybox_drawable | field | vec3 color_blending
+skybox_drawable | method | skybox_drawable::clear()
+skybox_drawable | method | skybox_drawable::initialize_data_on_gpu()
+texture_settings_parameters | compound texture_settings_parameters | bases -
+texture_settings_parameters | field | bool active
+texture_settings_parameters | field | bool inverse_v
+texture_settings_parameters | field | bool two_sided
+timer_basic | compound timer_basic | bases -
+timer_basic | field | float scale
+timer_basic | field | float t
+timer_basic | method | timer_basic::start()
+timer_basic | method | timer_basic::stop()
+timer_basic | method | timer_basic::timer_basic()
+timer_basic | method | timer_basic::update()
+timer_event_periodic | compound timer_event_periodic | bases timer_basic
+timer_event_periodic | field | bool event
+timer_event_periodic | field | float event_period
+timer_event_periodic | field | float scale | from timer_basic
+timer_event_periodic | field | float t | from timer_basic
+timer_event_periodic | field | float t_periodic
+timer_event_periodic | method | timer_basic::start() | from timer_basic
+timer_event_periodic | method | timer_basic::stop() | from timer_basic
+timer_event_periodic | method | timer_event_periodic::timer_event_periodic(float)
+timer_event_periodic | method | timer_event_periodic::update()
+timer_interval | compound timer_interval | bases timer_basic
+timer_interval | field | float scale | from timer_basic
+timer_interval | field | float t | from timer_basic
+timer_interval | field | float t_max
+timer_interval | field | float t_min
+timer_interval | method | timer_basic::start() | from timer_basic
+timer_interval | method | timer_basic::stop() | from timer_basic
+timer_interval | method | timer_interval::timer_interval(float,float)
+timer_interval | method | timer_interval::update()
+trajectory_drawable | compound trajectory_drawable | bases -
+trajectory_drawable | field | curve_drawable visual
+trajectory_drawable | field | numarray<vec3> position_record
+trajectory_drawable | field | size_t N_max_sample
+trajectory_drawable | field | size_t current_size
+trajectory_drawable | method | trajectory_drawable::add(vec3 const&)
+trajectory_drawable | method | trajectory_drawable::clear()
+trajectory_drawable | method | trajectory_drawable::trajectory_drawable(size_t)
+triangles_drawable | compound triangles_drawable | bases -
+triangles_drawable | field | GLuint vao
+triangles_drawable | field | affine model
+triangles_drawable | field | affine_rts hierarchy_transform_model
+triangles_drawable | field | int vertex_number
+triangles_drawable | field | material_mesh_drawable_phong material
+triangles_drawable | field | opengl_shader_structure default_shader
+triangles_drawable | field | opengl_shader_structure shader
+triangles_drawable | field | opengl_texture_image_structure default_texture
+triangles_drawable | field | opengl_texture_image_structure texture
+triangles_drawable | field | opengl_vbo_structure vbo_color
+triangles_drawable | field | opengl_vbo_structure vbo_normal
+triangles_drawable | field | opengl_vbo_structure vbo_position
+triangles_drawable | field | opengl_vbo_structure vbo_uv
+triangles_drawable | field | std::map<std::string,opengl_texture_image_structure> supplementary_texture
+triangles_drawable | method | triangles_drawable::clear()
+triangles_drawable | method | triangles_drawable::initialize_data_on_gpu(numarray<vec3> const&,numarray<vec3> const&,numarray<vec3> const&,numarray<vec3> const&,opengl_shader_structure const&,opengl_texture_image_structure const&)
+triangles_drawable | method | triangles_drawable::send_opengl_uniform(bool) const
+uniform_generic_structure | compound uniform_generic_structure | bases -
+uniform_generic_structure | field | std::map<std::string,float> uniform_float
+uniform_generic_structure | field | std::map<std::string,int> uniform_int
+uniform_generic_structure | field | std::map<std::string,mat2> uniform_mat2
+uniform_generic_structure | field | std::map<std::string,mat3> uniform_mat3
+uniform_generic_structure | field | std::map<std::string,mat4> uniform_mat4
+uniform_generic_structure | field | std::map<std::string,vec2> uniform_vec2
+uniform_generic_structure | field | std::map<std::string,vec3> uniform_vec3
+uniform_generic_structure | field | std::map<std::string,vec4> uniform_vec4
+uniform_generic_structure | method | uniform_generic_structure::send_opengl_uniform(opengl_shader_structure const&,bool) const
+vec2 | compound numarray_stack<T,2> | bases -
+vec2 | field | T x
+vec2 | field | T y
+vec2 | method | numarray_stack::at(int) const (+1 variant)
+vec2 | method | numarray_stack::begin() const (+1 variant)
+vec2 | method | numarray_stack::cbegin() const
+vec2 | method | numarray_stack::cend() const
+vec2 | method | numarray_stack::coeff(int) const (+1 variant)
+vec2 | method | numarray_stack::end() const (+1 variant)
+vec2 | method | numarray_stack::fill(T const&)
+vec2 | method | numarray_stack::numarray_stack()
+vec2 | method | numarray_stack::numarray_stack(T const&,T const&)
+vec2 | method | numarray_stack::numarray_stack(numarray_stack<T,3> const&)
+vec2 | method | numarray_stack::numarray_stack(numarray_stack<T,4> const&)
+vec2 | method | numarray_stack::numarray_stack<T1,T2>(T1 const&,T2 const&)
+vec2 | method | numarray_stack::operator()(int) const (+1 variant)
+vec2 | method | numarray_stack::operator[](int) const (+1 variant)
+vec2 | method | numarray_stack::size() const
+vec3 | compound numarray_stack<T,3> | bases -
+vec3 | field | T x
+vec3 | field | T y
+vec3 | field | T z
+vec3 | method | numarray_stack::at(int) const (+1 variant)
+vec3 | method | numarray_stack::begin() const (+1 variant)
+vec3 | method | numarray_stack::cbegin() const
+vec3 | method | numarray_stack::cend() const
+vec3 | method | numarray_stack::coeff(int) const (+1 variant)
+vec3 | method | numarray_stack::end() const (+1 variant)
+vec3 | method | numarray_stack::fill(T const&)
+vec3 | method | numarray_stack::numarray_stack()
+vec3 | method | numarray_stack::numarray_stack(T const&,T const&,T const&)
+vec3 | method | numarray_stack::numarray_stack(T const&,numarray_stack<T,2> const&)
+vec3 | method | numarray_stack::numarray_stack(numarray_stack<T,2> const&,T const&)
+vec3 | method | numarray_stack::numarray_stack<T1,T2,T3>(T1 const&,T2 const&,T3 const&)
+vec3 | method | numarray_stack::operator()(int) const (+1 variant)
+vec3 | method | numarray_stack::operator[](int) const (+1 variant)
+vec3 | method | numarray_stack::size() const
+vec3 | method | numarray_stack::xy() const
+vec3 | method | numarray_stack::xz() const
+vec3 | method | numarray_stack::yz() const
+vec4 | compound numarray_stack<T,4> | bases -
+vec4 | field | T w
+vec4 | field | T x
+vec4 | field | T y
+vec4 | field | T z
+vec4 | method | numarray_stack::at(int) const (+1 variant)
+vec4 | method | numarray_stack::begin() const (+1 variant)
+vec4 | method | numarray_stack::cbegin() const
+vec4 | method | numarray_stack::cend() const
+vec4 | method | numarray_stack::coeff(int) const (+1 variant)
+vec4 | method | numarray_stack::end() const (+1 variant)
+vec4 | method | numarray_stack::fill(T const&)
+vec4 | method | numarray_stack::numarray_stack()
+vec4 | method | numarray_stack::numarray_stack(T const&,T const&,T const&,T const&)
+vec4 | method | numarray_stack::numarray_stack(T const&,T const&,numarray_stack<T,2> const&)
+vec4 | method | numarray_stack::numarray_stack(T const&,numarray_stack<T,2> const&,T const&)
+vec4 | method | numarray_stack::numarray_stack(T const&,numarray_stack<T,3> const&)
+vec4 | method | numarray_stack::numarray_stack(numarray_stack<T,2> const&,T const&,T const&)
+vec4 | method | numarray_stack::numarray_stack(numarray_stack<T,2> const&,numarray_stack<T,2> const&)
+vec4 | method | numarray_stack::numarray_stack(numarray_stack<T,3> const&,T const&)
+vec4 | method | numarray_stack::operator()(int) const (+1 variant)
+vec4 | method | numarray_stack::operator[](int) const (+1 variant)
+vec4 | method | numarray_stack::size() const
+vec4 | method | numarray_stack::xy() const
+vec4 | method | numarray_stack::xyz() const
+vec4 | method | numarray_stack::xz() const
+vec4 | method | numarray_stack::yz() const
+vecN | compound numarray_stack | bases -
+vecN | field | std::array<T,N> data
+vecN | method | numarray_stack::at(int) const (+1 variant)
+vecN | method | numarray_stack::begin() const (+1 variant)
+vecN | method | numarray_stack::cbegin() const
+vecN | method | numarray_stack::cend() const
+vecN | method | numarray_stack::coeff(int) const (+1 variant)
+vecN | method | numarray_stack::end() const (+1 variant)
+vecN | method | numarray_stack::fill(T const&)
+vecN | method | numarray_stack::operator()(int) const (+1 variant)
+vecN | method | numarray_stack::operator[](int) const (+1 variant)
+vecN | method | numarray_stack::size() const
+window_structure | compound window_structure | bases -
+window_structure | field | GLFWmonitor* monitor
+window_structure | field | GLFWwindow* glfw_window
+window_structure | field | bool is_full_screen
+window_structure | field | int height
+window_structure | field | int screen_resolution_height
+window_structure | field | int screen_resolution_width
+window_structure | field | int width
+window_structure | field | int windowed_height
+window_structure | field | int windowed_width
+window_structure | field | int x_pos
+window_structure | field | int y_pos
+window_structure | method | window_structure::aspect_ratio() const
+window_structure | method | window_structure::convert_pixel_to_relative_coordinates(vec2 const&) const
+window_structure | method | window_structure::create_window(int,int,std::string const&,int,int)
+window_structure | method | window_structure::initialize_glfw()
+window_structure | method | window_structure::monitor_height() const
+window_structure | method | window_structure::monitor_width() const
+window_structure | method | window_structure::set_full_screen()
+window_structure | method | window_structure::set_windowed_screen()

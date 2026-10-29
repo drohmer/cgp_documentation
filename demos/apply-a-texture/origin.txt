@@ -1,0 +1,3 @@
+Assets, from github.com/drohmer/csc43043ep-lab-code (public CSC_43043 labs):
+  assets/checkerboard.png  05_shaders/a_shader_manipulation/assets/checkerboard.png
+  assets/wood.jpg          08_project/assets/wood.jpg (downscaled from 2398 x 2400 to 1024 x 1024)

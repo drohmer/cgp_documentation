@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" width="700" height="450">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 13px; fill: #333333; }
+    .t { font-weight: bold; font-size: 14px; }
+    .h { font-weight: bold; font-size: 14px; fill: #666666; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 12px; fill: #333333; }
+    .s { font-size: 12px; fill: #666666; }
+  </style>
+  <defs>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+    <marker id="ak" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#555555"/></marker>
+  </defs>
+  <text x="20" y="56" class="h">pass 1</text>
+  <text x="370" y="56" class="h">pass 2</text>
+  <text x="545" y="248" class="h">pass 3 (chain only)</text>
+  <rect x="20" y="70" width="140" height="104" rx="6" fill="#dff0dc" stroke="#5aa55a" stroke-width="1.5"/>
+  <text x="30" y="92" class="t" style="fill:#2a7330">the scene</text>
+  <text x="30" y="116" class="m">draw(shape, ...)</text>
+  <text x="30" y="135" class="s">for every shape,</text>
+  <text x="30" y="154" class="s">usual shaders</text>
+  <rect x="195" y="70" width="140" height="104" rx="6" fill="#fdebd6" stroke="#e0912f" stroke-width="1.5"/>
+  <text x="205" y="92" class="m t" style="fill:#a85000">fbo_pass_1</text>
+  <text x="205" y="116" class="">color texture</text>
+  <text x="205" y="135" class="">+ depth buffer</text>
+  <rect x="370" y="70" width="140" height="104" rx="6" fill="#dff0dc" stroke="#5aa55a" stroke-width="1.5"/>
+  <text x="380" y="92" class="m t" style="fill:#2a7330">quad_pass_2</text>
+  <text x="380" y="116" class="">full-screen quad</text>
+  <text x="380" y="135" class="s">shader of pass 2:</text>
+  <text x="380" y="154" class="s">filter 1</text>
+  <rect x="545" y="70" width="140" height="104" rx="6" fill="#ececec" stroke="#999999" stroke-width="1.5"/>
+  <text x="555" y="92" class="t" style="fill:#333333">window</text>
+  <text x="555" y="116" class="">the image seen</text>
+  <text x="555" y="135" class="">on screen</text>
+  <rect x="370" y="262" width="140" height="104" rx="6" fill="#fdebd6" stroke="#e0912f" stroke-width="1.5"/>
+  <text x="380" y="284" class="m t" style="fill:#a85000">fbo_pass_2</text>
+  <text x="380" y="308" class="">color texture</text>
+  <text x="380" y="327" class="">+ depth buffer</text>
+  <rect x="545" y="262" width="140" height="104" rx="6" fill="#dff0dc" stroke="#5aa55a" stroke-width="1.5"/>
+  <text x="555" y="284" class="m t" style="fill:#2a7330">quad_pass_3</text>
+  <text x="555" y="308" class="">full-screen quad</text>
+  <text x="555" y="327" class="s">shader of pass 3:</text>
+  <text x="555" y="346" class="s">filter 2</text>
+  <line x1="160" y1="122" x2="191" y2="122" stroke="#e07b1a" stroke-width="2" marker-end="url(#ag)"/>
+  <text x="177" y="114" class="s" text-anchor="middle">into</text>
+  <line x1="335" y1="122" x2="366" y2="122" stroke="#555555" stroke-width="2" marker-end="url(#ak)"/>
+  <text x="352" y="114" class="s" text-anchor="middle">read</text>
+  <line x1="510" y1="122" x2="541" y2="122" stroke="#555555" stroke-width="2" marker-end="url(#ak)"/>
+  <line x1="440" y1="174" x2="440" y2="258" stroke="#e07b1a" stroke-width="2" marker-end="url(#ag)"/>
+  <text x="448" y="222" class="s">into (chain)</text>
+  <line x1="510" y1="314" x2="541" y2="314" stroke="#555555" stroke-width="2" marker-end="url(#ak)"/>
+  <text x="527" y="306" class="s" text-anchor="middle">read</text>
+  <line x1="615" y1="262" x2="615" y2="178" stroke="#555555" stroke-width="2" marker-end="url(#ak)"/>
+  <text x="20" y="406">image-filter, image-filter-effects: quad_pass_2 is drawn to the window (two passes).</text>
+  <text x="20" y="426">image-filters-chain: quad_pass_2 is drawn into fbo_pass_2, then quad_pass_3 to the window.</text>
+  <text x="20" y="446" class="s">Orange arrow: draw into the texture of an FBO. Dark arrow: the next quad reads this texture.</text>
+  <text x="20" y="292" class="s">The chain inserts a second</text>
+  <text x="20" y="310" class="s">FBO and a third quad between</text>
+  <text x="20" y="328" class="s">the first filter and the window.</text>
+</svg>

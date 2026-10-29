@@ -1,0 +1,73 @@
+# Settings of `cgp-docmodel check` for the hand-written pages in content/.
+#
+# Inline code spans of the Markdown pages (`norm`, `mesh_primitive_sphere(...)`,
+# `mesh_drawable::model`) are resolved against the API model (functions, types, aliases,
+# structs and their members). A span that looks like code (snake_case, qualified name or
+# call) but resolves to nothing is reported as "unresolved": either the page is out of
+# date, or the name is not a CGP name and belongs to the ignore list below.
+#
+# `check` warns when an entry of this list IS a CGP name (the entry is then useless).
+# Glob patterns are allowed (glUniform*).
+
+ignore:
+  # OpenGL / GLSL names
+  - gl[A-Z]*
+  - gl_*
+  - instance_position
+  - GL_*
+  - GLFW_*
+  - gl_Position
+  - vertex_position
+  - view
+  - projection
+  - light
+  - discard
+  - image_texture
+  - use_texture
+  - texture_inverse_v
+  - time
+  # ImGui and the C++ standard library
+  - ImGui::*
+  - std::*
+  # Build options and macros (CMake / preprocessor, not in the API model)
+  - MACOS_GLFW_PRECOMPILED
+  - CGP_NO_DEBUG
+  - CGP_ERROR_EXCEPTION
+  # Template scene of cgp-2027/src (not part of the library)
+  - scene_structure
+  - environment_structure
+  - environment
+  - camera_control
+  - camera_projection
+  - camera_view
+  - uniform_generic
+  - display_frame
+  - display_gui
+  - additional_uniforms
+  - background_color
+  - gui
+  - gui_parameters
+  - project
+  - project::*
+  - application_structure
+  - application_structure::*
+  - animation_loop
+  - start_loop
+  - sphere
+  - cylinder
+  - timer
+  - global_frame
+  - gui.*
+  # CGP names that the model does not extract yet (enum values, nested namespace
+  # cgp::mesh_obj_advanced_loader). TODO: extend cgp-docmodel, then remove these entries.
+  - curve_drawable_display_type::*
+  - mesh_obj_advanced_loader::*
+  - convert_to_mesh_drawable
+
+# Names that resolve to a CGP name but are too generic to be linked to the reference from
+# the pages (and to list the page in the "Guides" of the type): a bare `name` is usually a
+# parameter (opengl_uniform(shader, name, value)), not hierarchy_mesh_drawable_node::name.
+# Applies to bare names and members (`size`, `x.size`); a qualified `T::size` is still linked.
+no_link:
+  - name
+  - size

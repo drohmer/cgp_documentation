@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 270" width="700" height="270">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 14px; fill: #333333; }
+    .b { font-weight: bold; }
+    .s { font-size: 13px; fill: #666666; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 12px; fill: #333333; }
+  </style>
+  <defs>
+    <marker id="ac" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2a8f99"/></marker>
+    <marker id="ay" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5aa55a"/></marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888888"/></marker>
+  </defs>
+  <text x="20" y="24" class="b">Side view: the keys move the eye in the plane orthogonal to the up axis</text>
+  <line x1="20" y1="210" x2="680" y2="210" stroke="#999999" stroke-width="1.4"/>
+  <text x="680" y="230" class="s" text-anchor="end">ground, y = -0.5</text>
+  <line x1="20" y1="120" x2="680" y2="120" stroke="#888888" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="680" y="112" class="s" text-anchor="end">height of the eye, kept constant (y = 0 at start)</text>
+  <line x1="160" y1="120" x2="160" y2="40" stroke="#5aa55a" stroke-width="2" marker-end="url(#ay)"/>
+  <text x="152" y="50" class="m" text-anchor="end" style="fill:#2a7330">axis_of_rotation (y)</text>
+  <line x1="160" y1="120" x2="307.2" y2="205.0" stroke="#2a8f99" stroke-width="2" marker-end="url(#ac)"/>
+  <text x="315.2" y="197.0" class="m" style="fill:#1a6b73">front (camera looks down)</text>
+  <line x1="307.2" y1="205.0" x2="307.2" y2="120" stroke="#888888" stroke-width="1" stroke-dasharray="3 3"/>
+  <line x1="160" y1="120" x2="330.0" y2="120" stroke="#2a8f99" stroke-width="3" marker-end="url(#ac)"/>
+  <text x="340.0" y="138" class="m" style="fill:#1a6b73">move_front: projected, normalized</text>
+  <circle cx="160" cy="120" r="7" fill="#2a8f99"/>
+  <text x="146" y="110" class="s" text-anchor="end">eye</text>
+  <text x="20" y="250" class="m">move_front = front - dot(front, up) * up, then divided by its norm</text>
+</svg>

@@ -1,0 +1,3 @@
+Assets, from github.com/drohmer/csc43043ep-lab-code (public CSC_43043 labs):
+  assets/grass.png       07_texture/b_billboards/assets/grass.png
+  assets/window_red.png  07_texture/b_billboards/assets/window_red.png

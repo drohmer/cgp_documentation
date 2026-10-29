@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 470" width="760" height="470">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 14px; fill: #666666; }
+    .in { fill: #333; font-size: 13px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .ms { font-family: Menlo, Consolas, monospace; font-size: 12px; fill: #2b66ad; }
+    .b { font-weight: bold; }
+    .axis { stroke: #bbb; stroke-width: 1; }
+    .grid { stroke: #e3e3e3; stroke-width: 1; stroke-dasharray: 3 3; }
+    .blue { stroke: #4a86d0; stroke-width: 2.5; fill: none; }
+    .orange { stroke: #e07b1a; stroke-width: 2.5; fill: none; }
+    .drop { stroke: #e07b1a; stroke-width: 1.2; fill: none; stroke-dasharray: 4 3; }
+  </style>
+  <line x1="205.0" y1="52" x2="205.0" y2="425" class="grid"/>
+  <line x1="254.0" y1="52" x2="254.0" y2="425" class="grid"/>
+  <line x1="293.2" y1="52" x2="293.2" y2="425" class="grid"/>
+  <line x1="361.8" y1="52" x2="361.8" y2="425" class="grid"/>
+  <line x1="391.2" y1="52" x2="391.2" y2="425" class="grid"/>
+  <line x1="430.4" y1="52" x2="430.4" y2="425" class="grid"/>
+  <line x1="518.6" y1="52" x2="518.6" y2="425" class="grid"/>
+  <line x1="548.0" y1="52" x2="548.0" y2="425" class="grid"/>
+  <line x1="597.0" y1="52" x2="597.0" y2="425" class="grid"/>
+  <line x1="655.8" y1="52" x2="655.8" y2="425" class="grid"/>
+  <line x1="695.0" y1="52" x2="695.0" y2="425" class="grid"/>
+  <text x="20" y="40" class="m b">frames</text>
+  <text x="20" y="58" class="in">one update()</text>
+  <text x="20" y="74" class="in">per frame</text>
+  <rect x="201.0" y="40" width="8" height="18" rx="2" fill="#4a86d0"/>
+  <rect x="250.0" y="40" width="8" height="18" rx="2" fill="#4a86d0"/>
+  <rect x="289.2" y="40" width="8" height="18" rx="2" fill="#4a86d0"/>
+  <rect x="357.8" y="40" width="8" height="18" rx="2" fill="#4a86d0"/>
+  <rect x="387.2" y="40" width="8" height="18" rx="2" fill="#4a86d0"/>
+  <rect x="426.4" y="40" width="8" height="18" rx="2" fill="#4a86d0"/>
+  <rect x="514.6" y="40" width="8" height="18" rx="2" fill="#4a86d0"/>
+  <rect x="544.0" y="40" width="8" height="18" rx="2" fill="#4a86d0"/>
+  <rect x="593.0" y="40" width="8" height="18" rx="2" fill="#4a86d0"/>
+  <rect x="651.8" y="40" width="8" height="18" rx="2" fill="#4a86d0"/>
+  <rect x="691.0" y="40" width="8" height="18" rx="2" fill="#4a86d0"/>
+  <path d="M293.2,72 L293.2,78 L361.8,78 L361.8,72" fill="none" stroke="#333" stroke-width="1.2"/>
+  <text x="327.5" y="94" class="m" text-anchor="middle">dt = 0.35 s</text>
+  <path d="M518.6,72 L518.6,78 L548.0,78 L548.0,72" fill="none" stroke="#333" stroke-width="1.2"/>
+  <text x="533.3" y="94" class="m" text-anchor="middle">dt = 0.15 s</text>
+  <text x="20" y="128" class="m b">timer_basic</text>
+  <text x="20" y="146" class="ms">timer.t</text>
+  <text x="20" y="164" class="in">grows forever</text>
+  <line x1="205" y1="200" x2="724.4" y2="200" class="axis"/>
+  <path d="M205.0,200.0 L254.0,200.0 L254.0,191.5 L293.2,191.5 L293.2,184.7 L361.8,184.7 L361.8,172.8 L391.2,172.8 L391.2,167.7 L430.4,167.7 L430.4,160.9 L518.6,160.9 L518.6,145.6 L548.0,145.6 L548.0,140.5 L597.0,140.5 L597.0,132.0 L655.8,132.0 L655.8,121.8 L695.0,121.8 L695.0,115.0 L724.4,115.0" class="blue"/>
+  <text x="20" y="238" class="m b">timer_interval</text>
+  <text x="20" y="256" class="ms">t_min=0, t_max=1</text>
+  <text x="20" y="274" class="in">loops in [t_min, t_max)</text>
+  <line x1="205" y1="310" x2="724.4" y2="310" class="axis"/>
+  <line x1="205" y1="240.0" x2="724.4" y2="240.0" class="axis" style="stroke-dasharray:2 4"/>
+  <text x="199" y="244.0" class="in" text-anchor="end">1</text>
+  <text x="199" y="314" class="in" text-anchor="end">0</text>
+  <line x1="430.4" y1="243.5" x2="430.4" y2="299.5" class="drop"/>
+  <line x1="597.0" y1="257.5" x2="597.0" y2="310.0" class="drop"/>
+  <path d="M205.0,310.0 L254.0,310.0 L254.0,292.5 L293.2,292.5 L293.2,278.5 L361.8,278.5 L361.8,254.0 L391.2,254.0 L391.2,243.5 L430.4,243.5 M430.4,299.5 L518.6,299.5 L518.6,268.0 L548.0,268.0 L548.0,257.5 L597.0,257.5 M597.0,310.0 L655.8,310.0 L655.8,289.0 L695.0,289.0 L695.0,275.0 L724.4,275.0" class="blue"/>
+  <text x="20" y="352" class="m b">timer_event_periodic</text>
+  <text x="20" y="370" class="ms">event_period=0.5</text>
+  <text x="20" y="388" class="in">event true for one frame</text>
+  <line x1="205" y1="385" x2="724.4" y2="385" class="axis"/>
+  <line x1="303.0" y1="379" x2="303.0" y2="391" stroke="#999" stroke-width="1.5"/>
+  <line x1="401.0" y1="379" x2="401.0" y2="391" stroke="#999" stroke-width="1.5"/>
+  <line x1="499.0" y1="379" x2="499.0" y2="391" stroke="#999" stroke-width="1.5"/>
+  <line x1="597.0" y1="379" x2="597.0" y2="391" stroke="#999" stroke-width="1.5"/>
+  <line x1="695.0" y1="379" x2="695.0" y2="391" stroke="#999" stroke-width="1.5"/>
+  <circle cx="361.8" cy="363" r="7" fill="#e07b1a"/>
+  <circle cx="430.4" cy="363" r="7" fill="#e07b1a"/>
+  <circle cx="518.6" cy="363" r="7" fill="#e07b1a"/>
+  <circle cx="597.0" cy="363" r="7" fill="#e07b1a"/>
+  <circle cx="695.0" cy="363" r="7" fill="#e07b1a"/>
+  <text x="361.8" y="349" class="in" text-anchor="middle" style="fill:#a85000">event</text>
+  <text x="303.0" y="405" class="in" text-anchor="middle">period ends</text>
+  <line x1="205" y1="440" x2="724.4" y2="440" stroke="#888" stroke-width="1.2"/>
+  <line x1="205.0" y1="440" x2="205.0" y2="445" stroke="#888"/>
+  <text x="205.0" y="460" class="in" text-anchor="middle">0 s</text>
+  <line x1="303.0" y1="440" x2="303.0" y2="445" stroke="#888"/>
+  <text x="303.0" y="460" class="in" text-anchor="middle">0.5 s</text>
+  <line x1="401.0" y1="440" x2="401.0" y2="445" stroke="#888"/>
+  <text x="401.0" y="460" class="in" text-anchor="middle">1 s</text>
+  <line x1="499.0" y1="440" x2="499.0" y2="445" stroke="#888"/>
+  <text x="499.0" y="460" class="in" text-anchor="middle">1.5 s</text>
+  <line x1="597.0" y1="440" x2="597.0" y2="445" stroke="#888"/>
+  <text x="597.0" y="460" class="in" text-anchor="middle">2 s</text>
+  <line x1="695.0" y1="440" x2="695.0" y2="445" stroke="#888"/>
+  <text x="695.0" y="460" class="in" text-anchor="middle">2.5 s</text>
+  <text x="20" y="445" class="in">real time</text>
+</svg>

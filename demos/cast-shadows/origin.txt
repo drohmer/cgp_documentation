@@ -1,0 +1,4 @@
+Origin: EPITA Ani3D repository github.com/drohmer/epita_ani3d_lab_code-2027
+(examples/06_multipass/04_shadow_mapping). Shaders: shaders/depth_map/ as in the page,
+shaders/mesh_with_shadow/ = copies of the default mesh shaders with the changes of the page.
+No asset.

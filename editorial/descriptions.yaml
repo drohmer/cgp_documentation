@@ -1,0 +1,549 @@
+# One-line description per function, keyed by full signature key (see api.json 'key').
+# Overrides the Doxygen brief from the C++ comments. Hand-curated, or written by an agent
+# after reading the C++ body (2026-10-28); a description not checked against the code ends
+# with ' [draft]'.
+abs(char): Absolute value of a signed char.
+abs(double): Absolute value of a double (std::abs).
+abs(float): Absolute value of a float (std::abs).
+abs(int): Absolute value of a signed int.
+abs(long long): Absolute value of a signed long long.
+abs(long): Absolute value of a signed long.
+abs(short): Absolute value of a signed short.
+abs(unsigned char): Absolute value of an unsigned integer, i.e. the value itself.
+abs(unsigned int): Absolute value of an unsigned integer, i.e. the value itself.
+abs(unsigned long long): Absolute value of an unsigned integer, i.e. the value itself.
+abs(unsigned long): Absolute value of an unsigned integer, i.e. the value itself.
+abs(unsigned short): Absolute value of an unsigned integer, i.e. the value itself.
+abs<T,N>(numarray_stack<T,N> const&): Component-wise absolute value.
+add<T,N>(T const&,numarray_stack<T,N> const&): Add a scalar to each component.
+add<T,N>(numarray_stack<T,N> const&,T const&): Add a scalar to each component.
+add<T>(T const&,numarray<T> const&): Array with a value added to each element.
+add<T>(numarray<T> const&,T const&): Array with a value added to each element.
+assert_file_exist(std::string const&): Raises an error, with hints on the working directory, if the file cannot be opened.
+average<T,N>(numarray_stack<T,N> const&): Mean of the components.
+average<T>(numarray<T> const&): Mean of the elements.
+call_error(std::string const&,std::string const&,std::string const&,std::string const&,int): Reports an error with its location and failed condition, then aborts (or throws std::logic_error if CGP_ERROR_EXCEPTION is defined); called by the assert_cgp and error_cgp macros.
+call_warning(std::string const&,std::string const&,std::string const&,std::string const&,int): Prints a warning with its location, at most cgp_warning::max_warning times per message id; called by the warning_cgp macro.
+camera_frame_look_at(vec3 const&,vec3 const&,vec3 const&): Camera frame placed at eye and looking toward center (local -z axis), with its y axis aligned as much as possible with up.
+camera_ray_direction(mat4 const&,mat4 const&,vec2 const&): Unit world-space direction of the ray through a screen position given in normalized device coordinates [-1,1]^2, from the camera frame and the inverse projection matrix.
+check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,2> const&): Raises an error if the index is outside [0, 1]; no-op when CGP_NO_DEBUG is defined.
+check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,3> const&): Raises an error if the index is outside [0, 2]; no-op when CGP_NO_DEBUG is defined.
+check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,4> const&): Raises an error if the index is outside [0, 3]; no-op when CGP_NO_DEBUG is defined.
+check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,N> const&): Raises an error if the index is outside [0, N-1]; no-op when CGP_NO_DEBUG is defined.
+check_index_bounds<T,N1,N2>(int,int,grid_stack_2D<T,N1,N2> const&): Raises an error if (x,y) is outside [0,N1-1]x[0,N2-1]; no-op when CGP_NO_DEBUG is defined.
+check_index_bounds<T,N1,N2>(int,int,matrix_stack<T,N1,N2> const&): Raises an error if (row,column) is outside [0,N1-1]x[0,N2-1]; no-op when CGP_NO_DEBUG is defined.
+check_index_bounds<T,N1,N2>(int,matrix_stack<T,N1,N2> const&): Raises an error if the row index is outside [0,N1-1]; no-op when CGP_NO_DEBUG is defined.
+check_index_bounds<T>(int,int,grid_2D<T> const&): Raises an error if (x,y) is outside the grid dimensions; no-op when CGP_NO_DEBUG is defined.
+check_index_bounds<T>(int,int,int,grid_3D<T> const&): Raises an error if (x,y,z) is outside the grid dimensions; no-op when CGP_NO_DEBUG is defined.
+check_index_bounds<T>(int,numarray<T> const&): Raises an error if the index is outside [0, size-1]; no-op when CGP_NO_DEBUG is defined.
+check_offset_bounds<T,N1,N2>(int,matrix_stack<T,N1,N2> const&): Raises an error if the offset is outside [0,N1*N2-1]; no-op when CGP_NO_DEBUG is defined.
+check_opengl_error(std::string const&,std::string const&,int): Drain the OpenGL error queue and raise a CGP error with the file, function and line if any error was pending; used by the opengl_check macro.
+clamp<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&,numarray_stack<T,N> const&): Component-wise clamp between a min and max vector.
+clamp<T1,T2>(T1,T2,T2): Clamps x to the interval [x_min, x_max].
+conjugate(quaternion const&): Quaternion conjugate (= inverse for a unit quaternion).
+connectivity_one_ring(numarray<uint3> const&,int): For each vertex, sorted indices of the vertices sharing a triangle with it (one-ring neighborhood).
+contains<T1,T2>(std::map<T1,T2> const&,T1 const&): Checks whether a key exists in the map.
+contains<T>(std::map<std::string,T> const&,char const*): Checks whether a C-string key exists in a map with string keys.
+convert(image_structure const&,grid_2D<vec3>&): Convert an RGB or RGBA image into a grid_2D of vec3 colors in [0,1], dropping the alpha channel.
+cross(vec3 const&,vec3 const&): Cross product (vec3 only).
+currently_unused<T>(T const&): No-op that marks a variable as intentionally unused to silence compiler warnings.
+curve_primitive_circle(float,vec3 const&,vec3 const&,int): Closed circle polyline of the given radius and center in the plane orthogonal to the unit normal, the last sample repeating the first one.
+curve_to_segments(numarray<vec3> const&): Convert a polyline (p0,p1,...,pn) into a list of segment endpoints (p0,p1, p1,p2, ..., pn-1,pn).
+det(mat2 const&): Determinant of a 2x2 matrix.
+det(mat3 const&): Determinant of a 3x3 matrix.
+det(mat4 const&): Determinant of a 4x4 matrix, by cofactor expansion along the last row.
+div<T,N>(T const&,numarray_stack<T,N> const&): Scalar divided by each component.
+div<T,N>(numarray_stack<T,N> const&,T const&): Divide each component by a scalar.
+div<T,N>(numarray_stack<T,N> const&,T): Divide each component by a scalar.
+div<T>(T const&,numarray<T> const&): Array of a value divided by each element.
+div<T>(numarray<T> const&,T const&): Array with each element divided by a value.
+dot<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&): Dot (scalar) product of two vectors.
+draw(curve_drawable const&,environment_generic_structure const&,int): Draw a curve_drawable as a line strip or as separate segments, limited to the first N_points points if N_points is not -1.
+draw(curve_drawable_dynamic_extend const&,environment_generic_structure const&): Draw the N_valid_points points currently stored in a curve_drawable_dynamic_extend.
+draw(hierarchy_mesh_drawable const&,environment_generic_structure const&,int,bool,uniform_generic_structure const&): Draw every node of the hierarchy with draw(mesh_drawable); call update_local_to_global_coordinates() beforehand.
+"draw(mesh_drawable const&,environment_generic_structure const&,int,bool,uniform_generic_structure const&,GLenum,material_mesh_drawable_phong const*)": Draw a mesh_drawable with its shader, textures, model and material, plus the environment and optional additional uniforms, possibly instanced or with an overriding material.
+draw(skybox_drawable const&,environment_generic_structure const&): Draw the skybox; call it first with depth writing disabled (glDepthMask(GL_FALSE)).
+draw(trajectory_drawable const&,environment_generic_structure const&): Draw the recorded positions of a trajectory_drawable as a polyline, if any.
+"draw(triangles_drawable const&,environment_generic_structure const&,uniform_generic_structure const&,material_mesh_drawable_phong const*)": Draw a non-indexed triangles_drawable (triangle soup) with its shader, texture, model and material, plus the environment and optional additional uniforms.
+"draw_wireframe(hierarchy_mesh_drawable const&,environment_generic_structure const&,vec3 const&,int,bool,uniform_generic_structure const&)": Draw the triangle edges of every node of the hierarchy in a flat color (no effect with Emscripten/WebGL).
+"draw_wireframe(mesh_drawable const&,environment_generic_structure const&,vec3 const&,int,bool,uniform_generic_structure const&)": Draw the triangle edges of a mesh_drawable in a flat color, slightly offset toward the camera (no effect with Emscripten/WebGL).
+"draw_wireframe(triangles_drawable const&,environment_generic_structure const&,vec3 const&,uniform_generic_structure const&)": Draw the triangle edges of a triangles_drawable in a flat color, slightly offset toward the camera (no effect with Emscripten/WebGL).
+element<idx1,idx2,T,N1,N2>(grid_stack_2D<T,N1,N2> const&): Element (idx1,idx2) with indices checked at compile time (static_assert).
+emscripten_set_glfw_window_hint(): Set the GLFW window hints for an OpenGL ES 3.0 context when compiled with Emscripten, do nothing otherwise.
+emscripten_update_window_size(int&,int&): Set width and height to the HTML canvas size when compiled with Emscripten, do nothing otherwise.
+file_get_size(std::string const&): Size of a file in bytes; the file must exist (error otherwise).
+get<idx,T,N>(numarray_stack<T,N> const&): Component idx with the index checked at compile time (static_assert).
+get<idx,T>(numarray_stack<T,2> const&): Component idx with the index checked at compile time (static_assert).
+get<idx,T>(numarray_stack<T,3> const&): Component idx with the index checked at compile time (static_assert).
+get<idx,T>(numarray_stack<T,4> const&): Component idx with the index checked at compile time (static_assert).
+get<idx1,T,N1,N2>(matrix_stack<T,N1,N2> const&): Row idx1 as a vector, with the index checked at compile time (static_assert).
+get<idx1,idx2,T,N1,N2>(matrix_stack<T,N1,N2> const&): Coefficient (idx1,idx2) with indices checked at compile time (static_assert).
+get_offset<offset,T,N1,N2>(matrix_stack<T,N1,N2> const&): Coefficient at a row-major offset, with the offset checked at compile time (static_assert).
+image_load_file(std::string const&): Load an image file, choosing the PNG (RGBA) or JPEG (RGB) reader from the extension .png, .jpg or .jpeg, in any case.
+image_load_jpg(std::string const&): Load a JPEG file into an RGB image_structure.
+image_load_png(std::string const&,image_color_type): Load a PNG file into an image_structure, converted to RGBA by default or to RGB; exits the program on decoding error.
+image_save_jpg(std::string const&,image_structure const&): Save an RGB or RGBA image_structure as a JPEG file (the alpha channel is dropped).
+image_save_png(std::string const&,image_structure const&): Save an RGB or RGBA image_structure as a PNG file; exits the program on encoding error.
+image_split_grid(image_structure const&,int,int): Split an image into N_horizontal x N_vertical equal sub-images, stored column by column (index k_vertical + N_vertical*k_horizontal); aborts if the size is not divisible.
+imgui_cleanup(): Shut down the ImGui OpenGL3 and GLFW backends and destroy the ImGui context.
+imgui_create_frame(): Start a new ImGui frame; call before any ImGui widget of the current frame.
+imgui_init(GLFWwindow*): Create the ImGui context and initialize its GLFW and OpenGL3 backends for the window (GLSL 150, or 300 es with Emscripten).
+imgui_render_frame(GLFWwindow*): Render the ImGui widgets of the current frame with OpenGL.
+index_grid_from_offset(int,int): Index (k1,k2) of a linear offset in a 2D grid of first dimension N1 (inverse of offset_grid).
+index_grid_from_offset(int,int,int): Index (k1,k2,k3) of a linear offset in a 3D grid of dimensions N1 x N2 (inverse of offset_grid).
+index_grid_from_offset_stack<N1>(int): Index pair (k1,k2) of a linear offset in a 2D grid whose first dimension N1 is known at compile time.
+index_out_of_bounds_message(long long,long long,std::string const&,std::string const&): Builds the standard out-of-bounds error message for one axis, with a hint for negative indices, empty containers and too-large indices.
+interpolation_bilinear<T>(grid_2D<T> const&,float,float): Bilinear interpolation of a grid_2D at continuous index coordinates (x,y), each in [0, dimension-1).
+interpolation_linear<T>(float,T const&,T const&): Linear interpolation (1-alpha)*value_0 + alpha*value_1, with alpha expected in [0,1].
+intersection_ray_plane(vec3 const&,vec3 const&,vec3 const&,vec3 const&): Intersection in front of the origin of a ray with a plane given by a point and a normal, invalid if the ray is parallel to the plane.
+intersection_ray_sphere(vec3 const&,vec3 const&,vec3 const&,float): First intersection in front of the origin of a ray (unit direction expected) with a sphere, with its position and outward normal.
+intersection_ray_spheres_closest(vec3 const&,vec3 const&,numarray<vec3> const&,float,int*): Closest intersection of a ray with a set of spheres of common radius, the index of the hit sphere (or -1) being written to shape_index if given.
+inverse(affine_rt const&): Inverse rigid transform (rotation + translation).
+inverse(affine_rts const&): Inverse affine transform.
+inverse(frame const&): Frame of the inverse rigid transform (inverse orientation, position -R^-1 * position).
+inverse(mat2 const&): Matrix inverse.
+inverse(mat3 const&): Matrix inverse.
+inverse(mat4 const&): Matrix inverse.
+inverse(quaternion const&): Quaternion inverse.
+inverse(rotation_transform const&): Inverse rotation.
+is_equal(char const*,std::string const&): Exact equality of a C-string and a string.
+is_equal(double,double): 'Approximate equality of two doubles: true if |a-b| <= 1e-7.'
+is_equal(double,float): Approximate equality of a double and a float, compared in float precision with tolerance 1e-5.
+is_equal(float,double): Approximate equality of a float and a double, compared in float precision with tolerance 1e-5.
+is_equal(float,float): 'Approximate equality of two floats: true if |a-b| <= 1e-5.'
+is_equal(std::string const&,char const*): Exact equality of a string and a C-string.
+is_equal(std::string const&,std::string const&): Exact equality of two strings.
+is_equal<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&): Component-wise equality of two fixed-size vectors, approximate for floating-point values.
+is_equal<T1,T2,N1,N2>(numarray_stack<T1,N1> const&,numarray_stack<T2,N2> const&): Component-wise equality of two fixed-size vectors, approximate for floating-point values; false if sizes differ.
+is_equal<T1,T2,N>(std::array<T1,N> const&,std::array<T2,N> const&): Element-wise equality of two std::array, approximate for floating-point elements.
+is_equal<T1,T2>(T1 const&,T2 const&): Generic fallback equality test using operator== (exact comparison).
+is_equal<T1,T2>(grid_3D<T1> const&,grid_3D<T2> const&): 'Equality of two 3D grids: same dimensions and element-wise equal values (approximate for floating-point).'
+is_equal<T1,T2>(numarray<T1> const&,numarray<T2> const&): Element-wise equality of two arrays of possibly different element types (e.g. float and int); false if sizes differ.
+is_equal<T1,T2>(std::vector<T1> const&,std::vector<T2> const&): Element-wise equality of two std::vector, approximate for floating-point elements; false if sizes differ.
+is_equal<T>(numarray<T> const&,numarray<T> const&): Element-wise equality of two arrays, approximate for floating-point elements; false if sizes differ.
+is_equal<Ta,Tb,Na1,Na2,Nb1,Nb2>(grid_stack_2D<Ta,Na1,Na2> const&,grid_stack_2D<Tb,Nb1,Nb2> const&): 'Equality of two fixed-size grids: same dimensions and element-wise equal values (approximate for floating-point).'
+is_equal<Ta,Tb,Na1,Na2,Nb1,Nb2>(matrix_stack<Ta,Na1,Na2> const&,matrix_stack<Tb,Nb1,Nb2> const&): 'Equality of two matrices: same dimensions and coefficient-wise equal values (approximate for floating-point).'
+"marching_cube(std::vector<vec3>&,std::vector<float> const&,spatial_domain_grid_3D const&,float,std::vector<marching_cube_relative_coordinates>*)": Fast marching cube writing a triangle soup into a reused position buffer and returning the number of valid vertices, optionally with the grid edge of each vertex.
+marching_cube_lut_edgeTable(): Marching-cube table giving, for each of the 256 inside/outside corner configurations, the bit mask of the intersected edges (Paul Bourke).
+marching_cube_lut_edge_order(): Pairs of corner indices defining the twelve edges of a marching-cube voxel.
+marching_cube_lut_offset_cube(): Integer offsets of the eight corners of a marching-cube voxel, in the corner order of marching_cube_lut_edge_order.
+marching_cube_lut_triTable(): Marching-cube table giving, for each of the 256 corner configurations, the list of edge triplets forming triangles, terminated by -1 (Paul Bourke).
+max<T,N>(numarray_stack<T,N> const&): Largest component.
+max<T>(numarray<T> const&): Largest element.
+mesh_check(mesh const&): Check buffer sizes and triangle indices of a mesh, printing a warning for each problem found (including zero-length edges and unused vertices), and return false if a buffer or index is invalid.
+mesh_load_file_obj(std::string const&): Load a single mesh from an .obj file, triangulating polygons and duplicating vertices where uv or normals differ (.mtl files are ignored).
+mesh_load_file_obj(std::string const&,numarray<numarray<int>>&): Load a mesh from an .obj file like mesh_load_file_obj, also returning for each file vertex the indices of the mesh vertices created from it (empty fields are not filled).
+mesh_load_file_obj_advanced(std::string const&,std::string const&): Load an .obj file with its .mtl materials using tinyobjloader, returning one mesh per material change, each paired with its diffuse texture uploaded to the GPU.
+mesh_primitive_arrow(vec3 const&,vec3 const&,float,float,float,int): Arrow mesh from p0 to p1 made of a cylinder and a cone tip ending at p1, the cone length and radius being multiples of cylinder_radius (4 and 2.5 by default).
+mesh_primitive_cone(float,float,vec3 const&,vec3 const&,bool,int,int): Cone mesh of base radius and height, with its base centered at center_of_base and pointing along the unit axis_direction, its base capped by a disc by default; Nu samples around the axis and Nv along the height.
+mesh_primitive_cube(vec3 const&,float): Axis-aligned cube mesh of the given center and edge length, made of six independent two-triangle faces with flat normals.
+"mesh_primitive_cubic_grid(vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,int,int,int)": Hexahedron mesh given by its eight corners, each of its six faces sampled as a regular grid (Nx, Ny, Nz samples along each direction).
+mesh_primitive_cylinder(float,vec3 const&,vec3 const&,int,int,bool): Cylinder mesh of the given radius around the axis [p0,p1], open by default or capped by two discs if is_closed is true, with normals and uv; Nu samples along the axis and Nv around it.
+mesh_primitive_ellipsoid(vec3,vec3 const&,int,int): Ellipsoid mesh with semi-axes scale.x, scale.y, scale.z centered at center, with normals and uv.
+mesh_primitive_grid(vec3 const&,vec3 const&,vec3 const&,vec3 const&,int,int): Bilinear patch through the four corners p00, p10, p11, p01, sampled as an Nu x Nv grid, with normals and uv; sample (ku,kv) has index kv + Nv*ku and uv (ku/(Nu-1), kv/(Nv-1)).
+mesh_primitive_tetrahedron(vec3 const&,vec3 const&,vec3 const&,vec3 const&): Tetrahedron mesh given by its four corners, made of four independent triangles with flat normals.
+mesh_primitive_torus(float,float,vec3 const&,vec3 const&,int,int): Torus mesh of major radius r_max and minor radius r_min, centered at center around the unit axis axis_orientation, with normals and uv.
+mesh_primitive_triangle(vec3 const&,vec3 const&,vec3 const&): Single-triangle mesh (p0,p1,p2) with a flat normal.
+mesh_save_file_obj(std::string const&,mesh const&): Save a mesh as an .obj file with its positions, uv and normals (per-vertex colors are not stored).
+mesh_save_file_obj(std::string const&,std::vector<vec3> const&,std::vector<vec3> const&): Save a triangle soup (three consecutive positions per triangle) and its normals as an .obj file.
+min<T,N>(numarray_stack<T,N> const&): Smallest component.
+min<T>(numarray<T> const&): Smallest element.
+mul<T,N>(T const&,numarray_stack<T,N> const&): Multiply each component by a scalar.
+mul<T,N>(numarray_stack<T,N> const&,T const&): Multiply each component by a scalar.
+mul<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&): Component-wise (Hadamard) product.
+mul<T>(T const&,numarray<T> const&): Array with each element multiplied by a value.
+mul<T>(numarray<T> const&,T const&): Array with each element multiplied by a value.
+multiply_componentwise<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&): Coefficient-wise (Hadamard) product of two matrices of the same size.
+multiply_matrix<T,N1,N2,N3>(grid_stack_2D<T,N1,N2> const&,grid_stack_2D<T,N2,N3> const&): Matrix product of an N1xN2 grid and an N2xN3 grid, giving an N1xN3 grid.
+noise_perlin(float,int,float,float): Fractal 1D noise in [0,1] summing octave layers of simplex noise, each layer scaled in amplitude by persistency and in frequency by frequency_gain (defaults 5, 0.3, 2).
+noise_perlin(vec2 const&,int,float,float): Fractal 2D noise in [0,1] summing octave layers of simplex noise, each layer scaled in amplitude by persistency and in frequency by frequency_gain (defaults 5, 0.3, 2).
+noise_perlin(vec3 const&,int,float,float): Fractal 3D noise in [0,1] summing octave layers of simplex noise, each layer scaled in amplitude by persistency and in frequency by frequency_gain (defaults 5, 0.3, 2).
+norm<T,N1,N2>(matrix_stack<T,N1,N2> const&): Frobenius norm of the matrix.
+norm<T,N>(numarray_stack<T,N> const&): Euclidean length of the vector.
+normal_per_vertex(numarray<vec3> const&,numarray<uint3> const&,bool): Per-vertex normals averaging the unit normals of adjacent triangles, flipped if invert is true.
+normal_per_vertex(numarray<vec3> const&,numarray<uint3> const&,numarray<vec3>&,bool): Fill normals_to_fill with per-vertex normals averaging the unit normals of adjacent triangles (resized only if needed, flipped if invert is true).
+normalize(quaternion const&): Unit quaternion in the same direction.
+normalize<T,N>(numarray_stack<T,N> const&): Unit vector in the same direction (asserts on near-zero norm).
+normalize<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&): Unit vector, returning a given default when the norm is near zero.
+obj_read_faces(std::string const&,obj_type const): Read the faces of an .obj file as polygons of 0-based (position, uv, normal) index triplets, -1 marking a missing index.
+obj_read_normals(std::string const&): Read only the vertex normals (vn lines) of an .obj file.
+offset_grid(int,int,int): Linear offset k1 + N1*k2 of index (k1,k2) in a 2D grid of first dimension N1.
+offset_grid(int,int,int,int,int): Linear offset k1 + N1*(k2 + N2*k3) of index (k1,k2,k3) in a 3D grid of dimensions N1 x N2 x N3.
+offset_grid(int2 const&,int): Linear offset k.x + N1*k.y of a 2D index in a grid of first dimension N1.
+offset_grid(int3 const&,int,int): Linear offset of a 3D index in a grid of dimensions N1 x N2 x N3.
+offset_grid_stack<N1>(int,int): Linear offset k1 + N1*k2 of index (k1,k2) in a 2D grid whose first dimension N1 is known at compile time.
+opengl_info_display(): String describing the OpenGL vendor, renderer, version and GLSL version (returned, not printed).
+opengl_load_texture_image(grid_2D<vec3> const&,GLint,GLint): Upload a grid of vec3 colors as a new mipmapped 2D OpenGL texture (32-bit float RGB) with the given wrap modes, returning its id.
+opengl_load_texture_image(image_structure const&,GLint,GLint): Upload an RGB or RGBA image as a new mipmapped 2D OpenGL texture (8 bits per channel) with the given wrap modes, returning its id.
+opengl_load_texture_image(std::string const&,GLint,GLint): Load a PNG or JPEG file and upload it as a mipmapped 2D OpenGL texture, returning its id.
+opengl_set_vao_location(opengl_vbo_structure const&,GLuint): Bind a VBO to a shader attribute location of the current VAO (glVertexAttribPointer), also setting the instancing divisor if the VBO has one.
+opengl_uniform(opengl_shader_structure const&,std::string const&,GLuint,bool): Send an unsigned value as an int uniform (e.g. a texture unit) to the shader; warns if the uniform is not found and expected is true.
+opengl_uniform(opengl_shader_structure const&,std::string const&,float,bool): Send a float uniform to the shader; warns if the uniform is not found and expected is true.
+opengl_uniform(opengl_shader_structure const&,std::string const&,float,float,bool): Send a vec2 uniform given by its two components to the shader; warns if the uniform is not found and expected is true.
+opengl_uniform(opengl_shader_structure const&,std::string const&,float,float,float,bool): Send a vec3 uniform given by its three components to the shader; warns if the uniform is not found and expected is true.
+opengl_uniform(opengl_shader_structure const&,std::string const&,float,float,float,float,bool): Send a vec4 uniform given by its four components to the shader; warns if the uniform is not found and expected is true.
+opengl_uniform(opengl_shader_structure const&,std::string const&,int,bool): Send an int uniform to the shader; warns if the uniform is not found and expected is true.
+opengl_uniform(opengl_shader_structure const&,std::string const&,mat2 const&,bool): Send a mat2 uniform (row-major, transposed on upload) to the shader; warns if the uniform is not found and expected is true.
+opengl_uniform(opengl_shader_structure const&,std::string const&,mat3 const&,bool): Send a mat3 uniform (row-major, transposed on upload) to the shader; warns if the uniform is not found and expected is true.
+opengl_uniform(opengl_shader_structure const&,std::string const&,mat4 const&,bool): Send a mat4 uniform (row-major, transposed on upload) to the shader; warns if the uniform is not found and expected is true.
+opengl_uniform(opengl_shader_structure const&,std::string const&,vec2 const&,bool): Send a vec2 uniform to the shader; warns if the uniform is not found and expected is true.
+opengl_uniform(opengl_shader_structure const&,std::string const&,vec3 const&,bool): Send a vec3 uniform to the shader; warns if the uniform is not found and expected is true.
+opengl_uniform(opengl_shader_structure const&,std::string const&,vec4 const&,bool): Send a vec4 uniform to the shader; warns if the uniform is not found and expected is true.
+opengl_update_texture_image(GLuint,grid_2D<vec3> const&): Overwrite the content of an existing 2D texture with a grid of vec3 colors of the same size and regenerate its mipmaps.
+operator*(affine const&,affine_rt const&): Composition T1 o T2 of an affine transform with a rigid transform, returned as an affine; asserts that T1.scaling_xyz is uniform (use T1.matrix()*T2.matrix() otherwise).
+operator*(affine const&,affine_rts const&): Composition T1 o T2 of an affine transform with a rotation-translation-scaling, returned as an affine; asserts that T1.scaling_xyz is uniform (use T1.matrix()*T2.matrix() otherwise).
+operator*(affine_rt const&,affine const&): Composition T1 o T2 of a rigid transform (parent) with an affine transform (child), exact for any scaling_xyz.
+operator*(affine_rts const&,affine const&): Composition T1 o T2 of a rotation-translation-scaling (parent) with an affine transform (child), exact for any scaling_xyz.
+operator*(affine const&,mat3 const&): Product of the 4x4 matrix of the affine transform with a mat3 extended to a mat4.
+operator*(affine const&,mat4 const&): Product of the 4x4 matrix of the affine transform with a mat4.
+operator*(affine const&,vec3 const&): 'Apply the affine transform to a point: rotation * (scaling * scaling_xyz * p) + translation (scaling_xyz stretches the local axes).'
+operator*(affine const&,vec4 const&): "Apply the affine transform to a homogeneous vector, the translation being weighted by w: a direction (w=0) is not translated."
+operator*(affine_rt const&,affine_rt const&): Composition T1 o T2 of two rigid transforms.
+operator*(affine_rt const&,affine_rts const&): Composition T1 o T2 of a rigid transform with a rotation-translation-scaling.
+operator*(affine_rt const&,float): Uniform scaling by s applied after the rigid transform (rotation kept, translation and scaling multiplied by s).
+operator*(affine_rt const&,frame const&): 'Frame transformed by the rigid transform: orientation and position are rotated, then the position is translated.'
+operator*(affine_rt const&,mat3 const&): Product of the 4x4 matrix of the rigid transform with a mat3 extended to a mat4.
+operator*(affine_rt const&,mat4 const&): Product of the 4x4 matrix of the rigid transform with a mat4.
+operator*(affine_rt const&,rotation_transform const&): 'Rigid transform T o R: the rotation is applied before T.'
+operator*(affine_rt const&,vec3 const&): 'Apply the rigid transform to a point: rotation * p + translation.'
+operator*(affine_rt const&,vec4 const&): Apply the rigid transform to a homogeneous vector, the translation being weighted by w.
+operator*(affine_rts const&,affine_rt const&): Composition T1 o T2 of a rotation-translation-scaling with a rigid transform.
+operator*(affine_rts const&,affine_rts const&): Composition T1 o T2 of two rotation-translation-scaling transforms.
+operator*(affine_rts const&,float): Copy of the transform with its scaling multiplied by s, the translation being left unchanged.
+operator*(affine_rts const&,mat3 const&): Product of the 4x4 matrix of the transform with a mat3 extended to a mat4.
+operator*(affine_rts const&,mat4 const&): Product of the 4x4 matrix of the transform with a mat4.
+operator*(affine_rts const&,rotation_transform const&): 'Transform T o R: the rotation is applied before T.'
+operator*(affine_rts const&,vec3 const&): 'Apply the transform to a point: scaling * (rotation * p) + translation.'
+operator*(affine_rts const&,vec4 const&): Apply the transform to a homogeneous vector, the translation being weighted by w.
+operator*(float,affine_rt const&): Uniform scaling by s applied after the rigid transform (rotation kept, translation and scaling multiplied by s).
+operator*(float,affine_rts const&): Copy of the transform with its scaling multiplied by s, the translation being left unchanged.
+operator*(float,mat4 const&): 4x4 matrix scaled by a scalar.
+operator*(float,quaternion const&): Quaternion with each component multiplied by a scalar.
+operator*(float,rotation_transform const&): Rotation-translation-scaling transform made of the rotation r scaled by s, with zero translation.
+operator*(mat3 const&,affine const&): Product of a mat3 extended to a mat4 with the 4x4 matrix of the affine transform.
+operator*(mat3 const&,affine_rt const&): Product of a mat3 extended to a mat4 with the 4x4 matrix of the rigid transform.
+operator*(mat3 const&,affine_rts const&): Product of a mat3 extended to a mat4 with the 4x4 matrix of the transform.
+operator*(mat4 const&,affine const&): Product of a mat4 with the 4x4 matrix of the affine transform.
+operator*(mat4 const&,affine_rt const&): Product of a mat4 with the 4x4 matrix of the rigid transform.
+operator*(mat4 const&,affine_rts const&): Product of a mat4 with the 4x4 matrix of the transform.
+operator*(mat4 const&,mat4 const&): Matrix product of two 4x4 matrices.
+operator*(quaternion const&,float): Quaternion with each component multiplied by a scalar.
+operator*(quaternion const&,quaternion const&): Quaternion (Hamilton) product, with the scalar part stored in w.
+operator*(rotation_transform const&,affine_rt const&): 'Rigid transform R o T: the rotation is applied after T, rotating its translation as well.'
+operator*(rotation_transform const&,affine_rts const&): 'Transform R o T: the rotation is applied after T, rotating its translation as well.'
+operator*(rotation_transform const&,float): Rotation-translation-scaling transform made of the rotation r scaled by s, with zero translation.
+operator*(rotation_transform const&,frame const&): 'Frame rotated around the origin: both its orientation and its position are rotated.'
+operator*(rotation_transform const&,mat3 const&): Product of the rotation matrix with a mat3.
+operator*(rotation_transform const&,mat4 const&): Product of the rotation, as a 4x4 matrix, with a mat4.
+operator*(rotation_transform const&,rotation_transform const&): Composition r1 o r2 of two rotations (product of their quaternions).
+operator*(rotation_transform const&,vec3 const&): Vector rotated by the rotation.
+operator*(rotation_transform const&,vec4 const&): Homogeneous vector whose xyz part is rotated, w being kept.
+operator*<T,N,S>(S,numarray_stack<T,N> const&): Vector scaled by a scalar.
+operator*<T,N,S>(numarray_stack<T,N> const&,S): Vector scaled by a scalar.
+operator*<T,N1,N2,N3>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N2,N3> const&): Matrix product of an N1xN2 and an N2xN3 matrix.
+operator*<T,N1,N2,S>(S,matrix_stack<T,N1,N2> const&): Matrix scaled by a scalar.
+operator*<T,N1,N2,S>(matrix_stack<T,N1,N2> const&,S): Matrix scaled by a scalar.
+operator*<T,N1,N2>(float,grid_stack_2D<T,N1,N2> const&): Grid with each element multiplied by a scalar.
+operator*<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,float): Grid with each element multiplied by a scalar.
+operator*<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,grid_stack_2D<T,N1,N2> const&): Element-wise product of two grids (not a matrix product, see multiply_matrix).
+operator*<T,N1,N2>(matrix_stack<T,N1,N2> const&,numarray_stack<T,N2> const&): Matrix-vector product, giving a vector of size N1.
+operator*<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&): Component-wise (Hadamard) product of two vectors.
+operator*<T>(float,grid_2D<T> const&): Grid with each element multiplied by a scalar.
+operator*<T>(float,grid_3D<T> const&): Grid with each element multiplied by a scalar.
+operator*<T>(float,numarray<T> const&): Array with each element multiplied by a scalar.
+operator*<T>(grid_2D<T> const&,float): Grid with each element multiplied by a scalar.
+operator*<T>(grid_2D<T> const&,grid_2D<T> const&): Element-wise product of two grids; dimensions must match (asserted in debug).
+operator*<T>(grid_3D<T> const&,float): Grid with each element multiplied by a scalar.
+operator*<T>(grid_3D<T> const&,grid_3D<T> const&): Element-wise product of two grids; dimensions must match (asserted in debug).
+operator*<T>(numarray<T> const&,float): Array with each element multiplied by a scalar.
+operator*<T>(numarray<T> const&,numarray<T> const&): Element-wise product of two arrays; sizes must match and be non-zero (asserted in debug).
+operator*=(mat4&,float): Multiplies each coefficient of a 4x4 matrix by a scalar in place.
+operator*=(mat4&,mat4 const&): Replaces a by the matrix product a*b.
+operator*=(quaternion&,quaternion const&): In-place quaternion (Hamilton) product a = a * b.
+operator*=(rotation_transform&,rotation_transform const&): In-place composition r1 = r1 o r2.
+operator*=<T,N,S>(numarray_stack<T,N>&,S): Multiplies each component by a scalar in place.
+operator*=<T,N1,N2,S>(matrix_stack<T,N1,N2>&,S): Multiplies each coefficient by a scalar in place.
+operator*=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,float): Multiplies each element by a scalar in place.
+operator*=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,grid_stack_2D<T,N1,N2> const&): Multiplies by a grid element-wise in place.
+operator*=<T,N>(matrix_stack<T,N,N>&,matrix_stack<T,N,N> const&): Replaces a square matrix a by the matrix product a*b.
+operator*=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&): Multiplies by a vector component-wise in place.
+operator*=<T>(grid_2D<T>&,float): Multiplies each element by a scalar in place.
+operator*=<T>(grid_2D<T>&,grid_2D<T> const&): Multiplies by a grid element-wise in place; dimensions must match (asserted in debug).
+operator*=<T>(grid_3D<T>&,float): Multiplies each element by a scalar in place.
+operator*=<T>(grid_3D<T>&,grid_3D<T> const&): Multiplies by a grid element-wise in place; dimensions must match (asserted in debug).
+operator*=<T>(numarray<T>&,float): Multiplies each element by a scalar in place.
+operator*=<T>(numarray<T>&,numarray<T> const&): Multiplies by an array element-wise in place; sizes must match and be non-zero (asserted in debug).
+operator+(affine_rt const&,vec3 const&): Copy of the rigid transform with tr added to its translation.
+operator+(affine_rts const&,vec3 const&): Copy of the transform with tr added to its translation.
+operator+(frame const&,vec3 const&): Copy of the frame with its position translated by tr.
+operator+(quaternion const&,quaternion const&): Component-wise sum of two quaternions.
+operator+(vec3 const&,affine_rt const&): Copy of the rigid transform with tr added to its translation.
+operator+(vec3 const&,affine_rts const&): Copy of the transform with tr added to its translation.
+operator+(vec3 const&,frame const&): Copy of the frame with its position translated by tr.
+operator+<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,grid_stack_2D<T,N1,N2> const&): Element-wise sum of two grids.
+operator+<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&): Sum of two matrices.
+operator+<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&): Component-wise sum of two vectors.
+operator+<T>(T const&,grid_2D<T> const&): Grid with a value added to each element.
+operator+<T>(T const&,grid_3D<T> const&): Grid with a value added to each element.
+operator+<T>(T const&,numarray<T> const&): Array with a value added to each element.
+operator+<T>(grid_2D<T> const&,T const&): Grid with a value added to each element.
+operator+<T>(grid_2D<T> const&,grid_2D<T> const&): Element-wise sum of two grids; dimensions must match (asserted in debug).
+operator+<T>(grid_3D<T> const&,T const&): Grid with a value added to each element.
+operator+<T>(grid_3D<T> const&,grid_3D<T> const&): Element-wise sum of two grids; dimensions must match (asserted in debug).
+operator+<T>(numarray<T> const&,T const&): Array with a value added to each element.
+operator+<T>(numarray<T> const&,numarray<T> const&): Element-wise sum of two arrays; sizes must match and be non-zero (asserted in debug).
+operator+=(mat4&,mat4 const&): Adds a 4x4 matrix coefficient-wise in place.
+operator+=(quaternion&,quaternion const&): In-place component-wise sum of two quaternions.
+operator+=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,grid_stack_2D<T,N1,N2> const&): Adds a grid element-wise in place.
+operator+=<T,N1,N2>(matrix_stack<T,N1,N2>&,matrix_stack<T,N1,N2> const&): Adds a matrix coefficient-wise in place.
+operator+=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&): Adds a vector component-wise in place.
+operator+=<T>(grid_2D<T>&,T const&): Adds a value to each element in place.
+operator+=<T>(grid_2D<T>&,grid_2D<T> const&): Adds a grid element-wise in place; dimensions must match (asserted in debug).
+operator+=<T>(grid_3D<T>&,T const&): Adds a value to each element in place.
+operator+=<T>(grid_3D<T>&,grid_3D<T> const&): Adds a grid element-wise in place; dimensions must match (asserted in debug).
+operator+=<T>(numarray<T>&,T const&): Adds a value to each element in place.
+operator+=<T>(numarray<T>&,numarray<T> const&): "Adds an array element-wise in place; sizes must match (asserted in debug)."
+operator-(affine_rt const&,vec3 const&): Copy of the rigid transform with tr subtracted from its translation.
+operator-(affine_rts const&,vec3 const&): Copy of the transform with tr subtracted from its translation.
+operator-(frame const&,vec3 const&): Copy of the frame with its position translated by -tr.
+operator-(quaternion const&,quaternion const&): Component-wise difference of two quaternions.
+operator-<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,grid_stack_2D<T,N1,N2> const&): Element-wise difference of two grids.
+operator-<T,N1,N2>(matrix_stack<T,N1,N2> const&): Negated matrix (each coefficient multiplied by -1).
+operator-<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&): Difference of two matrices.
+operator-<T,N>(numarray_stack<T,N> const&): Component-wise negation of a vector.
+operator-<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&): Component-wise difference of two vectors.
+operator-<T>(T const&,grid_2D<T> const&): Grid of a value minus each element.
+operator-<T>(T const&,grid_3D<T> const&): Grid of a value minus each element.
+operator-<T>(grid_2D<T> const&,T const&): Grid with a value subtracted from each element.
+operator-<T>(grid_2D<T> const&,grid_2D<T> const&): Element-wise difference of two grids; dimensions must match (asserted in debug).
+operator-<T>(grid_3D<T> const&,T const&): Grid with a value subtracted from each element.
+operator-<T>(grid_3D<T> const&,grid_3D<T> const&): Element-wise difference of two grids; dimensions must match (asserted in debug).
+operator-<T>(numarray<T> const&): Element-wise negation of an array.
+operator-<T>(numarray<T> const&,numarray<T> const&): Element-wise difference of two arrays; sizes must match and be non-zero (asserted in debug).
+operator-=(quaternion&,quaternion const&): In-place component-wise difference of two quaternions.
+operator-=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,grid_stack_2D<T,N1,N2> const&): Subtracts a grid element-wise in place.
+operator-=<T,N1,N2>(matrix_stack<T,N1,N2>&,matrix_stack<T,N1,N2> const&): Subtracts a matrix coefficient-wise in place.
+operator-=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&): Subtracts a vector component-wise in place.
+operator-=<T>(grid_2D<T>&,T const&): Subtracts a value from each element in place.
+operator-=<T>(grid_2D<T>&,grid_2D<T> const&): Subtracts a grid element-wise in place; dimensions must match (asserted in debug).
+operator-=<T>(grid_3D<T>&,T const&): Subtracts a value from each element in place.
+operator-=<T>(grid_3D<T>&,grid_3D<T> const&): Subtracts a grid element-wise in place; dimensions must match (asserted in debug).
+operator-=<T>(numarray<T>&,T const&): Subtracts a value from each element in place.
+operator-=<T>(numarray<T>&,numarray<T> const&): "Subtracts an array element-wise in place; sizes must match (asserted in debug)."
+operator/(affine_rts const&,float): Copy of the transform with its scaling divided by s, the translation being left unchanged.
+operator/(float,quaternion const&): Scalar times the inverse quaternion, a * inverse(b).
+operator/(quaternion const&,float): Quaternion with each component divided by a scalar.
+operator/(quaternion const&,quaternion const&): Quaternion division a * inverse(b).
+operator/<T,N,S>(S,numarray_stack<T,N> const&): Vector of a scalar divided by each component.
+operator/<T,N,S>(numarray_stack<T,N> const&,S): Vector with each component divided by a scalar.
+operator/<T,N1,N2,S>(matrix_stack<T,N1,N2> const&,S): Matrix with each coefficient divided by a scalar.
+operator/<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,float): Grid with each element divided by a scalar.
+operator/<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,grid_stack_2D<T,N1,N2> const&): Element-wise quotient of two grids.
+operator/<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&): Component-wise quotient of two vectors.
+operator/<T>(grid_2D<T> const&,float): Grid with each element divided by a scalar.
+operator/<T>(grid_2D<T> const&,grid_2D<T> const&): Element-wise quotient of two grids; dimensions must match (asserted in debug).
+operator/<T>(grid_3D<T> const&,float): Grid with each element divided by a scalar.
+operator/<T>(grid_3D<T> const&,grid_3D<T> const&): Element-wise quotient of two grids; dimensions must match (asserted in debug).
+operator/<T>(numarray<T> const&,float): Array with each element divided by a scalar; the array must not be empty (asserted in debug).
+operator/<T>(numarray<T> const&,numarray<T> const&): Element-wise quotient of two arrays; sizes must match and be non-zero (asserted in debug).
+operator/=(quaternion&,quaternion const&): In-place quaternion division a = a * inverse(b).
+operator/=<T,N,S>(numarray_stack<T,N>&,S): Divides each component by a scalar in place.
+operator/=<T,N1,N2,S>(matrix_stack<T,N1,N2>&,S): Divides each coefficient by a scalar in place.
+operator/=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,float): Divides each element by a scalar in place.
+operator/=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,grid_stack_2D<T,N1,N2> const&): Divides by a grid element-wise in place.
+operator/=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&): Divides by a vector component-wise in place.
+operator/=<T>(grid_2D<T>&,float): Divides each element by a scalar in place.
+operator/=<T>(grid_2D<T>&,grid_2D<T> const&): Divides by a grid element-wise in place; dimensions must match (asserted in debug).
+operator/=<T>(grid_3D<T>&,float): Divides each element by a scalar in place.
+operator/=<T>(grid_3D<T>&,grid_3D<T> const&): Divides by a grid element-wise in place; dimensions must match (asserted in debug).
+operator/=<T>(numarray<T>&,float): Divides each element by a scalar in place; the array must not be empty (asserted in debug).
+operator/=<T>(numarray<T>&,numarray<T> const&): Divides by an array element-wise in place; sizes must match and be non-zero (asserted in debug).
+operator<<(std::ostream&,affine const&): Write str(T) of the affine transform to the stream.
+operator<<(std::ostream&,affine_rt const&): Write str(T) of the rigid transform to the stream.
+operator<<(std::ostream&,affine_rts const&): Write str(T) of the transform to the stream.
+operator<<(std::ostream&,cache_uniform_location_structure const&): Write the content of the uniform location cache to the stream.
+operator<<(std::ostream&,rotation_transform const&): Write the underlying unit quaternion of the rotation to the stream.
+operator<<<T>(std::ostream&,grid_3D<T> const&): Writes all elements of the grid to the stream, in storage order separated by spaces.
+operator>>(std::istream&,quaternion&): Read the four components x y z w of a quaternion from a stream.
+orthogonal_vector(vec2 const&): Unit vector orthogonal to v (v rotated by -90 degrees and normalized); returns (1,0) for a zero vector.
+orthogonal_vector(vec3 const&): Unit vector orthogonal to v, built from its cross product with a coordinate axis; returns (1,0,0) for a zero vector.
+picking_spheres(vec2 const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&): Cast a ray through a screen position (normalized device coordinates) and return the closest hit among spheres of common radius, with its index, position and normal.
+project_path_find(std::string const&,std::string const&): Relative path to the project root that contains directory_to_find (shaders/ by default), searched from the current and executable directories; exits the program if not found.
+projection_orthographic(float,float,float,float,float,float): OpenGL orthographic projection matrix mapping the box [left,right] x [bottom,top] x [-z_near,-z_far] to the unit cube.
+projection_orthographic_inverse(float,float,float,float,float,float): Inverse of the orthographic projection matrix of projection_orthographic, computed in closed form.
+projection_perspective(float,float,float,float): OpenGL perspective projection matrix from a vertical field of view in radians, an aspect ratio (width/height) and the near and far distances.
+projection_perspective_inverse(float,float,float,float): Inverse of the perspective projection matrix of projection_perspective, computed in closed form.
+ptr(char const&): Pointer to the scalar value (uniform ptr() for generic code, e.g. to send data to OpenGL).
+ptr(double const&): Pointer to the scalar value (uniform ptr() for generic code, e.g. to send data to OpenGL).
+ptr(float const&): Pointer to the scalar value (uniform ptr() for generic code, e.g. to send data to OpenGL).
+ptr(int const&): Pointer to the scalar value (uniform ptr() for generic code, e.g. to send data to OpenGL).
+ptr(long const&): Pointer to the scalar value (uniform ptr() for generic code, e.g. to send data to OpenGL).
+ptr(long long const&): Pointer to the scalar value (uniform ptr() for generic code, e.g. to send data to OpenGL).
+ptr(short const&): Pointer to the scalar value (uniform ptr() for generic code, e.g. to send data to OpenGL).
+ptr(unsigned char const&): Pointer to the scalar value (uniform ptr() for generic code, e.g. to send data to OpenGL).
+ptr(unsigned int const&): Pointer to the scalar value (uniform ptr() for generic code, e.g. to send data to OpenGL).
+ptr(unsigned long const&): Pointer to the scalar value (uniform ptr() for generic code, e.g. to send data to OpenGL).
+ptr(unsigned long long const&): Pointer to the scalar value (uniform ptr() for generic code, e.g. to send data to OpenGL).
+ptr(unsigned short const&): Pointer to the scalar value (uniform ptr() for generic code, e.g. to send data to OpenGL).
+ptr<T,N1,N2>(matrix_stack<T,N1,N2> const&): Pointer to the first coefficient; coefficients are stored contiguously in row-major order.
+ptr<T,N>(numarray_stack<T,N> const&): Pointer to the first scalar of the vector.
+ptr<T>(numarray<T> const&): Pointer to the first scalar of the array content; the array must not be empty (asserted in debug).
+ptr<T>(std::vector<T> const&): Pointer to the first scalar of the vector content; the vector must not be empty (asserted in debug).
+rand_initialize_generator(): Reseed the random generator from the clock so that each run gives different values (the default seed is fixed at 0).
+rand_normal(float const,float const): Random float drawn from a normal distribution of given average and standard deviation (0 and 1 by default).
+rand_uniform(float const,float const): Random float drawn uniformly in [value_min, value_max), [0,1) by default.
+read_from_file<T>(std::string const&,T&): Reads data from a file with read_from_stream; the file must exist (error otherwise).
+read_from_file<T>(std::string const&,numarray<numarray<T>>&): Reads a file line by line, appending one inner array of values per line.
+read_from_file<T>(std::string const&,std::vector<std::vector<T>>&): Reads a file line by line, appending one inner vector of values per line.
+read_from_stream<T,N1,N2>(std::istream&,matrix_stack<T,N1,N2>&): Reads the N1 x N2 coefficients from the stream in row-major order, stopping early if the stream fails.
+read_from_stream<T,N>(std::istream&,numarray_stack<T,N>&): Reads the N components of a vector from the stream, stopping early if the stream fails.
+read_from_stream<T,N>(std::istream&,std::array<T,N>&): Reads the N elements of a std::array from the stream, stopping early if the stream fails.
+read_from_stream<T>(std::istream&,T&): Reads one value from the stream with operator>>.
+read_from_stream<T>(std::istream&,numarray<T>&): Reads values until the end of the stream and appends them to the array.
+read_from_stream<T>(std::istream&,std::vector<T>&): Reads values until the end of the stream and appends them to the vector.
+read_from_stream_per_line<T>(std::istream&,numarray<T>&): Reads the stream line by line, parsing each line into one element appended to the array.
+read_from_stream_per_line<T>(std::istream&,std::vector<T>&): Reads the stream line by line, parsing each line into one element appended to the vector.
+read_line_from_stream<T>(std::istream&,T&): Reads one line of the stream and parses it into data.
+read_text_file(std::string const&): Entire content of a text file as a string; the file must exist (error otherwise).
+rotation_axis_angle(vec3 const&,float): Rotation of a given angle in radians around an axis (normalized internally).
+size(char): Number of elements of a scalar, always 1 (uniform size() for generic code).
+size(double): Number of elements of a scalar, always 1 (uniform size() for generic code).
+size(float): Number of elements of a scalar, always 1 (uniform size() for generic code).
+size(int): Number of elements of a scalar, always 1 (uniform size() for generic code).
+size(long long): Number of elements of a scalar, always 1 (uniform size() for generic code).
+size(long): Number of elements of a scalar, always 1 (uniform size() for generic code).
+size(short): Number of elements of a scalar, always 1 (uniform size() for generic code).
+size(unsigned char): Number of elements of a scalar, always 1 (uniform size() for generic code).
+size(unsigned int): Number of elements of a scalar, always 1 (uniform size() for generic code).
+size(unsigned long long): Number of elements of a scalar, always 1 (uniform size() for generic code).
+size(unsigned long): Number of elements of a scalar, always 1 (uniform size() for generic code).
+size(unsigned short): Number of elements of a scalar, always 1 (uniform size() for generic code).
+size_in_memory(char): Size in bytes of a char value (sizeof).
+size_in_memory(double): Size in bytes of a double value (sizeof).
+size_in_memory(float): Size in bytes of a float value (sizeof).
+size_in_memory(int): Size in bytes of a int value (sizeof).
+size_in_memory(long long): Size in bytes of a long long value (sizeof).
+size_in_memory(long): Size in bytes of a long value (sizeof).
+size_in_memory(short): Size in bytes of a short value (sizeof).
+size_in_memory(unsigned char): Size in bytes of a unsigned char value (sizeof).
+size_in_memory(unsigned int): Size in bytes of a unsigned int value (sizeof).
+size_in_memory(unsigned long long): Size in bytes of a unsigned long long value (sizeof).
+size_in_memory(unsigned long): Size in bytes of a unsigned long value (sizeof).
+size_in_memory(unsigned short): Size in bytes of a unsigned short value (sizeof).
+size_in_memory<T,N1,N2>(matrix_stack<T,N1,N2> const&): Size in bytes of the N1 x N2 coefficients.
+size_in_memory<T,N>(numarray<numarray_stack<T,N>> const&): Size in bytes of an array of fixed-size vectors (number of elements times the size of one).
+size_in_memory<T,N>(numarray_stack<T,N> const&): Size in bytes of the N components.
+size_in_memory<T>(numarray<T> const&): Size in bytes of the array content, summed over its elements.
+size_in_memory<T>(std::vector<T> const&): Size in bytes of the vector content, summed over its elements.
+str(affine const&): String listing the rotation, translation, scaling and scaling_xyz of the affine transform.
+str(affine_rt const&): String listing the rotation (quaternion) and translation of the rigid transform.
+str(affine_rts const&): String listing the rotation (quaternion), translation and scaling of the transform.
+str(cache_uniform_location_structure const&): String listing every cached (shader id, uniform name, location) entry.
+str(char const*): Converts a C-string to std::string.
+str(char): One-character string made of the given char.
+str(double): Text representation of a double value (std::to_string).
+str(float): Text representation of a float value (std::to_string).
+str(int): Text representation of a int value (std::to_string).
+str(long long): Text representation of a long long value (std::to_string).
+str(long): Text representation of a long value (std::to_string).
+str(mesh const&): Short summary of a mesh giving its number of vertices and triangles.
+str(rotation_transform const&): String of the underlying unit quaternion (x y z w) of the rotation.
+str(short): Text representation of a short value (std::to_string).
+str(std::string const&): Returns the string itself (identity overload so that str() works on any type).
+str(unsigned char): Decimal representation of the unsigned char value (a number, not a character).
+str(unsigned int): Text representation of a unsigned int value (std::to_string).
+str(unsigned long long): Text representation of a unsigned long long value (std::to_string).
+str(unsigned long): Text representation of a unsigned long value (std::to_string).
+str(unsigned short): Text representation of a unsigned short value (std::to_string).
+str<T1,T2>(std::map<T1,T2> const&): Text representation of a map as "{key:value key:value }".
+str<T>(grid_3D<T> const&,std::string const&,std::string const&,std::string const&): Text representation of all elements in storage order, with a separator and optional begin/end strings.
+"str_2D<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&)": 'Same as str() for a matrix: text of the coefficients row by row with configurable separators.'
+str_lower(std::string const&): Copy of the string converted to lowercase.
+"str_pretty<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&)": Multi-line text of the matrix, one parenthesized row per line, values in fixed notation with 2 decimals and width 7.
+str_upper(std::string const&): Copy of the string converted to uppercase.
+str_zero_fill(std::string const&,size_t): Left-pads the string with zeros up to the given total length (unchanged if already longer).
+sub<T,N>(T const&,numarray_stack<T,N> const&): Scalar minus each component.
+sub<T,N>(numarray_stack<T,N> const&,T const&): Subtract a scalar from each component.
+sub<T>(T const&,numarray<T> const&): Array of a value minus each element.
+sub<T>(numarray<T> const&,T const&): Array with a value subtracted from each element.
+sum<T,N>(numarray_stack<T,N> const&): Sum of the components.
+sum<T>(numarray<T> const&): Sum of the elements.
+tensor_product(vec2 const&,vec2 const&): Outer product a * transpose(b), as a 2x2 matrix.
+tensor_product(vec3 const&,vec3 const&): Outer product a * transpose(b), as a 3x3 matrix.
+tensor_product(vec4 const&,vec4 const&): Outer product a * transpose(b), as a 4x4 matrix.
+timer_current_time(): Current time in seconds from the time source shared by all timers (a steady monotonic clock by default).
+timer_set_time_source(double(*)()): Replace the time source shared by all timers, e.g. for deterministic tests; nullptr restores the default steady clock.
+trace<T,N>(matrix_stack<T,N,N> const&): Trace (sum of the diagonal entries).
+trackball_projection(float,float): 'Point (x,y,z) projected on a virtual trackball: unit sphere near the center, hyperbolic sheet z=1/(2d) beyond a distance 1/sqrt(2).'
+trackball_rotation(vec2 const&,vec2 const&): Rotation moving the trackball projection of p0 onto that of p1, identity if the two points are closer than 1e-4.
+translation_in_plane(vec2 const&,rotation_transform const&): 3D vector of a 2D translation expressed in the xy plane of the given orientation.
+transpose<T,N1,N2>(matrix_stack<T,N1,N2> const&): Transposed matrix.
+type_str(affine const&): Type name "affine".
+type_str(affine_rt const&): Type name "affine_rt".
+type_str(affine_rts const&): Type name "affine_rts".
+type_str(char): 'Type name as a string: "char".'
+type_str(double): 'Type name as a string: "double".'
+type_str(float): 'Type name as a string: "float".'
+type_str(int): 'Type name as a string: "int".'
+type_str(int2 const&): 'Type name as a string: "int2".'
+type_str(int3 const&): 'Type name as a string: "int3".'
+type_str(int4 const&): 'Type name as a string: "int4".'
+type_str(long long): 'Type name as a string: "long long".'
+type_str(long): 'Type name as a string: "long".'
+type_str(mat2 const&): 'Type name as a string: "mat2".'
+type_str(mat3 const&): 'Type name as a string: "mat3".'
+type_str(mat4 const&): 'Type name as a string: "mat4".'
+type_str(mesh const&): Type name "mesh".
+type_str(numarray_stack3<float> const&): 'Type name as a string: "vec3".'
+type_str(quaternion const&): Type name "quaternion".
+type_str(rotation_transform const&): Type name "rotation_transform".
+type_str(short): 'Type name as a string: "short".'
+type_str(std::string const&): 'Type name as a string: "string".'
+type_str(uint2 const&): 'Type name as a string: "uint2".'
+type_str(uint3 const&): 'Type name as a string: "uint3".'
+type_str(uint4 const&): 'Type name as a string: "uint4".'
+type_str(unsigned char): 'Type name as a string: "unsigned char".'
+type_str(unsigned int): 'Type name as a string: "unsigned int".'
+type_str(unsigned long long): 'Type name as a string: "unsigned long long".'
+type_str(unsigned long): 'Type name as a string: "unsigned long".'
+type_str(unsigned short): 'Type name as a string: "unsigned short".'
+type_str(vec2 const&): 'Type name as a string: "vec2".'
+type_str(vec4 const&): 'Type name as a string: "vec4".'
+type_str<T,N1,N2>(grid_stack_2D<T,N1,N2> const&): Type name as a string, e.g. "grid_stack_2D<float,3,3>".
+type_str<T,N1,N2>(matrix_stack<T,N1,N2> const&): Type name as a string, e.g. "matrix_stack<float,3,4>".
+type_str<T,N>(numarray_stack<T,N> const&): Type name as a string, e.g. "numarray_stack<float,5>".
+type_str<T>(T const&): Fallback for types without a dedicated type_str overload; returns a placeholder message.
+type_str<T>(grid_2D<T> const&): Type name as a string, e.g. "grid_2D<float>".
+type_str<T>(grid_3D<T> const&): Type name as a string, e.g. "grid_3D<float>".
+type_str<T>(numarray<T> const&): Type name as a string, e.g. "numarray<float>".
+type_str<T>(numarray_stack<T,2> const&): Type name as a string, e.g. "numarray_stack2<int>".
+type_str<T>(numarray_stack<T,3> const&): Type name as a string, e.g. "numarray_stack3<int>".
+type_str<T>(numarray_stack<T,4> const&): Type name as a string, e.g. "numarray_stack4<int>".
+type_str<T>(std::set<T> const&): Type name as a string, e.g. "std::set<int>".
+
+# --- Rewrites of descriptions copied from the C++ comments (2026-10-29, checked against the bodies)
+'check_file_exist(std::string const&)': "Returns true if the file can be opened for reading, false otherwise."
+'check_path_exist(std::string const&)': "Returns true if a file or directory exists at the given path, false otherwise."
+'is_equal<T1,T2>(grid_2D<T1> const&,grid_2D<T2> const&)': "Returns true if both grids have the same dimension and equal elements (approximate comparison for floating-point values)."
+'marching_cube(grid_3D<float> const&,spatial_domain_grid_3D const&,float)': "Extracts the iso-surface of value iso of a field sampled on the grid domain (same dimension) as a new mesh whose triangles share their vertices, with normals computed by fill_empty_field."
+'mesh_primitive_disc(float,vec3 const&,vec3 const&,int)': "Disc of the given radius centered at center and orthogonal to normal, made of N vertices on the circle linked to a central vertex, with a constant normal and uv mapping the disc into the unit square."
+'mesh_primitive_frame(frame const&,float,vec3 const&,vec3 const&,vec3 const&,vec3 const&,float)': "Mesh of the frame f: three arrows of length scale along ux, uy and uz (red, green and blue by default) and a sphere at its origin, the arrow radius being frame_thickness*scale."
+'mesh_primitive_quadrangle(vec3 const&,vec3 const&,vec3 const&,vec3 const&)': "Quadrangle through the corners p00, p10, p11, p01, made of the triangles (p00,p10,p11) and (p00,p11,p01), with uv (0,0), (1,0), (1,1), (0,1) at the corners."
+'mesh_primitive_sphere(float,vec3 const&,int,int)': "Sphere of the given radius and center sampled in spherical coordinates, Nu samples around the z axis and Nv from the south to the north pole, closed at the poles, with normals and uv."
+'obj_read_connectivity(std::string const&)': "Reads the first three vertex indices of every face (f line) of an .obj file as a 0-based triangle, ignoring the texture and normal indices."
+'obj_read_positions(std::string const&)': "Reads the vertex positions (v lines) of an .obj file."
+'obj_read_texture_uv(std::string const&)': "Reads the texture coordinates (vt lines, u and v) of an .obj file."
+'operator<<<T,N>(std::ostream&,numarray_stack<T,N> const&)': "Writes the components of the vector to the stream, separated by spaces."
+'operator<<<T,N1,N2>(std::ostream&,grid_stack_2D<T,N1,N2> const&)': "Writes all elements of the grid to the stream, in storage order separated by spaces."
+'operator<<<T,N1,N2>(std::ostream&,matrix_stack<T,N1,N2> const&)': "Writes all coefficients of the matrix to the stream, row by row separated by spaces."
+'operator<<<T>(std::ostream&,grid_2D<T> const&)': "Writes all elements of the grid to the stream, in storage order separated by spaces."
+'operator<<<T>(std::ostream&,numarray<T> const&)': "Writes all elements of the array to the stream, separated by spaces."
+'picking_mesh_vertex_as_sphere(vec2 const&,numarray<vec3> const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&)': "Casts the camera ray through the screen position and returns the closest vertex whose sphere of radius picking_distance it hits, with the hit point, the vertex normal and the vertex index (active is false if none)."
+'picking_plane_orthogonal_to_camera(vec2 const&,vec3 const&,camera_generic_base const&,camera_projection_perspective const&)': "Intersects the camera ray through the screen position (relative coordinates) with the plane through plane_position orthogonal to the front direction of the camera."
+'read_from_file_binary(std::string const&)': "Reads the whole file as a vector of bytes, stopping with an error if the file cannot be accessed or is empty."
+'rotation_around_center(rotation_transform const&,vec3 const&)': "Rigid transform that applies the rotation R around center instead of the origin, mapping p to R(p - center) + center."
+'str<T,N>(numarray_stack<T,N> const&,std::string const&,std::string const&,std::string const&)': "Text representation of the components, joined by separator and surrounded by begin and end."
+'str<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,std::string const&,std::string const&,std::string const&)': "Text representation of all elements in storage order, joined by separator and surrounded by begin and end."
+'str<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&)': "Text representation of the matrix row by row, each row wrapped by begin_line and end_line with its values joined by separator, the whole surrounded by begin and end."
+'str<T>(grid_2D<T> const&,std::string const&,std::string const&,std::string const&)': "Text representation of all elements in storage order, joined by separator and surrounded by begin and end."
+'str<T>(numarray<T> const&,std::string const&,std::string const&,std::string const&)': "Text representation of the elements, joined by separator and surrounded by begin and end."

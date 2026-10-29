@@ -1,0 +1,2 @@
+Written for the documentation (content/how-to/select-and-drag-with-the-mouse.md),
+adapted from the picking example of understand/interaction.md. No asset.

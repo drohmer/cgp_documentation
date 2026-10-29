@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 372" width="700" height="372">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; }
+    .b { font-weight: bold; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 14px; fill: #333; }
+    .lab { font-size: 13px; }
+    .drw { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.5; }
+    .env { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.5; }
+    .gpu { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.5; }
+    .ad { stroke: #9c6ade; stroke-width: 2; fill: none; marker-end: url(#ad); }
+    .ae { stroke: #9c6ade; stroke-width: 2; fill: none; marker-end: url(#ae); }
+    .au { stroke: #9c6ade; stroke-width: 2; fill: none; marker-end: url(#au); }
+  </style>
+  <defs>
+    <marker id="ad" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9c6ade"/></marker>
+    <marker id="ae" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9c6ade"/></marker>
+    <marker id="au" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9c6ade"/></marker>
+  </defs>
+
+  <text x="20" y="22" class="b" fill="#2b66ad" style="fill:#2b66ad">C++ (CPU)</text>
+  <text x="350" y="22" class="b" text-anchor="middle">draw(sphere, environment)</text>
+  <text x="680" y="22" class="b" text-anchor="end" style="fill:#a85000">Shader uniforms (GPU)</text>
+
+  <!-- Drawable -->
+  <rect x="20" y="36" width="215" height="116" rx="6" class="drw"/>
+  <text x="32" y="58" class="in b">sphere (mesh_drawable)</text>
+  <text x="32" y="86" class="m">model</text>
+  <text x="32" y="112" class="m">material</text>
+  <text x="32" y="138" class="m">texture</text>
+
+  <!-- Environment -->
+  <rect x="20" y="170" width="215" height="160" rx="6" class="env"/>
+  <text x="32" y="192" class="in b">environment</text>
+  <text x="32" y="220" class="m">camera_projection</text>
+  <text x="32" y="246" class="m">camera_view</text>
+  <text x="32" y="272" class="m">light</text>
+  <text x="32" y="300" class="m">uniform_generic</text>
+  <text x="32" y="318" class="m"> .uniform_float["time"]</text>
+
+  <!-- GPU -->
+  <rect x="465" y="36" width="215" height="294" rx="6" class="gpu"/>
+  <text x="477" y="58" class="in b">default shader</text>
+  <text x="477" y="86" class="m">mat4 model</text>
+  <text x="477" y="112" class="m">material.*</text>
+  <text x="477" y="138" class="m">sampler2D image_texture</text>
+  <text x="477" y="220" class="m">mat4 projection</text>
+  <text x="477" y="246" class="m">mat4 view</text>
+  <text x="477" y="272" class="m">vec3 light</text>
+  <text x="477" y="309" class="m">float time</text>
+
+  <!-- Arrows: drawable -->
+  <text x="350" y="70" class="lab" text-anchor="middle" style="fill:#7b48c4">drawable.send_opengl_uniform()</text>
+  <path d="M100,81 H462" class="ad"/>
+  <path d="M120,107 H462" class="ad"/>
+  <text x="350" y="125" class="lab" text-anchor="middle" style="fill:#7b48c4">draw: texture unit 0</text>
+  <path d="M110,133 H462" class="ad"/>
+
+  <!-- Arrows: environment -->
+  <text x="350" y="207" class="lab" text-anchor="middle" style="fill:#7b48c4">environment.send_opengl_uniform()</text>
+  <path d="M190,215 H462" class="ae"/>
+  <path d="M150,241 H462" class="ae"/>
+  <path d="M90,267 H462" class="ae"/>
+  <text x="350" y="292" class="lab" text-anchor="middle" style="fill:#7b48c4">your own: any name</text>
+  <path d="M235,304 H462" class="au"/>
+
+  <text x="350" y="360" text-anchor="middle">then draw binds the VAO and issues one glDrawElements</text>
+</svg>

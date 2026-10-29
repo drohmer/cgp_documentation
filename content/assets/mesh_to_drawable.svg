@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 320" width="700" height="320">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .b { font-weight: bold; }
+    .cpu { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.5; }
+    .gpu { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.5; }
+    .buf { fill: #fff7ec; stroke: #e0912f; stroke-width: 1.2; }
+    .arr { fill: #f7fbff; stroke: #6b9bd8; stroke-width: 1.2; }
+    .vao { fill: #fff7ec; stroke: #e0912f; stroke-width: 1.5; }
+    .sh { fill: #dff0dc; stroke: #5aa55a; stroke-width: 1.5; }
+    .ar { stroke: #e07b1a; stroke-width: 2; fill: none; marker-end: url(#ar); }
+    .ap { stroke: #e07b1a; stroke-width: 2; fill: none; marker-end: url(#ap); }
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+    <marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+  </defs>
+
+  <text x="20" y="24" class="b" style="fill:#2b66ad">mesh (CPU)</text>
+  <text x="270" y="24" class="b" style="fill:#a85000">mesh_drawable (GPU)</text>
+  <text x="235" y="58" text-anchor="middle" style="fill:#a85000; font-size:13px">copy</text>
+
+  <!-- CPU arrays -->
+  <rect x="20" y="36" width="180" height="234" rx="8" class="cpu"/>
+  <rect x="34" y="68" width="152" height="24" class="arr"/><text x="110" y="85" class="m" text-anchor="middle">position</text>
+  <rect x="34" y="104" width="152" height="24" class="arr"/><text x="110" y="121" class="m" text-anchor="middle">normal</text>
+  <rect x="34" y="140" width="152" height="24" class="arr"/><text x="110" y="157" class="m" text-anchor="middle">color</text>
+  <rect x="34" y="176" width="152" height="24" class="arr"/><text x="110" y="193" class="m" text-anchor="middle">uv</text>
+  <rect x="34" y="228" width="152" height="24" class="arr"/><text x="110" y="245" class="m" text-anchor="middle">connectivity</text>
+
+  <!-- GPU panel -->
+  <rect x="270" y="36" width="410" height="234" rx="8" class="gpu"/>
+  <rect x="284" y="68" width="140" height="24" class="buf"/><text x="354" y="85" class="m" text-anchor="middle">vbo_position</text>
+  <rect x="284" y="104" width="140" height="24" class="buf"/><text x="354" y="121" class="m" text-anchor="middle">vbo_normal</text>
+  <rect x="284" y="140" width="140" height="24" class="buf"/><text x="354" y="157" class="m" text-anchor="middle">vbo_color</text>
+  <rect x="284" y="176" width="140" height="24" class="buf"/><text x="354" y="193" class="m" text-anchor="middle">vbo_uv</text>
+  <rect x="284" y="228" width="140" height="24" class="buf"/><text x="354" y="245" class="m" text-anchor="middle">ebo_connectivity</text>
+
+  <!-- copy arrows -->
+  <path d="M186,80 H281" class="ar"/>
+  <path d="M186,116 H281" class="ar"/>
+  <path d="M186,152 H281" class="ar"/>
+  <path d="M186,188 H281" class="ar"/>
+  <path d="M186,240 H281" class="ar"/>
+
+  <!-- VAO -->
+  <text x="476" y="58" class="in b" text-anchor="middle">VAO</text>
+  <rect x="446" y="66" width="60" height="136" rx="4" class="vao"/>
+  <text x="476" y="85" class="in" text-anchor="middle">0</text>
+  <text x="476" y="121" class="in" text-anchor="middle">1</text>
+  <text x="476" y="157" class="in" text-anchor="middle">2</text>
+  <text x="476" y="193" class="in" text-anchor="middle">3</text>
+  <path d="M424,80 H444" class="ap"/>
+  <path d="M424,116 H444" class="ap"/>
+  <path d="M424,152 H444" class="ap"/>
+  <path d="M424,188 H444" class="ap"/>
+
+  <!-- vertex shader inputs -->
+  <text x="602" y="58" class="in b" text-anchor="middle">vertex shader</text>
+  <rect x="530" y="66" width="146" height="136" rx="4" class="sh"/>
+  <text x="540" y="85" class="m">vertex_position</text>
+  <text x="540" y="121" class="m">vertex_normal</text>
+  <text x="540" y="157" class="m">vertex_color</text>
+  <text x="540" y="193" class="m">vertex_uv</text>
+  <path d="M506,80 H528" class="ap"/>
+  <path d="M506,116 H528" class="ap"/>
+  <path d="M506,152 H528" class="ap"/>
+  <path d="M506,188 H528" class="ap"/>
+
+  <text x="440" y="238" class="in">triangles read by</text>
+  <text x="440" y="256" class="in">glDrawElements</text>
+
+  <text x="20" y="300">initialize_data_on_gpu: copy once, then bind each VBO to a shader location</text>
+</svg>

@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" width="700" height="330">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 15px; }
+    .lab { font-size: 14px; fill: #333; }
+    .sub { font-size: 14px; fill: #666666; }
+    .b { font-weight: bold; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .ar { stroke: #555; stroke-width: 2; fill: none; marker-end: url(#ak); }
+  </style>
+  <defs>
+    <marker id="ak" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#555"/></marker>
+    <marker id="mx" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d0605a"/></marker>
+    <marker id="my" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5aa55a"/></marker>
+    <marker id="mz" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#4a86d0"/></marker>
+  </defs>
+  <polygon points="150.0,159.3 222.7,142.2 180.7,112.6 108.0,129.7" style="fill:#eae185;stroke:#555;stroke-width:1.3;stroke-linejoin:round"/>
+  <polygon points="150.0,236.0 222.7,218.9 222.7,142.2 150.0,159.3" style="fill:#d3cb78;stroke:#555;stroke-width:1.3;stroke-linejoin:round"/>
+  <polygon points="150.0,236.0 150.0,159.3 108.0,129.7 108.0,206.4" style="fill:#bcb46b;stroke:#555;stroke-width:1.3;stroke-linejoin:round"/>
+  <path d="M150.0,236.0 L255.5,211.2" style="stroke:#d0605a;stroke-width:2.2;fill:none;marker-end:url(#mx)"/>
+  <path d="M150.0,236.0 L84.9,190.1" style="stroke:#5aa55a;stroke-width:2.2;fill:none;marker-end:url(#my)"/>
+  <path d="M150.0,236.0 L150.0,124.7" style="stroke:#4a86d0;stroke-width:2.2;fill:none;marker-end:url(#mz)"/>
+  <text x="253.5" y="229.2" class="lab b" text-anchor="start" style="fill:#b3261e">x</text>
+  <text x="78.9" y="182.1" class="lab b" text-anchor="start" style="fill:#2a7330">y</text>
+  <text x="158.0" y="130.7" class="lab b" text-anchor="start" style="fill:#2b66ad">z</text>
+  <circle cx="150.0" cy="236.0" r="3" style="fill:#333"/>
+  <text x="142.0" y="254.0" class="m" text-anchor="end">(0,0,0)</text>
+  <circle cx="222.7" cy="218.9" r="3" style="fill:#333"/>
+  <text x="222.7" y="240.9" class="m" text-anchor="middle">(1,0,0)</text>
+  <circle cx="108.0" cy="206.4" r="3" style="fill:#333"/>
+  <text x="98.0" y="224.4" class="m" text-anchor="end">(0,1,0)</text>
+  <circle cx="180.7" cy="112.6" r="3" style="fill:#333"/>
+  <text x="188.7" y="106.6" class="m" text-anchor="start">(1,1,1)</text>
+  <text x="20" y="26" class="in b">Local space</text>
+  <text x="20" y="45" class="sub">the mesh as created: a unit cube</text>
+  <path d="M262,170 H322" class="ar"/>
+  <text x="292" y="158" class="m b" text-anchor="middle">M</text>
+  <text x="292" y="194" class="sub" text-anchor="middle">model</text>
+  <polygon points="457.6,298.3 639.4,255.6 534.4,181.7 352.6,224.4" style="fill:#f1f1f1;stroke:#bbb;stroke-width:1"/>
+  <path d="M493.9,289.8 L388.9,215.8" style="stroke:#ddd;stroke-width:1"/>
+  <path d="M436.6,283.5 L618.4,240.8" style="stroke:#ddd;stroke-width:1"/>
+  <path d="M530.3,281.3 L425.3,207.3" style="stroke:#ddd;stroke-width:1"/>
+  <path d="M415.6,268.8 L597.4,226.0" style="stroke:#ddd;stroke-width:1"/>
+  <path d="M566.7,272.7 L461.7,198.7" style="stroke:#ddd;stroke-width:1"/>
+  <path d="M394.6,254.0 L576.4,211.2" style="stroke:#ddd;stroke-width:1"/>
+  <path d="M603.1,264.2 L498.1,190.2" style="stroke:#ddd;stroke-width:1"/>
+  <path d="M373.6,239.2 L555.4,196.5" style="stroke:#ddd;stroke-width:1"/>
+  <path d="M496.0,240.0 L561.5,224.6" style="stroke:#d0605a;stroke-width:2.2;fill:none;marker-end:url(#mx)"/>
+  <path d="M496.0,240.0 L458.2,213.4" style="stroke:#5aa55a;stroke-width:2.2;fill:none;marker-end:url(#my)"/>
+  <path d="M496.0,240.0 L496.0,170.9" style="stroke:#4a86d0;stroke-width:2.2;fill:none;marker-end:url(#mz)"/>
+  <circle cx="496.0" cy="240.0" r="3.5" style="fill:#333"/>
+  <text x="559.5" y="242.6" class="lab b" text-anchor="start" style="fill:#b3261e">x</text>
+  <text x="452.2" y="205.4" class="lab b" text-anchor="start" style="fill:#2a7330">y</text>
+  <text x="504.0" y="176.9" class="lab b" text-anchor="start" style="fill:#2b66ad">z</text>
+  <path d="M496.0,240.0 L551.2,162.8" style="stroke:#999;stroke-width:1.4;stroke-dasharray:5 4;fill:none"/>
+  <polygon points="551.2,109.1 576.1,87.4 522.8,77.3 497.9,99.0" style="fill:#eae185;stroke:#555;stroke-width:1.3;stroke-linejoin:round"/>
+  <polygon points="551.2,162.8 576.1,141.1 576.1,87.4 551.2,109.1" style="fill:#d7ce7a;stroke:#555;stroke-width:1.3;stroke-linejoin:round"/>
+  <polygon points="551.2,162.8 551.2,109.1 497.9,99.0 497.9,152.7" style="fill:#beb66c;stroke:#555;stroke-width:1.3;stroke-linejoin:round"/>
+  <path d="M551.2,162.8 L587.3,131.4" style="stroke:#d0605a;stroke-width:1.8;fill:none;marker-end:url(#mx)"/>
+  <path d="M551.2,162.8 L468.6,147.1" style="stroke:#5aa55a;stroke-width:1.8;fill:none;marker-end:url(#my)"/>
+  <path d="M551.2,162.8 L551.2,84.9" style="stroke:#4a86d0;stroke-width:1.8;fill:none;marker-end:url(#mz)"/>
+  <circle cx="551.2" cy="162.8" r="3" style="fill:#333"/>
+  <text x="530.8" y="73.3" class="m" text-anchor="start">M (1,1,1)</text>
+  <text x="533.6" y="209.4" class="sub" text-anchor="start">translation</text>
+  <text x="362" y="26" class="in b">World space</text>
+  <text x="362" y="45" class="sub">model: translation, rotation, scaling</text>
+  <text x="362" y="316" class="m">p_world = M p_local</text>
+  <text x="20" y="316" class="sub">corners given in local coordinates</text>
+</svg>

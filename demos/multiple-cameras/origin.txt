@@ -1,0 +1,2 @@
+Origin: CGP example of github.com/drohmer/epita_ani3d_lab_code-2027
+(examples/07_camera/03_multiple_cameras, commit bbe7095), unchanged.

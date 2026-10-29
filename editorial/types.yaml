@@ -1,0 +1,443 @@
+# User-facing types documented in the Reference section.
+#
+# Each entry:
+#   canonical: the C++ type after alias resolution (vec3 -> numarray_stack<float,3>).
+#              Free functions are attached to the type when one of their parameters
+#              resolves to this canonical type, or to a template that applies to it
+#              (numarray_stack<T,N> applies to vec3 and is flagged "generic").
+#   group:     section of the Reference index (renderers keep this order).
+#   short:     one-line description shown in lists.
+#
+#   family_of: (families only) the types sharing the generic functions of a template.
+#              A family page (vecN, matN) lists the functions written once for all sizes,
+#              e.g. norm(numarray_stack<T,N>); the pages of its members point to it instead
+#              of repeating them (relation field "shared" in api.json).
+#
+#   figures:   (optional) diagrams shown at the top of the reference page, in order:
+#              [{src: <path relative to content/assets>, caption: <one sentence, ASCII>}].
+#
+# Adding a type here is enough for it to get a reference page: no code change.
+
+vecN:
+  canonical: numarray_stack<T,N>
+  family_of: [vec2, vec3, vec4]
+  group: Vectors and matrices
+  short: Operations shared by all vectors (vec2, vec3, vec4), written once for any size.
+  figures:
+    - src: reference/vecN.svg
+      caption: "vec2, vec3 and vec4 store their floats x, y, z, w side by side (indices 0 to 3); the same element has four spellings, and the common calls are norm, normalize, dot and cross."
+matN:
+  canonical: matrix_stack<T,N1,N2>
+  family_of: [mat2, mat3, mat4]
+  group: Vectors and matrices
+  short: Operations shared by all matrices (mat2, mat3, mat4), written once for any size.
+  figures:
+    - src: reference/matN.svg
+      caption: "A mat4 is stored row by row: M(i,j) is row i and column j, at position 4*i + j in memory; M[i] is a row, col_x() to col_w() are the columns, and an affine matrix holds the linear block and the translation t."
+
+vec2:
+  canonical: numarray_stack<float,2>
+  group: Vectors and matrices
+  short: 2D vector of floats.
+  figures:
+    - src: reference/vecN.svg
+      caption: "vec2, vec3 and vec4 store their floats x, y, z, w side by side (indices 0 to 3); the same element has four spellings, and the common calls are norm, normalize, dot and cross."
+vec3:
+  canonical: numarray_stack<float,3>
+  group: Vectors and matrices
+  short: 3D vector of floats (positions, directions, colors).
+  tasks:
+    - {do: Measure, use: ["norm(v)", "dot(a, b)", "cross(a, b)"]}
+    - {do: Normalize, use: ["normalize(v)"]}
+    - {do: Access, use: ["x", "xy()"]}
+    - {do: Rotate, use: ["rotation_axis_angle(axis, angle)"], guide: understand/transformations.md}
+  figures:
+    - src: reference/vecN.svg
+      caption: "vec2, vec3 and vec4 store their floats x, y, z, w side by side (indices 0 to 3); the same element has four spellings, and the common calls are norm, normalize, dot and cross."
+vec4:
+  canonical: numarray_stack<float,4>
+  group: Vectors and matrices
+  short: 4D vector of floats (homogeneous coordinates, RGBA).
+  figures:
+    - src: reference/vecN.svg
+      caption: "vec2, vec3 and vec4 store their floats x, y, z, w side by side (indices 0 to 3); the same element has four spellings, and the common calls are norm, normalize, dot and cross."
+mat2:
+  canonical: matrix_stack<float,2,2>
+  group: Vectors and matrices
+  short: 2x2 matrix of floats.
+  figures:
+    - src: reference/matN.svg
+      caption: "A mat4 is stored row by row: M(i,j) is row i and column j, at position 4*i + j in memory; M[i] is a row, col_x() to col_w() are the columns, and an affine matrix holds the linear block and the translation t."
+mat3:
+  canonical: matrix_stack<float,3,3>
+  group: Vectors and matrices
+  short: 3x3 matrix of floats (rotations, linear maps).
+  figures:
+    - src: reference/matN.svg
+      caption: "A mat4 is stored row by row: M(i,j) is row i and column j, at position 4*i + j in memory; M[i] is a row, col_x() to col_w() are the columns, and an affine matrix holds the linear block and the translation t."
+mat4:
+  canonical: matrix_stack<float,4,4>
+  group: Vectors and matrices
+  short: 4x4 matrix of floats (affine and projective transforms).
+  figures:
+    - src: reference/matN.svg
+      caption: "A mat4 is stored row by row: M(i,j) is row i and column j, at position 4*i + j in memory; M[i] is a row, col_x() to col_w() are the columns, and an affine matrix holds the linear block and the translation t."
+
+quaternion:
+  canonical: quaternion
+  group: Transforms
+  short: Quaternion, used to represent rotations.
+  figures:
+    - src: reference/quaternion.svg
+      caption: "A quaternion is a vec4 (x, y, z, w) with the scalar part w last: a rotation of angle theta around the unit axis u is (sin(theta/2) u, cos(theta/2))."
+rotation_transform:
+  canonical: rotation_transform
+  group: Transforms
+  short: 3D rotation (stored as a unit quaternion).
+  tasks:
+    - {do: Create, use: ["rotation_axis_angle(axis, angle)", "rotation_transform::from_axis_angle(axis, angle)"], guide: understand/transformations.md}
+    - {do: Convert, use: ["matrix()", "to_axis_angle()"]}
+    - {do: Blend, use: ["rotation_transform::lerp(r1, r2, alpha)"], guide: understand/transformations.md}
+    - {do: Invert, use: ["inverse(r)"]}
+  figures:
+    - src: reference/rotation_transform.svg
+      caption: "rotation_transform wraps a unit quaternion: build it from an axis and an angle, two vectors, a frame or a matrix, then rotate points, compose, invert or interpolate."
+affine_rt:
+  canonical: affine_rt
+  group: Transforms
+  short: "Rigid transform: rotation + translation."
+  figures:
+    - src: reference/affine.svg
+      caption: "T * p scales, rotates and then translates: affine_rt gives R p + t, affine_rts gives R s p + t, and affine gives R s S p + t, where S = diag(scaling_xyz) stretches the local axes of the shape before the rotation."
+affine_rts:
+  canonical: affine_rts
+  group: Transforms
+  short: "Similarity transform: rotation + translation + uniform scaling."
+  tasks:
+    - {do: Set, use: ["translation", "rotation", "scaling"], guide: how-to/transform-a-shape.md}
+    - {do: Convert, use: ["matrix()"]}
+    - {do: Invert, use: ["inverse(T)"]}
+  figures:
+    - src: reference/affine.svg
+      caption: "T * p scales, rotates and then translates: affine_rt gives R p + t, affine_rts gives R s p + t, and affine gives R s S p + t, where S = diag(scaling_xyz) stretches the local axes of the shape before the rotation."
+affine:
+  canonical: affine
+  group: Transforms
+  short: "Affine transform made of a rotation, uniform and per-axis scalings, and a translation (no shear)."
+  figures:
+    - src: reference/affine.svg
+      caption: "T * p scales, rotates and then translates: affine_rt gives R p + t, affine_rts gives R s p + t, and affine gives R s S p + t, where S = diag(scaling_xyz) stretches the local axes of the shape before the rotation."
+frame:
+  canonical: frame
+  group: Transforms
+  short: Local coordinate frame.
+  figures:
+    - src: reference/frame.svg
+      caption: "A frame is an origin (position) and three orthonormal axes ux(), uy(), uz(), the columns of orientation: the point of local coordinates (a, b, c) is position + a ux + b uy + c uz."
+
+numarray:
+  canonical: numarray
+  group: Containers
+  short: Dynamic-size array with numerical operations.
+  tasks:
+    - {do: Fill, use: ["resize(N)", "push_back(x)", "fill(value)"]}
+    - {do: Compute, use: ["sum(a)", "average(a)", "max(a)"]}
+    - {do: Read, use: ["read_from_file(filename, a)"]}
+  figures:
+    - src: reference/numarray.svg
+      caption: "A numarray stores its elements contiguously in data; push_back appends an element, and +, *= and sum work element by element on arrays of the same size."
+grid_2D:
+  canonical: grid_2D
+  group: Containers
+  short: 2D grid container (dynamic size).
+  tasks:
+    - {do: Create, use: ["resize(N1, N2)"]}
+    - {do: Index, use: ["index_to_offset(k1, k2)", "offset_to_index(offset)"]}
+    - {do: Sample, use: ["interpolation_bilinear(grid, x, y)"]}
+  figures:
+    - src: reference/grid_2D.svg
+      caption: "Element (i, j) of a grid_2D is stored at offset i + dimension.x * j in data: i varies fastest and each row j is one contiguous block."
+grid_3D:
+  canonical: grid_3D
+  group: Containers
+  short: 3D grid container (dynamic size).
+  figures:
+    - src: reference/grid_3D.svg
+      caption: "Element (i, j, k) of a grid_3D is stored at offset i + dimension.x * (j + dimension.y * k): i varies fastest, then j, then k (slice after slice)."
+
+mesh:
+  canonical: mesh
+  group: Meshes and drawables
+  short: Triangle mesh stored on the CPU (positions, normals, colors, uv, connectivity).
+  tasks:
+    - {do: Create, use: ["mesh_primitive_sphere()", "mesh_primitive_grid()", "mesh_load_file_obj(filename)"], guide: how-to/create-basic-shapes.md}
+    - {do: Build, use: ["position", "connectivity", "fill_empty_field()"], guide: how-to/build-a-mesh-by-hand.md}
+    - {do: Transform, use: ["translate(t)", "rotate(axis, angle)", "scale(s)", "centered()"]}
+    - {do: Merge, use: ["push_back(other)"]}
+    - {do: Update, use: ["normal_update()"], guide: how-to/update-a-mesh-every-frame.md}
+    - {do: Draw, use: ["mesh_drawable"], guide: understand/cpu-to-gpu.md}
+    - {do: Save, use: ["mesh_save_file_obj(filename, m)"]}
+  figures:
+    - src: mesh_memory_layout.svg
+      caption: A mesh of two triangles in memory - one entry per vertex in position, normal, color and uv, three vertex indices per triangle in connectivity.
+mesh_drawable:
+  canonical: mesh_drawable
+  group: Meshes and drawables
+  short: Mesh stored on the GPU (VBOs, shader, texture, model transform), ready to be drawn.
+  tasks:
+    - {do: Create, use: ["initialize_data_on_gpu(mesh)"], guide: how-to/draw-a-mesh.md}
+    - {do: Place, use: ["model.translation", "model.rotation", "model.scaling"], guide: how-to/transform-a-shape.md}
+    - {do: Color, use: ["material.color", "material.alpha"], guide: how-to/change-the-color.md}
+    - {do: Texture, use: ["texture.load_and_initialize_texture_2d_on_gpu(filename)"], guide: how-to/apply-a-texture.md}
+    - {do: Shader, use: ["shader.load(vertex_path, fragment_path)"], guide: how-to/send-a-custom-uniform.md}
+    - {do: Update, use: ["vbo_position.update(mesh.position)"], guide: how-to/update-a-mesh-every-frame.md}
+    - {do: Draw, use: ["draw(drawable, environment)", "draw_wireframe(drawable, environment)"], guide: how-to/display-the-wireframe.md}
+    - {do: Free, use: ["clear()"], guide: understand/cpu-to-gpu.md}
+  figures:
+    - src: reference/mesh_drawable.svg
+      caption: "The GPU buffers filled once by initialize_data_on_gpu (one VBO per attribute), and the per-draw fields (shader, textures, model matrices, material) with the uniform each one is sent to by draw."
+    - src: mesh_to_drawable.svg
+      caption: "initialize_data_on_gpu copies each array of the mesh into a GPU buffer."
+curve_drawable:
+  canonical: curve_drawable
+  group: Meshes and drawables
+  short: Polyline stored on the GPU, ready to be drawn.
+  tasks:
+    - {do: Create, use: ["initialize_data_on_gpu(positions)", "curve_primitive_circle()"], guide: how-to/draw-curves-and-segments.md}
+    - {do: Color, use: ["color"]}
+    - {do: Update, use: ["vbo_position.update(positions)"]}
+    - {do: Draw, use: ["draw(curve, environment)"]}
+  figures:
+    - src: reference/curve_drawable.svg
+      caption: "The fields of curve_drawable, and the same 6 points drawn as one connected line (display_type Curve) or as separate segments (Segments)."
+
+image_structure:
+  canonical: image_structure
+  group: Images and OpenGL
+  short: Image stored on the CPU (width, height, RGB/RGBA data).
+  tasks:
+    - {do: Load, use: ["image_load_file(filename)"]}
+    - {do: Edit, use: ["mirror_vertical()", "subimage(start_h, start_v, end_h, end_v)"]}
+    - {do: Upload, use: ["opengl_texture_image_structure::initialize_texture_2d_on_gpu(image)"], guide: how-to/apply-a-texture.md}
+    - {do: Save, use: ["image_save_png(filename, image)"]}
+  figures:
+    - src: reference/image_structure.svg
+      caption: "An image_structure stores its pixels row by row from the top row of the file, 4 bytes (rgba) or 3 bytes (rgb) per pixel: pixel (x, y) of an rgba image starts at data[4*(x + width*y)]."
+opengl_shader_structure:
+  canonical: opengl_shader_structure
+  group: Images and OpenGL
+  short: OpenGL shader program.
+  tasks:
+    - {do: Load, use: ["load(vertex_path, fragment_path)"], guide: how-to/send-a-custom-uniform.md}
+    - {do: Uniform, use: ["opengl_uniform(shader, name, value)"], guide: understand/shaders-and-uniforms.md}
+    - {do: Free, use: ["clear()"]}
+  figures:
+    - src: reference/opengl_shader_structure.svg
+      caption: "load() compiles a vertex and a fragment file into a GPU program and keeps its id; drawables hold copies sharing the same id, and loading a new shader into one of them leaves the others unchanged."
+opengl_texture_image_structure:
+  canonical: opengl_texture_image_structure
+  group: Images and OpenGL
+  short: OpenGL texture.
+  tasks:
+    - {do: Load, use: ["load_and_initialize_texture_2d_on_gpu(filename)", "initialize_texture_2d_on_gpu(image)"], guide: how-to/apply-a-texture.md}
+    - {do: Cubemap, use: ["initialize_cubemap_on_gpu(x_neg, x_pos, y_neg, y_pos, z_neg, z_pos)"], guide: how-to/add-a-skybox.md}
+    - {do: Update, use: ["update(image)"]}
+    - {do: Free, use: ["clear()"]}
+  figures:
+    - src: reference/opengl_texture_image_structure.svg
+      caption: "Initializing a texture copies an image_structure to GPU memory and keeps its id and size; on a quad, uv runs from (0,0) to (1,1) and the default shader reads (u, 1-v), so the first row of the file shows at the top."
+    - src: reference/opengl_texture_wrap.svg
+      caption: "With uv beyond [0,1], GL_REPEAT tiles the image, GL_MIRRORED_REPEAT flips every other copy, and GL_CLAMP_TO_EDGE (the default) stretches the edge texels."
+
+camera_orbit:
+  canonical: camera_orbit
+  group: Camera and scene
+  short: Camera orbiting around a center of rotation.
+  figures:
+    - src: reference/camera_orbit.svg
+      caption: "The camera sits at distance_to_center from center_of_rotation and looks toward it; the mouse and keys of camera_controller_orbit change these fields."
+camera_projection_perspective:
+  canonical: camera_projection_perspective
+  group: Camera and scene
+  short: Perspective projection parameters (field of view, aspect ratio, near/far planes).
+  figures:
+    - src: reference/camera_projection_perspective.svg
+      caption: "Side view of the view frustum: field_of_view is the full vertical angle in radians, depth_min and depth_max are distances in front of the camera, aspect_ratio is width over height."
+environment_generic_structure:
+  canonical: environment_generic_structure
+  group: Camera and scene
+  short: Environment shared by all draw calls (camera, projection, light, uniforms).
+  figures:
+    - src: reference/environment_generic_structure.svg
+      caption: "environment_generic_structure is an empty base class; the environment_structure of the project template derives from it and holds the camera matrices, the light and the generic uniforms sent to every shader."
+    - src: uniform_sources.svg
+      caption: "What draw(drawable, environment) sends to the shader: some uniforms come from the drawable, the others from the environment."
+
+hierarchy_mesh_drawable:
+  canonical: hierarchy_mesh_drawable
+  group: Meshes and drawables
+  short: Tree of mesh_drawable elements, each placed relative to its parent (articulated objects).
+  tasks:
+    - {do: Build, use: ["add(drawable, name, name_parent, translation)"], guide: understand/hierarchies.md}
+    - {do: Animate, use: ["hierarchy_mesh_drawable_node::transform_local", "update_local_to_global_coordinates()"], guide: understand/hierarchies.md}
+    - {do: Draw, use: ["draw(hierarchy, environment)"]}
+  figures:
+    - src: hierarchy-tree.svg
+      caption: "A character as a tree: each node stores its transform relative to its parent, and its global transform is the global transform of its parent times its local transform."
+    - src: hierarchy_local_frames.svg
+      caption: "Each node is placed in the frame of its parent; update_local_to_global_coordinates computes global = global(parent) * local into hierarchy_transform_model, and draw uses hierarchy_transform_model * model as model matrix."
+hierarchy_mesh_drawable_node:
+  canonical: hierarchy_mesh_drawable_node
+  group: Meshes and drawables
+  short: One element of a hierarchy_mesh_drawable (drawable, parent name, local and global transforms).
+triangles_drawable:
+  canonical: triangles_drawable
+  group: Meshes and drawables
+  short: Triangle soup stored on the GPU, without connectivity, ready to be drawn.
+trajectory_drawable:
+  canonical: trajectory_drawable
+  group: Meshes and drawables
+  short: Trail of the last positions of a moving point, drawn as a curve.
+curve_drawable_dynamic_extend:
+  canonical: curve_drawable_dynamic_extend
+  group: Meshes and drawables
+  short: curve_drawable whose number of points can grow while the program runs (sketching).
+skybox_drawable:
+  canonical: skybox_drawable
+  group: Meshes and drawables
+  short: Cube map drawn around the camera as a background.
+material_mesh_drawable_phong:
+  canonical: material_mesh_drawable_phong
+  group: Meshes and drawables
+  short: Material of a mesh_drawable (color, alpha, Phong coefficients, texture settings).
+phong_parameters:
+  canonical: phong_parameters
+  group: Meshes and drawables
+  short: "Phong coefficients of a material: ambient, diffuse, specular and specular exponent."
+texture_settings_parameters:
+  canonical: texture_settings_parameters
+  group: Meshes and drawables
+  short: Texture options of a material (use the texture, flip v, two-sided lighting).
+bounding_box:
+  canonical: bounding_box
+  group: Meshes and drawables
+  short: Axis-aligned bounding box (corners p_min and p_max) of a mesh or a set of points.
+
+opengl_fbo_structure:
+  canonical: opengl_fbo_structure
+  group: Images and OpenGL
+  short: Off-screen frame buffer, to render into a texture (color or depth).
+uniform_generic_structure:
+  canonical: uniform_generic_structure
+  group: Images and OpenGL
+  short: Named uniform values (int, float, vec3, mat4...) sent to every shader.
+opengl_vbo_structure:
+  canonical: opengl_vbo_structure
+  group: Images and OpenGL
+  short: OpenGL vertex buffer (VBO) holding one per-vertex or per-instance array of vec2, vec3 or vec4.
+opengl_ebo_structure:
+  canonical: opengl_ebo_structure
+  group: Images and OpenGL
+  short: OpenGL element buffer (EBO) holding the triangle indices (uint3) of an indexed mesh.
+opengl_gpu_buffer:
+  canonical: opengl_gpu_buffer
+  group: Images and OpenGL
+  short: Common base of the VBO and the EBO - OpenGL id, number of elements, target and memory layout.
+
+camera_orbit_euler:
+  canonical: camera_orbit_euler
+  group: Camera and scene
+  short: Camera orbiting around a center, oriented by two angles (keeps the up direction).
+camera_first_person:
+  canonical: camera_first_person
+  group: Camera and scene
+  short: Camera with a free position and orientation (first person view).
+camera_first_person_euler:
+  canonical: camera_first_person_euler
+  group: Camera and scene
+  short: First person camera oriented by yaw and pitch angles (keeps the up direction).
+camera_projection_orthographic:
+  canonical: camera_projection_orthographic
+  group: Camera and scene
+  short: Orthographic projection parameters (box seen by the camera, no perspective).
+camera_controller_orbit:
+  canonical: camera_controller_orbit
+  group: Camera and scene
+  short: Mouse and keyboard control of a camera_orbit (rotate, zoom, pan).
+camera_controller_orbit_euler:
+  canonical: camera_controller_orbit_euler
+  group: Camera and scene
+  short: Mouse and keyboard control of a camera_orbit_euler (default camera of the scene template).
+  tasks:
+    - {do: Start, use: ["initialize(inputs, window)", "set_rotation_axis_z()"], guide: understand/scene-structure.md}
+    - {do: Place, use: ["look_at(eye, center)"], guide: how-to/draw-a-mesh.md}
+    - {do: Matrix, use: ["camera_model.matrix_view()"], guide: understand/camera-and-matrices.md}
+camera_controller_first_person:
+  canonical: camera_controller_first_person
+  group: Camera and scene
+  short: Mouse and keyboard control of a camera_first_person.
+camera_controller_first_person_euler:
+  canonical: camera_controller_first_person_euler
+  group: Camera and scene
+  short: Mouse and keyboard control of a camera_first_person_euler (walk in a scene).
+camera_controller_fly_mode:
+  canonical: camera_controller_fly_mode
+  group: Camera and scene
+  short: Plane-like camera control moving forward continuously.
+input_devices:
+  canonical: input_devices
+  group: Camera and scene
+  short: State of the mouse, the keyboard and the time step, updated by the application.
+  figures:
+    - src: input_routing.svg
+      caption: "The mouse position is stored in relative coordinates, from (-1,-1) at the bottom left to (1,1) at the top right; a mouse event updates inputs, is dropped if the cursor is over the GUI, and otherwise calls the callback of the scene."
+inputs_keyboard_parameters:
+  canonical: inputs_keyboard_parameters
+  group: Camera and scene
+  short: Keyboard state (inputs.keyboard) with is_pressed(key) and the shift, ctrl and arrow flags.
+inputs_keyboard_last_action_parameter:
+  canonical: inputs_keyboard_last_action_parameter
+  group: Camera and scene
+  short: Last key pressed or released (inputs.keyboard.last_action), to react once to a key press.
+inputs_mouse_parameters:
+  canonical: inputs_mouse_parameters
+  group: Camera and scene
+  short: Mouse state (inputs.mouse) with the cursor position, the buttons, the scroll and the GUI flag.
+picking_structure:
+  canonical: picking_structure
+  group: Camera and scene
+  short: Result of a picking (picking_spheres...) with the selected index, the 3D position and the ray.
+intersection_structure:
+  canonical: intersection_structure
+  group: Camera and scene
+  short: Result of a ray intersection (valid flag, position and normal of the hit point).
+window_structure:
+  canonical: window_structure
+  group: Camera and scene
+  short: GLFW window of the application (size, title, aspect ratio).
+
+timer_basic:
+  canonical: timer_basic
+  group: Time and animation
+  short: Timer accumulating the elapsed time t (update() returns the time step), with start, stop and a speed factor.
+  tasks:
+    - {do: Run, use: ["start()", "stop()"], guide: how-to/animate-with-time.md}
+    - {do: Advance, use: ["update()", "t"], guide: how-to/animate-with-time.md}
+    - {do: Speed, use: ["scale"]}
+  figures:
+    - src: timers_timeline.svg
+      caption: "The same irregular frames seen by the three timers: timer_basic.t grows by dt at each update, timer_interval.t loops back to t_min when it reaches t_max, and timer_event_periodic sets event to true at the first frame after each period has elapsed."
+timer_interval:
+  canonical: timer_interval
+  group: Time and animation
+  short: Timer looping over a time interval [t_min, t_max] (periodic animations).
+  figures:
+    - src: timers_timeline.svg
+      caption: "The same irregular frames seen by the three timers: timer_basic.t grows by dt at each update, timer_interval.t loops back to t_min when it reaches t_max, and timer_event_periodic sets event to true at the first frame after each period has elapsed."
+timer_event_periodic:
+  canonical: timer_event_periodic
+  group: Time and animation
+  short: Timer raising an event at a fixed period (spawn objects regularly).
+  figures:
+    - src: timers_timeline.svg
+      caption: "The same irregular frames seen by the three timers: timer_basic.t grows by dt at each update, timer_interval.t loops back to t_min when it reaches t_max, and timer_event_periodic sets event to true at the first frame after each period has elapsed."

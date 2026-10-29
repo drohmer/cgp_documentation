@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 380" width="700" height="380">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 14px; fill: #555; }
+    .f { font-family: Menlo, Consolas, monospace; font-size: 14px; fill: #333; }
+    .d { font-weight: bold; }
+    .tag { font-size: 13px; fill: #333; }
+    .guide { stroke: #aaa; stroke-width: 1.2; fill: none; }
+  </style>
+
+  <rect x="10" y="6" width="680" height="368" rx="10" fill="#f6f6f6" stroke="#bbb" stroke-width="1.5"/>
+
+  <!-- scene row highlight -->
+  <rect x="62" y="300" width="618" height="28" rx="4" fill="#dff0dc" stroke="#5aa55a" stroke-width="1.5"/>
+
+  <!-- guides -->
+  <path d="M34,40 V342 M34,62 H46 M34,90 H46 M34,118 H46 M34,174 H46 M34,202 H46 M34,342 H46" class="guide"/>
+  <path d="M58,124 V146 M58,146 H70" class="guide"/>
+  <path d="M58,208 V314 M58,230 H70 M58,258 H70 M58,286 H70 M58,314 H70" class="guide"/>
+
+  <text x="24" y="32" class="f d">project/</text>
+  <text x="330" y="32">the folder you compile and run</text>
+
+  <text x="50" y="67" class="f">CMakeLists.txt  Makefile</text>
+  <text x="330" y="67">build files</text>
+
+  <text x="50" y="95" class="f d">cgp/</text>
+  <text x="330" y="95">the library</text>
+
+  <text x="50" y="123" class="f d">shaders/</text>
+  <text x="330" y="123">GLSL files, read at run time</text>
+  <text x="74" y="151" class="f">mesh/  single_color/</text>
+  <text x="330" y="151">default shaders</text>
+
+  <text x="50" y="179" class="f d">assets/</text>
+  <text x="330" y="179">optional: images, meshes</text>
+
+  <text x="50" y="207" class="f d">src/</text>
+  <text x="330" y="207">your program</text>
+  <text x="74" y="235" class="f">main.cpp</text>
+  <text x="330" y="235">entry point</text>
+  <text x="74" y="263" class="f">application.hpp/.cpp</text>
+  <text x="330" y="263">window, frame loop, inputs</text>
+  <text x="74" y="291" class="f">environment.hpp/.cpp</text>
+  <text x="330" y="291">uniforms, global settings</text>
+  <text x="74" y="319" class="f d">scene.hpp/.cpp</text>
+  <text x="330" y="319" style="fill:#333">your scene</text>
+
+  <text x="50" y="347" class="f">project</text>
+  <text x="330" y="347">the executable, written at the root</text>
+
+  <!-- tags: do you edit it? -->
+  <text x="672" y="32" text-anchor="end" class="d">edit?</text>
+  <rect x="588" y="80" width="84" height="20" rx="10" fill="#ececec" stroke="#999"/>
+  <text x="630" y="95" class="tag" text-anchor="middle">no</text>
+  <rect x="588" y="220" width="84" height="20" rx="10" fill="#ececec" stroke="#999"/>
+  <text x="630" y="235" class="tag" text-anchor="middle">no</text>
+  <rect x="588" y="248" width="84" height="20" rx="10" fill="#ececec" stroke="#999"/>
+  <text x="630" y="263" class="tag" text-anchor="middle">rarely</text>
+  <rect x="588" y="276" width="84" height="20" rx="10" fill="#e3eefb" stroke="#6b9bd8"/>
+  <text x="630" y="291" class="tag" text-anchor="middle">sometimes</text>
+  <rect x="588" y="304" width="84" height="20" rx="10" fill="#c9e7c4" stroke="#5aa55a"/>
+  <text x="630" y="319" class="tag" text-anchor="middle">yes</text>
+</svg>

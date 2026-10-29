@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 300" width="520" height="300" font-family="sans-serif" font-size="14">
+  <!-- Side view: the camera on the left looks to the right; draw order 1, 2, 3 -->
+  <g fill="#888888">
+    <!-- camera -->
+    <rect x="20" y="130" width="40" height="30" rx="4"/>
+    <polygon points="60,135 80,125 80,165 60,155"/>
+    <text x="40" y="190" text-anchor="middle">camera</text>
+  </g>
+  <!-- view cone -->
+  <g stroke="#888888" stroke-width="1" stroke-dasharray="4 4" fill="none">
+    <line x1="80" y1="125" x2="500" y2="30"/>
+    <line x1="80" y1="165" x2="500" y2="260"/>
+  </g>
+  <!-- opaque floor (drawn first) -->
+  <rect x="100" y="230" width="400" height="12" fill="#888888" fill-opacity="0.6"/>
+  <!-- transparent quads -->
+  <rect x="200" y="110" width="10" height="120" fill="#4caf50" fill-opacity="0.5" stroke="#888888"/>
+  <rect x="370" y="110" width="10" height="120" fill="#e05050" fill-opacity="0.5" stroke="#888888"/>
+  <g fill="#888888" text-anchor="middle">
+    <circle cx="300" cy="262" r="11" fill="none" stroke="#888888" stroke-width="1.5"/>
+    <text x="300" y="267">1</text>
+    <text x="300" y="292">opaque shapes, depth written</text>
+    <circle cx="375" cy="88" r="11" fill="none" stroke="#888888" stroke-width="1.5"/>
+    <text x="375" y="93">2</text>
+    <text x="388" y="154" text-anchor="start">farthest</text>
+    <circle cx="205" cy="88" r="11" fill="none" stroke="#888888" stroke-width="1.5"/>
+    <text x="205" y="93">3</text>
+    <text x="218" y="154" text-anchor="start">nearest</text>
+    <text x="290" y="20">blending on, glDepthMask(false)</text>
+  </g>
+</svg>

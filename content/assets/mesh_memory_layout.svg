@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 330" width="700" height="330">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 14px; fill: #333; }
+    .b { font-weight: bold; }
+    .cell { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.2; }
+    .tri { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.2; }
+    .hl { fill: none; stroke: #e07b1a; stroke-width: 3; }
+    .ao { stroke: #e07b1a; stroke-width: 2; fill: none; marker-end: url(#ao); }
+  </style>
+  <defs>
+    <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+  </defs>
+
+  <!-- The shape -->
+  <text x="20" y="24" class="b" style="fill:#2b66ad">mesh (CPU memory)</text>
+  <polygon points="40,250 220,250 220,70" fill="#ececec" stroke="#999" stroke-width="1.5"/>
+  <polygon points="40,250 220,70 40,70" fill="#fdebd6" stroke="#e07b1a" stroke-width="3"/>
+  <text x="90" y="125" class="in" text-anchor="middle">triangle 1</text>
+  <text x="172" y="205" class="in" text-anchor="middle">triangle 0</text>
+  <g>
+    <circle cx="40" cy="250" r="12" fill="#fff" stroke="#888" stroke-width="1.5"/>
+    <text x="40" y="255" class="in b" text-anchor="middle">0</text>
+    <circle cx="220" cy="250" r="12" fill="#fff" stroke="#888" stroke-width="1.5"/>
+    <text x="220" y="255" class="in b" text-anchor="middle">1</text>
+    <circle cx="220" cy="70" r="12" fill="#fff" stroke="#888" stroke-width="1.5"/>
+    <text x="220" y="75" class="in b" text-anchor="middle">2</text>
+    <circle cx="40" cy="70" r="12" fill="#fff" stroke="#888" stroke-width="1.5"/>
+    <text x="40" y="75" class="in b" text-anchor="middle">3</text>
+  </g>
+
+  <!-- Per-vertex arrays -->
+  <text x="345" y="56" text-anchor="end">vertex index</text>
+  <text x="391" y="56" text-anchor="middle" class="b">0</text>
+  <text x="473" y="56" text-anchor="middle" class="b">1</text>
+  <text x="555" y="56" text-anchor="middle" class="b">2</text>
+  <text x="637" y="56" text-anchor="middle" class="b">3</text>
+
+  <text x="345" y="86" text-anchor="end">position</text>
+  <text x="345" y="118" text-anchor="end">normal</text>
+  <text x="345" y="150" text-anchor="end">color</text>
+  <text x="345" y="182" text-anchor="end">uv</text>
+
+  <g>
+    <rect x="350" y="66" width="82" height="32" class="cell"/><rect x="432" y="66" width="82" height="32" class="cell"/><rect x="514" y="66" width="82" height="32" class="cell"/><rect x="596" y="66" width="82" height="32" class="cell"/>
+    <rect x="350" y="98" width="82" height="32" class="cell"/><rect x="432" y="98" width="82" height="32" class="cell"/><rect x="514" y="98" width="82" height="32" class="cell"/><rect x="596" y="98" width="82" height="32" class="cell"/>
+    <rect x="350" y="130" width="82" height="32" class="cell"/><rect x="432" y="130" width="82" height="32" class="cell"/><rect x="514" y="130" width="82" height="32" class="cell"/><rect x="596" y="130" width="82" height="32" class="cell"/>
+    <rect x="350" y="162" width="82" height="32" class="cell"/><rect x="432" y="162" width="82" height="32" class="cell"/><rect x="514" y="162" width="82" height="32" class="cell"/><rect x="596" y="162" width="82" height="32" class="cell"/>
+  </g>
+  <g class="m" text-anchor="middle">
+    <text x="391" y="87" class="m" text-anchor="middle">p0</text><text x="473" y="87" class="m" text-anchor="middle">p1</text><text x="555" y="87" class="m" text-anchor="middle">p2</text><text x="637" y="87" class="m" text-anchor="middle">p3</text>
+    <text x="391" y="119" class="m" text-anchor="middle">n0</text><text x="473" y="119" class="m" text-anchor="middle">n1</text><text x="555" y="119" class="m" text-anchor="middle">n2</text><text x="637" y="119" class="m" text-anchor="middle">n3</text>
+    <text x="391" y="151" class="m" text-anchor="middle">c0</text><text x="473" y="151" class="m" text-anchor="middle">c1</text><text x="555" y="151" class="m" text-anchor="middle">c2</text><text x="637" y="151" class="m" text-anchor="middle">c3</text>
+    <text x="391" y="183" class="m" text-anchor="middle">uv0</text><text x="473" y="183" class="m" text-anchor="middle">uv1</text><text x="555" y="183" class="m" text-anchor="middle">uv2</text><text x="637" y="183" class="m" text-anchor="middle">uv3</text>
+  </g>
+  <!-- vertices of triangle 1 -->
+  <rect x="351.5" y="67.5" width="79" height="125" class="hl"/>
+  <rect x="515.5" y="67.5" width="79" height="125" class="hl"/>
+  <rect x="597.5" y="67.5" width="79" height="125" class="hl"/>
+
+  <!-- Connectivity -->
+  <text x="345" y="263" text-anchor="end">connectivity</text>
+  <rect x="350" y="242" width="120" height="32" class="cell"/>
+  <text x="410" y="263" class="m" text-anchor="middle">(0, 1, 2)</text>
+  <rect x="470" y="242" width="120" height="32" class="tri"/>
+  <rect x="471.5" y="243.5" width="117" height="29" class="hl"/>
+  <text x="530" y="263" class="m" text-anchor="middle">(0, 2, 3)</text>
+  <text x="410" y="294" text-anchor="middle">triangle 0</text>
+  <text x="530" y="294" text-anchor="middle" style="fill:#a85000">triangle 1</text>
+
+  <path d="M500,242 L397,198" class="ao"/>
+  <path d="M530,242 L552,198" class="ao"/>
+  <path d="M560,242 L630,198" class="ao"/>
+
+  <text x="20" y="318">one entry per vertex in every array, one entry per triangle in connectivity</text>
+</svg>

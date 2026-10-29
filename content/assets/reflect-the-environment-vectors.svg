@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 382" width="700" height="382">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .lab { font-size: 13px; }
+    .b { font-weight: bold; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 12px; fill: #333; }
+    .sky { fill: #f3f8fd; stroke: #6b9bd8; stroke-width: 2; stroke-dasharray: 8 5; }
+    .obj { fill: #dcdcdc; stroke: #888; stroke-width: 1.5; }
+    .v { stroke: #333; stroke-width: 2; fill: none; marker-end: url(#ak); }
+    .n { stroke: #5aa55a; stroke-width: 2.5; fill: none; marker-end: url(#ag); }
+    .r { stroke: #e07b1a; stroke-width: 2.5; fill: none; marker-end: url(#ar); }
+    .inc { stroke: #999; stroke-width: 1.5; fill: none; stroke-dasharray: 5 4; marker-end: url(#agr); }
+  </style>
+  <defs>
+    <marker id="ak" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#333"/></marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5aa55a"/></marker>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+    <marker id="agr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#999"/></marker>
+  </defs>
+
+  <!-- skybox around the scene -->
+  <rect x="40" y="36" width="620" height="290" rx="4" class="sky"/>
+  <text x="52" y="58" class="in b" style="fill:#2b66ad">skybox: cube map image_skybox</text>
+  <text x="52" y="76" class="lab">(seen as infinitely far: only the direction counts)</text>
+
+  <!-- object -->
+  <ellipse cx="350" cy="276" rx="130" ry="46" class="obj"/>
+  <text x="350" y="300" class="lab" text-anchor="middle" style="fill:#555">torus</text>
+
+  <!-- point P = (350,230); camera at (170,110) -->
+  <path d="M170,110 L343,225" class="inc"/>
+  <text x="236" y="190" class="lab">-V</text>
+  <path d="M350,230 L276,181" class="v"/>
+  <text x="290" y="168" class="in b">V</text>
+  <path d="M350,230 V156" class="n"/>
+  <text x="358" y="160" class="in b" style="fill:#2a7330">N</text>
+
+  <!-- R = reflect(-V, N) = (0.832,-0.555): hits y=36 at x = 350 + 194*1.5 = 641 -->
+  <path d="M350,230 L637,39" class="r"/>
+  <text x="452" y="182" class="m" style="fill:#a85000">R_skybox = reflect(-V, N)</text>
+  <circle cx="641" cy="36" r="7" style="fill:#e07b1a;stroke:#fff;stroke-width:1.5"/>
+
+  <circle cx="350" cy="230" r="4.5" style="fill:#333"/>
+  <text x="362" y="250" class="m">fragment.position</text>
+
+  <!-- camera -->
+  <path d="M170,110 L148,98 L148,122 Z" style="fill:#2a8f99"/>
+  <circle cx="170" cy="110" r="4" style="fill:#333"/>
+  <text x="60" y="146" class="m">camera_position</text>
+
+  <text x="350" y="352" text-anchor="middle">The pixel takes the color of the sky in the direction</text>
+  <text x="350" y="370" text-anchor="middle" class="m" style="font-size:13px;fill:#666">texture(image_skybox, skybox_rotation * R_skybox)</text>
+</svg>

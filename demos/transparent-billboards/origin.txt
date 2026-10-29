@@ -1,0 +1,11 @@
+Origin: CGP example of github.com/drohmer/epita_ani3d_lab_code-2027
+(examples/01_transparent_billboards, commit bbe7095), code unchanged.
+Assets reduced to fit the web demo (same file names, 16.7 -> 5.4 MB):
+ - trunk.obj, foliage.obj: coordinates rounded (3 decimals for v and vt, 2 for vn),
+   duplicated values merged, unused o / s / usemtl / mtllib lines removed (1.1 -> 0.9 MB, 4.7 -> 2.2 MB);
+ - branches.obj: positions rounded to 3 decimals, vt and vn removed (the branches have no
+   texture; their per-vertex normals are recomputed at loading by mesh::fill_empty_field)
+   (6.9 -> 2.0 MB);
+ - trunk.png, pine.png: resized from 1024 to 512 pixels and stored as 8-bit palette PNG
+   (the 8-bit alpha of pine.png becomes 1-bit: the shader only tests alpha < 0.5)
+   (2.3 -> 0.16 MB, 1.8 -> 0.08 MB).

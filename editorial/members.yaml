@@ -1,0 +1,699 @@
+# Descriptions of the fields and methods of the documented types (Reference pages).
+#
+# Key: <struct>::<field> for a field (the struct that declares it, e.g. timer_basic::t),
+# the method key for a method (as in api.json, e.g. timer_basic::start()).
+# Value: one sentence, present tense, plain ASCII; end with " [draft]" if written without
+# reading the C++ code. A Doxygen brief in the source is used when no entry exists here.
+
+# --- B
+'mesh::position': "Per-vertex 3D positions of the mesh, indexed by the triangles of connectivity."
+'mesh::normal': "Per-vertex normals, expected to have the same size as position (filled by fill_empty_field or normal_update when empty)."
+'mesh::color': "Per-vertex RGB colors in [0,1], set to white by fill_empty_field when missing."
+'mesh::uv': "Per-vertex texture coordinates, set to (0,0) by fill_empty_field when missing."
+'mesh::connectivity': "Triangles of the mesh, each given as a triplet of indices into the per-vertex arrays."
+'mesh::flip_connectivity()': "Swaps the first two indices of every triangle to reverse its orientation, without modifying the stored normals, and returns the mesh."
+'mesh::normal_update()': "Recomputes the per-vertex normals as the normalized sum of the unit normals of the adjacent non-degenerate triangles, and returns the mesh."
+'mesh::translate(float,float,float)': "Adds the translation (tx,ty,tz) to every position, leaving the normals unchanged, and returns the mesh."
+'mesh::apply_transform(affine const&)': "Applies the affine transform to every position, maps each normal by the rotation and the inverse of scaling_xyz (negated for a negative scaling) before renormalizing it, reverses the triangles of a reflection, and returns the mesh."
+'mesh::apply_transform(affine_rt const&)': "Applies the rotation and translation to every position and the rotation to every normal, and returns the mesh."
+'mesh::apply_transform(affine_rts const&)': "Applies the rotation, translation and uniform scaling to every position and the rotation to every normal; a negative scaling also negates the normals and reverses the triangles; returns the mesh."
+'mesh_drawable::default_shader': "Static shader shared by all mesh_drawable and used by default in initialize_data_on_gpu, loaded from shaders/mesh/mesh.vert.glsl and mesh.frag.glsl by the application."
+'mesh_drawable::default_texture': "Static 1x1 white RGBA texture shared by all mesh_drawable and used by default in initialize_data_on_gpu."
+'mesh_drawable::shader': "Shader program used to draw this drawable, which must be valid (non-zero id) at draw time."
+'mesh_drawable::texture': "Main texture bound to texture unit 0 and sent to the uniform image_texture at draw time."
+'mesh_drawable::supplementary_texture': "Additional textures for multi-texturing, keyed by uniform name and bound to texture units 1, 2, ... in the order of the map at draw time."
+'mesh_drawable::vbo_position': "VBO storing the vertex positions, bound to shader location 0."
+'mesh_drawable::vbo_normal': "VBO storing the vertex normals, bound to shader location 1."
+'mesh_drawable::vbo_color': "VBO storing the vertex colors, bound to shader location 2."
+'mesh_drawable::vbo_uv': "VBO storing the vertex texture coordinates, bound to shader location 3."
+'mesh_drawable::supplementary_vbo': "Optional extra VBOs (per-vertex or per-instance), where the element k is bound to shader location k+4."
+'mesh_drawable::ebo_connectivity': "EBO storing the triangle indices used by the indexed draw call."
+'mesh_drawable::vao': "OpenGL id of the Vertex Array Object describing the VBO layout, 0 when not initialized."
+'mesh_drawable::model': "Model transform of the drawable (translation, rotation, scaling, scaling_xyz), reset to identity by initialize_data_on_gpu and clear."
+'mesh_drawable::hierarchy_transform_model': "Global transform set by hierarchy_mesh_drawable::update_local_to_global_coordinates, applied first in the model matrix sent to the shader."
+'mesh_drawable::supplementary_model_matrix': "Generic 4x4 matrix inserted between hierarchy_transform_model and model in the model matrix, identity by default and reset by initialize_data_on_gpu."
+'mesh_drawable::material': "Phong material (color, alpha, shading coefficients, texture settings) sent to the uniform struct material at draw time."
+'mesh_drawable::initialize_data_on_gpu(mesh const&,opengl_shader_structure const&,opengl_texture_image_structure const&)': "Checks the mesh with mesh_check, uploads its position, normal, color, uv and connectivity into new VBOs, an EBO and a VAO (locations 0 to 3), and resets model, material and supplementary_model_matrix, keeping a previously set shader or texture when the default one is passed."
+'mesh_drawable::clear()': "Deletes the VBOs (including the supplementary ones), the EBO and the VAO, and resets shader, texture, supplementary_texture, model and material without deleting the shader program or the textures."
+'mesh_drawable::send_opengl_uniform(bool) const': "Sends the uniform model = hierarchy_transform_model * supplementary_model_matrix * model and the material uniforms to the current shader."
+'mesh_drawable::initialize_supplementary_data_on_gpu<T>(numarray<T> const&,GLuint,GLuint)': "Uploads an extra vec2, vec3 or vec4 array into supplementary_vbo and binds it in the VAO at location_index (which must be at least 4), with divisor greater than 0 for per-instance data."
+'mesh_drawable::update_supplementary_data_on_gpu<T>(numarray<T> const&,GLuint,int)': "Overwrites the content of the supplementary VBO at location_index (at least 4, already initialized) without reallocation, sending only the first size_elements_update elements when it is not -1."
+'curve_drawable::display_type': "Drawing mode, Curve (default) for a GL_LINE_STRIP joining all the points, or Segments for GL_LINES between consecutive pairs of points."
+'curve_drawable::shader': "Shader program used to draw the curve, which must be valid (non-zero id) at draw time."
+'curve_drawable::vbo_position': "VBO storing the positions of the curve points, bound to shader location 0."
+'curve_drawable::vao': "OpenGL id of the Vertex Array Object of the curve, 0 when not initialized."
+'curve_drawable::model': "Model transform sent to the uniform model, reset to identity by initialize_data_on_gpu and clear."
+'curve_drawable::color': "Uniform RGB color of the curve sent to the uniform color, set to red by initialize_data_on_gpu."
+'curve_drawable::default_shader': "Static shader shared by all curve_drawable and used by default in initialize_data_on_gpu, loaded from shaders/single_color by the application."
+'curve_drawable::initialize_data_on_gpu(numarray<vec3> const&,opengl_shader_structure const&)': "Uploads the positions into a new VBO and VAO, sets the shader, and resets model to identity and color to red (does nothing but warn if position is empty)."
+'curve_drawable::clear()': "Deletes the VBO and the VAO, sets the shader id to 0 without deleting the program, and resets model to identity and color to black."
+'curve_drawable::send_opengl_uniform(bool) const': "Sends the uniforms color and model to the shader of the curve."
+'image_structure::width': "Number of pixels in the horizontal direction."
+'image_structure::height': "Number of pixels in the vertical direction."
+'image_structure::color_type': "Pixel format of data, rgb (3 bytes per pixel) or rgba (4 bytes per pixel)."
+'image_structure::data': "Pixel bytes in [0,255] stored row by row, the component c of pixel (x,y) being at index (x + width*y)*N + c with N = 3 or 4."
+'image_structure::image_structure()': "Builds an empty RGB image of size 0x0."
+'image_structure::image_structure(unsigned int,unsigned int,image_color_type,numarray<unsigned char> const&)': "Builds an image from its size, color type and pixel bytes, without checking that the size of the data matches."
+'image_structure::subimage(int,int,int,int) const': "Returns a copy of the rectangle of pixels [start_h,end_h[ x [start_v,end_v[ of the image, end bounds excluded."
+'image_structure::mirror_horizontal() const': "Returns a copy of the image with the pixel columns reversed (left-right mirror)."
+'image_structure::mirror_vertical() const': "Returns a copy of the image with the pixel rows reversed (top-bottom mirror)."
+'image_structure::rotate_90_degrees_counterclockwise() const': "Returns a copy of the image rotated by 90 degrees, with width and height swapped, where the output pixel (x,y) is the input pixel (width-1-y, x)."
+'image_structure::rotate_90_degrees_clockwise() const': "Returns a copy of the image rotated by 90 degrees, with width and height swapped, where the output pixel (x,y) is the input pixel (y, height-1-x)."
+'opengl_shader_structure::id': "OpenGL id of the shader program, 0 when no shader is loaded."
+'opengl_shader_structure::load(std::string const&,std::string const&,bool)': "Compiles and links the vertex and fragment shader files into a new program and stores its id, stopping the program on a missing file or a compilation error and without deleting the previous program."
+'opengl_shader_structure::load_from_inline_text(std::string const&,std::string const&,bool*)': "Compiles and links a program from the vertex and fragment source texts, sets id to 0 and load_shader_ok to false on failure instead of stopping, and does not delete the previous program."
+'opengl_shader_structure::clear()': "Deletes the program, removes its entries from the uniform-location cache and sets id to 0, doing nothing when id is already 0."
+'opengl_shader_structure::query_uniform_location(std::string const&) const': "Returns the location of a uniform in the program (-1 if absent), calling glGetUniformLocation only the first time and reading a cache shared by all shaders afterwards."
+'opengl_shader_structure::clear_cache_uniform_location()': "Empties the uniform-location cache for every shader program, not only this one."
+'opengl_shader_structure::debug_dump_cache_uniform_location()': "Returns a text listing every cached (program id, uniform name, location) entry, for debugging."
+'opengl_texture_image_structure::id': "OpenGL id of the texture, 0 when no texture is allocated."
+'opengl_texture_image_structure::width': "Width of the texture in pixels."
+'opengl_texture_image_structure::height': "Height of the texture in pixels."
+'opengl_texture_image_structure::format': "Internal format of the texture, such as GL_RGB8, GL_RGBA8, GL_RGB32F or GL_DEPTH_COMPONENT."
+'opengl_texture_image_structure::texture_type': "Texture target, GL_TEXTURE_2D or GL_TEXTURE_CUBE_MAP, used by bind and unbind."
+'opengl_texture_image_structure::bind() const': "Binds the texture to its target on the currently active texture unit, asserting that id is not 0."
+'opengl_texture_image_structure::unbind() const': "Binds texture 0 to the target of this texture on the currently active texture unit."
+'opengl_texture_image_structure::clear()': "Deletes the texture on the GPU and resets all fields to their default values, asserting that id is not 0."
+'opengl_texture_image_structure::update_wrap(GLint,GLint) const': "Sets the wrap modes in s and t (GL_CLAMP_TO_EDGE, GL_REPEAT, GL_MIRRORED_REPEAT, ...) on the target of the texture (texture_type) after binding it."
+'opengl_texture_image_structure::load_and_initialize_texture_2d_on_gpu(std::string const&,GLint,GLint,bool,GLint,GLint)': "Loads a PNG or JPG file with image_load_file and creates a GL_TEXTURE_2D from it, with clamp-to-edge wrapping and mipmaps by default."
+'opengl_texture_image_structure::initialize_texture_2d_on_gpu(image_structure const&,GLint,GLint,bool,GLint,GLint)': "Creates a new GL_TEXTURE_2D in GL_RGB8 or GL_RGBA8 from the image, with clamp-to-edge wrapping and mipmaps by default, without deleting a previously allocated texture."
+'opengl_texture_image_structure::initialize_texture_2d_on_gpu(grid_2D<vec3> const&,GLint,GLint,bool,GLint,GLint)': "Creates a new GL_TEXTURE_2D in GL_RGB32F from a grid of float RGB colors, with clamp-to-edge wrapping and mipmaps by default, without deleting a previously allocated texture."
+'opengl_texture_image_structure::initialize_cubemap_on_gpu(image_structure const&,image_structure const&,image_structure const&,image_structure const&,image_structure const&,image_structure const&)': "Creates a GL_TEXTURE_CUBE_MAP from six square images of the same size and color type (faces -x, +x, -y, +y, -z, +z), with clamp-to-edge wrapping, linear filtering and no mipmap."
+'opengl_texture_image_structure::initialize_texture_2d_on_gpu(int,int,GLint,GLenum,GLint,GLint,GLint,GLint)': "Allocates an uninitialized texture of the given size, format and target without mipmap, typically used as a render target."
+'opengl_texture_image_structure::update(grid_2D<vec3> const&)': "Overwrites the texture pixels with the grid content using glTexSubImage2D, read with the component type of the current format, and regenerates the mipmaps."
+'opengl_texture_image_structure::update(image_structure const&)': "Overwrites the texture pixels with the image content using glTexSubImage2D, read with the component type of the current format, and regenerates the mipmaps."
+'hierarchy_mesh_drawable::elements': "Nodes of the hierarchy, stored so that every parent comes before its children."
+'hierarchy_mesh_drawable::name_map': "Lookup table giving the index in elements of each node name."
+'hierarchy_mesh_drawable::add(hierarchy_mesh_drawable_node const&)': "Appends the node and registers its name, aborting if the hierarchy becomes invalid (duplicate name or parent not yet added)."
+'hierarchy_mesh_drawable::add(mesh_drawable const&,std::string const&,std::string const&,vec3 const&,rotation_transform const&)': "Appends a copy of the drawable as a node with the given name and parent (global_frame by default) and a local transform made of the rotation and translation, with scaling 1."
+'hierarchy_mesh_drawable::add(mesh_drawable const&,std::string const&,std::string const&,affine_rts const&)': "Appends a copy of the drawable as a node with the given name, parent and local transform."
+'hierarchy_mesh_drawable::operator[](std::string const&) const': "Returns the node with the given name, printing the available names and aborting if it does not exist."
+'hierarchy_mesh_drawable::update_local_to_global_coordinates()': "Sets the hierarchy_transform_model of each drawable to its parent global transform times its transform_local, in the order of elements, and must be called after changing a local transform and before draw."
+'hierarchy_mesh_drawable::hierarchy_display() const': "Returns a text listing each node index, name and parent name, for debugging."
+'hierarchy_mesh_drawable_node::drawable': "Mesh drawable of the node, whose hierarchy_transform_model receives the global transform of the node."
+'hierarchy_mesh_drawable_node::name': "Unique name of the node in the hierarchy, uninitialized by default."
+'hierarchy_mesh_drawable_node::name_parent': "Name of the parent node, global_frame by default for a root node."
+'hierarchy_mesh_drawable_node::transform_local': "Transform of the node relative to its parent (rotation, translation, uniform scaling)."
+'triangles_drawable::default_shader': "Static shader shared by all triangles_drawable and used by default in initialize_data_on_gpu, loaded from shaders/mesh by the application."
+'triangles_drawable::default_texture': "Static 1x1 white RGBA texture shared by all triangles_drawable and used by default in initialize_data_on_gpu."
+'triangles_drawable::shader': "Shader program used to draw the triangles, which must be valid (non-zero id) at draw time."
+'triangles_drawable::texture': "Main texture bound to texture unit 0 and sent to the uniform image_texture at draw time."
+'triangles_drawable::vbo_position': "VBO storing the vertex positions, three consecutive vertices per triangle, bound to shader location 0."
+'triangles_drawable::vbo_normal': "VBO storing the vertex normals, bound to shader location 1."
+'triangles_drawable::vbo_color': "VBO storing the vertex colors, bound to shader location 2."
+'triangles_drawable::vbo_uv': "VBO storing the vertex texture coordinates, bound to shader location 3."
+'triangles_drawable::vao': "OpenGL id of the Vertex Array Object describing the VBO layout, 0 when not initialized."
+'triangles_drawable::model': "Model transform of the drawable, reset to identity by initialize_data_on_gpu and clear."
+'triangles_drawable::hierarchy_transform_model': "Additional transform applied before model in the model matrix sent to the shader."
+'triangles_drawable::material': "Phong material sent to the uniform struct material at draw time."
+'triangles_drawable::vertex_number': "Number of vertices drawn with glDrawArrays (three per triangle)."
+'triangles_drawable::supplementary_texture': "Additional textures keyed by uniform name and bound to texture units 1, 2, ... in the order of the map at draw time."
+'triangles_drawable::initialize_data_on_gpu(numarray<vec3> const&,numarray<vec3> const&,numarray<vec3> const&,numarray<vec3> const&,opengl_shader_structure const&,opengl_texture_image_structure const&)': "Uploads a non-indexed triangle soup (three consecutive positions per triangle) into VBOs and a VAO, filling missing normals with flat face normals, colors with white and uv with (0,0), and resets model and material."
+'triangles_drawable::clear()': "Deletes the VBOs and the VAO, sets vertex_number to 0, and resets shader, texture, supplementary_texture, model and material without deleting the shader program or the textures."
+'triangles_drawable::send_opengl_uniform(bool) const': "Sends the uniform model = hierarchy_transform_model * model and the material uniforms to the current shader."
+'trajectory_drawable::position_record': "Recorded positions, the most recent first, allocated to N_max_sample points at the first call to add."
+'trajectory_drawable::visual': "Curve drawable displaying the first current_size recorded positions, red by default; its color and model can be set at any time, also before the first add."
+'trajectory_drawable::N_max_sample': "Maximal number of positions kept in the trajectory, 100 by default."
+'trajectory_drawable::current_size': "Number of valid positions recorded so far, at most N_max_sample."
+'trajectory_drawable::trajectory_drawable(size_t)': "Builds an empty trajectory keeping at most N_max_sample positions, the GPU data being created at the first call to add."
+'trajectory_drawable::clear()': "Erases the recorded positions, releases the GPU data of the curve and sets current_size to 0, keeping the color and model of visual."
+'trajectory_drawable::add(vec3 const&)': "Inserts a position at the front of the record, dropping the oldest one when N_max_sample is reached, and re-uploads the whole record to the VBO of the curve (asserts N_max_sample > 0)."
+'curve_drawable_dynamic_extend::N_valid_points': "Number of points added with push_back, the remaining capacity of the VBO being unused."
+'curve_drawable_dynamic_extend::curve_drawable_dynamic_extend()': "Builds an empty curve with no GPU data and N_valid_points set to 0."
+'curve_drawable_dynamic_extend::clear()': "Releases the GPU data of the curve, sets N_valid_points to 0, and returns the curve."
+'curve_drawable_dynamic_extend::initialize_data_on_gpu(int,opengl_shader_structure const&)': "Allocates a VBO able to store initial_capacity points (100 by default) with no valid point, and returns the curve."
+'curve_drawable_dynamic_extend::push_back(vec3 const&)': "Writes a new point after the valid ones, initializing the VBO with capacity 100 if needed and doubling its capacity by a GPU copy when it is almost full, and returns the curve."
+'skybox_drawable::shader': "Shader program of the skybox, compiled from inline sources by initialize_data_on_gpu and deleted by clear."
+'skybox_drawable::texture': "Cubemap texture of the skybox, set by the user, bound to texture unit 0 and sent to the uniform image_skybox."
+'skybox_drawable::vbo_position': "VBO storing the positions of the cube of side 2 centered at the origin, bound to shader location 0."
+'skybox_drawable::ebo_connectivity': "EBO storing the triangles of the skybox cube."
+'skybox_drawable::vao': "OpenGL id of the Vertex Array Object of the skybox, 0 when not initialized."
+'skybox_drawable::model': "Model transform sent to the uniform model, whose translation is ignored by the skybox vertex shader."
+'skybox_drawable::skybox_rotation': "Rotation applied to the lookup direction in the cubemap, sent to the uniform skybox_rotation and set to identity by initialize_data_on_gpu."
+'skybox_drawable::alpha_color_blending': "Weight in [0,1] of color_blending mixed with the cubemap color, sent to the uniform alpha_color_blending, 0 by default."
+'skybox_drawable::color_blending': "RGB color mixed with the cubemap color according to alpha_color_blending, sent to the uniform color_blending, white by default."
+'skybox_drawable::initialize_data_on_gpu()': "Compiles the inline skybox shader, uploads a cube of side 2 into a VBO, an EBO and a VAO, and resets model and skybox_rotation to identity; aborts before compiling anything if the skybox is already initialized."
+'skybox_drawable::clear()': "Deletes the VBO, the EBO, the VAO and the shader program, and resets texture, model and skybox_rotation without deleting the cubemap texture."
+'material_mesh_drawable_phong::color': "Global RGB color of the object, white by default, sent to the uniform material.color."
+'material_mesh_drawable_phong::alpha': "Opacity of the object, 1 by default, sent to the uniform material.alpha."
+'material_mesh_drawable_phong::phong': "Phong coefficients (ambient 0.3, diffuse 0.6, specular 0.3, specular_exponent 64 by default) sent to the uniforms material.phong.*."
+'material_mesh_drawable_phong::texture_settings': "Texture options (active and inverse_v true, two_sided false by default) sent to the uniforms material.texture_settings.use_texture, texture_inverse_v and two_sided."
+'material_mesh_drawable_phong::send_opengl_uniform(opengl_shader_structure const&,bool) const': "Sends the color, alpha, Phong coefficients and texture settings to the uniforms material.* of the shader, which must be in use."
+'opengl_fbo_structure::mode': "Content of the FBO, image (RGB8 color texture plus a depth renderbuffer, default) or depth (depth texture only)."
+'opengl_fbo_structure::id': "OpenGL id of the framebuffer, 0 when not initialized."
+'opengl_fbo_structure::depth_buffer_id': "OpenGL id of the depth renderbuffer used in image mode, 0 otherwise."
+'opengl_fbo_structure::texture': "Texture receiving the rendering, color in image mode or depth in depth mode, to be bound for sampling after unbind."
+'opengl_fbo_structure::width': "Width in pixels of the FBO and of its texture, 800 if not set before initialize."
+'opengl_fbo_structure::height': "Height in pixels of the FBO and of its texture, 800 if not set before initialize."
+'opengl_fbo_structure::emscripten_color_attachment_id': "OpenGL id of the dummy color texture attached in depth mode under Emscripten, since WebGL requires a complete FBO."
+'opengl_fbo_structure::viewport_backup': "Viewport (x, y, width, height) saved by bind and restored by unbind."
+'opengl_fbo_structure::initialize()': "Creates the framebuffer and its texture (and depth renderbuffer in image mode) at size width x height, or 800x800 if unset, and stops the program if the framebuffer is incomplete."
+'opengl_fbo_structure::bind() const': "Saves the current viewport, binds the framebuffer and sets the viewport to its size so that the next draw calls render into texture."
+'opengl_fbo_structure::unbind() const': "Binds the default framebuffer back and restores the viewport saved by bind."
+'opengl_fbo_structure::update_screen_size(int,int)': "Reallocates the texture (and depth renderbuffer) at the new size when it differs from the current one, discarding their content."
+'opengl_fbo_structure::clear()': "Deletes the framebuffer, the depth renderbuffer, the texture and the Emscripten dummy texture, and sets width and height to 0."
+'uniform_generic_structure::uniform_int': "Integer uniforms to send, keyed by uniform name."
+'uniform_generic_structure::uniform_float': "Float uniforms to send, keyed by uniform name."
+'uniform_generic_structure::uniform_vec2': "vec2 uniforms to send, keyed by uniform name."
+'uniform_generic_structure::uniform_vec3': "vec3 uniforms to send, keyed by uniform name."
+'uniform_generic_structure::uniform_vec4': "vec4 uniforms to send, keyed by uniform name."
+'uniform_generic_structure::uniform_mat2': "mat2 uniforms to send, keyed by uniform name."
+'uniform_generic_structure::uniform_mat3': "mat3 uniforms to send, keyed by uniform name."
+'uniform_generic_structure::uniform_mat4': "mat4 uniforms to send, keyed by uniform name."
+'uniform_generic_structure::send_opengl_uniform(opengl_shader_structure const&,bool) const': "Sends every stored uniform to the shader, which must be in use, warning for a name absent from the shader when expected is true."
+
+# --- C
+'camera_orbit::orientation_camera': Orientation of the camera frame (identity by default, the camera then looks toward -z).
+'camera_orbit::center_of_rotation': Point the camera orbits around and looks at, (0,0,0) by default.
+'camera_orbit::distance_to_center': Distance between the camera position and center_of_rotation, 5 by default.
+'camera_orbit::camera_orbit()': Builds an orbit camera with identity orientation, center at the origin and distance_to_center = 5, so that the camera sits at (0,0,5) looking toward -z.
+'camera_orbit::position() const': Returns the camera position, center_of_rotation + orientation_camera * (0,0,distance_to_center).
+'camera_orbit::orientation() const': Returns orientation_camera.
+'camera_orbit::manipulator_rotate_arcball(vec2 const&,vec2 const&)': Rotates the camera around center_of_rotation from the mouse displacement p0 -> p1 given in relative screen coordinates [-1,1] (arcball/trackball rotation; no effect if the displacement is below 1e-4).
+'camera_orbit::manipulator_rotate_roll_pitch_yaw(float,float,float)': Applies an incremental rotation, expressed in the current camera frame, of angles roll (around the view direction), pitch (around the right axis) and yaw (around the up axis), in radians, around center_of_rotation.
+'camera_orbit::manipulator_scale_distance_to_center(float)': Multiplies distance_to_center by (1 + magnitude), clamped to at least 0.01; the center is unchanged.
+'camera_orbit::manipulator_translate_in_plane(vec2 const&)': Translates center_of_rotation (and thus the camera) by tr.x * right() + tr.y * up().
+'camera_orbit::manipulator_translate_front(float)': Translates center_of_rotation (and thus the camera) by magnitude * front().
+'camera_orbit::look_at(vec3 const&,vec3 const&,vec3 const&)': Places the camera at eye looking toward center with the given up vector, setting center_of_rotation = center and distance_to_center = norm(eye-center).
+'camera_generic_base::to_frame() const': Returns the camera frame built from orientation() and position().
+'camera_generic_base::matrix_view() const': Returns the 4x4 view matrix (world to camera), the inverse of the camera frame matrix.
+'camera_generic_base::matrix_frame() const': Returns the 4x4 matrix of the camera frame (camera to world), the inverse of matrix_view().
+'camera_generic_base::front() const': Returns the viewing direction, the opposite of the third column (local z axis) of orientation().
+'camera_generic_base::up() const': Returns the up direction of the camera, the second column (local y axis) of orientation().
+'camera_generic_base::right() const': Returns the right direction of the camera, the first column (local x axis) of orientation().
+'camera_projection_perspective::field_of_view': Vertical field of view in radians, 50 degrees by default.
+'camera_projection_perspective::aspect_ratio': Width/height ratio of the viewport, 1 by default (usually set from window_structure::aspect_ratio()).
+'camera_projection_perspective::depth_min': Distance of the near clipping plane, 0.01 by default.
+'camera_projection_perspective::depth_max': Distance of the far clipping plane, 1000 by default.
+'camera_projection_perspective::matrix() const': Returns the 4x4 OpenGL perspective projection matrix built from field_of_view, aspect_ratio, depth_min and depth_max.
+'camera_projection_perspective::matrix_inverse() const': Returns the inverse of the perspective projection matrix (normalized device coordinates to camera space).
+'environment_generic_structure::default_expected_uniform': Static flag, true by default, used as the default value of expected in send_opengl_uniform; mesh_drawable combines it with its own flag, and false silences the warning for a uniform that the shader does not use.
+'environment_generic_structure::send_opengl_uniform(opengl_shader_structure const&,bool) const': Sends the uniform variables of the environment to the shader; does nothing in this base class and is meant to be overridden by a derived environment.
+'camera_orbit_euler::roll': Twist angle in radians around the view direction, 0 by default (not used in standard orbit mode).
+'camera_orbit_euler::pitch': Up/down rotation angle in radians around the local x axis, 0 by default.
+'camera_orbit_euler::yaw': Left/right rotation angle in radians around axis_of_rotation, 0 by default.
+'camera_orbit_euler::axis_of_rotation': Up direction of the orbit when pitch = 0, around which yaw rotates, (0,1,0) by default.
+'camera_orbit_euler::center_of_rotation': Point the camera orbits around and looks at, (0,0,0) by default.
+'camera_orbit_euler::distance_to_center': Distance between the camera position and center_of_rotation, 5 by default.
+'camera_orbit_euler::position() const': Returns the camera position, center_of_rotation + orientation() * (0,0,distance_to_center).
+'camera_orbit_euler::orientation() const': Returns the rotation R_axis * R_yaw * R_pitch * R_roll, where R_axis maps (0,1,0) to axis_of_rotation, yaw is around y, pitch around x and roll around -z.
+'camera_orbit_euler::manipulator_rotate_roll_pitch_yaw(float,float,float)': Adds d_roll, d_pitch and d_yaw (radians) to the angles roll, pitch and yaw.
+'camera_orbit_euler::manipulator_twist_rotation_axis(float)': Rotates axis_of_rotation by the angle magnitude (radians) around R_axis * (0,0,1), the front direction of the frame when yaw = pitch = 0.
+'camera_orbit_euler::manipulator_scale_distance_to_center(float)': Multiplies distance_to_center by (1 + magnitude), clamped to at least 0.01; the center is unchanged.
+'camera_orbit_euler::manipulator_translate_in_plane(vec2 const&)': Translates center_of_rotation (and thus the camera) by tr.x * right() + tr.y * up().
+'camera_orbit_euler::manipulator_translate_front(float)': Translates center_of_rotation (and thus the camera) by magnitude * front().
+'camera_orbit_euler::set_rotation_axis(vec3)': Sets axis_of_rotation to axis without changing the angles (the axis is used as given, it is not normalized).
+'camera_orbit_euler::look_at(vec3 const&,vec3 const&)': Places the camera at eye looking toward center by setting center_of_rotation, distance_to_center, pitch and yaw; roll and axis_of_rotation are kept, so the up vector is not a free parameter.
+'camera_orbit_euler::camera_orbit_euler()': Builds an Euler orbit camera with zero angles, axis_of_rotation (0,1,0), center at the origin and distance_to_center = 5.
+'camera_first_person::orientation_camera': Orientation of the camera frame (identity by default, the camera then looks toward -z).
+'camera_first_person::position_camera': Position of the camera in world space, (0,0,0) by default.
+'camera_first_person::camera_first_person()': Builds a first person camera at the origin with identity orientation (looking toward -z).
+'camera_first_person::position() const': Returns position_camera.
+'camera_first_person::orientation() const': Returns orientation_camera.
+'camera_first_person::manipulator_rotate_roll_pitch_yaw(float,float,float)': Rotates the camera around its own position by an incremental rotation, expressed in the current camera frame, of angles roll (around the view direction), pitch (around the right axis) and yaw (around the up axis), in radians.
+'camera_first_person::manipulator_translate_in_plane(vec2 const&)': Translates the camera by tr.x * right() + tr.y * up().
+'camera_first_person::manipulator_translate_front(float)': Translates the camera by magnitude * front().
+'camera_first_person::look_at(vec3 const&,vec3 const&,vec3 const&)': Places the camera at eye looking toward center with the given up vector.
+'camera_first_person_euler::roll': Twist angle in radians around the view direction, 0 by default.
+'camera_first_person_euler::pitch': Up/down rotation angle in radians around the local x axis, 0 by default.
+'camera_first_person_euler::yaw': Left/right rotation angle in radians around axis_of_rotation, 0 by default.
+'camera_first_person_euler::axis_of_rotation': Up direction of the camera when pitch = 0, around which yaw rotates, (0,1,0) by default.
+'camera_first_person_euler::position_camera': Position of the camera in world space, (0,0,0) by default.
+'camera_first_person_euler::manipulator_twist_rotation_axis(float)': Rotates axis_of_rotation by the angle magnitude (radians) around R_axis * (0,0,1), the front direction of the frame when yaw = pitch = 0.
+'camera_first_person_euler::manipulator_rotate_roll_pitch_yaw(float,float,float)': Adds d_roll, d_pitch and d_yaw (radians) to the angles roll, pitch and yaw.
+'camera_first_person_euler::manipulator_translate_in_plane(vec2 const&)': Translates the camera by tr.x * right() + tr.y * up().
+'camera_first_person_euler::manipulator_translate_front(float)': Translates the camera by magnitude * front().
+'camera_first_person_euler::set_rotation_axis(vec3)': Sets axis_of_rotation to axis without changing the angles (the axis is used as given, it is not normalized).
+'camera_first_person_euler::look_at(vec3 const&,vec3 const&)': Places the camera at eye looking toward center by setting position_camera, pitch and yaw; roll and axis_of_rotation are kept, so the up vector is not a free parameter.
+'camera_first_person_euler::camera_first_person_euler()': Builds an Euler first person camera at the origin with zero angles and axis_of_rotation (0,1,0).
+'camera_first_person_euler::position() const': Returns position_camera.
+'camera_first_person_euler::orientation() const': Returns the rotation R_axis * R_yaw * R_pitch * R_roll, where R_axis maps (0,1,0) to axis_of_rotation, yaw is around y, pitch around x and roll around -z.
+'camera_projection_orthographic::left': Left bound of the view volume before scaling by aspect_ratio, -1 by default.
+'camera_projection_orthographic::right': Right bound of the view volume before scaling by aspect_ratio, 1 by default.
+'camera_projection_orthographic::bottom': Bottom bound of the view volume, -1 by default.
+'camera_projection_orthographic::top': Top bound of the view volume, 1 by default.
+'camera_projection_orthographic::z_min': Near bound of the view volume along the viewing direction, -10 by default.
+'camera_projection_orthographic::z_max': Far bound of the view volume along the viewing direction, 10 by default.
+'camera_projection_orthographic::aspect_ratio': Width/height ratio of the viewport, 1 by default, that multiplies left and right (bottom and top are not scaled).
+'camera_projection_orthographic::matrix() const': Returns the 4x4 OpenGL orthographic projection matrix of the box [left*aspect_ratio, right*aspect_ratio] x [bottom, top] x [z_min, z_max].
+'camera_projection_orthographic::matrix_inverse() const': Returns the inverse of the orthographic projection matrix (normalized device coordinates to camera space).
+'camera_controller_orbit::camera_model': Orbit camera (free arcball rotation) driven by the controller.
+'camera_controller_generic_base::is_active': Enables the controller, true by default; when false the mouse and idle actions return without moving the camera.
+'camera_controller_generic_base::inputs': Pointer to the global keyboard/mouse state, nullptr until initialize() is called.
+'camera_controller_generic_base::window': Pointer to the global window state, nullptr until initialize() is called.
+'camera_controller_orbit::camera() const': Returns camera_model as a read-only camera_generic_base.
+'camera_controller_orbit::action_mouse_move()': Updates the camera from the mouse displacement when the cursor is not on the GUI; left drag rotates (arcball), Ctrl + left drag pans in the view plane, right drag changes the distance to the center, Ctrl + right drag translates the center front/back.
+'camera_controller_orbit::idle_frame()': Rolls the camera around the view direction while the left/right arrow (or R/F) key is held, at 1 radian per second.
+'camera_controller_orbit::look_at(vec3 const&,vec3 const&,vec3 const&)': Places the camera at eye looking toward center with the given up vector, center becoming the center of rotation.
+'camera_controller_orbit::doc_usage() const': "Returns a text describing the mouse and keyboard controls of the orbit camera (including the R/F keys)."
+'camera_controller_generic_base::initialize(input_devices&,window_structure&)': Stores pointers to the global inputs and window; must be called before any action function.
+'camera_controller_generic_base::action_keyboard()': Handles a keyboard press or release event; does nothing in the base class.
+'camera_controller_generic_base::action_mouse_click()': Handles a mouse button press or release event; does nothing in the base class.
+'camera_controller_orbit_euler::camera_model': Euler-angle orbit camera driven by the controller.
+'camera_controller_orbit_euler::camera() const': Returns camera_model as a read-only camera_generic_base.
+'camera_controller_orbit_euler::set_rotation_axis(vec3 const&)': Sets the axis_of_rotation (up direction of the orbit) of the camera.
+'camera_controller_orbit_euler::set_rotation_axis_x()': Sets the axis_of_rotation of the camera to (1,0,0).
+'camera_controller_orbit_euler::set_rotation_axis_y()': Sets the axis_of_rotation of the camera to (0,1,0).
+'camera_controller_orbit_euler::set_rotation_axis_z()': Sets the axis_of_rotation of the camera to (0,0,1).
+'camera_controller_orbit_euler::look_at(vec3 const&,vec3 const&,vec3 const&)': Places the camera at eye looking toward center; the third argument is ignored (the up vector is set by axis_of_rotation).
+'camera_controller_orbit_euler::action_mouse_move()': Updates the camera from the mouse displacement when the cursor is not on the GUI; left drag changes pitch and yaw, Ctrl + left drag pans, right drag (or K + left drag) changes the distance to the center, Ctrl + right drag translates the center front/back.
+'camera_controller_orbit_euler::idle_frame()': Twists axis_of_rotation at 2 radians per second while Shift + left/right arrow (or Shift + R/F) is held.
+'camera_controller_orbit_euler::doc_usage() const': Returns a text describing the mouse and keyboard controls of the Euler orbit camera.
+'camera_controller_first_person::camera_model': First person camera (free rotation) driven by the controller.
+'camera_controller_first_person::translation_speed': Multiplier of the translation speed for keyboard moves and right mouse drag, 1 by default.
+'camera_controller_first_person::rotation_speed': Multiplier of the rotation speed for mouse drags and Q/E twists, 1 by default.
+'camera_controller_first_person::camera() const': Returns camera_model as a read-only camera_generic_base.
+'camera_controller_first_person::action_mouse_move()': Updates the camera from the mouse displacement when the cursor is not on the GUI; left drag (or any move in cursor-captured mode) rotates in yaw and pitch, Ctrl + left drag rolls, right drag moves forward/backward.
+'camera_controller_first_person::action_keyboard()': Toggles the cursor-captured mode with Shift+C (Escape releases the cursor).
+'camera_controller_first_person::idle_frame()': Moves the camera while keys are held, at 2 * translation_speed units per second; up/W and down/S forward/backward, left/A and right/D sideways, R/F up/down, and Q/E roll at 2 * rotation_speed radians per second.
+'camera_controller_first_person::look_at(vec3 const&,vec3 const&,vec3 const&)': Places the camera at eye looking toward center with the given up vector.
+'camera_controller_first_person::doc_usage() const': Returns a text describing the mouse and keyboard controls of the first person camera.
+'camera_controller_first_person_euler::camera_model': Euler-angle first person camera driven by the controller.
+'camera_controller_first_person_euler::camera() const': Returns camera_model as a read-only camera_generic_base.
+'camera_controller_first_person_euler::action_mouse_move()': Updates the camera from the mouse displacement when the cursor is not on the GUI; left drag (or any move in cursor-captured mode) changes yaw and pitch, Ctrl + left drag twists axis_of_rotation, right drag moves forward/backward.
+'camera_controller_first_person_euler::set_rotation_axis(vec3 const&)': Sets the axis_of_rotation (up direction when pitch = 0) of the camera.
+'camera_controller_first_person_euler::set_rotation_axis_x()': Sets the axis_of_rotation of the camera to (1,0,0).
+'camera_controller_first_person_euler::set_rotation_axis_y()': Sets the axis_of_rotation of the camera to (0,1,0).
+'camera_controller_first_person_euler::set_rotation_axis_z()': Sets the axis_of_rotation of the camera to (0,0,1).
+'camera_controller_first_person_euler::action_keyboard()': Toggles the cursor-captured mode with Shift+C (Escape releases the cursor).
+'camera_controller_first_person_euler::idle_frame()': Moves the camera at 2 units per second while keys are held; W/S and up/down arrows forward/backward (Ctrl + up/down moves up/down), A/D and left/right sideways, R/F up/down, Q/E twist axis_of_rotation at 2 radians per second.
+'camera_controller_first_person_euler::look_at(vec3 const&,vec3 const&,vec3 const&)': Places the camera at eye looking toward center; the third argument is ignored (the up vector is set by axis_of_rotation).
+'camera_controller_first_person_euler::doc_usage() const': Returns a text describing the mouse and keyboard controls of the Euler first person camera.
+'camera_controller_fly_mode::speed': Current forward speed in units per second, 0.05 by default, kept between speed_min and speed_max.
+'camera_controller_fly_mode::roll': Roll rate in radians per second applied while left/right (or A/D) is held, 0.8 by default.
+'camera_controller_fly_mode::pitch': Pitch rate in radians per second applied while up/down (or W/S) is held, 0.5 by default.
+'camera_controller_fly_mode::speed_increase': "Factor, 1.02 by default, by which speed is multiplied (or divided) per frame at 60 fps while +/R (or -/F) is held; the rate does not depend on the frame rate (factor speed_increase^(60 dt) per frame)."
+'camera_controller_fly_mode::speed_max': Upper bound of speed, 0.5 by default.
+'camera_controller_fly_mode::speed_min': Lower bound of speed, 0.0001 by default.
+'camera_controller_fly_mode::action_mouse_move()': Rolls the camera from the horizontal and pitches it from the vertical mouse displacement, during a left drag or for any move in cursor-captured mode, when the cursor is not on the GUI.
+'camera_controller_fly_mode::idle_frame()': Moves the camera forward by speed * time_interval at each frame, pitching with up/down (W/S), rolling with left/right (A/D) and changing speed with +/R and -/F.
+'camera_controller_fly_mode::doc_usage() const': Returns a text describing the mouse and keyboard controls of the fly mode.
+'input_devices::keyboard': Current keyboard state (Shift, Ctrl, arrows, pressed keys and last key action).
+'input_devices::mouse': Current mouse state (current and previous cursor positions in relative coordinates [-1,1], clicked buttons, scroll, whether the cursor is on the GUI).
+'input_devices::time_interval': Time in seconds elapsed since the previous frame, set by the application at each frame (0 before the first frame).
+'window_structure::glfw_window': GLFW window handle, nullptr until create_window() is called.
+'window_structure::monitor': Primary monitor recorded by create_window(), used by set_full_screen().
+'window_structure::x_pos': "Horizontal position of the window on screen in pixels, read at creation and when switching to full screen (restored by set_windowed_screen)."
+'window_structure::y_pos': "Vertical position of the window on screen in pixels, read at creation and when switching to full screen (restored by set_windowed_screen)."
+'window_structure::windowed_width': "Width of the window in screen coordinates saved by set_full_screen() and restored by set_windowed_screen(), 0 until then."
+'window_structure::windowed_height': "Height of the window in screen coordinates saved by set_full_screen() and restored by set_windowed_screen(), 0 until then."
+'window_structure::width': Width of the window in pixels, set at creation and updated by the application on resize.
+'window_structure::height': Height of the window in pixels, set at creation and updated by the application on resize.
+'window_structure::screen_resolution_width': Width in pixels of the primary monitor video mode, read at window creation.
+'window_structure::screen_resolution_height': Height in pixels of the primary monitor video mode, read at window creation.
+'window_structure::is_full_screen': "Whether the window is in full screen mode, false by default; set by set_full_screen() and set_windowed_screen() (GUI checkbox or Shift+F in the template)."
+'window_structure::aspect_ratio() const': Returns width / height.
+'window_structure::set_full_screen()': "Remembers the position and size of the window, switches it to full screen on monitor at screen_resolution_width x screen_resolution_height, and sets is_full_screen."
+'window_structure::set_windowed_screen()': "Switches the window back to windowed mode at the position and size it had before set_full_screen() (at (100,100) with half the screen resolution if unknown), and clears is_full_screen."
+'window_structure::convert_pixel_to_relative_coordinates(vec2 const&) const': Converts a position in pixels (origin at the top left) into relative coordinates in [-1,1], x to the right and y upward.
+'window_structure::monitor_width() const': Returns the current width in pixels of the primary monitor video mode.
+'window_structure::monitor_height() const': Returns the current height in pixels of the primary monitor video mode.
+'timer_basic::t': "Accumulated time in seconds, multiplied by scale, 0 until the second update()."
+'timer_basic::scale': Multiplier applied to the elapsed real time (1 by default; larger values accelerate the animation).
+'timer_basic::timer_basic()': "Builds a running timer with t = 0 and scale = 1; time is measured from the first update() or start(), so the time spent loading the scene is not counted."
+'timer_basic::update()': "Advances t by the elapsed real time since the previous update (or start) times scale and returns this time step in seconds; the first call after construction returns 0, and a stopped timer returns 0 without change."
+'timer_basic::start()': Resumes the timer, measuring the next time step from now (the time spent stopped is not counted).
+'timer_basic::stop()': Pauses the timer; update() then returns 0 and t stays constant.
+'timer_interval::t_min': Lower bound of the interval in which t loops, 0 by default.
+'timer_interval::t_max': Upper bound (excluded) of the interval in which t loops, 1 by default.
+'timer_interval::timer_interval(float,float)': Builds a running timer whose time t starts at t_min and loops in [t_min, t_max) (asserts t_max > t_min).
+'timer_interval::update()': Advances t as timer_basic::update() and wraps it back into [t_min, t_max), returning the time step; a step longer than t_max - t_min is discarded (t unchanged) and 0 is returned.
+'timer_event_periodic::event': True only after an update() during which event_period elapsed since the previous event, false otherwise.
+'timer_event_periodic::t_periodic': Time in seconds accumulated since the last event, reset when it reaches event_period.
+'timer_event_periodic::event_period': Time in seconds between two events, 1 by default.
+'timer_event_periodic::timer_event_periodic(float)': Builds a running timer that raises event every event_period seconds (1 by default).
+'timer_event_periodic::update()': Advances t as timer_basic::update(), adds the step to t_periodic and sets event to true if t_periodic reaches event_period (then subtracts event_period, or resets it to 0 if several periods elapsed), and returns the time step.
+
+# --- A
+'numarray_stack::operator()(int) const': Returns a const reference to the element at the given index, with bound checking unless CGP_NO_DEBUG is defined.
+'numarray_stack::at(int) const': Returns a const reference to the element at the given index; bound-checked for sizes 2, 3 and 4 (vec2, vec3, vec4) unless CGP_NO_DEBUG is defined, but not checked for the other sizes N.
+'numarray_stack::begin() const': Returns a const iterator to the first element (a plain pointer for sizes 2, 3 and 4).
+'numarray_stack::end() const': Returns a const iterator one past the last element (a plain pointer for sizes 2, 3 and 4).
+'numarray_stack::cbegin() const': Returns a const iterator to the first element (a plain pointer for sizes 2, 3 and 4).
+'numarray_stack::cend() const': Returns a const iterator one past the last element (a plain pointer for sizes 2, 3 and 4).
+'numarray_stack::coeff(int) const': Returns a const reference to the element at the given index, without bound checking.
+'matrix_stack::matrix_stack(numarray_stack<numarray_stack<T,N2>,N1> const&)': Builds the matrix from an array of N1 rows of N2 elements each.
+'matrix_stack::matrix_stack(numarray_stack<T,N1*N2> const&)': Builds the matrix from a flat array of N1*N2 elements given in row-major order.
+'matrix_stack::matrix_stack<N1_arg,N2_arg>(matrix_stack<T,N1_arg,N2_arg> const&)': Builds the matrix from a matrix of another size (explicit), copying the common top-left block and value-initializing (zero) the other elements.
+'matrix_stack::matrix_stack(std::initializer_list<T> const&)': Builds the matrix from a brace list of at least N1*N2 values in row-major order (asserted); extra values are ignored.
+'matrix_stack::matrix_stack(std::initializer_list<numarray_stack<T,N2>> const&)': "Builds the matrix from a brace list of at least N1 rows of N2 elements (asserted); extra rows are ignored."
+'matrix_stack::build_identity()': Returns the identity matrix (ones on the main diagonal, zeros elsewhere; for a non-square generic matrix the diagonal has min(N1,N2) ones).
+'matrix_stack::diagonal(numarray_stack<T,std::min(N1,N2)> const&)': Returns the matrix with the given values on its main diagonal and zeros elsewhere.
+'matrix_stack::operator()(int) const': Returns a const reference to row k1 (a vector of N2 elements), with bound checking unless CGP_NO_DEBUG is defined.
+'matrix_stack::operator()(int,int) const': Returns a const reference to the element at row k1 and column k2, with bound checking unless CGP_NO_DEBUG is defined.
+'matrix_stack::at_offset(int) const': Returns a const reference to the element at the row-major offset k1*N2+k2; bound-checked for the generic matrix and mat4 (unless CGP_NO_DEBUG is defined) but not for mat2 and mat3.
+'matrix_stack::remove_row_column(int,int) const': Returns the (N1-1)x(N2-1) matrix obtained by removing row k1 and column k2 (asserts k1<N1 and k2<N2), e.g. a mat2 for a mat3.
+'matrix_stack::begin() const': Returns a const pointer to the first element (0,0) of the contiguous row-major storage.
+'matrix_stack::end() const': Returns a const pointer one past the last element (N1-1,N2-1) of the contiguous row-major storage.
+'matrix_stack::cbegin() const': Returns a const pointer to the first element (0,0) of the contiguous row-major storage.
+'matrix_stack::cend() const': Returns a const pointer one past the last element (N1-1,N2-1) of the contiguous row-major storage.
+'matrix_stack::at(int,int) const': Returns a const reference to the element at row k1 and column k2; bound-checked for mat2, mat3 and mat4 (unless CGP_NO_DEBUG is defined) but not for the generic matrix_stack.
+'matrix_stack::coeff(int,int) const': Returns a const reference to the element at row k1 and column k2, without bound checking.
+'matrix_stack::coeff(int) const': Returns a const reference to row k1, without bound checking.
+'matrix_stack::at_offset_unsafe(int) const': Returns a const reference to the element at the given row-major offset, without bound checking.
+'numarray_stack<T,2>::y': Second coordinate of the vector.
+'numarray_stack::numarray_stack()': Builds a vector of size 2, 3 or 4 with all coordinates value-initialized (zero for numbers).
+'numarray_stack::numarray_stack(T const&,T const&)': Builds a 2D vector from its coordinates x and y.
+'numarray_stack::numarray_stack(numarray_stack<T,3> const&)': Builds a 2D vector from the x and y coordinates of a 3D vector, dropping z (not explicit, so a vec3 converts implicitly to a vec2).
+'numarray_stack::numarray_stack(numarray_stack<T,4> const&)': Builds a 2D vector from the x and y coordinates of a 4D vector, dropping z and w (not explicit, so a vec4 converts implicitly to a vec2).
+'numarray_stack::numarray_stack<T1,T2>(T1 const&,T2 const&)': Builds a 2D vector from two coordinates of other types, converted to T.
+'numarray_stack<T,3>::y': Second coordinate of the vector.
+'numarray_stack<T,3>::z': Third coordinate of the vector.
+'numarray_stack::numarray_stack(T const&,T const&,T const&)': Builds a 3D vector from its coordinates x, y and z.
+'numarray_stack::numarray_stack(T const&,numarray_stack<T,2> const&)': Builds a 3D vector from x and a 2D vector giving (y, z).
+'numarray_stack::numarray_stack(numarray_stack<T,2> const&,T const&)': Builds a 3D vector from a 2D vector giving (x, y) and z.
+'numarray_stack::numarray_stack<T1,T2,T3>(T1 const&,T2 const&,T3 const&)': Builds a 3D vector from three coordinates of other types, each converted with T(...).
+'numarray_stack::yz() const': Returns a copy of the coordinates (y, z) as a 2D vector (for vec3 and vec4).
+'numarray_stack::xz() const': Returns a copy of the coordinates (x, z) as a 2D vector (for vec3 and vec4).
+'numarray_stack<T,4>::y': Second coordinate of the vector.
+'numarray_stack<T,4>::z': Third coordinate of the vector.
+'numarray_stack<T,4>::w': Fourth coordinate of the vector.
+'numarray_stack::numarray_stack(T const&,T const&,T const&,T const&)': Builds a 4D vector from its coordinates x, y, z and w.
+'numarray_stack::numarray_stack(T const&,T const&,numarray_stack<T,2> const&)': Builds a 4D vector from x, y and a 2D vector giving (z, w).
+'numarray_stack::numarray_stack(T const&,numarray_stack<T,2> const&,T const&)': Builds a 4D vector from x, a 2D vector giving (y, z), and w.
+'numarray_stack::numarray_stack(T const&,numarray_stack<T,3> const&)': Builds a 4D vector from x and a 3D vector giving (y, z, w).
+'numarray_stack::numarray_stack(numarray_stack<T,2> const&,T const&,T const&)': Builds a 4D vector from a 2D vector giving (x, y), then z and w.
+'numarray_stack::numarray_stack(numarray_stack<T,2> const&,numarray_stack<T,2> const&)': Builds a 4D vector from two 2D vectors giving (x, y) and (z, w).
+'numarray_stack::numarray_stack(numarray_stack<T,3> const&,T const&)': Builds a 4D vector from a 3D vector giving (x, y, z) and w, e.g. vec4(p, 1.0f) for a homogeneous position.
+'numarray_stack::xy() const': Returns a copy of the coordinates (x, y) as a 2D vector (for vec3 and vec4).
+'matrix_stack::matrix_stack()': Builds a matrix with all elements set to zero.
+'matrix_stack::matrix_stack(numarray_stack<vec2,2> const&)': Builds a mat2 from an array of two vec2 rows.
+'matrix_stack::matrix_stack(vec2 const&,vec2 const&)': Builds a mat2 from its two rows.
+'matrix_stack::matrix_stack(numarray_stack<float,4> const&)': Builds a mat2 from 4 values in row-major order.
+'matrix_stack::matrix_stack(float,float,float,float)': Builds a mat2 from its 4 elements given row by row (xx, xy, yx, yy).
+'matrix_stack::matrix_stack<N1_arg,N2_arg>(matrix_stack<float,N1_arg,N2_arg> const&)': Builds a mat2, mat3 or mat4 from a float matrix of another size (explicit), copying the common top-left block and setting the other elements to zero (a mat4 built from a mat3 uses the dedicated constructor instead, which puts 1 at (3,3)).
+'matrix_stack::matrix_stack(float)': Builds the mat2, mat3 or mat4 with the given value on the whole diagonal and zeros elsewhere (explicit, as in glm).
+'matrix_stack::matrix_stack(float,float)': Builds the diagonal mat2 diag(xx, yy) (explicit).
+'matrix_stack::matrix_stack(std::initializer_list<float> const&)': Builds a mat2, mat3 or mat4 from a brace list of floats; N*N or more values fill it in row-major order (extra ones ignored), 1 value or N values build a diagonal matrix (mat4 also accepts 3 values, with 1 as last diagonal element), and any other count raises an error.
+'matrix_stack::matrix_stack(std::initializer_list<vec2> const&)': Builds a mat2 from a brace list of at least two vec2 rows (asserted); extra rows are ignored.
+'matrix_stack::size() const': Returns the total number of elements N1*N2 (4, 9 and 16 for mat2, mat3 and mat4).
+'matrix_stack::dimension() const': Returns the dimensions {N1, N2} (number of rows, number of columns) as an int2.
+'matrix_stack::fill(float)': Sets every element to the given value and returns a reference to the matrix.
+'matrix_stack::build_zero()': Returns a mat2, mat3 or mat4 with all elements equal to zero.
+'matrix_stack::build_constant(float)': Returns a mat2, mat3 or mat4 with all elements equal to the given value.
+'matrix_stack::build_diagonal(float)': Returns the mat2, mat3 or mat4 with the given value on the whole diagonal (including element (3,3) of a mat4) and zeros elsewhere.
+'matrix_stack::build_diagonal(vec2 const&)': Returns the diagonal mat2 whose diagonal is the given vec2.
+'matrix_stack::build_diagonal(float,float)': Returns the diagonal mat2 diag(x, y).
+'matrix_stack::build_scaling(float)': Returns the uniform scaling matrix of the given factor; same as build_diagonal for mat2 and mat3, while a mat4 keeps 1 as element (3,3).
+'matrix_stack::build_scaling(vec2 const&)': Returns the mat2 scaling diag(arg.x, arg.y), same as build_diagonal.
+'matrix_stack::build_scaling(float,float)': Returns the mat2 scaling diag(x, y), same as build_diagonal.
+'matrix_stack::build_rotation(float)': Returns the mat2 of the counterclockwise rotation of angle theta in radians, rows (cos, -sin) and (sin, cos).
+'matrix_stack::operator[](int) const': Returns a const reference to row k (a vec2, vec3 or vec4 for mat2, mat3 or mat4), with bound checking unless CGP_NO_DEBUG is defined.
+'matrix_stack::at(int) const': For mat2 and mat3, returns a const reference to row k, bound-checked through the row array unless CGP_NO_DEBUG is defined.
+'matrix_stack::set_block<N1_arg,N2_arg>(matrix_stack<float,N1_arg,N2_arg> const&,int,int)': Copies a smaller matrix into this one with its top-left corner at (offset_1, offset_2), default (0,0), and returns a reference to this matrix; the block must fit (static_assert on its size, assert on the offsets).
+'matrix_stack::matrix_stack(numarray_stack<vec3,3> const&)': Builds a mat3 from an array of three vec3 rows.
+'matrix_stack::matrix_stack(vec3 const&,vec3 const&,vec3 const&)': Builds a mat3 from its three rows (not columns).
+'matrix_stack::matrix_stack(numarray_stack<float,9> const&)': Builds a mat3 from 9 values in row-major order.
+'matrix_stack::matrix_stack(float,float,float,float,float,float,float,float,float)': Builds a mat3 from its 9 elements given row by row (xx, xy, xz, yx, ..., zz).
+'matrix_stack::matrix_stack(float,float,float)': Builds the diagonal mat3 diag(xx, yy, zz) (explicit).
+'matrix_stack::matrix_stack(std::initializer_list<vec3> const&)': Builds a mat3 from a brace list of at least three vec3 rows (asserted); extra rows are ignored.
+'matrix_stack::build_diagonal(vec3 const&)': Returns the diagonal mat3 whose diagonal is the given vec3.
+'matrix_stack::build_diagonal(float,float,float)': Returns the diagonal mat3 diag(x, y, z).
+'matrix_stack::build_scaling(vec3 const&)': Returns the scaling matrix of factors (arg.x, arg.y, arg.z); for mat3 the diagonal matrix, for mat4 diag(arg.x, arg.y, arg.z, 1).
+'matrix_stack::build_scaling(float,float,float)': Returns the scaling matrix of factors (x, y, z); for mat3 the diagonal matrix, for mat4 diag(x, y, z, 1).
+'matrix_stack::build_rotation_from_axis_angle(vec3 const&,float)': Returns the matrix (mat3, or mat4 with zero translation) of the rotation of angle in radians around axis, normalized internally.
+'matrix_stack::build_rotation_from_quaternion(quaternion const&)': Returns the matrix (mat3, or mat4 with zero translation) of the rotation of a unit quaternion, whose norm is asserted to be within 0.05 of 1.
+'matrix_stack::matrix_stack(numarray_stack<numarray_stack<float,4>,4> const&)': Builds a mat4 from an array of four vec4 rows.
+'matrix_stack::matrix_stack(vec4 const&,vec4 const&,vec4 const&,vec4 const&)': Builds a mat4 from its four rows (not columns).
+'matrix_stack::matrix_stack(numarray_stack<float,16> const&)': Builds a mat4 from 16 values in row-major order.
+'matrix_stack::matrix_stack(float,float,float,float,float,float,float,float,float,float,float,float,float,float,float,float)': Builds a mat4 from its 16 elements given row by row (xx, xy, xz, xw, yx, ..., ww), the translation being xw, yw, zw.
+'matrix_stack::matrix_stack(mat3 const&)': Builds the mat4 block matrix ((M, 0), (0, 1)) from a 3x3 linear part (explicit).
+'matrix_stack::matrix_stack(std::initializer_list<numarray_stack<float,4>> const&)': Builds a mat4 from a brace list of at least four vec4 rows (asserted); extra rows are ignored.
+'matrix_stack::build_diagonal(vec4 const&)': Returns the diagonal mat4 whose diagonal is the given vec4.
+'matrix_stack::build_diagonal(float,float,float,float)': Returns the diagonal mat4 diag(x, y, z, w).
+'matrix_stack::build_affine(mat3 const&,vec3 const&)': Returns the mat4 with linear part linear (top-left 3x3 block), translation tr (last column) and last row (0,0,0,1).
+'matrix_stack::build_translation(vec3 const&)': Returns the mat4 of the translation tr (identity with tr in the last column).
+'matrix_stack::build_translation(float,float,float)': Returns the mat4 of the translation (x, y, z).
+'matrix_stack::build_linear(mat3 const&)': Returns the mat4 ((M, 0), (0, 1)), same as the mat4(mat3) constructor.
+'matrix_stack::set_identity()': Sets the mat4 to the identity and returns a reference to it.
+'matrix_stack::set_zeros()': Sets all 16 elements of the mat4 to zero and returns a reference to it.
+'matrix_stack::set_diagonal(float)': Replaces the mat4 by the diagonal matrix with the given value on its four diagonal elements and returns a reference to it.
+'matrix_stack::set_diagonal(float,float,float,float)': Replaces the mat4 by diag(xx, yy, zz, ww) and returns a reference to it.
+'matrix_stack::set_block_linear(mat3 const&)': Overwrites the top-left 3x3 linear block with L, leaving the translation and the last row unchanged, and returns a reference to the mat4.
+'matrix_stack::set_block_linear_as_scaling(vec3 const&)': Overwrites the top-left 3x3 block with diag(s.x, s.y, s.z), leaving the rest unchanged, and returns a reference to the mat4.
+'matrix_stack::set_block_linear_as_scaling(float,float,float)': Overwrites the top-left 3x3 block with diag(sx, sy, sz), leaving the rest unchanged, and returns a reference to the mat4.
+'matrix_stack::set_block_linear_as_scaling(float)': Overwrites the top-left 3x3 block with the uniform scaling diag(s, s, s), leaving the rest unchanged, and returns a reference to the mat4.
+'matrix_stack::set_block_linear_as_rotation(vec3 const&,float)': Overwrites the top-left 3x3 block with the rotation of angle in radians around axis (normalized internally), leaving the rest unchanged, and returns a reference to the mat4.
+'matrix_stack::set_block_translation(vec3 const&)': Overwrites the translation part, elements (0,3), (1,3) and (2,3), with tr and returns a reference to the mat4.
+'matrix_stack::set_block_translation(float,float,float)': Overwrites the translation part, elements (0,3), (1,3) and (2,3), with (x, y, z) and returns a reference to the mat4.
+'matrix_stack::get_block_translation() const': Returns the translation part (m(0,3), m(1,3), m(2,3)) of the mat4 as a vec3.
+'matrix_stack::get_block_linear() const': Returns a copy of the top-left 3x3 block of the mat4 as a mat3.
+'matrix_stack::apply_scaling_to_block_linear(float)': Multiplies the top-left 3x3 block of the mat4 by s in place and returns a reference to it.
+'matrix_stack::apply_scaling_to_block_translation(float)': Multiplies the translation part (first three elements of the last column) by s in place and returns a reference to the mat4.
+'matrix_stack::apply_scaling(float)': Multiplies the first three rows of the mat4 (linear block and translation) by s in place, leaving the last row unchanged, and returns a reference to it.
+'matrix_stack::apply_translation(vec3 const&)': Adds xyz to the translation part of the mat4 in place and returns a reference to it.
+'matrix_stack::apply_transform_to_block_linear(mat3 const&)': Replaces the linear block L of the mat4 by T*L in place, leaving the translation unchanged, and returns a reference to it.
+'matrix_stack::col_x() const': Returns a copy of the first column of the mat4 as a vec4.
+'matrix_stack::col_y() const': Returns a copy of the second column of the mat4 as a vec4.
+'matrix_stack::col_z() const': Returns a copy of the third column of the mat4 as a vec4.
+'matrix_stack::col_w() const': Returns a copy of the fourth column of the mat4 as a vec4 (translation and 1 for an affine matrix).
+'matrix_stack::row_x() const': Returns a const reference to the first row of the mat4 (a vec4).
+'matrix_stack::row_y() const': Returns a const reference to the second row of the mat4 (a vec4).
+'matrix_stack::row_z() const': Returns a const reference to the third row of the mat4 (a vec4).
+'matrix_stack::row_w() const': Returns a const reference to the fourth row of the mat4 (a vec4).
+'matrix_stack::row_x_vec3() const': Returns the first three elements of the first row of the mat4 as a vec3.
+'matrix_stack::row_y_vec3() const': Returns the first three elements of the second row of the mat4 as a vec3.
+'matrix_stack::row_z_vec3() const': Returns the first three elements of the third row of the mat4 as a vec3.
+'matrix_stack::row_w_vec3() const': Returns the first three elements of the fourth row of the mat4 as a vec3.
+'matrix_stack::col_x_vec3() const': Returns the first three elements of the first column of the mat4 as a vec3.
+'matrix_stack::col_y_vec3() const': Returns the first three elements of the second column of the mat4 as a vec3.
+'matrix_stack::col_z_vec3() const': Returns the first three elements of the third column of the mat4 as a vec3.
+'matrix_stack::col_w_vec3() const': Returns the first three elements of the fourth column of the mat4, i.e. its translation part, as a vec3.
+'matrix_stack::transform_position(vec3 const&) const': Applies the mat4 to the point (p, 1) and returns the xyz part divided by w (perspective division, w is not checked against zero).
+'matrix_stack::transform_vector(vec3 const&) const': Applies the top-left 3x3 block of the mat4 to the vector v, ignoring the translation and the last row.
+'matrix_stack::inverse_assuming_rigid_transform() const': Returns the inverse ((R^T, -R^T t), (0, 1)) of the mat4, assuming it is a rotation R followed by a translation t; the result is wrong if the linear block is not orthonormal, and the last row is ignored.
+'rotation_transform::data': Unit quaternion (x, y, z, w) storing the rotation, w being the scalar part.
+'rotation_transform::rotation_transform()': Builds the identity rotation, quaternion (0, 0, 0, 1).
+'rotation_transform::rotation_transform(quaternion const&)': "Builds the rotation of a quaternion, asserting that its norm is within 0.05 of 1, and stores it normalized."
+'rotation_transform::from_quaternion(quaternion const&)': Returns the rotation of a unit quaternion, asserting that its norm is within 0.05 of 1 (it is stored as is, not normalized).
+'rotation_transform::from_axis_angle(vec3 const&,float)': Returns the rotation of angle in radians around axis (normalized internally, so it must be nonzero), counterclockwise by the right-hand rule.
+'rotation_transform::from_matrix(mat3 const&)': Returns the rotation of a 3x3 rotation matrix, converted to a quaternion that is then normalized (a warning is printed if the matrix is not orthogonal).
+'rotation_transform::from_vector_transform(vec3 const&,vec3 const&)': Returns the rotation of smallest angle mapping the unit vector e_source onto the unit vector e_target (unit norms asserted); for opposite vectors, a rotation of Pi around an orthogonal axis.
+'rotation_transform::from_frame_transform(vec3 const&,vec3 const&,vec3 const&,vec3 const&)': Returns the rotation R such that R e1 = e1_target and R e2 = e2_target, both pairs being asserted to be orthonormal.
+'rotation_transform::matrix() const': Returns the 3x3 rotation matrix computed from the quaternion.
+'rotation_transform::get_quaternion() const': Returns a const reference to the stored quaternion.
+'rotation_transform::to_axis_angle(vec3&,float&) const': Writes in axis and angle the unit axis and the angle in radians (between 0 and 2 Pi) of the rotation, or (1,0,0) and 0 for a near-identity rotation; asserts that the quaternion norm is within 1e-6 of 1.
+'rotation_transform::matrix_row_x() const': Returns the first row of the rotation matrix, computed directly from the quaternion.
+'rotation_transform::matrix_row_y() const': Returns the second row of the rotation matrix, computed directly from the quaternion.
+'rotation_transform::matrix_row_z() const': Returns the third row of the rotation matrix, computed directly from the quaternion.
+'rotation_transform::matrix_col_x() const': Returns the first column of the rotation matrix, i.e. the image of the x axis, computed directly from the quaternion.
+'rotation_transform::matrix_col_y() const': Returns the second column of the rotation matrix, i.e. the image of the y axis, computed directly from the quaternion.
+'rotation_transform::matrix_col_z() const': Returns the third column of the rotation matrix, i.e. the image of the z axis, computed directly from the quaternion.
+'rotation_transform::convert_axis_angle_to_matrix(vec3 const&,float)': Returns the 3x3 matrix of the rotation of angle in radians around axis (Rodrigues formula); unlike from_axis_angle, the axis is not normalized and its unit norm is asserted within 1e-6.
+'rotation_transform::convert_matrix_to_axis_angle(mat3 const&,vec3&,float&)': Writes in axis and angle the unit axis and the angle in radians of a 3x3 rotation matrix, through from_matrix and to_axis_angle.
+'rotation_transform::convert_quaternion_to_matrix(quaternion const&)': Returns the 3x3 rotation matrix of a quaternion assumed to have unit norm (not checked).
+'rotation_transform::convert_matrix_to_quaternion(mat3 const&)': Returns the quaternion of a 3x3 rotation matrix (trace-based method), without normalizing it; a warning is printed if its norm differs from 1 by more than 0.05.
+'rotation_transform::convert_axis_angle_to_quaternion(vec3 const&,float)': Returns the unit quaternion (sin(angle/2) u, cos(angle/2)) of the rotation of angle in radians around u, the normalized axis.
+'rotation_transform::convert_quaternion_to_axis_angle(quaternion const&,vec3&,float&)': Writes in axis and angle the unit axis and the angle in radians of a quaternion whose unit norm is asserted within 1e-6, or (1,0,0) and 0 when its vector part is below 1e-4.
+'rotation_transform::lerp(rotation_transform const&,rotation_transform const&,float const)': Returns the normalized linear interpolation (nlerp, not slerp) between the quaternions of r1 (alpha=0) and r2 (alpha=1), along the shortest path (q2 is negated when dot(q1,q2)<0).
+'affine_rt::rotation': Rotation part of the rigid transform.
+'affine_rt::translation': Translation part of the rigid transform, applied after the rotation.
+'affine_rt::affine_rt()': Builds the identity transform (identity rotation, zero translation).
+'affine_rt::affine_rt(rotation_transform const&)': Builds a pure rotation with zero translation (explicit).
+'affine_rt::affine_rt(rotation_transform const&,vec3 const&)': Builds the rigid transform p -> rotation*p + translation (explicit).
+'affine_rt::matrix() const': Returns the 4x4 matrix ((R, t), (0, 1)) of the transform.
+'affine_rt::from_matrix(mat4 const&)': Returns the rigid transform of a mat4, with the translation of its last column and the rotation of its 3x3 block divided by the norm of the first row (a uniform scaling is thus dropped; identity rotation if that norm is below 1e-5).
+'affine_rt::set_translation(vec3 const&)': Sets the translation and returns a reference to the transform.
+'affine_rt::set_rotation(rotation_transform const&)': Sets the rotation and returns a reference to the transform.
+'affine_rts::rotation': Rotation part of the similarity transform.
+'affine_rts::translation': Translation part of the similarity transform, applied after the scaling and the rotation.
+'affine_rts::scaling': Uniform scaling factor, applied before the rotation (default 1).
+'affine_rts::affine_rts()': Builds the identity transform (identity rotation, zero translation, scaling 1).
+'affine_rts::affine_rts(affine_rt const&)': Builds the similarity with the rotation and translation of a rigid transform and scaling 1 (implicit conversion).
+'affine_rts::affine_rts(rotation_transform const&,vec3 const&,float)': Builds the similarity p -> scaling*(rotation*p) + translation (explicit).
+'affine_rts::set_scaling(float)': Sets the uniform scaling factor and returns a reference to the transform.
+'affine_rts::set_translation(vec3 const&)': Sets the translation and returns a reference to the transform.
+'affine_rts::set_rotation(rotation_transform const&)': Sets the rotation and returns a reference to the transform.
+'affine_rts::matrix() const': Returns the 4x4 matrix ((s R, t), (0, 1)) of the transform.
+'affine::rotation': Rotation part of the transform, applied after the scalings.
+'affine::translation': Translation part of the transform, applied last.
+'affine::scaling': Uniform scaling factor (default 1), combined with scaling_xyz before the rotation.
+'affine::scaling_xyz': Scaling factors along the local x, y and z axes, applied before the rotation (default (1,1,1)).
+'affine::affine()': Builds the identity transform (identity rotation, zero translation, scaling 1, scaling_xyz (1,1,1)).
+'affine::affine(affine_rt const&)': Builds the affine transform equal to a rigid transform, with unit scalings (implicit conversion).
+'affine::affine(affine_rts const&)': Builds the affine transform equal to a similarity, keeping its scaling and setting scaling_xyz to (1,1,1) (implicit conversion).
+'affine::affine(rotation_transform const&,vec3 const&,float,vec3 const&)': Builds the transform p -> rotation*(scaling*scaling_xyz*p) + translation, with defaults zero translation, scaling 1 and scaling_xyz (1,1,1) (explicit).
+'affine::matrix() const': Returns the 4x4 matrix ((R diag(scaling*scaling_xyz), t), (0, 1)) of the transform.
+'affine::from_matrix(mat4 const&)': Returns the affine transform of a mat4 whose linear block is a rotation times a diagonal scaling, taking the column norms as scalings (in scaling if uniform, else in scaling_xyz, x negated for a reflection); a degenerate block keeps the identity rotation and unit scalings.
+'affine::set_scaling(float)': Sets the uniform scaling factor and returns a reference to the transform.
+'affine::set_scaling_xyz(vec3 const&)': Sets the per-axis scaling factors and returns a reference to the transform.
+'affine::set_translation(vec3 const&)': Sets the translation and returns a reference to the transform.
+'affine::set_rotation(rotation_transform const&)': Sets the rotation and returns a reference to the transform.
+'frame::orientation': Rotation giving the axes of the frame, the columns of its matrix being ux, uy and uz.
+'frame::position': Position of the origin of the frame.
+'frame::frame()': Builds the world frame (identity orientation, origin at zero).
+'frame::frame(rotation_transform const&,vec3 const&)': Builds the frame of the given orientation and origin position (explicit).
+'frame::frame(affine_rt const&)': Builds the frame with the rotation and translation of a rigid transform (explicit).
+'frame::frame(vec3 const&,vec3 const&,vec3 const&)': Builds the frame whose first two axes are the unit orthogonal vectors ux and uy (asserted), the third one being their cross product, with an origin position defaulting to zero (explicit).
+'frame::ux() const': Returns the first axis of the frame, i.e. the first column of the orientation matrix.
+'frame::uy() const': Returns the second axis of the frame, i.e. the second column of the orientation matrix.
+'frame::uz() const': Returns the third axis of the frame, i.e. the third column of the orientation matrix.
+'frame::matrix() const': Returns the 4x4 matrix ((R, position), (0, 1)) mapping frame coordinates to world coordinates.
+'numarray::numarray()': Builds an empty array.
+'numarray::numarray(int)': Builds an array of the given size with value-initialized elements (zero for numbers); not explicit, so an int converts implicitly to a numarray.
+'numarray::numarray(std::initializer_list<T>)': Builds an array from a brace list of values.
+'numarray::numarray(std::vector<T> const&)': Builds an array by copying a std::vector.
+'numarray::operator()(int) const': Returns a const reference to the element at the given index, with bound checking unless CGP_NO_DEBUG is defined.
+'numarray::begin() const': Returns a const iterator to the first element.
+'numarray::end() const': Returns a const iterator one past the last element.
+'numarray::cbegin() const': Returns a const iterator to the first element.
+'numarray::cend() const': Returns a const iterator one past the last element.
+'grid_2D::grid_2D(int)': Builds a square grid of dimension (size, size) with value-initialized elements; asserts size>0, so unlike the other constructors an empty grid is rejected.
+'grid_2D::grid_2D(int2 const&)': Builds a grid of dimension (size.x, size.y) with value-initialized elements (sizes asserted non-negative).
+'grid_2D::grid_2D(int,int)': Builds a grid of dimension (size_1, size_2) with value-initialized elements (sizes asserted non-negative).
+'grid_2D::resize(int2 const&)': Sets the dimension to size and resizes the 1D buffer; existing values are kept by 1D offset, not by (k1, k2), and new elements are value-initialized.
+'grid_2D::resize(int,int)': Sets the dimension to (size_1, size_2) and resizes the 1D buffer; existing values are kept by 1D offset, not by (k1, k2), and new elements are value-initialized.
+'grid_2D::operator()(int2 const&) const': Returns a const reference to the element of index (x, y), stored at offset x + Nx*y, with bound checking unless CGP_NO_DEBUG is defined.
+'grid_2D::operator()(int,int) const': Returns a const reference to the element of index (k1, k2), stored at offset k1 + Nx*k2, with bound checking unless CGP_NO_DEBUG is defined.
+'grid_2D::index_to_offset(int,int) const': Returns the 1D offset k1 + Nx*k2 of the index (k1, k2), without bound checking.
+'grid_2D::offset_to_index(int) const': Returns the 2D index (k1, k2) of a 1D offset, inverse of index_to_offset (no bound checking).
+'grid_2D::begin() const': Returns a const iterator to the first element of the 1D buffer, in which the first index varies fastest.
+'grid_2D::end() const': Returns a const iterator one past the last element of the 1D buffer.
+'grid_2D::cbegin() const': Returns a const iterator to the first element of the 1D buffer, in which the first index varies fastest.
+'grid_2D::cend() const': Returns a const iterator one past the last element of the 1D buffer.
+'grid_3D::grid_3D(int)': Builds a cubic grid of dimension (size, size, size) with value-initialized elements (size asserted non-negative).
+'grid_3D::grid_3D(int3 const&)': Builds a grid of dimension (size.x, size.y, size.z) with value-initialized elements (sizes asserted non-negative).
+'grid_3D::grid_3D(int,int,int)': Builds a grid of dimension (size_1, size_2, size_3) with value-initialized elements (sizes asserted non-negative).
+'grid_3D::resize(int3 const&)': Sets the dimension to size and resizes the 1D buffer; existing values are kept by 1D offset, not by (k1, k2, k3), and new elements are value-initialized.
+'grid_3D::resize(int,int,int)': Sets the dimension to (size_1, size_2, size_3) and resizes the 1D buffer; existing values are kept by 1D offset, not by (k1, k2, k3), and new elements are value-initialized.
+'grid_3D::operator()(int3 const&) const': Returns a const reference to the element of index (x, y, z), stored at offset x + Nx*(y + Ny*z), with bound checking unless CGP_NO_DEBUG is defined.
+'grid_3D::operator()(int,int,int) const': Returns a const reference to the element of index (k1, k2, k3), stored at offset k1 + Nx*(k2 + Ny*k3), with bound checking unless CGP_NO_DEBUG is defined.
+'grid_3D::index_to_offset(int,int,int) const': Returns the 1D offset k1 + Nx*(k2 + Ny*k3) of the index (k1, k2, k3), without bound checking.
+'grid_3D::index_to_offset(int3 const&) const': Returns the 1D offset x + Nx*(y + Ny*z) of the index (x, y, z), without bound checking.
+'grid_3D::offset_to_index(int) const': Returns the 3D index (k1, k2, k3) of a 1D offset, inverse of index_to_offset (no bound checking).
+'grid_3D::begin() const': Returns a const iterator to the first element of the 1D buffer, in which the first index varies fastest.
+'grid_3D::end() const': Returns a const iterator one past the last element of the 1D buffer.
+'grid_3D::cbegin() const': Returns a const iterator to the first element of the 1D buffer, in which the first index varies fastest.
+'grid_3D::cend() const': Returns a const iterator one past the last element of the 1D buffer.
+'grid_3D::coeff(int) const': Returns a const reference to the element at the given 1D offset, without bound checking.
+'grid_3D::coeff(int,int,int) const': Returns a const reference to the element of index (k1, k2, k3), without bound checking.
+# Rewritten from source comments after the expert review (2026-10-29)
+'numarray::operator[](int) const': "Returns the element at index, bound-checked unless CGP_NO_DEBUG is defined (at() and coeff() do not check)."
+'numarray_stack::operator[](int) const': "Returns the element at index, bound-checked unless CGP_NO_DEBUG is defined."
+'numarray_stack<T,2>::x': "First coordinate of the vector."
+'numarray_stack<T,3>::x': "First coordinate of the vector."
+'numarray_stack<T,4>::x': "First coordinate of the vector."
+'numarray_stack::xyz() const': "Returns a copy of the first three coordinates (x, y, z) as a vec3."
+'mesh::fill_empty_field()': "Fills the missing per-vertex fields (normals computed from the triangles, white colors, uv (0,0)) and returns the mesh."
+'mesh::rotate(vec3 const&,float)': "Rotates the positions and normals by angle in radians around axis through the origin, and returns the mesh."
+'mesh::scale(float)': "Multiplies the positions by s about the origin (a negative s also flips the normals and the triangle orientation), and returns the mesh."
+'mesh::normalize_size_to_position()': "Scales the positions about the origin so that the largest side of the bounding box is 1 (call centered() first to fit a unit cube), and returns the mesh."
+'matrix_stack::fill(T const&)': "Sets every coefficient of the matrix to the given value and returns a reference to the matrix."
+'matrix_stack::set_block<N1_arg,N2_arg>(matrix_stack<T,N1_arg,N2_arg> const&,int,int)': "Copies block into the matrix with its top-left coefficient at (offset_1, offset_2)."
+'grid_2D::grid_2D()': "Builds an empty grid of dimension (0,0)."
+'grid_3D::grid_3D()': "Builds an empty grid of dimension (0,0,0)."
+'grid_2D::resize(int)': "Resizes the grid to the square dimension (size, size); values are kept by 1D offset."
+
+# --- D (types added for the how-to pages: inputs, picking, material parameters, VBO, bounding box)
+'phong_parameters::ambient': "Ambient coefficient Ka (0.3 by default): fraction of the object color shown even where the light does not reach, sent to material.phong.ambient."
+'phong_parameters::diffuse': "Diffuse coefficient Kd (0.6 by default) multiplying max(dot(N,L),0) in the default shader, sent to material.phong.diffuse."
+'phong_parameters::specular': "Specular coefficient Ks (0.3 by default) of the white highlight, sent to material.phong.specular (0 gives a matte surface)."
+'phong_parameters::specular_exponent': "Shininess exponent (64 by default) of the specular term: the larger, the smaller and sharper the highlight; sent to material.phong.specular_exponent."
+'texture_settings_parameters::active': "Uses the texture of the drawable when true (default); when false the default shader replaces the texture color by white; sent to material.texture_settings.use_texture."
+'texture_settings_parameters::inverse_v': "Reads the texture at (u, 1-v) when true (default), so that images stored from the top row appear upright; sent to material.texture_settings.texture_inverse_v."
+'texture_settings_parameters::two_sided': "Flips the normal of the back faces in the default shader when true (false by default), so that both sides of a surface are lit; sent to material.texture_settings.two_sided."
+'bounding_box::p_min': "Corner of the box with the smallest x, y and z coordinates, {0,0,0} by default."
+'bounding_box::p_max': "Corner of the box with the largest x, y and z coordinates, {0,0,0} by default."
+'bounding_box::initialize(mesh const&)': "Sets p_min and p_max to the smallest box containing every position of the mesh (the mesh must have at least one vertex)."
+'bounding_box::initialize(numarray<vec3> const&)': "Sets p_min and p_max to the smallest box containing every given position, and stops on an assertion if the array is empty."
+'bounding_box::extends(float)': "Enlarges the box by d on every side (p_min - d, p_max + d); a negative d shrinks it."
+'bounding_box::extends(float,float,float)': "Enlarges the box by dx, dy and dz on the sides along x, y and z respectively."
+'bounding_box::extends(vec3 const&)': "Enlarges the box by d.x, d.y and d.z on the sides along x, y and z (p_min - d, p_max + d)."
+'bounding_box::inside(vec3 const&) const': "Returns true if p is inside the box or on its boundary."
+'bounding_box::collide(bounding_box const&,bounding_box const&)': "Static function returning true if the two boxes overlap or touch along the three axes."
+'opengl_vbo_structure::divisor': "Instancing divisor given to initialize_data_on_gpu: 0 for per-vertex data, 1 to advance once per instance (applied by opengl_set_vao_location)."
+'opengl_gpu_buffer::id': "OpenGL id of the buffer, 0 when it is not allocated."
+'opengl_gpu_buffer::size': "Number of elements in the buffer (a vec3 or a uint3 counts as one element), 0 when empty."
+'opengl_gpu_buffer::type': "OpenGL target of the buffer, GL_ARRAY_BUFFER for a VBO and GL_ELEMENT_ARRAY_BUFFER for an EBO."
+'opengl_gpu_buffer::details': "Allocated size in bytes, number of components per element (2, 3 or 4) and component type (GL_FLOAT), used to describe the buffer to the VAO."
+'opengl_ebo_structure::initialize_data_on_gpu(numarray<uint3> const&)': "Allocates a new EBO (glBufferData on GL_ELEMENT_ARRAY_BUFFER, GL_DYNAMIC_DRAW) holding the triangle indices and stores its id and size (number of triangles); prints a warning if the EBO was already allocated, whose memory is then lost."
+'opengl_vbo_structure::initialize_data_on_gpu(numarray<vec3> const&,GLuint)': "Allocates a new VBO (glBufferData, GL_DYNAMIC_DRAW) holding the vec3 array and stores its id, size and divisor; prints a warning if the VBO was already allocated, whose memory is then lost."
+'opengl_vbo_structure::initialize_data_on_gpu(numarray<vec2> const&,GLuint)': "Allocates a new VBO (glBufferData, GL_DYNAMIC_DRAW) holding the vec2 array and stores its id, size and divisor; prints a warning if the VBO was already allocated, whose memory is then lost."
+'opengl_vbo_structure::initialize_data_on_gpu(numarray<vec4> const&,GLuint)': "Allocates a new VBO (glBufferData, GL_DYNAMIC_DRAW) holding the vec4 array and stores its id, size and divisor; prints a warning if the VBO was already allocated, whose memory is then lost."
+'opengl_vbo_structure::update(numarray<vec2> const&,int)': "Overwrites the start of the VBO with the vec2 array (glBufferSubData, no reallocation), all of it or its first size_elements_update elements, and stops on an assertion if this exceeds the allocated size."
+'opengl_vbo_structure::update(numarray<vec3> const&,int)': "Overwrites the start of the VBO with the vec3 array (glBufferSubData, no reallocation), all of it or its first size_elements_update elements, and stops on an assertion if this exceeds the allocated size."
+'opengl_vbo_structure::update(numarray<vec4> const&,int)': "Overwrites the start of the VBO with the vec4 array (glBufferSubData, no reallocation), all of it or its first size_elements_update elements, and stops on an assertion if this exceeds the allocated size."
+'opengl_gpu_buffer::bind() const': "Binds the buffer to its target (glBindBuffer) when its id is not 0."
+'opengl_gpu_buffer::unbind() const': "Unbinds any buffer from the target of this buffer (glBindBuffer with 0)."
+'opengl_gpu_buffer::clear()': "Deletes the buffer on the GPU (glDeleteBuffers) and resets id, size, type and details to 0."
+'inputs_keyboard_parameters::shift': "True while one of the two Shift keys is held down."
+'inputs_keyboard_parameters::ctrl': "True while one of the two Control keys is held down."
+'inputs_keyboard_parameters::up': "True while the Up arrow key is held down."
+'inputs_keyboard_parameters::down': "True while the Down arrow key is held down."
+'inputs_keyboard_parameters::right': "True while the Right arrow key is held down."
+'inputs_keyboard_parameters::left': "True while the Left arrow key is held down."
+'inputs_keyboard_parameters::last_action': "Key and action (press, release, repeat) of the last keyboard event, to react once to a key press in keyboard_event()."
+'inputs_keyboard_parameters::pressed_keys_storage': "Set of the GLFW key codes currently held down, read by is_pressed (internal storage, not meant to be modified)."
+'inputs_keyboard_parameters::is_pressed(int) const': "Returns true while the key with this GLFW code (GLFW_KEY_A, GLFW_KEY_SPACE...) is held down; the code is a key position, the QWERTY name of the key."
+'inputs_keyboard_parameters::is_pressed(char) const': "Returns true while the key whose character is keyname on the keyboard in use (layout-aware, e.g. 'z' on AZERTY) is held down; printable keys only."
+'inputs_keyboard_parameters::is_pressed(std::string const&) const': "Returns true while a held key has this name for the keyboard layout in use (glfwGetKeyName, e.g. \"k\"); printable keys only, use the GLFW code for Space or the arrows."
+'inputs_keyboard_parameters::inputs_keyboard_parameters()': "Builds a keyboard state with no key held (shift, ctrl and the arrow flags false)."
+'inputs_keyboard_parameters::update_from_glfw_key(int,int)': "Updates the held keys, the shift, ctrl and arrow flags and last_action from a GLFW key event (called by the application, not by the scene)."
+'inputs_keyboard_last_action_parameter::key': "GLFW key code of the last keyboard event, -1 before the first event."
+'inputs_keyboard_last_action_parameter::action': "GLFW_PRESS, GLFW_RELEASE or GLFW_REPEAT for the last keyboard event, -1 before the first event."
+'inputs_keyboard_last_action_parameter::is_pressed(int) const': "Returns true if the last keyboard event is the press (not a repeat) of the key with this GLFW code; it stays true until the next key event, so test it in keyboard_event()."
+'inputs_keyboard_last_action_parameter::is_pressed(char) const': "Returns true if the last keyboard event is the press of the key whose character is keyname on the layout in use (printable keys only)."
+'inputs_keyboard_last_action_parameter::is_pressed(std::string const&) const': "Returns true if the last keyboard event is the press of the key with this name on the layout in use (glfwGetKeyName, printable keys only)."
+'inputs_keyboard_last_action_parameter::is_released(int) const': "Returns true if the last keyboard event is the release of the key with this GLFW code."
+'inputs_keyboard_last_action_parameter::is_released(char) const': "Returns true if the last keyboard event is the release of the key whose character is keyname on the layout in use (printable keys only)."
+'inputs_keyboard_last_action_parameter::is_released(std::string const&) const': "Returns true if the last keyboard event is the release of the key with this name on the layout in use (glfwGetKeyName, printable keys only)."
+'inputs_mouse_parameters::position': "Cursor position in relative window coordinates in [-1,1], with position.current and position.previous (the value before the last move)."
+'inputs_mouse_parameters::click': "Mouse button state: click.left and click.right are true while the button is held, click.last_action is the last button change."
+'inputs_mouse_parameters::scroll': "Scroll offset received during the current frame, reset to 0 after each frame."
+'inputs_mouse_parameters::on_gui': "True when the cursor is over the ImGui window; the scene mouse callbacks are then not called."
+'picking_structure::active': "True if the ray hit an element, false otherwise (the other fields except the ray are then not meaningful)."
+'picking_structure::index': "Index of the picked element in the array given to the picking function, -1 when nothing is picked."
+'picking_structure::position': "3D position of the hit point on the picked sphere."
+'picking_structure::normal': "Normal at the hit point: the sphere normal for picking_spheres, the vertex normal for picking_mesh_vertex_as_sphere."
+'picking_structure::ray_origin': "Origin of the picking ray, the position of the camera."
+'picking_structure::ray_direction': "Unit direction of the picking ray, through the clicked point of the screen."
+'picking_structure::screen_clicked': "Clicked position in relative screen coordinates in [-1,1], as given to the picking function."
+'picking_structure::picking_structure()': "Builds an empty picking result: active false, index -1, zero vectors."
+'intersection_structure::valid': "True if the ray hits the shape in front of its origin, false otherwise (position and normal then keep their default values)."
+'intersection_structure::position': "3D position of the closest hit point in front of the ray origin, {0,0,0} by default."
+'intersection_structure::normal': "Unit normal of the shape at the hit point, {0,0,1} by default."
+
+# --- Rewrites of descriptions copied from the C++ comments (2026-10-29, checked against the bodies)
+'grid_2D::at(int) const': "Returns a const reference to the element at the given 1D offset, without bound checking."
+'grid_2D::clear()': "Resizes the grid to the dimension (0,0), which removes all its elements."
+'grid_2D::data': "Elements stored contiguously as a 1D numarray, the element (k1,k2) at offset k1 + Nx*k2."
+'grid_2D::dimension': "Number of elements (Nx, Ny) along each of the two directions."
+'grid_2D::fill(T const&)': "Sets every element of the grid to the given value, keeping its dimension."
+'grid_2D::from_buffer(numarray<T> const&,int,int)': "Builds a grid of dimension (size_1, size_2) holding a copy of a 1D buffer, whose size must be size_1*size_2 (asserted)."
+'grid_2D::operator[](int2 const&) const': "Returns a const reference to the element of index (x, y), stored at offset x + Nx*y, with bound checking unless CGP_NO_DEBUG is defined."
+'grid_2D::size() const': "Total number of elements, Nx*Ny."
+'grid_3D::clear()': "Resizes the grid to the dimension (0,0,0), which removes all its elements."
+'grid_3D::data': "Elements stored contiguously as a 1D numarray, the element (k1,k2,k3) at offset k1 + Nx*(k2 + Ny*k3)."
+'grid_3D::dimension': "Number of elements (Nx, Ny, Nz) along each of the three directions."
+'grid_3D::fill(T const&)': "Sets every element of the grid to the given value, keeping its dimension."
+'grid_3D::from_array(numarray<T> const&,int,int,int)': "Builds a grid of dimension (size_1, size_2, size_3) holding a copy of a 1D buffer, whose size must be size_1*size_2*size_3 (asserted)."
+'grid_3D::operator[](int3 const&) const': "Returns a const reference to the element of index (x, y, z), stored at offset x + Nx*(y + Ny*z), with bound checking unless CGP_NO_DEBUG is defined."
+'grid_3D::resize(int)': "Resizes the grid to the cubic dimension (size, size, size); values are kept by 1D offset and new elements are value-initialized."
+'grid_3D::size() const': "Total number of elements, Nx*Ny*Nz."
+'matrix_stack::data': "Coefficients stored row by row as N1 rows of N2 values (a numarray_stack of numarray_stack), contiguous in memory."
+'matrix_stack<float,2,2>::data': "Coefficients stored row by row as 2 rows of 2 floats, contiguous in memory."
+'matrix_stack<float,3,3>::data': "Coefficients stored row by row as 3 rows of 3 floats, contiguous in memory."
+'matrix_stack<float,4,4>::data': "Coefficients stored row by row as 4 rows of 4 floats, contiguous in memory."
+'mesh::apply_transform(mat3 const&)': "Multiplies every position by the 3x3 matrix M, recomputes the normals from the triangles with normal_update, and returns the mesh."
+'mesh::apply_transform(mat4 const&)': "Applies the 4x4 matrix M to every position as a point, with the division by w, recomputes the normals with normal_update, and returns the mesh."
+'mesh::centered()': "Translates the positions so that the center of their bounding box is at the origin, and returns the mesh."
+'mesh::get_bounding_box_position(vec3&,vec3&) const': "Writes the minimal and maximal corners of the axis-aligned bounding box of the positions in p_min and p_max (asserts that the mesh has a position)."
+'mesh::push_back(mesh const&)': "Appends the vertices and triangles of another mesh, shifting its triangle indices by the current number of vertices, and returns the mesh."
+'mesh::scale(float,float,float)': "Multiplies the x, y and z coordinates of every position by sx, sy and sz, recomputes the normals (reversing the triangles when sx*sy*sz < 0) and returns the mesh."
+'mesh::translate(vec3 const&)': "Adds t to every position, leaving the normals unchanged, and returns the mesh."
+'numarray::at(int) const': "Returns a const reference to the element at index, without bound checking."
+'numarray::clear()': "Removes all elements, so that the size becomes 0, and returns the array."
+'numarray::coeff(int) const': "Returns a const reference to the element at index, without bound checking (deprecated, use at)."
+'numarray::data': "std::vector holding the elements, which can be used directly (e.g. data.data() for a raw pointer)."
+'numarray::fill(T const&)': "Sets every element to the given value, keeping the size, and returns the array."
+'numarray::linespace(T const&,T const&,int)': "Returns N evenly spaced values from p1 to p2 included, like linspace in MATLAB (N must be at least 2)."
+'numarray::push_back(T const&)': "Appends one element at the end and returns the array."
+'numarray::push_back(numarray<T> const&)': "Appends all elements of another array at the end and returns the array."
+'numarray::resize(int)': "Resizes the array (size asserted non-negative), keeping the first values and value-initializing the new ones, and returns the array."
+'numarray::resize_clear(int)': "Clears the array then resizes it, so that all its elements are value-initialized (zero for numbers), and returns the array."
+'numarray::size() const': "Number of elements of the array."
+'numarray_stack::data': "std::array holding the N components, stored contiguously."
+'numarray_stack::fill(T const&)': "Sets the N components to the given value and returns the vector."
+'numarray_stack::size() const': "Number of components N, fixed at compile time."
+'window_structure::create_window(int,int,std::string const&,int,int)': "Creates the GLFW window and its OpenGL context (core 3.3 by default, 8x multisampling, vsync), loads the OpenGL functions, and stores the window position and size and the screen resolution; initialize_glfw must be called before."
+'window_structure::initialize_glfw()': "Initializes GLFW with a callback that prints its errors, and aborts with a message if no graphical server is available; call it once before create_window."

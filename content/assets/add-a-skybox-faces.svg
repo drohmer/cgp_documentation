@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 386" width="700" height="386">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .b { font-weight: bold; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .idx { font-family: Menlo, Consolas, monospace; font-size: 12px; fill: #666666; }
+    .f { font-size: 22px; font-weight: bold; }
+    .ar { stroke: #e07b1a; stroke-width: 2; fill: none; marker-end: url(#ar); }
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+  </defs>
+  <text x="20" y="24" class="b in">image_split_grid(image, 4, 3)</text>
+  <text x="20" y="44" class="m">faces[row + 3*column]</text>
+  <text x="62.0" y="68" class="idx" text-anchor="middle">column 0</text>
+  <text x="146.0" y="68" class="idx" text-anchor="middle">column 1</text>
+  <text x="230.0" y="68" class="idx" text-anchor="middle">column 2</text>
+  <text x="314.0" y="68" class="idx" text-anchor="middle">column 3</text>
+  <text x="364" y="120.0" class="idx">row 0</text>
+  <text x="364" y="204.0" class="idx">row 1</text>
+  <text x="364" y="288.0" class="idx">row 2</text>
+  <rect x="20" y="74" width="84" height="84" style="fill:#f4f4f4;stroke:#ccc;stroke-width:1;stroke-dasharray:4 3"/>
+  <text x="26" y="90" class="idx" style="fill:#666666">0</text>
+  <rect x="20" y="158" width="84" height="84" style="fill:#fbe3e1;stroke:#d0605a;stroke-width:1.5"/>
+  <text x="62.0" y="212.0" class="f" text-anchor="middle" style="fill:#b3261e">-x</text>
+  <text x="26" y="174" class="idx" style="fill:#333">1</text>
+  <rect x="20" y="242" width="84" height="84" style="fill:#f4f4f4;stroke:#ccc;stroke-width:1;stroke-dasharray:4 3"/>
+  <text x="26" y="258" class="idx" style="fill:#666666">2</text>
+  <rect x="104" y="74" width="84" height="84" style="fill:#dff0dc;stroke:#5aa55a;stroke-width:1.5"/>
+  <text x="146.0" y="128.0" class="f" text-anchor="middle" style="fill:#2a7330">+y</text>
+  <text x="110" y="90" class="idx" style="fill:#333">3</text>
+  <rect x="104" y="158" width="84" height="84" style="fill:#e3eefb;stroke:#4a86d0;stroke-width:1.5"/>
+  <text x="146.0" y="212.0" class="f" text-anchor="middle" style="fill:#2b66ad">+z</text>
+  <text x="110" y="174" class="idx" style="fill:#333">4</text>
+  <rect x="104" y="242" width="84" height="84" style="fill:#dff0dc;stroke:#5aa55a;stroke-width:1.5"/>
+  <text x="146.0" y="296.0" class="f" text-anchor="middle" style="fill:#2a7330">-y</text>
+  <text x="110" y="258" class="idx" style="fill:#333">5</text>
+  <rect x="188" y="74" width="84" height="84" style="fill:#f4f4f4;stroke:#ccc;stroke-width:1;stroke-dasharray:4 3"/>
+  <text x="194" y="90" class="idx" style="fill:#666666">6</text>
+  <rect x="188" y="158" width="84" height="84" style="fill:#fbe3e1;stroke:#d0605a;stroke-width:1.5"/>
+  <text x="230.0" y="212.0" class="f" text-anchor="middle" style="fill:#b3261e">+x</text>
+  <text x="194" y="174" class="idx" style="fill:#333">7</text>
+  <rect x="188" y="242" width="84" height="84" style="fill:#f4f4f4;stroke:#ccc;stroke-width:1;stroke-dasharray:4 3"/>
+  <text x="194" y="258" class="idx" style="fill:#666666">8</text>
+  <rect x="272" y="74" width="84" height="84" style="fill:#f4f4f4;stroke:#ccc;stroke-width:1;stroke-dasharray:4 3"/>
+  <text x="278" y="90" class="idx" style="fill:#666666">9</text>
+  <rect x="272" y="158" width="84" height="84" style="fill:#e3eefb;stroke:#4a86d0;stroke-width:1.5"/>
+  <text x="314.0" y="212.0" class="f" text-anchor="middle" style="fill:#2b66ad">-z</text>
+  <text x="278" y="174" class="idx" style="fill:#333">10</text>
+  <rect x="272" y="242" width="84" height="84" style="fill:#f4f4f4;stroke:#ccc;stroke-width:1;stroke-dasharray:4 3"/>
+  <text x="278" y="258" class="idx" style="fill:#666666">11</text>
+  <text x="20" y="350" class="idx">unused squares (dashed) are ignored</text>
+  <path d="M406,200.0 H444" class="ar"/>
+  <text x="452" y="82" class="m">skybox.texture.</text>
+  <text x="452" y="100" class="m">initialize_cubemap_on_gpu(</text>
+  <rect x="468" y="114" width="96" height="24" rx="3" style="fill:#fbe3e1;stroke:#d0605a;stroke-width:1.2"/>
+  <text x="516" y="131" class="m" text-anchor="middle">faces[1]</text>
+  <text x="576" y="131" class="in b" style="fill:#b3261e">-x</text>
+  <rect x="468" y="144" width="96" height="24" rx="3" style="fill:#fbe3e1;stroke:#d0605a;stroke-width:1.2"/>
+  <text x="516" y="161" class="m" text-anchor="middle">faces[7]</text>
+  <text x="576" y="161" class="in b" style="fill:#b3261e">+x</text>
+  <rect x="468" y="174" width="96" height="24" rx="3" style="fill:#dff0dc;stroke:#5aa55a;stroke-width:1.2"/>
+  <text x="516" y="191" class="m" text-anchor="middle">faces[5]</text>
+  <text x="576" y="191" class="in b" style="fill:#2a7330">-y</text>
+  <rect x="468" y="204" width="96" height="24" rx="3" style="fill:#dff0dc;stroke:#5aa55a;stroke-width:1.2"/>
+  <text x="516" y="221" class="m" text-anchor="middle">faces[3]</text>
+  <text x="576" y="221" class="in b" style="fill:#2a7330">+y</text>
+  <rect x="468" y="234" width="96" height="24" rx="3" style="fill:#e3eefb;stroke:#4a86d0;stroke-width:1.2"/>
+  <text x="516" y="251" class="m" text-anchor="middle">faces[10]</text>
+  <text x="576" y="251" class="in b" style="fill:#2b66ad">-z</text>
+  <rect x="468" y="264" width="96" height="24" rx="3" style="fill:#e3eefb;stroke:#4a86d0;stroke-width:1.2"/>
+  <text x="516" y="281" class="m" text-anchor="middle">faces[4]</text>
+  <text x="576" y="281" class="in b" style="fill:#2b66ad">+z</text>
+  <text x="452" y="306" class="m">);</text>
+  <text x="350" y="374" text-anchor="middle">The cube map is y-up (OpenGL); skybox_rotation tilts it for the z-up scene.</text>
+</svg>

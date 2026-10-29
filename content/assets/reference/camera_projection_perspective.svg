@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" width="700" height="450">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 14px; fill: #666666; }
+    .in { fill: #333; }
+    .b { font-weight: bold; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .s { font-size: 13px; }
+    .cpu { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.5; }
+    .card { fill: #ffffff; stroke: #cccccc; stroke-width: 1; }
+    .fr { fill: #dcf1f3; stroke: #3a9aa5; stroke-width: 1.5; }
+    .pl { stroke: #e07b1a; stroke-width: 3; }
+    .dim { stroke: #555; stroke-width: 1.2; fill: none; marker-end: url(#ak); marker-start: url(#aks); }
+  </style>
+  <defs>
+    <marker id="ak" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#555"/></marker>
+    <marker id="aks" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M10,0 L0,5 L10,10 z" fill="#555"/></marker>
+  </defs>
+
+  <text x="20" y="24" class="b" style="fill:#2b66ad">Side view of the view frustum (not to scale)</text>
+
+  <rect x="20" y="36" width="380" height="370" rx="8" class="card"/>
+  <!-- frustum: eye (56,210), half angle 25 deg -->
+  <polygon points="116,182 356,70 356,350 116,238" class="fr"/>
+  <line x1="56" y1="210" x2="116" y2="182" stroke="#3a9aa5" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="56" y1="210" x2="116" y2="238" stroke="#3a9aa5" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <line x1="56" y1="210" x2="384" y2="210" stroke="#999" stroke-width="1" stroke-dasharray="3 3"/>
+  <text x="392" y="204" class="s" text-anchor="end">front</text>
+  <line x1="116" y1="182" x2="116" y2="238" class="pl"/>
+  <line x1="356" y1="70" x2="356" y2="350" class="pl"/>
+  <text x="112" y="174" class="s" style="fill:#a85000" text-anchor="end">near</text>
+  <text x="350" y="62" class="s" style="fill:#a85000" text-anchor="end">far plane</text>
+  <!-- fov arc radius 44 -->
+  <path d="M95.9,191.4 A44,44 0 0 1 95.9,228.6" fill="none" stroke="#c9567f" stroke-width="2"/>
+  <text x="36" y="296" class="m" style="fill:#a3305e">field_of_view</text>
+  <line x1="70" y1="282" x2="94" y2="230" stroke="#c9567f" stroke-width="1"/>
+  <text x="36" y="314" class="s" style="fill:#a3305e">full vertical angle</text>
+  <circle cx="56" cy="210" r="5.5" fill="#333"/>
+  <text x="40" y="196" class="s in" text-anchor="middle">camera</text>
+  <!-- depths -->
+  <line x1="56" y1="216" x2="56" y2="394" stroke="#ccc" stroke-width="1"/>
+  <line x1="116" y1="244" x2="116" y2="372" stroke="#ccc" stroke-width="1"/>
+  <line x1="356" y1="356" x2="356" y2="394" stroke="#ccc" stroke-width="1"/>
+  <path d="M58,366 H114" class="dim"/>
+  <text x="124" y="370" class="m">depth_min</text>
+  <path d="M58,388 H354" class="dim"/>
+  <text x="236" y="382" class="m">depth_max</text>
+
+  <!-- fields -->
+  <rect x="416" y="36" width="264" height="190" rx="8" class="cpu"/>
+  <text x="428" y="58" class="s b in">fields (default)</text>
+  <text x="428" y="82" class="m" style="fill:#a3305e">field_of_view</text>
+  <text x="440" y="100" class="s">50 * Pi/180, in radians</text>
+  <text x="428" y="124" class="m">aspect_ratio</text>
+  <text x="440" y="142" class="s">1, width / height</text>
+  <text x="428" y="166" class="m">depth_min</text><text x="512" y="166" class="s">0.01</text>
+  <text x="428" y="190" class="m">depth_max</text><text x="512" y="190" class="s">1000</text>
+  <text x="428" y="214" class="s">both distances in front of the camera</text>
+
+  <!-- front view of the image -->
+  <rect x="416" y="242" width="264" height="164" rx="8" class="card"/>
+  <text x="428" y="264" class="s b in">image seen from the camera</text>
+  <rect x="490" y="282" width="112" height="70" fill="#fdebd6" stroke="#e07b1a" stroke-width="1.5"/>
+  <text x="546" y="368" class="s" text-anchor="middle">width</text>
+  <text x="484" y="322" class="s" text-anchor="end">height</text>
+  <text x="428" y="398" class="m">aspect_ratio</text><text x="530" y="398" class="s">= width / height</text>
+
+  <text x="20" y="428" class="m">matrix() = projection_perspective(field_of_view, aspect_ratio,</text>
+  <text x="104" y="444" class="m">depth_min, depth_max)</text>
+</svg>

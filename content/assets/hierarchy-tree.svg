@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 400" width="720" height="400" font-family="sans-serif" font-size="14">
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#888888"/></marker></defs>
+<line x1="360" y1="45.0" x2="360" y2="73.0" stroke="#888888" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="360" y1="105.0" x2="70" y2="133.0" stroke="#888888" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="360" y1="105.0" x2="200" y2="133.0" stroke="#888888" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="360" y1="105.0" x2="380" y2="133.0" stroke="#888888" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="360" y1="105.0" x2="600" y2="133.0" stroke="#888888" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="380" y1="165.0" x2="380" y2="193.0" stroke="#888888" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="380" y1="225.0" x2="380" y2="253.0" stroke="#888888" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="380" y1="285.0" x2="380" y2="313.0" stroke="#888888" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="600" y1="165.0" x2="600" y2="193.0" stroke="#888888" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="600" y1="225.0" x2="600" y2="253.0" stroke="#888888" stroke-width="1.5" marker-end="url(#a)"/>
+<line x1="600" y1="285.0" x2="600" y2="313.0" stroke="#888888" stroke-width="1.5" marker-end="url(#a)"/>
+<rect x="298.0" y="15.0" width="124" height="30" rx="7" fill="none" stroke="#888888" stroke-width="2" stroke-dasharray="5 3"/>
+<text x="360" y="35" text-anchor="middle" fill="#666666">global_frame</text>
+<rect x="298.0" y="75.0" width="124" height="30" rx="7" fill="none" stroke="#e07b1a" stroke-width="2"/>
+<text x="360" y="95" text-anchor="middle" fill="#666666">body</text>
+<rect x="8.0" y="135.0" width="124" height="30" rx="7" fill="none" stroke="#4a86d0" stroke-width="2"/>
+<text x="70" y="155" text-anchor="middle" fill="#666666">eye_left</text>
+<rect x="138.0" y="135.0" width="124" height="30" rx="7" fill="none" stroke="#4a86d0" stroke-width="2"/>
+<text x="200" y="155" text-anchor="middle" fill="#666666">eye_right</text>
+<rect x="318.0" y="135.0" width="124" height="30" rx="7" fill="none" stroke="#e07b1a" stroke-width="2"/>
+<text x="380" y="155" text-anchor="middle" fill="#666666">shoulder_left</text>
+<rect x="318.0" y="195.0" width="124" height="30" rx="7" fill="none" stroke="#4a86d0" stroke-width="2"/>
+<text x="380" y="215" text-anchor="middle" fill="#666666">elbow_left</text>
+<rect x="318.0" y="255.0" width="124" height="30" rx="7" fill="none" stroke="#e07b1a" stroke-width="2"/>
+<text x="380" y="275" text-anchor="middle" fill="#666666">forearm_left</text>
+<rect x="318.0" y="315.0" width="124" height="30" rx="7" fill="none" stroke="#4a86d0" stroke-width="2"/>
+<text x="380" y="335" text-anchor="middle" fill="#666666">hand_left</text>
+<rect x="538.0" y="135.0" width="124" height="30" rx="7" fill="none" stroke="#e07b1a" stroke-width="2"/>
+<text x="600" y="155" text-anchor="middle" fill="#666666">shoulder_right</text>
+<rect x="538.0" y="195.0" width="124" height="30" rx="7" fill="none" stroke="#4a86d0" stroke-width="2"/>
+<text x="600" y="215" text-anchor="middle" fill="#666666">elbow_right</text>
+<rect x="538.0" y="255.0" width="124" height="30" rx="7" fill="none" stroke="#e07b1a" stroke-width="2"/>
+<text x="600" y="275" text-anchor="middle" fill="#666666">forearm_right</text>
+<rect x="538.0" y="315.0" width="124" height="30" rx="7" fill="none" stroke="#4a86d0" stroke-width="2"/>
+<text x="600" y="335" text-anchor="middle" fill="#666666">hand_right</text>
+<text x="20" y="250" fill="#666666">global(node) =</text>
+<text x="20" y="272" fill="#666666">  global(parent) * local(node)</text>
+<rect x="20" y="305" width="22" height="14" rx="3" fill="none" stroke="#e07b1a" stroke-width="2"/><text x="50" y="317" fill="#666666">local transform animated</text>
+<rect x="20" y="330" width="22" height="14" rx="3" fill="none" stroke="#4a86d0" stroke-width="2"/><text x="50" y="342" fill="#666666">local transform fixed</text>
+<text x="20" y="372" fill="#666666" font-size="12">arrow: parent to child (name_parent)</text>
+</svg>

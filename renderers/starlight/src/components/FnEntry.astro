@@ -1,0 +1,49 @@
+---
+// One function or method of the reference, with all its overloads on this page: name (anchor =
+// model id of the first overload, strong search weight), one signature block per overload
+// (anchored by its own model id, with the non-const variant of a const method), the
+// description once when the overloads share it, else one per overload; badges (generic,
+// via <base class>, static) and source links.
+import { Badge } from '@astrojs/starlight/components';
+import { baseLabel, splitDescriptions } from '../lib/api.mjs';
+
+interface Props { f?: any; fns?: any[] }
+const { f, fns } = Astro.props;
+const list: any[] = fns ?? [f];
+const first = list[0];
+const anchor = first.anchor ?? first.id;
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const inline = (s: string) => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>');
+const sigOf = (x: any) => (x.template ? x.template + '\n' : '') + [x.signature, ...(x.variants ?? []).map((v: any) => v.signature)].join('\n');
+const descs: (string | null)[] = list.map((x) => x.description ?? null);
+const shared = new Set(descs).size === 1;
+const { own, common } = shared ? { own: descs, common: null } : splitDescriptions(descs as string[]);
+const many = list.length > 1;
+const search = [first.name, ...list.map(sigOf), ...new Set(descs.filter(Boolean))].join(' ').toLowerCase();
+const generic = list.some((x) => x.generic);
+---
+<article class:list={['fn-entry', { 'fn-entry--overloads': many }]} data-name={first.name} data-search={search}>
+	<div class="fn-head">
+		<h4 id={anchor} class="fn-name" data-pagefind-weight="10"><a href={`#${anchor}`}>{first.name}</a></h4>
+		{generic && <Badge text="generic" variant="note" size="small" />}
+		{first.via && <span class="fn-via" title={`Applies through the base class ${first.via}`} data-pagefind-ignore>via {baseLabel(first.via)}</span>}
+		{first.owner && first.static && <span class="fn-via" data-pagefind-ignore>static</span>}
+		{many && <span class="fn-via" data-pagefind-ignore>{list.length} overloads</span>}
+		{!many && first.source_url && <a class="fn-src" href={first.source_url} title={`${first.file}:${first.line}`} data-pagefind-ignore>source</a>}
+	</div>
+	{list.map((x, i) => (
+		<div class="fn-ov" id={i > 0 ? (x.anchor ?? x.id) : undefined}>
+			<div class="fn-ov__sig">
+				<pre class="fn-sig"><code>{sigOf(x)}</code></pre>
+				{many && x.source_url && <a class="fn-src" href={x.source_url} title={`${x.file}:${x.line}`} data-pagefind-ignore>source</a>}
+			</div>
+			{!shared && (own[i]
+				? <p class="fn-desc" set:html={inline(own[i]!)} />
+				: <p class="fn-desc fn-desc--missing" data-pagefind-ignore>No description yet.</p>)}
+		</div>
+	))}
+	{shared && (descs[0]
+		? <p class="fn-desc" set:html={inline(descs[0])} />
+		: <p class="fn-desc fn-desc--missing" data-pagefind-ignore>No description yet.</p>)}
+	{common && <p class="fn-desc fn-desc--common" set:html={inline(common)} />}
+</article>

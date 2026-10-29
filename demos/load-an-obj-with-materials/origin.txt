@@ -1,0 +1,8 @@
+Origin: EPITA Ani3D repository github.com/drohmer/epita_ani3d_lab_code-2027
+(examples/09_mesh_loading, assets/sponza.zip; Sponza by Marko Dabrovic, see
+assets/sponza/copyright.txt). Reduced to fit the web demo:
+ - sponza.obj: coordinates rounded (2 decimals for v, 3 for vt), duplicates merged (5.6 -> 2.6 MB);
+ - sponza.mtl: only the map_Kd lines are kept, with the file names in the case of the image
+   files (the original asks for "SP_LUK.JPG" for "sp_luk.JPG", etc.: the file system of the
+   browser is case-sensitive, as on Linux);
+ - images larger than 512 pixels resized to 512, bump maps removed.

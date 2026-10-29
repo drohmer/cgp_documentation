@@ -1,0 +1,25 @@
+PROJECT_NAME           = "CGP"
+PROJECT_BRIEF          = "Computer Graphics Programming library (cgp-2027)"
+INPUT                  = @INPUT@
+RECURSIVE              = YES
+FILE_PATTERNS          = *.hpp *.cpp *.h
+EXCLUDE_PATTERNS       = */third_party/* */test/*
+OUTPUT_DIRECTORY       = @OUTPUT@
+XML_OUTPUT             = xml
+GENERATE_XML           = YES
+GENERATE_HTML          = NO
+GENERATE_LATEX         = NO
+XML_PROGRAMLISTING     = NO
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = NO
+JAVADOC_AUTOBRIEF      = YES
+QT_AUTOBRIEF           = YES
+QUIET                  = YES
+WARN_IF_UNDOCUMENTED   = NO
+BUILTIN_STL_SUPPORT    = YES
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+PREDEFINED             = DOXYGEN_SHOULD_SKIP_THIS=1

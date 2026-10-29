@@ -1,0 +1,63 @@
+{
+ "starlight": {
+  "dist": "renderers/starlight/dist",
+  "pages": {
+   "home": "/",
+   "camera": "/understand/camera-and-matrices/",
+   "howto": "/how-to/draw-a-mesh/",
+   "vec3": "/reference/vec3/",
+   "vecN": "/reference/vecn/",
+   "quaternion": "/reference/quaternion/",
+   "mat4": "/reference/mat4/",
+   "rotation": "/reference/rotation_transform/",
+   "hierarchy": "/reference/hierarchy_mesh_drawable/",
+   "howto_index": "/how-to/"
+  },
+  "filter_input": "#fn-filter",
+  "search_open": "site-search button[data-open-modal]",
+  "search_input": "#starlight__search input.pagefind-ui__search-input",
+  "search_result_link": "#starlight__search a.pagefind-ui__result-link",
+  "howto_groups_js": "() => { const top = [...document.querySelectorAll('#starlight__sidebar details')].find(d => d.querySelector(':scope > summary').textContent.trim() === 'How-to'); return top ? [...top.querySelectorAll(':scope details')].map(d => [d.querySelector(':scope > summary').textContent.trim(), [...d.querySelectorAll('a')].map(a => a.getAttribute('href'))]) : []; }",
+  "pager_js": "() => ['prev', 'next'].map(r => { const a = document.querySelector('.pagination-links a[rel=' + r + ']'); return a ? a.getAttribute('href') : null; })",
+  "menu_button": "button[popovertarget=starlight__sidebar]",
+  "menu_active": "#starlight__sidebar a[aria-current=page]",
+  "figure_pages": [
+   "/how-to/build-a-mesh-by-hand/",
+   "/how-to/draw-transparent-objects/",
+   "/how-to/create-basic-shapes/",
+   "/understand/camera-and-matrices/",
+   "/understand/interaction/",
+   "/reference/mesh_drawable/"
+  ]
+ },
+ "lhtml": {
+  "dist": "renderers/lhtml/dist",
+  "pages": {
+   "home": "/index.html",
+   "camera": "/understand/camera-and-matrices/index.html",
+   "howto": "/how-to/draw-a-mesh/index.html",
+   "vec3": "/reference/vec3/index.html",
+   "vecN": "/reference/vecN/index.html",
+   "quaternion": "/reference/quaternion/index.html",
+   "mat4": "/reference/mat4/index.html",
+   "rotation": "/reference/rotation_transform/index.html",
+   "hierarchy": "/reference/hierarchy_mesh_drawable/index.html",
+   "howto_index": "/how-to/index.html"
+  },
+  "filter_input": "#fn-filter",
+  "search_input": "#search",
+  "search_result_link": "#search-results a",
+  "howto_groups_js": "() => [...document.querySelectorAll('#toc .nav-subgroup')].map(g => [g.querySelector('.nav-subgroup-title').textContent.trim(), [...g.querySelectorAll('a')].map(a => a.getAttribute('href'))])",
+  "pager_js": "() => ['prev', 'next'].map(r => { const a = document.querySelector('.pager a.' + r); return a ? a.getAttribute('href') : null; })",
+  "menu_button": ".nav-toggle",
+  "menu_active": "#toc a.active",
+  "figure_pages": [
+   "/how-to/build-a-mesh-by-hand/index.html",
+   "/how-to/draw-transparent-objects/index.html",
+   "/how-to/create-basic-shapes/index.html",
+   "/understand/camera-and-matrices/index.html",
+   "/understand/interaction/index.html",
+   "/reference/mesh_drawable/index.html"
+  ]
+ }
+}

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 416" width="700" height="416">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .sm { fill: #555; font-size: 13px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; white-space: pre; }
+    .b { font-weight: bold; }
+    .axis { stroke: #ccc; stroke-width: 1; fill: none; }
+    .ag { stroke: #888; stroke-width: 1.5; fill: none; marker-end: url(#ag); }
+    .ab { stroke: #5aa55a; stroke-width: 2; fill: none; marker-end: url(#ab); }
+    .ao { stroke: #d0605a; stroke-width: 2; fill: none; marker-end: url(#ao); }
+  </style>
+  <defs>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5aa55a"/></marker>
+    <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d0605a"/></marker>
+  </defs>
+
+  <text x="20" y="24" class="b" style="fill:#2b66ad">Each node is placed in the frame of its parent</text>
+  <path d="M60,330 H110" class="ag"/><path d="M60,330 V280" class="ag"/>
+  <text x="54" y="350" class="sm">global_frame (world)</text>
+  <circle cx="150" cy="240" r="52" fill="#f1f1f1" stroke="#999" stroke-width="1.2"/>
+  <path d="M64,326 L144.0,246.0" stroke="#888" stroke-width="1.2" stroke-dasharray="5,4" fill="none" marker-end="url(#ag)"/>
+  <line x1="200.0" y1="230.0" x2="298.3" y2="161.2" stroke="#fdebd6" stroke-width="14" stroke-linecap="round"/>
+  <line x1="200.0" y1="230.0" x2="298.3" y2="161.2" stroke="#e0912f" stroke-width="1" />
+  <line x1="298.3" y1="161.2" x2="320.3" y2="79.1" stroke="#fdebd6" stroke-width="14" stroke-linecap="round"/>
+  <line x1="298.3" y1="161.2" x2="320.3" y2="79.1" stroke="#e0912f" stroke-width="1" />
+  <path d="M200.0,230.0 L270.0,230.0" stroke="#bbb" stroke-width="1" stroke-dasharray="3,3" fill="none"/>
+  <path d="M298.3,161.2 L355.6,121.0" stroke="#bbb" stroke-width="1" stroke-dasharray="3,3" fill="none"/>
+  <path d="M258.0,230.0 A58,58 0 0 0 247.5,196.7" stroke="#888" stroke-width="1.2" fill="none" marker-end="url(#ag)"/>
+  <text x="264.9" y="214.2" class="sm">rotation</text>
+  <path d="M339.3,132.5 A50,50 0 0 0 311.2,112.9" stroke="#888" stroke-width="1.2" fill="none" marker-end="url(#ag)"/>
+  <text x="335.6" y="119.7" class="sm">rotation</text>
+  <path d="M150.0,240.0 L188.0,240.0" class="ao"/>
+  <path d="M150.0,240.0 L150.0,202.0" class="ab"/>
+  <circle cx="150.0" cy="240.0" r="3.5" fill="#333"/>
+  <text x="130.0" y="312.0" class="in b">body</text>
+  <path d="M200.0,230.0 L231.1,208.2" class="ao"/>
+  <path d="M200.0,230.0 L178.2,198.9" class="ab"/>
+  <circle cx="200.0" cy="230.0" r="3.5" fill="#333"/>
+  <text x="214.0" y="252.0" class="in b">shoulder</text>
+  <path d="M298.3,161.2 L308.1,124.5" class="ao"/>
+  <path d="M298.3,161.2 L261.6,151.3" class="ab"/>
+  <circle cx="298.3" cy="161.2" r="3.5" fill="#333"/>
+  <text x="312.3" y="177.2" class="in b">forearm</text>
+  <text x="290.0" y="138.0" class="in b" text-anchor="end">elbow</text>
+  <rect x="390" y="50" width="300" height="336" rx="6" fill="#fafafa" stroke="#ddd"/>
+  <text x="400" y="76" class="in b">transform_local (set by you)</text>
+  <text x="400" y="94" class="sm">relative to the frame of the parent:</text>
+  <text x="400" y="112" class="sm">a translation, a rotation, a uniform scaling</text>
+  <text x="400" y="138" class="in b">update_local_to_global_coordinates()</text>
+  <text x="400" y="156" class="m">global(body)     = local(body)</text>
+  <text x="400" y="174" class="m">global(shoulder) = global(body)</text>
+  <text x="548" y="192" class="m">* local(shoulder)</text>
+  <text x="400" y="210" class="m">global(elbow)    = global(shoulder)</text>
+  <text x="548" y="228" class="m">* local(elbow)</text>
+  <text x="400" y="246" class="m">global(forearm)  = global(elbow)</text>
+  <text x="548" y="264" class="m">* local(forearm)</text>
+  <text x="400" y="282" class="sm">stored in drawable.hierarchy_transform_model</text>
+  <text x="400" y="308" class="in b">draw(hierarchy, environment)</text>
+  <text x="400" y="326" class="sm">model matrix of each node =</text>
+  <text x="400" y="344" class="m">hierarchy_transform_model * model</text>
+  <path d="M400,370 H426" class="ao"/><text x="432" y="375" class="sm">local x axis</text>
+  <path d="M530,370 H556" class="ab"/><text x="562" y="375" class="sm">local y axis</text>
+</svg>

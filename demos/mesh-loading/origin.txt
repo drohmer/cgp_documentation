@@ -1,0 +1,11 @@
+Origin: CGP example of github.com/drohmer/epita_ani3d_lab_code-2027
+(examples/09_mesh_loading, commit bbe7095), code unchanged.
+Assets: the example ships assets/sponza.zip and assets/f1.zip, to be unzipped by the user.
+The code loads only assets/sponza/sponza.obj (the line that loads f1/ is commented out):
+f1.zip (9.8 MB) is not included, and assets/sponza/ is the reduced copy of the demo
+load-an-obj-with-materials (same source, see its origin.txt; Sponza by Marko Dabrovic, see
+assets/sponza/copyright.txt):
+ - sponza.obj: coordinates rounded (2 decimals for v, 3 for vt), duplicates merged (5.6 -> 2.6 MB);
+ - sponza.mtl: only the map_Kd lines are kept, with the file names in the case of the image
+   files (the browser file system is case-sensitive);
+ - images larger than 512 pixels resized to 512, bump maps removed.

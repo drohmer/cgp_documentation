@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" width="700" height="400">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .sm { fill: #555; font-size: 13px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .b { font-weight: bold; }
+    .axis { stroke: #ccc; stroke-width: 1; fill: none; }
+    .ag { stroke: #888; stroke-width: 1.5; fill: none; marker-end: url(#ag); }
+    .ab { stroke: #4a86d0; stroke-width: 2; fill: none; marker-end: url(#ab); }
+    .ao { stroke: #e07b1a; stroke-width: 2; fill: none; marker-end: url(#ao); }
+  </style>
+  <defs>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#4a86d0"/></marker>
+    <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+  </defs>
+
+  <text x="20" y="24" class="b" style="fill:#2b66ad">T1 * T2 applies T2 first: the same two steps in two orders</text>
+  <rect x="20" y="44" width="320" height="346" rx="6" fill="#fafafa" stroke="#ddd"/>
+  <text x="34" y="68" class="in b">rotate, then translate</text>
+  <text x="34" y="90" class="m" style="font-size:12px">affine_rt(R, t)</text>
+  <text x="34" y="110" class="sm">T * p = R p + t</text>
+  <path d="M50,330 H325 M80,370 V130" class="axis"/>
+  <circle cx="80" cy="330" r="3" fill="#888"/>
+  <text x="72" y="348" class="sm" text-anchor="end">origin</text>
+  <polygon points="80.0,330.0 126.0,330.0 139.8,316.2 126.0,302.4 80.0,302.4" fill="none" stroke="#aaa" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="86.9" y="350.7" class="sm">p</text>
+  <polygon points="80.0,330.0 103.0,290.2 97.9,271.3 79.1,276.4 56.1,316.2" fill="#e3eefb" stroke="#4a86d0" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="27.1" y="281.7" class="sm">1. R p</text>
+  <polygon points="185.8,320.8 208.8,281.0 203.7,262.1 184.9,267.2 161.9,307.0" fill="#fdebd6" stroke="#e07b1a" stroke-width="1.8"/>
+  <text x="190.4" y="244.9" class="sm">2. + t</text>
+  <path d="M93.8,299.2 L173.6,290.0" class="ao"/>
+  <rect x="360" y="44" width="320" height="346" rx="6" fill="#fafafa" stroke="#ddd"/>
+  <text x="374" y="68" class="in b">translate, then rotate</text>
+  <text x="374" y="90" class="m" style="font-size:12px">R * affine_rt(rotation_transform(), t)</text>
+  <text x="374" y="110" class="sm">T * p = R (p + t): swings around the origin</text>
+  <path d="M390,330 H665 M420,370 V130" class="axis"/>
+  <circle cx="420" cy="330" r="3" fill="#888"/>
+  <text x="412" y="348" class="sm" text-anchor="end">origin</text>
+  <polygon points="420.0,330.0 466.0,330.0 479.8,316.2 466.0,302.4 420.0,302.4" fill="none" stroke="#aaa" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="426.9" y="350.7" class="sm">p</text>
+  <polygon points="525.8,320.8 571.8,320.8 585.6,307.0 571.8,293.2 525.8,293.2" fill="#e3eefb" stroke="#4a86d0" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <text x="528.1" y="350.7" class="sm">1. p + t</text>
+  <polygon points="464.9,233.8 487.9,193.9 482.9,175.1 464.0,180.1 441.0,220.0" fill="#fdebd6" stroke="#e07b1a" stroke-width="1.8"/>
+  <text x="431.5" y="171.3" class="sm">2. R (p + t)</text>
+  <path d="M549.7,291.2 A135.4,135.4 0 0 0 481.7,209.5" class="ao"/>
+</svg>

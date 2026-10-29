@@ -1,0 +1,13 @@
+# Editorial category of a function, overriding the heuristic of cgp_docmodel/categories.py.
+#
+# Key: the function key exactly as in build/api.json ("key" field), e.g.
+#   "cross(vec3 const&,vec3 const&)": compute
+# Allowed values: construct, transform, compute, draw, convert, io, access, operator, other
+#
+# `cgp-docmodel check` fails if a key does not match any function (stale entry)
+# or if a value is not an allowed category.
+cross(vec3 const&,vec3 const&): compute
+# Ray intersections return an intersection_structure built from vec3: the rule
+#  "documented type from scalars" would file them under construct.
+intersection_ray_sphere(vec3 const&,vec3 const&,vec3 const&,float): compute
+intersection_ray_plane(vec3 const&,vec3 const&,vec3 const&,vec3 const&): compute

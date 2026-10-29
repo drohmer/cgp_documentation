@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 536" width="700" height="536">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .sm { fill: #555; font-size: 13px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .c { fill: #666666; }
+    .k { fill: #2b66ad; }
+    .b { font-weight: bold; }
+    .axis { stroke: #ccc; stroke-width: 1; fill: none; }
+    .arrow { stroke: #888; stroke-width: 1.5; fill: none; marker-end: url(#a); }
+    .hd { fill: #555; font-size: 13px; font-weight: bold; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker>
+  </defs>
+
+  <text x="20" y="22" class="b" style="fill:#2b66ad">affine_rt, affine_rts, affine: T * p applies these steps, left to right</text>
+
+  <rect x="20" y="62" width="124" height="112" rx="6" fill="#fafafa" stroke="#ddd"/>
+  <text x="82" y="54" text-anchor="middle" class="m b" style="fill:#333">p (local)</text>
+  <path d="M28,152 H136 M50,168 V70" class="axis"/>
+  <polygon points="50.0,152.0 80.0,152.0 90.0,143.0 80.0,134.0 50.0,134.0" fill="#e3eefb" stroke="#4a86d0" stroke-width="1.5"/>
+  <path d="M145,118 H153" class="arrow"/>
+  <rect x="154" y="62" width="124" height="112" rx="6" fill="#fafafa" stroke="#ddd"/>
+  <text x="216" y="54" text-anchor="middle" class="m b" style="fill:#333">* scaling_xyz</text>
+  <path d="M162,152 H270 M184,168 V70" class="axis"/>
+  <polygon points="184.0,152.0 214.0,152.0 224.0,143.0 214.0,134.0 184.0,134.0" fill="none" stroke="#aaa" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <polygon points="184.0,152.0 214.0,152.0 224.0,147.1 214.0,142.1 184.0,142.1" fill="#fdebd6" stroke="#e07b1a" stroke-width="1.5"/>
+  <path d="M279,118 H287" class="arrow"/>
+  <rect x="288" y="62" width="124" height="112" rx="6" fill="#fafafa" stroke="#ddd"/>
+  <text x="350" y="54" text-anchor="middle" class="m b" style="fill:#333">* scaling</text>
+  <path d="M296,152 H404 M318,168 V70" class="axis"/>
+  <polygon points="318.0,152.0 348.0,152.0 358.0,147.1 348.0,142.1 318.0,142.1" fill="none" stroke="#aaa" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <polygon points="318.0,152.0 358.5,152.0 372.0,145.3 358.5,138.6 318.0,138.6" fill="#fdebd6" stroke="#e07b1a" stroke-width="1.5"/>
+  <path d="M413,118 H421" class="arrow"/>
+  <rect x="422" y="62" width="124" height="112" rx="6" fill="#fafafa" stroke="#ddd"/>
+  <text x="484" y="54" text-anchor="middle" class="m b" style="fill:#333">rotation</text>
+  <path d="M430,152 H538 M452,168 V70" class="axis"/>
+  <polygon points="452.0,152.0 492.5,152.0 506.0,145.3 492.5,138.6 452.0,138.6" fill="none" stroke="#aaa" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <polygon points="452.0,152.0 485.4,129.1 492.8,116.0 477.9,118.1 444.5,141.0" fill="#fdebd6" stroke="#e07b1a" stroke-width="1.5"/>
+  <path d="M547,118 H555" class="arrow"/>
+  <rect x="556" y="62" width="124" height="112" rx="6" fill="#fafafa" stroke="#ddd"/>
+  <text x="618" y="54" text-anchor="middle" class="m b" style="fill:#333">+ translation</text>
+  <path d="M564,152 H672 M586,168 V70" class="axis"/>
+  <polygon points="586.0,152.0 619.4,129.1 626.8,116.0 611.9,118.1 578.5,141.0" fill="none" stroke="#aaa" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <polygon points="616.0,140.0 649.4,117.1 656.8,104.0 641.9,106.1 608.5,129.0" fill="#fdebd6" stroke="#e07b1a" stroke-width="1.5"/>
+
+  <text x="20" y="200" class="sm">scaling_xyz stretches the local axes of the shape, before the rotation (here x 1, y 0.55).</text>
+
+  <!-- table -->
+  <rect x="20" y="214" width="660" height="28" fill="#f2f2f2"/>
+  <text x="30" y="233" class="hd">struct</text>
+  <text x="150" y="233" class="hd">fields</text>
+  <text x="358" y="233" class="hd">T * p</text>
+  <text x="528" y="233" class="hd">T.matrix() (4x4)</text>
+
+  <rect x="20" y="242" width="660" height="30" fill="#e3eefb"/>
+  <text x="30" y="262" class="m b">affine_rt</text>
+  <text x="150" y="262" class="m">rotation, translation</text>
+  <text x="358" y="262" class="m">R p + t</text>
+  <text x="528" y="262" class="m" xml:space="preserve">( R     | t )</text>
+
+  <rect x="20" y="272" width="660" height="30" fill="#ffffff"/>
+  <text x="30" y="292" class="m b">affine_rts</text>
+  <text x="150" y="292" class="m">+ float scaling</text>
+  <text x="358" y="292" class="m">R s p + t</text>
+  <text x="528" y="292" class="m" xml:space="preserve">( R s   | t )</text>
+
+  <rect x="20" y="302" width="660" height="30" fill="#fdebd6"/>
+  <text x="30" y="322" class="m b">affine</text>
+  <text x="150" y="322" class="m">+ vec3 scaling_xyz</text>
+  <text x="358" y="322" class="m">R s S p + t</text>
+  <text x="528" y="322" class="m" xml:space="preserve">( R s S | t )</text>
+  <text x="20" y="352" class="sm">R = rotation.matrix(), s = scaling, S = diag(scaling_xyz), t = translation;</text>
+  <text x="20" y="370" class="sm">last matrix row (0 0 0 1).</text>
+
+  <!-- notes -->
+  <text x="20" y="402" class="sm">inverse(T) exists for affine_rt and affine_rts only.</text>
+  <text x="20" y="422" class="sm">affine_rt converts to affine_rts and affine</text>
+  <text x="20" y="440" class="sm">(scaling 1, scaling_xyz {1,1,1}).</text>
+  <text x="20" y="460" class="sm">T1 * T2 composes: apply T2 first, then T1;</text>
+  <text x="20" y="478" class="sm">affine_rt(s) * affine is exact (parent * child).</text>
+  <text x="20" y="498" class="sm">mesh_drawable::model is an affine.</text>
+
+  <!-- code panel -->
+  <rect x="356" y="386" width="332" height="142" rx="6" fill="#f6f6f6" stroke="#ccc"/>
+  <text x="368" y="408" class="m">affine_rts T;</text>
+  <text x="368" y="426" class="m">T.rotation = <tspan class="k">rotation_axis_angle</tspan>(</text>
+  <text x="400" y="444" class="m">{0,0,1}, 0.6f);</text>
+  <text x="368" y="462" class="m">T.scaling = 1.35f;</text>
+  <text x="368" y="480" class="m">T.translation = {2, 1, 0};</text>
+  <text x="368" y="498" class="m">vec3 q = T * p;</text>
+  <text x="368" y="516" class="m">mat4 M = T.<tspan class="k">matrix</tspan>();</text>
+</svg>

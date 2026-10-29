@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 262" width="700" height="262">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .sm { fill: #555; font-size: 13px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .b { font-weight: bold; }
+    .src { fill: #dff0dc; stroke: #5aa55a; stroke-width: 1.5; }
+    .tool { fill: #ececec; stroke: #999; stroke-width: 1.5; }
+    .exe { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.5; }
+    .res { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.5; }
+    .arrow { stroke: #888; stroke-width: 2; fill: none; marker-end: url(#a); }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker>
+  </defs>
+
+  <!-- compile -->
+  <text x="20" y="49" class="b">compile</text>
+  <rect x="100" y="16" width="170" height="56" rx="6" class="src"/>
+  <text x="185" y="40" class="m" text-anchor="middle">src/  cgp/</text>
+  <text x="185" y="60" class="sm" text-anchor="middle">every .cpp file</text>
+  <path d="M270,44 H296" class="arrow"/>
+  <rect x="298" y="16" width="180" height="56" rx="6" class="tool"/>
+  <text x="388" y="40" class="in" text-anchor="middle">CMake or make</text>
+  <text x="388" y="60" class="sm" text-anchor="middle">C++17 compiler, GLFW</text>
+  <path d="M478,44 H504" class="arrow"/>
+  <rect x="506" y="16" width="174" height="56" rx="6" class="exe"/>
+  <text x="593" y="40" class="m b" text-anchor="middle">project</text>
+  <text x="593" y="60" class="sm" text-anchor="middle">executable, at the root</text>
+
+  <!-- run -->
+  <text x="20" y="129" class="b">run</text>
+  <rect x="100" y="96" width="170" height="56" rx="6" class="exe"/>
+  <text x="185" y="120" class="m" text-anchor="middle">./project</text>
+  <text x="185" y="140" class="sm" text-anchor="middle">from the root folder</text>
+  <path d="M270,124 H296" class="arrow"/>
+  <rect x="298" y="96" width="180" height="56" rx="6" class="res"/>
+  <text x="388" y="120" class="m" text-anchor="middle">shaders/  assets/</text>
+  <text x="388" y="140" class="sm" text-anchor="middle">searched from the run folder</text>
+  <path d="M478,124 H504" class="arrow"/>
+  <rect x="506" y="96" width="174" height="56" rx="6" class="tool"/>
+  <text x="593" y="120" class="in" text-anchor="middle">window</text>
+  <text x="593" y="140" class="sm" text-anchor="middle">"CGP Display"</text>
+
+  <!-- web -->
+  <text x="20" y="209" class="b">web</text>
+  <rect x="100" y="176" width="170" height="56" rx="6" class="tool"/>
+  <text x="185" y="200" class="m" text-anchor="middle">emcmake cmake</text>
+  <text x="185" y="220" class="m" text-anchor="middle">emmake make</text>
+  <path d="M270,204 H296" class="arrow"/>
+  <rect x="298" y="176" width="180" height="56" rx="6" class="exe"/>
+  <text x="388" y="200" class="m" text-anchor="middle">.html .js .wasm</text>
+  <text x="388" y="220" class="sm" text-anchor="middle">.data: shaders/, assets/</text>
+  <path d="M478,204 H504" class="arrow"/>
+  <rect x="506" y="176" width="174" height="56" rx="6" class="tool"/>
+  <text x="593" y="200" class="m" text-anchor="middle">emrun index.html</text>
+  <text x="593" y="220" class="sm" text-anchor="middle">browser, WebGL 2</text>
+
+  <text x="20" y="254" style="font-size:13px">the program stops at startup if it cannot find shaders/</text>
+</svg>

@@ -1,0 +1,64 @@
+# Pages of functions of the Reference: the public functions that appear on no type page
+# (none of their parameters or return type is a documented type), grouped by theme.
+#
+# Each entry:
+#   title, short   title and one-line description of the page
+#   under          the group of the Reference menu and index that lists the page: a `group` of
+#                  types.yaml (next to the types of the same theme), or Utilities (last group)
+#   modules        folders of cgp/ whose functions go to this page
+#   names          optional: only the functions of these names (glob patterns) of the modules;
+#                  a module has at most one entry without `names`, which takes the others
+# Every function on no type page must find its page: `cgp-docmodel build` fails otherwise.
+
+scalar-math:
+  title: Scalar math and comparisons
+  short: abs, clamp and linear interpolation of numbers, and comparisons with a tolerance.
+  under: Vectors and matrices
+  modules: [01_base, 09_geometric_transformation]
+  names: [abs, clamp, interpolation_linear, is_equal]
+random-noise:
+  title: Random numbers and noise
+  short: Uniform and normal random numbers, and Perlin-like noise for procedural shapes.
+  under: Vectors and matrices
+  modules: [08_random_noise]
+grids:
+  title: Grid helpers
+  short: Offsets between 2D/3D indices and linear storage, and operations on fixed-size grids.
+  under: Containers
+  modules: [04_grid_container]
+marching-cubes:
+  title: Marching cubes
+  short: Extract a triangle mesh from a scalar field sampled on a grid, and the lookup tables.
+  under: Meshes and drawables
+  modules: [12_shape]
+obj-files:
+  title: OBJ files
+  short: Read the parts of an OBJ file, load a model with several materials, save a mesh.
+  under: Meshes and drawables
+  modules: [20_format_parser]
+opengl-window:
+  title: OpenGL, window and GUI helpers
+  short: OpenGL error checks and low-level buffers, ImGui frame functions, WebGL window helpers.
+  under: Images and OpenGL
+  modules: [13_opengl, 14_window]
+time:
+  title: Time
+  short: Clock shared by all the timers.
+  under: Time and animation
+  modules: [17_timer]
+strings:
+  title: Strings and text
+  short: Convert values and types to strings (str, type_str), change the case, pad with zeros.
+  under: Utilities
+  modules: [01_base, 02_numarray]
+  names: [str, str_*, type_str, contains]
+files:
+  title: Files and paths
+  short: Read text and binary files, check that a path exists, find the project folder.
+  under: Utilities
+  modules: [03_files, 21_scene_project_helper]
+errors-memory:
+  title: Errors and memory
+  short: Report errors and warnings, size in memory and raw pointer of the base types.
+  under: Utilities
+  modules: [01_base]

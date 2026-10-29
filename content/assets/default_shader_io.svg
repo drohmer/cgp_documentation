@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 440" width="700" height="440">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .b { font-weight: bold; }
+    .att { fill: #fff7ec; stroke: #e0912f; stroke-width: 1.5; }
+    .uni { fill: #eee5f8; stroke: #9c6ade; stroke-width: 1.5; }
+    .sh { fill: #dff0dc; stroke: #5aa55a; stroke-width: 1.5; }
+    .fix { fill: #ececec; stroke: #999; stroke-width: 1.5; }
+    .arrow { stroke: #888; stroke-width: 2; fill: none; marker-end: url(#a); }
+    .ap { stroke: #9c6ade; stroke-width: 2; fill: none; marker-end: url(#ap); }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker>
+    <marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9c6ade"/></marker>
+  </defs>
+
+  <!-- attributes -->
+  <text x="20" y="20" style="fill:#a85000">attributes (in), one per vertex, location = VBO</text>
+  <rect x="20" y="30" width="420" height="66" rx="6" class="att"/>
+  <text x="34" y="57" class="m">0  vertex_position</text>
+  <text x="240" y="57" class="m">1  vertex_normal</text>
+  <text x="34" y="82" class="m">2  vertex_color</text>
+  <text x="240" y="82" class="m">3  vertex_uv</text>
+
+  <path d="M230,96 V117" class="arrow"/>
+
+  <!-- vertex shader -->
+  <rect x="20" y="120" width="420" height="66" rx="6" class="sh"/>
+  <text x="34" y="143" class="in b">vertex shader</text>
+  <text x="34" y="170" class="m">gl_Position = projection*view*model*p</text>
+
+  <text x="480" y="112" style="fill:#7b48c4">uniforms</text>
+  <rect x="480" y="120" width="200" height="66" rx="6" class="uni"/>
+  <text x="494" y="140" class="m">mat4 model</text>
+  <text x="494" y="160" class="m">mat4 view</text>
+  <text x="494" y="180" class="m">mat4 projection</text>
+  <path d="M478,153 H443" class="ap"/>
+
+  <!-- varyings -->
+  <path d="M230,186 V221" class="arrow"/>
+  <text x="244" y="209">out: gl_Position, fragment.position, .normal, .color, .uv</text>
+
+  <!-- rasterization -->
+  <rect x="20" y="224" width="420" height="44" rx="6" class="fix"/>
+  <text x="34" y="251" class="in"><tspan font-weight="bold">rasterization:</tspan> interpolates fragment.* per pixel</text>
+
+  <path d="M230,268 V291" class="arrow"/>
+
+  <!-- fragment shader -->
+  <rect x="20" y="294" width="420" height="76" rx="6" class="sh"/>
+  <text x="34" y="317" class="in b">fragment shader</text>
+  <text x="34" y="339" class="in">color = fragment.color x material.color x texture</text>
+  <text x="34" y="360" class="in">Phong lighting with N, light and camera position</text>
+
+  <rect x="480" y="294" width="200" height="90" rx="6" class="uni"/>
+  <text x="494" y="314" class="m">vec3 light</text>
+  <text x="494" y="334" class="m">mat4 view</text>
+  <text x="494" y="354" class="m">material</text>
+  <text x="494" y="374" class="m">sampler2D image_texture</text>
+  <path d="M478,332 H443" class="ap"/>
+
+  <path d="M230,370 V391" class="arrow"/>
+
+  <rect x="20" y="394" width="420" height="40" rx="6" class="fix"/>
+  <text x="34" y="419" class="in"><tspan font-weight="bold">out vec4 FragColor:</tspan> the color of the pixel</text>
+</svg>

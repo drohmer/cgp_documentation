@@ -1,0 +1,276 @@
+---
+// One reference page per type of api.json, rendered inside Starlight's page layout.
+// Family pages (vecN, matN) list the functions written once for all sizes; member pages
+// (vec3, quaternion...) list their own functions in full and the shared ones as a compact
+// block linking to the family page.
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import FnEntry from '../../components/FnEntry.astro';
+import FnCompact from '../../components/FnCompact.astro';
+import { figureStyle } from '../../lib/figure-size.mjs';
+import {
+	typeList, typeSlug, typeByName, typeByCanonical, typeHref, baseLabel, isFamily,
+	pageEntries, sharedBlocks, groupByCategory, methodGroups, guideSections, typeGroups, linkHref, guideHref,
+} from '../../lib/api.mjs';
+
+export function getStaticPaths() {
+	return typeList().map((t) => ({ params: { type: typeSlug(t.name) }, props: { t } }));
+}
+
+const { t } = Astro.props as { t: any };
+const s = t.struct ?? { fields: [], methods: [], bases: [] };
+const entries = pageEntries(t);
+const takes = groupByCategory(entries.takes);
+const returns = groupByCategory(entries.returns);
+const operators = groupByCategory(entries.operators);
+const opCount = entries.operators.full.length + entries.operators.compact.length;
+const shared = sharedBlocks(t);
+const sharedTotal = shared.reduce((n: number, b: any) => n + b.items.length, 0);
+const sharedCount = shared.reduce((n: number, b: any) => n + b.count, 0);
+const ownTotal = [entries.takes, entries.returns, entries.operators].reduce((n, e) => n + e.full.length + e.compact.length, 0);
+const total = ownTotal + sharedTotal;
+
+// Members: own first, inherited ones grouped by base class.
+const ownFields = s.fields.filter((f: any) => !f.inherited_from);
+const ownMethods = s.methods.filter((m: any) => !m.inherited_from);
+const inherited = [...new Set([...s.fields, ...s.methods].map((m: any) => m.inherited_from).filter(Boolean))].map((base: any) => ({
+	base,
+	label: baseLabel(base),
+	fields: s.fields.filter((f: any) => f.inherited_from === base),
+	methods: s.methods.filter((m: any) => m.inherited_from === base),
+}));
+const hasMembers = s.fields.length > 0 || s.methods.length > 0;
+const nMembers = s.fields.length + s.methods.length;
+const filterTotal = total + nMembers;
+const guides = guideSections(t);
+const nGuides = (t.guides ?? []).length;
+const tasks = t.tasks ?? [];
+const fieldSearch = (f: any) => [f.name, f.type, f.description ?? ''].join(' ').toLowerCase();
+
+const familyMembers = isFamily(t) ? t.family_of.map((n: string) => ({ name: n, type: typeByName(n) })) : [];
+const bases = (s.bases ?? []).map((b: string) => ({ canonical: b, type: typeByCanonical(b) }));
+
+const headings = [
+	...(hasMembers ? [{ depth: 2, slug: 'members', text: 'Fields and methods' }] : []),
+	...(ownFields.length ? [{ depth: 3, slug: 'fields', text: `Fields (${ownFields.length})` }] : []),
+	...(ownMethods.length ? [{ depth: 3, slug: 'methods', text: `Methods (${ownMethods.length})` }] : []),
+	...(shared.length ? [{ depth: 2, slug: 'shared', text: `Shared functions (${sharedCount})` }] : []),
+	...(takes.length ? [{ depth: 2, slug: 'takes', text: `Functions taking a ${t.name}` }] : []),
+	...takes.map((g) => ({ depth: 3, slug: `takes-${g.cat}`, text: `${g.label} (${g.count})` })),
+	...(returns.length ? [{ depth: 2, slug: 'returns', text: `Functions returning a ${t.name}` }] : []),
+	...(opCount ? [{ depth: 2, slug: 'operators', text: `Operators (${opCount})` }] : []),
+];
+---
+<StarlightPage frontmatter={{ title: t.name, description: t.short, section: 'Reference', group: t.group || 'Other', tableOfContents: { minHeadingLevel: 2, maxHeadingLevel: 3 } }} headings={headings}>
+	<div class="type-header not-content">
+		<code class="type-canonical">{t.canonical}</code>
+		{s.source_url && <a class="type-src" href={s.source_url} title={`${s.file}:${s.line}`}>Source: {s.file.split("/").pop()}:{s.line}</a>}
+	</div>
+	{familyMembers.length > 0 && (
+		<p class="type-rel not-content">
+			<span class="type-rel__label">Applies to:</span>{' '}
+			{familyMembers.map((m: any, i: number) => (
+				<>{i > 0 && ', '}{m.type ? <a href={typeHref(m.type)}><code>{m.name}</code></a> : <code>{m.name}</code>}</>
+			))}
+		</p>
+	)}
+	{bases.length > 0 && (
+		<p class="type-rel not-content">
+			<span class="type-rel__label">Derives from:</span>{' '}
+			{bases.map((b: any, i: number) => (
+				<>{i > 0 && ', '}{b.type
+					? <a href={typeHref(b.type)}><code>{b.canonical}</code> ({b.type.name})</a>
+					: <code>{b.canonical}</code>}</>
+			))}
+		</p>
+	)}
+	<p class="type-short">{t.short}</p>
+	{s.brief && <p>{s.brief}</p>}
+	{tasks.length > 0 && (
+		<nav class="type-guides type-tasks not-content" id="tasks" aria-label="Common tasks" data-pagefind-ignore>
+			<p class="type-guides__title">Common tasks</p>
+			{tasks.map((k: any) => (
+				<div class="type-guides__line">
+					<span class="type-guides__sec">{k.do}</span>
+					<span>
+						<ul>{k.use.map((u: any) => <li><a href={linkHref(u.link)}><code>{u.code}</code></a></li>)}</ul>
+						{k.guide && <span class="type-tasks__guide"> (guide: <a href={guideHref(k.guide.path)}>{k.guide.title}</a>)</span>}
+					</span>
+				</div>
+			))}
+		</nav>
+	)}
+	{guides.length > 0 && (
+		<nav class="type-guides not-content" id="guides" aria-label="Guides" data-pagefind-ignore>
+			<p class="type-guides__title">Used in these guides ({nGuides})</p>
+			{guides.map((g) => (
+				<div class="type-guides__line">
+					<span class="type-guides__sec">{g.label}</span>
+					<ul>{g.items.map((it: any) => <li><a href={it.href}>{it.title}</a></li>)}</ul>
+				</div>
+			))}
+		</nav>
+	)}
+	{(t.figures ?? []).map((f: any) => (
+		<figure class="cgp-figure" data-pagefind-ignore style={figureStyle(f.src)}>
+			<a class="figure-zoom" href={`/assets/${f.src}`} aria-label="Open the figure full size">
+				<img loading="lazy" src={`/assets/${f.src}`} alt={f.caption} />
+			</a>
+			<figcaption>{f.caption}<span class="figure-hint"> Tap to enlarge.</span></figcaption>
+		</figure>
+	))}
+
+	{filterTotal > 0 && (
+		<div class="fn-filter not-content">
+			<label for="fn-filter" class="sr-only">Filter members and functions</label>
+			<input id="fn-filter" type="search" placeholder={`Filter the ${filterTotal} members and functions (name, signature, description)`} autocomplete="off" />
+			<span class="fn-filter__count" aria-live="polite"></span>
+		</div>
+	)}
+
+	{hasMembers && (
+		<>
+			<h2 id="members">Fields and methods</h2>
+			{ownFields.length > 0 && (
+				<section class="member-block">
+					<h3 id="fields">Fields</h3>
+					<table class="members">
+						<thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+						<tbody>
+							{ownFields.map((f: any) => (
+								<tr id={f.id} class="member-row" data-name={f.name} data-search={fieldSearch(f)}>
+									<td><a class="member-anchor" href={`#${f.id}`}><code>{f.name}</code></a></td><td><code>{f.type}</code></td><td>{f.description}</td>
+								</tr>
+							))}
+						</tbody>
+					</table>
+				</section>
+			)}
+			{ownMethods.length > 0 && (
+				<section class="member-block">
+					<h3 id="methods">Methods</h3>
+					<div class="fn-list not-content">{methodGroups(ownMethods).map((fns: any[]) => <FnEntry fns={fns} />)}</div>
+				</section>
+			)}
+			{inherited.map((h) => (
+				// a base class with its own page: its members are indexed there, not twice
+				<details class="methods inherited" data-pagefind-ignore={h.label !== h.base ? '' : undefined}>
+					<summary>Inherited from {h.label} ({h.fields.length + h.methods.length} members)</summary>
+					{h.fields.length > 0 && (
+						<section class="member-block">
+							<table class="members">
+								<thead><tr><th>Field</th><th>Type</th><th>Description</th></tr></thead>
+								<tbody>
+									{h.fields.map((f: any) => (
+										<tr id={f.id} class="member-row" data-name={f.name} data-search={fieldSearch(f)}>
+											<td><a class="member-anchor" href={`#${f.id}`}><code>{f.name}</code></a></td><td><code>{f.type}</code></td><td>{f.description}</td>
+										</tr>
+									))}
+								</tbody>
+							</table>
+						</section>
+					)}
+					{h.methods.length > 0 && (
+						<section class="member-block">
+							<div class="fn-list not-content">{methodGroups(h.methods).map((fns: any[]) => <FnEntry fns={fns} />)}</div>
+						</section>
+					)}
+				</details>
+			))}
+		</>
+	)}
+
+	{shared.length > 0 && <h2 id="shared" class="fn-shared-title" data-pagefind-ignore>Shared functions</h2>}
+	{shared.map((b: any) => (
+		<section class="fn-shared-block not-content" data-pagefind-ignore data-family={b.family}>
+			<p class="fn-shared-block__head">
+				Shared with {b.noun}: {b.count} functions on {b.href ? <a href={b.href}><code>{b.family}</code></a> : <code>{b.family}</code>}
+				{b.via.length > 0 && <span class="fn-via">via {b.via.map(baseLabel).join(', ')}</span>}
+			</p>
+			<ul class="fn-shared-list">
+				{b.items.map((it: any) => (
+					<li class="fn-shared" data-name={it.name} data-search={it.name.toLowerCase()}>
+						{it.href ? <a href={it.href} title={it.signature}><code>{it.name}</code></a> : <code>{it.name}</code>}
+					</li>
+				))}
+			</ul>
+		</section>
+	))}
+
+	{takes.length > 0 && <h2 id="takes" class="fn-section">Functions taking a {t.name}</h2>}
+	{takes.map((g) => (
+		<section class="fn-group" data-cat={g.cat}>
+			<h3 id={`takes-${g.cat}`}>{g.label}</h3>
+			<div class="fn-list not-content">{g.groups.map((o: any) => <FnEntry fns={o.fns} />)}</div>
+			<FnCompact items={g.compact} />
+		</section>
+	))}
+
+	{returns.length > 0 && (
+		<section class="fn-group">
+			<h2 id="returns">Functions returning a {t.name}</h2>
+			<div class="fn-list not-content">{returns.flatMap((g) => g.groups).map((o: any) => <FnEntry fns={o.fns} />)}</div>
+			<FnCompact items={returns.flatMap((g) => g.compact)} />
+		</section>
+	)}
+
+	{opCount > 0 && (
+		<section class="fn-group">
+			<h2 id="operators">Operators</h2>
+			<details class="fn-operators">
+				<summary>{opCount} operators</summary>
+				<div class="fn-list not-content">{operators.flatMap((g) => g.groups).map((o: any) => <FnEntry fns={o.fns} />)}</div>
+				<FnCompact items={operators.flatMap((g) => g.compact)} />
+			</details>
+		</section>
+	)}
+
+	{total === 0 && <p>No free function takes or returns this type.</p>}
+</StarlightPage>
+
+<script>
+	const input = document.getElementById('fn-filter') as HTMLInputElement | null;
+	if (input) {
+		const entries = [...document.querySelectorAll<HTMLElement>('.member-row, .fn-entry, .fn-shared, .fn-compact')];
+		const memberBlocks = [...document.querySelectorAll<HTMLElement>('.member-block')];
+		const inheritedBlocks = [...document.querySelectorAll<HTMLDetailsElement>('details.inherited')];
+		const groups = [...document.querySelectorAll<HTMLElement>('.fn-group')];
+		const blocks = [...document.querySelectorAll<HTMLElement>('.fn-shared-block')];
+		const sectionTitle = document.getElementById('takes');
+		const sharedTitle = document.getElementById('shared');
+		const count = document.querySelector('.fn-filter__count')!;
+		const ops = document.querySelector<HTMLDetailsElement>('.fn-operators');
+		const compactBlocks = [...document.querySelectorAll<HTMLElement>('.fn-compact-block')];
+		const visible = '.fn-entry:not([hidden]), .fn-shared:not([hidden]), .fn-compact:not([hidden]), .member-row:not([hidden])';
+		const apply = () => {
+			const terms = input.value.toLowerCase().split(/\s+/).filter(Boolean);
+			let shown = 0;
+			for (const e of entries) {
+				const ok = terms.every((w) => e.dataset.search!.includes(w));
+				e.hidden = !ok;
+				if (ok) shown++;
+			}
+			for (const g of groups) g.hidden = !g.querySelector(visible);
+			for (const b of memberBlocks) b.hidden = !b.querySelector(visible);
+			for (const d of inheritedBlocks) {
+				const any = !!d.querySelector(visible);
+				d.hidden = terms.length > 0 && !any;
+				if (terms.length && any) d.open = true;
+			}
+			for (const b of blocks) b.hidden = !b.querySelector(visible);
+			for (const b of compactBlocks) b.hidden = !b.querySelector(visible);
+			if (sectionTitle) sectionTitle.hidden = !document.querySelector('.fn-group[data-cat] .fn-entry:not([hidden]), .fn-group[data-cat] .fn-compact:not([hidden])');
+			if (sharedTitle) sharedTitle.hidden = !document.querySelector('.fn-shared-block .fn-shared:not([hidden])');
+			if (ops && terms.length) ops.open = !!ops.querySelector('.fn-entry:not([hidden]), .fn-compact:not([hidden])');
+			count.textContent = terms.length ? `${shown} / ${entries.length}` : '';
+		};
+		input.addEventListener('input', apply);
+	}
+	// Opening a deep link to an operator or an inherited member: unfold its block.
+	const reveal = () => {
+		const target = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+		const det = target && target.closest('details');
+		if (det && !det.open) { det.open = true; target.scrollIntoView(); }
+	};
+	reveal();
+	window.addEventListener('hashchange', reveal);
+</script>

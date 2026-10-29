@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 262" width="700" height="262">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .sm { fill: #555; font-size: 13px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; }
+    .b { font-weight: bold; }
+    .sp { stroke-width: 1.5; }
+    .arrow { stroke: #888; stroke-width: 2; fill: none; marker-end: url(#a); }
+    .br { stroke: #888; stroke-width: 1.5; fill: none; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker>
+  </defs>
+
+  <!-- top bracket: vertex shader -->
+  <path d="M20,44 V36 H463 V44" class="br" style="stroke:#5aa55a"/>
+  <text x="241" y="26" text-anchor="middle" style="fill:#2a7330">vertex shader: gl_Position = P V M p</text>
+
+  <!-- spaces -->
+  <rect x="20" y="70" width="92" height="54" rx="6" class="sp" fill="#f4f9cf" stroke="#a8b04a"/>
+  <text x="66" y="92" class="in b" text-anchor="middle">local</text>
+  <text x="66" y="112" class="sm" text-anchor="middle">of the shape</text>
+
+  <rect x="137" y="70" width="92" height="54" rx="6" class="sp" fill="#ececec" stroke="#999"/>
+  <text x="183" y="92" class="in b" text-anchor="middle">world</text>
+  <text x="183" y="112" class="sm" text-anchor="middle">the scene</text>
+
+  <rect x="254" y="70" width="92" height="54" rx="6" class="sp" fill="#dcf1f3" stroke="#3a9aa5"/>
+  <text x="300" y="92" class="in b" text-anchor="middle">camera</text>
+  <text x="300" y="112" class="sm" text-anchor="middle">eye at 0</text>
+
+  <rect x="371" y="70" width="92" height="54" rx="6" class="sp" fill="#fbe4ec" stroke="#c9567f"/>
+  <text x="417" y="92" class="in b" text-anchor="middle">clip</text>
+  <text x="417" y="112" class="sm" text-anchor="middle">(x, y, z, w)</text>
+
+  <rect x="488" y="70" width="92" height="54" rx="6" class="sp" fill="#fbe4ec" stroke="#c9567f"/>
+  <text x="534" y="92" class="in b" text-anchor="middle">NDC</text>
+  <text x="534" y="112" class="sm" text-anchor="middle">cube [-1,1]^3</text>
+
+  <rect x="605" y="70" width="80" height="54" rx="6" class="sp" fill="#ececec" stroke="#999"/>
+  <text x="645" y="92" class="in b" text-anchor="middle">window</text>
+  <text x="645" y="112" class="sm" text-anchor="middle">pixels</text>
+
+  <!-- transforms -->
+  <path d="M112,97 H135" class="arrow"/>
+  <text x="124" y="62" text-anchor="middle" class="b" style="fill:#6f6400">M</text>
+  <path d="M229,97 H252" class="arrow"/>
+  <text x="241" y="62" text-anchor="middle" class="b" style="fill:#1a6b73">V</text>
+  <path d="M346,97 H369" class="arrow"/>
+  <text x="358" y="62" text-anchor="middle" class="b" style="fill:#a3305e">P</text>
+  <path d="M463,97 H486" class="arrow"/>
+  <text x="475" y="62" text-anchor="middle">/ w</text>
+  <path d="M580,97 H603" class="arrow"/>
+  <text x="592" y="62" text-anchor="middle">viewport</text>
+
+  <!-- bottom bracket: automatic -->
+  <path d="M371,134 V142 H685 V134" class="br"/>
+  <text x="528" y="162" text-anchor="middle">done by the GPU after the shader</text>
+
+  <!-- who sets the matrices -->
+  <text x="20" y="196" class="b" style="fill:#6f6400">M</text>
+  <text x="44" y="196" class="m" style="fill:#6f6400">sphere.model</text>
+  <text x="330" y="196">one per shape</text>
+  <text x="20" y="220" class="b" style="fill:#1a6b73">V</text>
+  <text x="44" y="220" class="m" style="fill:#1a6b73">environment.camera_view</text>
+  <text x="330" y="220">every frame, from the camera</text>
+  <text x="20" y="244" class="b" style="fill:#a3305e">P</text>
+  <text x="44" y="244" class="m" style="fill:#a3305e">environment.camera_projection</text>
+  <text x="330" y="244">every frame, from the window size</text>
+</svg>

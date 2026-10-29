@@ -1,0 +1,1517 @@
+affine | operators | operator | exact | operator*(affine const&,affine_rt const&)
+affine | operators | operator | exact | operator*(affine const&,affine_rts const&)
+affine | operators | operator | exact | operator*(affine const&,mat3 const&)
+affine | operators | operator | exact | operator*(affine const&,mat4 const&)
+affine | operators | operator | exact | operator*(affine const&,vec3 const&)
+affine | operators | operator | exact | operator*(affine const&,vec4 const&)
+affine | operators | operator | exact | operator*(affine_rt const&,affine const&)
+affine | operators | operator | exact | operator*(affine_rts const&,affine const&)
+affine | operators | operator | exact | operator*(mat3 const&,affine const&)
+affine | operators | operator | exact | operator*(mat4 const&,affine const&)
+affine | operators | operator | exact | operator<<(std::ostream&,affine const&)
+affine | takes | convert | exact | str(affine const&)
+affine | takes | convert | exact | type_str(affine const&)
+affine_rt | operators | operator | exact | operator*(affine const&,affine_rt const&)
+affine_rt | operators | operator | exact | operator*(affine_rt const&,affine const&)
+affine_rt | operators | operator | exact | operator*(affine_rt const&,affine_rt const&)
+affine_rt | operators | operator | exact | operator*(affine_rt const&,affine_rts const&)
+affine_rt | operators | operator | exact | operator*(affine_rt const&,float)
+affine_rt | operators | operator | exact | operator*(affine_rt const&,frame const&)
+affine_rt | operators | operator | exact | operator*(affine_rt const&,mat3 const&)
+affine_rt | operators | operator | exact | operator*(affine_rt const&,mat4 const&)
+affine_rt | operators | operator | exact | operator*(affine_rt const&,rotation_transform const&)
+affine_rt | operators | operator | exact | operator*(affine_rt const&,vec3 const&)
+affine_rt | operators | operator | exact | operator*(affine_rt const&,vec4 const&)
+affine_rt | operators | operator | exact | operator*(affine_rts const&,affine_rt const&)
+affine_rt | operators | operator | exact | operator*(float,affine_rt const&)
+affine_rt | operators | operator | exact | operator*(mat3 const&,affine_rt const&)
+affine_rt | operators | operator | exact | operator*(mat4 const&,affine_rt const&)
+affine_rt | operators | operator | exact | operator*(rotation_transform const&,affine_rt const&)
+affine_rt | operators | operator | exact | operator+(affine_rt const&,vec3 const&)
+affine_rt | operators | operator | exact | operator+(vec3 const&,affine_rt const&)
+affine_rt | operators | operator | exact | operator-(affine_rt const&,vec3 const&)
+affine_rt | operators | operator | exact | operator<<(std::ostream&,affine_rt const&)
+affine_rt | returns | compute | exact | rotation_around_center(rotation_transform const&,vec3 const&)
+affine_rt | takes | convert | exact | str(affine_rt const&)
+affine_rt | takes | convert | exact | type_str(affine_rt const&)
+affine_rt | takes | transform | exact | inverse(affine_rt const&)
+affine_rts | operators | operator | exact | operator*(affine const&,affine_rts const&)
+affine_rts | operators | operator | exact | operator*(affine_rt const&,affine_rts const&)
+affine_rts | operators | operator | exact | operator*(affine_rt const&,float)
+affine_rts | operators | operator | exact | operator*(affine_rts const&,affine const&)
+affine_rts | operators | operator | exact | operator*(affine_rts const&,affine_rt const&)
+affine_rts | operators | operator | exact | operator*(affine_rts const&,affine_rts const&)
+affine_rts | operators | operator | exact | operator*(affine_rts const&,float)
+affine_rts | operators | operator | exact | operator*(affine_rts const&,mat3 const&)
+affine_rts | operators | operator | exact | operator*(affine_rts const&,mat4 const&)
+affine_rts | operators | operator | exact | operator*(affine_rts const&,rotation_transform const&)
+affine_rts | operators | operator | exact | operator*(affine_rts const&,vec3 const&)
+affine_rts | operators | operator | exact | operator*(affine_rts const&,vec4 const&)
+affine_rts | operators | operator | exact | operator*(float,affine_rt const&)
+affine_rts | operators | operator | exact | operator*(float,affine_rts const&)
+affine_rts | operators | operator | exact | operator*(float,rotation_transform const&)
+affine_rts | operators | operator | exact | operator*(mat3 const&,affine_rts const&)
+affine_rts | operators | operator | exact | operator*(mat4 const&,affine_rts const&)
+affine_rts | operators | operator | exact | operator*(rotation_transform const&,affine_rts const&)
+affine_rts | operators | operator | exact | operator*(rotation_transform const&,float)
+affine_rts | operators | operator | exact | operator+(affine_rts const&,vec3 const&)
+affine_rts | operators | operator | exact | operator+(vec3 const&,affine_rts const&)
+affine_rts | operators | operator | exact | operator-(affine_rts const&,vec3 const&)
+affine_rts | operators | operator | exact | operator/(affine_rts const&,float)
+affine_rts | operators | operator | exact | operator<<(std::ostream&,affine_rts const&)
+affine_rts | takes | convert | exact | str(affine_rts const&)
+affine_rts | takes | convert | exact | type_str(affine_rts const&)
+affine_rts | takes | transform | exact | inverse(affine_rts const&)
+camera_first_person | takes | compute | exact | picking_mesh_vertex_as_sphere(vec2 const&,numarray<vec3> const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&) | via camera_generic_base
+camera_first_person | takes | compute | exact | picking_plane_orthogonal_to_camera(vec2 const&,vec3 const&,camera_generic_base const&,camera_projection_perspective const&) | via camera_generic_base
+camera_first_person | takes | compute | exact | picking_spheres(vec2 const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&) | via camera_generic_base
+camera_first_person_euler | takes | compute | exact | picking_mesh_vertex_as_sphere(vec2 const&,numarray<vec3> const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&) | via camera_generic_base
+camera_first_person_euler | takes | compute | exact | picking_plane_orthogonal_to_camera(vec2 const&,vec3 const&,camera_generic_base const&,camera_projection_perspective const&) | via camera_generic_base
+camera_first_person_euler | takes | compute | exact | picking_spheres(vec2 const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&) | via camera_generic_base
+camera_orbit | takes | compute | exact | picking_mesh_vertex_as_sphere(vec2 const&,numarray<vec3> const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&) | via camera_generic_base
+camera_orbit | takes | compute | exact | picking_plane_orthogonal_to_camera(vec2 const&,vec3 const&,camera_generic_base const&,camera_projection_perspective const&) | via camera_generic_base
+camera_orbit | takes | compute | exact | picking_spheres(vec2 const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&) | via camera_generic_base
+camera_orbit_euler | takes | compute | exact | picking_mesh_vertex_as_sphere(vec2 const&,numarray<vec3> const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&) | via camera_generic_base
+camera_orbit_euler | takes | compute | exact | picking_plane_orthogonal_to_camera(vec2 const&,vec3 const&,camera_generic_base const&,camera_projection_perspective const&) | via camera_generic_base
+camera_orbit_euler | takes | compute | exact | picking_spheres(vec2 const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&) | via camera_generic_base
+camera_projection_perspective | takes | compute | exact | picking_mesh_vertex_as_sphere(vec2 const&,numarray<vec3> const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&)
+camera_projection_perspective | takes | compute | exact | picking_plane_orthogonal_to_camera(vec2 const&,vec3 const&,camera_generic_base const&,camera_projection_perspective const&)
+camera_projection_perspective | takes | compute | exact | picking_spheres(vec2 const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&)
+curve_drawable | takes | draw | exact | draw(curve_drawable const&,environment_generic_structure const&,int)
+curve_drawable_dynamic_extend | takes | draw | exact | draw(curve_drawable const&,environment_generic_structure const&,int) | via curve_drawable
+curve_drawable_dynamic_extend | takes | draw | exact | draw(curve_drawable_dynamic_extend const&,environment_generic_structure const&)
+environment_generic_structure | takes | draw | exact | draw(curve_drawable const&,environment_generic_structure const&,int)
+environment_generic_structure | takes | draw | exact | draw(curve_drawable_dynamic_extend const&,environment_generic_structure const&)
+environment_generic_structure | takes | draw | exact | draw(hierarchy_mesh_drawable const&,environment_generic_structure const&,int,bool,uniform_generic_structure const&)
+environment_generic_structure | takes | draw | exact | draw(mesh_drawable const&,environment_generic_structure const&,int,bool,uniform_generic_structure const&,GLenum,material_mesh_drawable_phong const*)
+environment_generic_structure | takes | draw | exact | draw(skybox_drawable const&,environment_generic_structure const&)
+environment_generic_structure | takes | draw | exact | draw(trajectory_drawable const&,environment_generic_structure const&)
+environment_generic_structure | takes | draw | exact | draw(triangles_drawable const&,environment_generic_structure const&,uniform_generic_structure const&,material_mesh_drawable_phong const*)
+environment_generic_structure | takes | draw | exact | draw_wireframe(hierarchy_mesh_drawable const&,environment_generic_structure const&,vec3 const&,int,bool,uniform_generic_structure const&)
+environment_generic_structure | takes | draw | exact | draw_wireframe(mesh_drawable const&,environment_generic_structure const&,vec3 const&,int,bool,uniform_generic_structure const&)
+environment_generic_structure | takes | draw | exact | draw_wireframe(triangles_drawable const&,environment_generic_structure const&,vec3 const&,uniform_generic_structure const&)
+frame | operators | operator | exact | operator*(affine_rt const&,frame const&)
+frame | operators | operator | exact | operator*(rotation_transform const&,frame const&)
+frame | operators | operator | exact | operator+(frame const&,vec3 const&)
+frame | operators | operator | exact | operator+(vec3 const&,frame const&)
+frame | operators | operator | exact | operator-(frame const&,vec3 const&)
+frame | returns | construct | exact | camera_frame_look_at(vec3 const&,vec3 const&,vec3 const&)
+frame | takes | construct | exact | mesh_primitive_frame(frame const&,float,vec3 const&,vec3 const&,vec3 const&,vec3 const&,float)
+frame | takes | transform | exact | inverse(frame const&)
+grid_2D | operators | operator | generic | operator*<T>(float,grid_2D<T> const&)
+grid_2D | operators | operator | generic | operator*<T>(grid_2D<T> const&,float)
+grid_2D | operators | operator | generic | operator*<T>(grid_2D<T> const&,grid_2D<T> const&)
+grid_2D | operators | operator | generic | operator*=<T>(grid_2D<T>&,float)
+grid_2D | operators | operator | generic | operator*=<T>(grid_2D<T>&,grid_2D<T> const&)
+grid_2D | operators | operator | generic | operator+<T>(T const&,grid_2D<T> const&)
+grid_2D | operators | operator | generic | operator+<T>(grid_2D<T> const&,T const&)
+grid_2D | operators | operator | generic | operator+<T>(grid_2D<T> const&,grid_2D<T> const&)
+grid_2D | operators | operator | generic | operator+=<T>(grid_2D<T>&,T const&)
+grid_2D | operators | operator | generic | operator+=<T>(grid_2D<T>&,grid_2D<T> const&)
+grid_2D | operators | operator | generic | operator-<T>(T const&,grid_2D<T> const&)
+grid_2D | operators | operator | generic | operator-<T>(grid_2D<T> const&,T const&)
+grid_2D | operators | operator | generic | operator-<T>(grid_2D<T> const&,grid_2D<T> const&)
+grid_2D | operators | operator | generic | operator-=<T>(grid_2D<T>&,T const&)
+grid_2D | operators | operator | generic | operator-=<T>(grid_2D<T>&,grid_2D<T> const&)
+grid_2D | operators | operator | generic | operator/<T>(grid_2D<T> const&,float)
+grid_2D | operators | operator | generic | operator/<T>(grid_2D<T> const&,grid_2D<T> const&)
+grid_2D | operators | operator | generic | operator/=<T>(grid_2D<T>&,float)
+grid_2D | operators | operator | generic | operator/=<T>(grid_2D<T>&,grid_2D<T> const&)
+grid_2D | operators | operator | generic | operator<<<T>(std::ostream&,grid_2D<T> const&)
+grid_2D | takes | access | generic | check_index_bounds<T>(int,int,grid_2D<T> const&)
+grid_2D | takes | access | generic | is_equal<T1,T2>(grid_2D<T1> const&,grid_2D<T2> const&)
+grid_2D | takes | compute | generic | interpolation_bilinear<T>(grid_2D<T> const&,float,float)
+grid_2D | takes | convert | exact | convert(image_structure const&,grid_2D<vec3>&)
+grid_2D | takes | convert | generic | str<T>(grid_2D<T> const&,std::string const&,std::string const&,std::string const&)
+grid_2D | takes | convert | generic | type_str<T>(grid_2D<T> const&)
+grid_2D | takes | io | exact | opengl_load_texture_image(grid_2D<vec3> const&,GLint,GLint)
+grid_2D | takes | other | exact | opengl_update_texture_image(GLuint,grid_2D<vec3> const&)
+grid_3D | operators | operator | generic | operator*<T>(float,grid_3D<T> const&)
+grid_3D | operators | operator | generic | operator*<T>(grid_3D<T> const&,float)
+grid_3D | operators | operator | generic | operator*<T>(grid_3D<T> const&,grid_3D<T> const&)
+grid_3D | operators | operator | generic | operator*=<T>(grid_3D<T>&,float)
+grid_3D | operators | operator | generic | operator*=<T>(grid_3D<T>&,grid_3D<T> const&)
+grid_3D | operators | operator | generic | operator+<T>(T const&,grid_3D<T> const&)
+grid_3D | operators | operator | generic | operator+<T>(grid_3D<T> const&,T const&)
+grid_3D | operators | operator | generic | operator+<T>(grid_3D<T> const&,grid_3D<T> const&)
+grid_3D | operators | operator | generic | operator+=<T>(grid_3D<T>&,T const&)
+grid_3D | operators | operator | generic | operator+=<T>(grid_3D<T>&,grid_3D<T> const&)
+grid_3D | operators | operator | generic | operator-<T>(T const&,grid_3D<T> const&)
+grid_3D | operators | operator | generic | operator-<T>(grid_3D<T> const&,T const&)
+grid_3D | operators | operator | generic | operator-<T>(grid_3D<T> const&,grid_3D<T> const&)
+grid_3D | operators | operator | generic | operator-=<T>(grid_3D<T>&,T const&)
+grid_3D | operators | operator | generic | operator-=<T>(grid_3D<T>&,grid_3D<T> const&)
+grid_3D | operators | operator | generic | operator/<T>(grid_3D<T> const&,float)
+grid_3D | operators | operator | generic | operator/<T>(grid_3D<T> const&,grid_3D<T> const&)
+grid_3D | operators | operator | generic | operator/=<T>(grid_3D<T>&,float)
+grid_3D | operators | operator | generic | operator/=<T>(grid_3D<T>&,grid_3D<T> const&)
+grid_3D | operators | operator | generic | operator<<<T>(std::ostream&,grid_3D<T> const&)
+grid_3D | takes | access | generic | check_index_bounds<T>(int,int,int,grid_3D<T> const&)
+grid_3D | takes | access | generic | is_equal<T1,T2>(grid_3D<T1> const&,grid_3D<T2> const&)
+grid_3D | takes | compute | exact | marching_cube(grid_3D<float> const&,spatial_domain_grid_3D const&,float)
+grid_3D | takes | convert | generic | str<T>(grid_3D<T> const&,std::string const&,std::string const&,std::string const&)
+grid_3D | takes | convert | generic | type_str<T>(grid_3D<T> const&)
+group:errors-memory | functions | access | ptr(char const&)
+group:errors-memory | functions | access | ptr(double const&)
+group:errors-memory | functions | access | ptr(float const&)
+group:errors-memory | functions | access | ptr(int const&)
+group:errors-memory | functions | access | ptr(long const&)
+group:errors-memory | functions | access | ptr(long long const&)
+group:errors-memory | functions | access | ptr(short const&)
+group:errors-memory | functions | access | ptr(unsigned char const&)
+group:errors-memory | functions | access | ptr(unsigned int const&)
+group:errors-memory | functions | access | ptr(unsigned long const&)
+group:errors-memory | functions | access | ptr(unsigned long long const&)
+group:errors-memory | functions | access | ptr(unsigned short const&)
+group:errors-memory | functions | access | ptr<T>(std::vector<T> const&)
+group:errors-memory | functions | access | size(char)
+group:errors-memory | functions | access | size(double)
+group:errors-memory | functions | access | size(float)
+group:errors-memory | functions | access | size(int)
+group:errors-memory | functions | access | size(long long)
+group:errors-memory | functions | access | size(long)
+group:errors-memory | functions | access | size(short)
+group:errors-memory | functions | access | size(unsigned char)
+group:errors-memory | functions | access | size(unsigned int)
+group:errors-memory | functions | access | size(unsigned long long)
+group:errors-memory | functions | access | size(unsigned long)
+group:errors-memory | functions | access | size(unsigned short)
+group:errors-memory | functions | access | size_in_memory(char)
+group:errors-memory | functions | access | size_in_memory(double)
+group:errors-memory | functions | access | size_in_memory(float)
+group:errors-memory | functions | access | size_in_memory(int)
+group:errors-memory | functions | access | size_in_memory(long long)
+group:errors-memory | functions | access | size_in_memory(long)
+group:errors-memory | functions | access | size_in_memory(short)
+group:errors-memory | functions | access | size_in_memory(unsigned char)
+group:errors-memory | functions | access | size_in_memory(unsigned int)
+group:errors-memory | functions | access | size_in_memory(unsigned long long)
+group:errors-memory | functions | access | size_in_memory(unsigned long)
+group:errors-memory | functions | access | size_in_memory(unsigned short)
+group:errors-memory | functions | access | size_in_memory<T>(std::vector<T> const&)
+group:errors-memory | functions | compute | index_out_of_bounds_message(long long,long long,std::string const&,std::string const&)
+group:errors-memory | functions | other | call_error(std::string const&,std::string const&,std::string const&,std::string const&,int)
+group:errors-memory | functions | other | call_warning(std::string const&,std::string const&,std::string const&,std::string const&,int)
+group:errors-memory | functions | other | currently_unused<T>(T const&)
+group:files | functions | access | check_file_exist(std::string const&)
+group:files | functions | access | check_path_exist(std::string const&)
+group:files | functions | compute | file_get_size(std::string const&)
+group:files | functions | compute | project_path_find(std::string const&,std::string const&)
+group:files | functions | io | read_from_file<T>(std::string const&,T&)
+group:files | functions | io | read_from_file<T>(std::string const&,std::vector<std::vector<T>>&)
+group:files | functions | io | read_from_file_binary(std::string const&)
+group:files | functions | io | read_from_stream<T,N>(std::istream&,std::array<T,N>&)
+group:files | functions | io | read_from_stream<T>(std::istream&,T&)
+group:files | functions | io | read_from_stream<T>(std::istream&,std::vector<T>&)
+group:files | functions | io | read_from_stream_per_line<T>(std::istream&,std::vector<T>&)
+group:files | functions | io | read_line_from_stream<T>(std::istream&,T&)
+group:files | functions | io | read_text_file(std::string const&)
+group:files | functions | other | assert_file_exist(std::string const&)
+group:grids | functions | access | check_index_bounds<T,N1,N2>(int,int,grid_stack_2D<T,N1,N2> const&)
+group:grids | functions | access | element<idx1,idx2,T,N1,N2>(grid_stack_2D<T,N1,N2> const&)
+group:grids | functions | access | is_equal<Ta,Tb,Na1,Na2,Nb1,Nb2>(grid_stack_2D<Ta,Na1,Na2> const&,grid_stack_2D<Tb,Nb1,Nb2> const&)
+group:grids | functions | compute | index_grid_from_offset_stack<N1>(int)
+group:grids | functions | compute | multiply_matrix<T,N1,N2,N3>(grid_stack_2D<T,N1,N2> const&,grid_stack_2D<T,N2,N3> const&)
+group:grids | functions | compute | offset_grid(int,int,int)
+group:grids | functions | compute | offset_grid(int,int,int,int,int)
+group:grids | functions | compute | offset_grid(int2 const&,int)
+group:grids | functions | compute | offset_grid(int3 const&,int,int)
+group:grids | functions | compute | offset_grid_stack<N1>(int,int)
+group:grids | functions | construct | index_grid_from_offset(int,int)
+group:grids | functions | construct | index_grid_from_offset(int,int,int)
+group:grids | functions | convert | str<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,std::string const&,std::string const&,std::string const&)
+group:grids | functions | convert | type_str<T,N1,N2>(grid_stack_2D<T,N1,N2> const&)
+group:grids | functions | operator | operator*<T,N1,N2>(float,grid_stack_2D<T,N1,N2> const&)
+group:grids | functions | operator | operator*<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,float)
+group:grids | functions | operator | operator*<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,grid_stack_2D<T,N1,N2> const&)
+group:grids | functions | operator | operator*=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,float)
+group:grids | functions | operator | operator*=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,grid_stack_2D<T,N1,N2> const&)
+group:grids | functions | operator | operator+<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,grid_stack_2D<T,N1,N2> const&)
+group:grids | functions | operator | operator+=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,grid_stack_2D<T,N1,N2> const&)
+group:grids | functions | operator | operator-<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,grid_stack_2D<T,N1,N2> const&)
+group:grids | functions | operator | operator-=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,grid_stack_2D<T,N1,N2> const&)
+group:grids | functions | operator | operator/<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,float)
+group:grids | functions | operator | operator/<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,grid_stack_2D<T,N1,N2> const&)
+group:grids | functions | operator | operator/=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,float)
+group:grids | functions | operator | operator/=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,grid_stack_2D<T,N1,N2> const&)
+group:grids | functions | operator | operator<<<T,N1,N2>(std::ostream&,grid_stack_2D<T,N1,N2> const&)
+group:marching-cubes | functions | compute | marching_cube(std::vector<vec3>&,std::vector<float> const&,spatial_domain_grid_3D const&,float,std::vector<marching_cube_relative_coordinates>*)
+group:marching-cubes | functions | compute | marching_cube_lut_edgeTable()
+group:marching-cubes | functions | compute | marching_cube_lut_edge_order()
+group:marching-cubes | functions | compute | marching_cube_lut_offset_cube()
+group:marching-cubes | functions | compute | marching_cube_lut_triTable()
+group:obj-files | functions | io | mesh_load_file_obj_advanced(std::string const&,std::string const&)
+group:obj-files | functions | io | mesh_save_file_obj(std::string const&,std::vector<vec3> const&,std::vector<vec3> const&)
+group:obj-files | functions | io | obj_read_connectivity(std::string const&)
+group:obj-files | functions | io | obj_read_normals(std::string const&)
+group:obj-files | functions | io | obj_read_positions(std::string const&)
+group:obj-files | functions | io | obj_read_texture_uv(std::string const&)
+group:opengl-window | functions | access | check_opengl_error(std::string const&,std::string const&,int)
+group:opengl-window | functions | compute | opengl_info_display()
+group:opengl-window | functions | convert | str(cache_uniform_location_structure const&)
+group:opengl-window | functions | io | opengl_load_texture_image(std::string const&,GLint,GLint)
+group:opengl-window | functions | operator | operator<<(std::ostream&,cache_uniform_location_structure const&)
+group:opengl-window | functions | other | emscripten_set_glfw_window_hint()
+group:opengl-window | functions | other | emscripten_update_window_size(int&,int&)
+group:opengl-window | functions | other | imgui_cleanup()
+group:opengl-window | functions | other | imgui_create_frame()
+group:opengl-window | functions | other | imgui_init(GLFWwindow*)
+group:opengl-window | functions | other | imgui_render_frame(GLFWwindow*)
+group:random-noise | functions | compute | noise_perlin(float,int,float,float)
+group:random-noise | functions | compute | rand_normal(float const,float const)
+group:random-noise | functions | compute | rand_uniform(float const,float const)
+group:random-noise | functions | other | rand_initialize_generator()
+group:scalar-math | functions | access | is_equal(char const*,std::string const&)
+group:scalar-math | functions | access | is_equal(double,double)
+group:scalar-math | functions | access | is_equal(double,float)
+group:scalar-math | functions | access | is_equal(float,double)
+group:scalar-math | functions | access | is_equal(float,float)
+group:scalar-math | functions | access | is_equal(std::string const&,char const*)
+group:scalar-math | functions | access | is_equal(std::string const&,std::string const&)
+group:scalar-math | functions | access | is_equal<T1,T2,N>(std::array<T1,N> const&,std::array<T2,N> const&)
+group:scalar-math | functions | access | is_equal<T1,T2>(T1 const&,T2 const&)
+group:scalar-math | functions | access | is_equal<T1,T2>(std::vector<T1> const&,std::vector<T2> const&)
+group:scalar-math | functions | compute | abs(char)
+group:scalar-math | functions | compute | abs(double)
+group:scalar-math | functions | compute | abs(float)
+group:scalar-math | functions | compute | abs(int)
+group:scalar-math | functions | compute | abs(long long)
+group:scalar-math | functions | compute | abs(long)
+group:scalar-math | functions | compute | abs(short)
+group:scalar-math | functions | compute | abs(unsigned char)
+group:scalar-math | functions | compute | abs(unsigned int)
+group:scalar-math | functions | compute | abs(unsigned long)
+group:scalar-math | functions | compute | abs(unsigned short)
+group:scalar-math | functions | compute | clamp<T1,T2>(T1,T2,T2)
+group:scalar-math | functions | compute | interpolation_linear<T>(float,T const&,T const&)
+group:scalar-math | functions | transform | abs(unsigned long long)
+group:strings | functions | compute | contains<T1,T2>(std::map<T1,T2> const&,T1 const&)
+group:strings | functions | compute | contains<T>(std::map<std::string,T> const&,char const*)
+group:strings | functions | convert | str(char const*)
+group:strings | functions | convert | str(char)
+group:strings | functions | convert | str(double)
+group:strings | functions | convert | str(float)
+group:strings | functions | convert | str(int)
+group:strings | functions | convert | str(long long)
+group:strings | functions | convert | str(long)
+group:strings | functions | convert | str(short)
+group:strings | functions | convert | str(std::string const&)
+group:strings | functions | convert | str(unsigned char)
+group:strings | functions | convert | str(unsigned int)
+group:strings | functions | convert | str(unsigned long long)
+group:strings | functions | convert | str(unsigned long)
+group:strings | functions | convert | str(unsigned short)
+group:strings | functions | convert | str<T1,T2>(std::map<T1,T2> const&)
+group:strings | functions | convert | str_lower(std::string const&)
+group:strings | functions | convert | str_upper(std::string const&)
+group:strings | functions | convert | str_zero_fill(std::string const&,size_t)
+group:strings | functions | convert | type_str(char)
+group:strings | functions | convert | type_str(double)
+group:strings | functions | convert | type_str(float)
+group:strings | functions | convert | type_str(int)
+group:strings | functions | convert | type_str(int2 const&)
+group:strings | functions | convert | type_str(int3 const&)
+group:strings | functions | convert | type_str(int4 const&)
+group:strings | functions | convert | type_str(long long)
+group:strings | functions | convert | type_str(long)
+group:strings | functions | convert | type_str(short)
+group:strings | functions | convert | type_str(std::string const&)
+group:strings | functions | convert | type_str(uint2 const&)
+group:strings | functions | convert | type_str(uint3 const&)
+group:strings | functions | convert | type_str(uint4 const&)
+group:strings | functions | convert | type_str(unsigned char)
+group:strings | functions | convert | type_str(unsigned int)
+group:strings | functions | convert | type_str(unsigned long long)
+group:strings | functions | convert | type_str(unsigned long)
+group:strings | functions | convert | type_str(unsigned short)
+group:strings | functions | convert | type_str<T>(T const&)
+group:strings | functions | convert | type_str<T>(std::set<T> const&)
+group:time | functions | compute | timer_current_time()
+group:time | functions | other | timer_set_time_source(double(*)())
+hierarchy_mesh_drawable | takes | draw | exact | draw(hierarchy_mesh_drawable const&,environment_generic_structure const&,int,bool,uniform_generic_structure const&)
+hierarchy_mesh_drawable | takes | draw | exact | draw_wireframe(hierarchy_mesh_drawable const&,environment_generic_structure const&,vec3 const&,int,bool,uniform_generic_structure const&)
+home | affine | operators | operator*(affine const&,affine_rt const&)
+home | affine | operators | operator*(affine const&,affine_rts const&)
+home | affine | operators | operator*(affine const&,mat3 const&)
+home | affine | operators | operator*(affine const&,mat4 const&)
+home | affine | operators | operator*(affine const&,vec3 const&)
+home | affine | operators | operator*(affine const&,vec4 const&)
+home | affine | operators | operator<<(std::ostream&,affine const&)
+home | affine | takes | str(affine const&)
+home | affine | takes | type_str(affine const&)
+home | affine_rt | operators | operator*(affine_rt const&,affine const&)
+home | affine_rt | operators | operator*(affine_rt const&,affine_rt const&)
+home | affine_rt | operators | operator*(affine_rt const&,affine_rts const&)
+home | affine_rt | operators | operator*(affine_rt const&,float)
+home | affine_rt | operators | operator*(affine_rt const&,frame const&)
+home | affine_rt | operators | operator*(affine_rt const&,mat3 const&)
+home | affine_rt | operators | operator*(affine_rt const&,mat4 const&)
+home | affine_rt | operators | operator*(affine_rt const&,rotation_transform const&)
+home | affine_rt | operators | operator*(affine_rt const&,vec3 const&)
+home | affine_rt | operators | operator*(affine_rt const&,vec4 const&)
+home | affine_rt | operators | operator*(float,affine_rt const&)
+home | affine_rt | operators | operator+(affine_rt const&,vec3 const&)
+home | affine_rt | operators | operator-(affine_rt const&,vec3 const&)
+home | affine_rt | operators | operator<<(std::ostream&,affine_rt const&)
+home | affine_rt | takes | inverse(affine_rt const&)
+home | affine_rt | takes | str(affine_rt const&)
+home | affine_rt | takes | type_str(affine_rt const&)
+home | affine_rts | operators | operator*(affine_rts const&,affine const&)
+home | affine_rts | operators | operator*(affine_rts const&,affine_rt const&)
+home | affine_rts | operators | operator*(affine_rts const&,affine_rts const&)
+home | affine_rts | operators | operator*(affine_rts const&,float)
+home | affine_rts | operators | operator*(affine_rts const&,mat3 const&)
+home | affine_rts | operators | operator*(affine_rts const&,mat4 const&)
+home | affine_rts | operators | operator*(affine_rts const&,rotation_transform const&)
+home | affine_rts | operators | operator*(affine_rts const&,vec3 const&)
+home | affine_rts | operators | operator*(affine_rts const&,vec4 const&)
+home | affine_rts | operators | operator*(float,affine_rts const&)
+home | affine_rts | operators | operator+(affine_rts const&,vec3 const&)
+home | affine_rts | operators | operator-(affine_rts const&,vec3 const&)
+home | affine_rts | operators | operator/(affine_rts const&,float)
+home | affine_rts | operators | operator<<(std::ostream&,affine_rts const&)
+home | affine_rts | takes | inverse(affine_rts const&)
+home | affine_rts | takes | str(affine_rts const&)
+home | affine_rts | takes | type_str(affine_rts const&)
+home | curve_drawable | takes | draw(curve_drawable const&,environment_generic_structure const&,int)
+home | curve_drawable_dynamic_extend | takes | draw(curve_drawable_dynamic_extend const&,environment_generic_structure const&)
+home | frame | operators | operator+(frame const&,vec3 const&)
+home | frame | operators | operator-(frame const&,vec3 const&)
+home | frame | returns | camera_frame_look_at(vec3 const&,vec3 const&,vec3 const&)
+home | frame | takes | inverse(frame const&)
+home | grid_2D | operators | operator*<T>(float,grid_2D<T> const&)
+home | grid_2D | operators | operator*<T>(grid_2D<T> const&,float)
+home | grid_2D | operators | operator*<T>(grid_2D<T> const&,grid_2D<T> const&)
+home | grid_2D | operators | operator*=<T>(grid_2D<T>&,float)
+home | grid_2D | operators | operator*=<T>(grid_2D<T>&,grid_2D<T> const&)
+home | grid_2D | operators | operator+<T>(T const&,grid_2D<T> const&)
+home | grid_2D | operators | operator+<T>(grid_2D<T> const&,T const&)
+home | grid_2D | operators | operator+<T>(grid_2D<T> const&,grid_2D<T> const&)
+home | grid_2D | operators | operator+=<T>(grid_2D<T>&,T const&)
+home | grid_2D | operators | operator+=<T>(grid_2D<T>&,grid_2D<T> const&)
+home | grid_2D | operators | operator-<T>(T const&,grid_2D<T> const&)
+home | grid_2D | operators | operator-<T>(grid_2D<T> const&,T const&)
+home | grid_2D | operators | operator-<T>(grid_2D<T> const&,grid_2D<T> const&)
+home | grid_2D | operators | operator-=<T>(grid_2D<T>&,T const&)
+home | grid_2D | operators | operator-=<T>(grid_2D<T>&,grid_2D<T> const&)
+home | grid_2D | operators | operator/<T>(grid_2D<T> const&,float)
+home | grid_2D | operators | operator/<T>(grid_2D<T> const&,grid_2D<T> const&)
+home | grid_2D | operators | operator/=<T>(grid_2D<T>&,float)
+home | grid_2D | operators | operator/=<T>(grid_2D<T>&,grid_2D<T> const&)
+home | grid_2D | operators | operator<<<T>(std::ostream&,grid_2D<T> const&)
+home | grid_2D | takes | check_index_bounds<T>(int,int,grid_2D<T> const&)
+home | grid_2D | takes | interpolation_bilinear<T>(grid_2D<T> const&,float,float)
+home | grid_2D | takes | is_equal<T1,T2>(grid_2D<T1> const&,grid_2D<T2> const&)
+home | grid_2D | takes | opengl_load_texture_image(grid_2D<vec3> const&,GLint,GLint)
+home | grid_2D | takes | opengl_update_texture_image(GLuint,grid_2D<vec3> const&)
+home | grid_2D | takes | str<T>(grid_2D<T> const&,std::string const&,std::string const&,std::string const&)
+home | grid_2D | takes | type_str<T>(grid_2D<T> const&)
+home | grid_3D | operators | operator*<T>(float,grid_3D<T> const&)
+home | grid_3D | operators | operator*<T>(grid_3D<T> const&,float)
+home | grid_3D | operators | operator*<T>(grid_3D<T> const&,grid_3D<T> const&)
+home | grid_3D | operators | operator*=<T>(grid_3D<T>&,float)
+home | grid_3D | operators | operator*=<T>(grid_3D<T>&,grid_3D<T> const&)
+home | grid_3D | operators | operator+<T>(T const&,grid_3D<T> const&)
+home | grid_3D | operators | operator+<T>(grid_3D<T> const&,T const&)
+home | grid_3D | operators | operator+<T>(grid_3D<T> const&,grid_3D<T> const&)
+home | grid_3D | operators | operator+=<T>(grid_3D<T>&,T const&)
+home | grid_3D | operators | operator+=<T>(grid_3D<T>&,grid_3D<T> const&)
+home | grid_3D | operators | operator-<T>(T const&,grid_3D<T> const&)
+home | grid_3D | operators | operator-<T>(grid_3D<T> const&,T const&)
+home | grid_3D | operators | operator-<T>(grid_3D<T> const&,grid_3D<T> const&)
+home | grid_3D | operators | operator-=<T>(grid_3D<T>&,T const&)
+home | grid_3D | operators | operator-=<T>(grid_3D<T>&,grid_3D<T> const&)
+home | grid_3D | operators | operator/<T>(grid_3D<T> const&,float)
+home | grid_3D | operators | operator/<T>(grid_3D<T> const&,grid_3D<T> const&)
+home | grid_3D | operators | operator/=<T>(grid_3D<T>&,float)
+home | grid_3D | operators | operator/=<T>(grid_3D<T>&,grid_3D<T> const&)
+home | grid_3D | operators | operator<<<T>(std::ostream&,grid_3D<T> const&)
+home | grid_3D | takes | check_index_bounds<T>(int,int,int,grid_3D<T> const&)
+home | grid_3D | takes | is_equal<T1,T2>(grid_3D<T1> const&,grid_3D<T2> const&)
+home | grid_3D | takes | marching_cube(grid_3D<float> const&,spatial_domain_grid_3D const&,float)
+home | grid_3D | takes | str<T>(grid_3D<T> const&,std::string const&,std::string const&,std::string const&)
+home | grid_3D | takes | type_str<T>(grid_3D<T> const&)
+home | group:errors-memory | functions | call_error(std::string const&,std::string const&,std::string const&,std::string const&,int)
+home | group:errors-memory | functions | call_warning(std::string const&,std::string const&,std::string const&,std::string const&,int)
+home | group:errors-memory | functions | currently_unused<T>(T const&)
+home | group:errors-memory | functions | index_out_of_bounds_message(long long,long long,std::string const&,std::string const&)
+home | group:errors-memory | functions | ptr(char const&)
+home | group:errors-memory | functions | ptr(double const&)
+home | group:errors-memory | functions | ptr(float const&)
+home | group:errors-memory | functions | ptr(int const&)
+home | group:errors-memory | functions | ptr(long const&)
+home | group:errors-memory | functions | ptr(long long const&)
+home | group:errors-memory | functions | ptr(short const&)
+home | group:errors-memory | functions | ptr(unsigned char const&)
+home | group:errors-memory | functions | ptr(unsigned int const&)
+home | group:errors-memory | functions | ptr(unsigned long const&)
+home | group:errors-memory | functions | ptr(unsigned long long const&)
+home | group:errors-memory | functions | ptr(unsigned short const&)
+home | group:errors-memory | functions | ptr<T>(std::vector<T> const&)
+home | group:errors-memory | functions | size(char)
+home | group:errors-memory | functions | size(double)
+home | group:errors-memory | functions | size(float)
+home | group:errors-memory | functions | size(int)
+home | group:errors-memory | functions | size(long long)
+home | group:errors-memory | functions | size(long)
+home | group:errors-memory | functions | size(short)
+home | group:errors-memory | functions | size(unsigned char)
+home | group:errors-memory | functions | size(unsigned int)
+home | group:errors-memory | functions | size(unsigned long long)
+home | group:errors-memory | functions | size(unsigned long)
+home | group:errors-memory | functions | size(unsigned short)
+home | group:errors-memory | functions | size_in_memory(char)
+home | group:errors-memory | functions | size_in_memory(double)
+home | group:errors-memory | functions | size_in_memory(float)
+home | group:errors-memory | functions | size_in_memory(int)
+home | group:errors-memory | functions | size_in_memory(long long)
+home | group:errors-memory | functions | size_in_memory(long)
+home | group:errors-memory | functions | size_in_memory(short)
+home | group:errors-memory | functions | size_in_memory(unsigned char)
+home | group:errors-memory | functions | size_in_memory(unsigned int)
+home | group:errors-memory | functions | size_in_memory(unsigned long long)
+home | group:errors-memory | functions | size_in_memory(unsigned long)
+home | group:errors-memory | functions | size_in_memory(unsigned short)
+home | group:errors-memory | functions | size_in_memory<T>(std::vector<T> const&)
+home | group:files | functions | assert_file_exist(std::string const&)
+home | group:files | functions | check_file_exist(std::string const&)
+home | group:files | functions | check_path_exist(std::string const&)
+home | group:files | functions | file_get_size(std::string const&)
+home | group:files | functions | project_path_find(std::string const&,std::string const&)
+home | group:files | functions | read_from_file<T>(std::string const&,T&)
+home | group:files | functions | read_from_file<T>(std::string const&,std::vector<std::vector<T>>&)
+home | group:files | functions | read_from_file_binary(std::string const&)
+home | group:files | functions | read_from_stream<T,N>(std::istream&,std::array<T,N>&)
+home | group:files | functions | read_from_stream<T>(std::istream&,T&)
+home | group:files | functions | read_from_stream<T>(std::istream&,std::vector<T>&)
+home | group:files | functions | read_from_stream_per_line<T>(std::istream&,std::vector<T>&)
+home | group:files | functions | read_line_from_stream<T>(std::istream&,T&)
+home | group:files | functions | read_text_file(std::string const&)
+home | group:grids | functions | check_index_bounds<T,N1,N2>(int,int,grid_stack_2D<T,N1,N2> const&)
+home | group:grids | functions | element<idx1,idx2,T,N1,N2>(grid_stack_2D<T,N1,N2> const&)
+home | group:grids | functions | index_grid_from_offset(int,int)
+home | group:grids | functions | index_grid_from_offset(int,int,int)
+home | group:grids | functions | index_grid_from_offset_stack<N1>(int)
+home | group:grids | functions | is_equal<Ta,Tb,Na1,Na2,Nb1,Nb2>(grid_stack_2D<Ta,Na1,Na2> const&,grid_stack_2D<Tb,Nb1,Nb2> const&)
+home | group:grids | functions | multiply_matrix<T,N1,N2,N3>(grid_stack_2D<T,N1,N2> const&,grid_stack_2D<T,N2,N3> const&)
+home | group:grids | functions | offset_grid(int,int,int)
+home | group:grids | functions | offset_grid(int,int,int,int,int)
+home | group:grids | functions | offset_grid(int2 const&,int)
+home | group:grids | functions | offset_grid(int3 const&,int,int)
+home | group:grids | functions | offset_grid_stack<N1>(int,int)
+home | group:grids | functions | operator*<T,N1,N2>(float,grid_stack_2D<T,N1,N2> const&)
+home | group:grids | functions | operator*<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,float)
+home | group:grids | functions | operator*<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,grid_stack_2D<T,N1,N2> const&)
+home | group:grids | functions | operator*=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,float)
+home | group:grids | functions | operator*=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,grid_stack_2D<T,N1,N2> const&)
+home | group:grids | functions | operator+<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,grid_stack_2D<T,N1,N2> const&)
+home | group:grids | functions | operator+=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,grid_stack_2D<T,N1,N2> const&)
+home | group:grids | functions | operator-<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,grid_stack_2D<T,N1,N2> const&)
+home | group:grids | functions | operator-=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,grid_stack_2D<T,N1,N2> const&)
+home | group:grids | functions | operator/<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,float)
+home | group:grids | functions | operator/<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,grid_stack_2D<T,N1,N2> const&)
+home | group:grids | functions | operator/=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,float)
+home | group:grids | functions | operator/=<T,N1,N2>(grid_stack_2D<T,N1,N2>&,grid_stack_2D<T,N1,N2> const&)
+home | group:grids | functions | operator<<<T,N1,N2>(std::ostream&,grid_stack_2D<T,N1,N2> const&)
+home | group:grids | functions | str<T,N1,N2>(grid_stack_2D<T,N1,N2> const&,std::string const&,std::string const&,std::string const&)
+home | group:grids | functions | type_str<T,N1,N2>(grid_stack_2D<T,N1,N2> const&)
+home | group:marching-cubes | functions | marching_cube(std::vector<vec3>&,std::vector<float> const&,spatial_domain_grid_3D const&,float,std::vector<marching_cube_relative_coordinates>*)
+home | group:marching-cubes | functions | marching_cube_lut_edgeTable()
+home | group:marching-cubes | functions | marching_cube_lut_edge_order()
+home | group:marching-cubes | functions | marching_cube_lut_offset_cube()
+home | group:marching-cubes | functions | marching_cube_lut_triTable()
+home | group:obj-files | functions | mesh_load_file_obj_advanced(std::string const&,std::string const&)
+home | group:obj-files | functions | mesh_save_file_obj(std::string const&,std::vector<vec3> const&,std::vector<vec3> const&)
+home | group:obj-files | functions | obj_read_connectivity(std::string const&)
+home | group:obj-files | functions | obj_read_normals(std::string const&)
+home | group:obj-files | functions | obj_read_positions(std::string const&)
+home | group:obj-files | functions | obj_read_texture_uv(std::string const&)
+home | group:opengl-window | functions | check_opengl_error(std::string const&,std::string const&,int)
+home | group:opengl-window | functions | emscripten_set_glfw_window_hint()
+home | group:opengl-window | functions | emscripten_update_window_size(int&,int&)
+home | group:opengl-window | functions | imgui_cleanup()
+home | group:opengl-window | functions | imgui_create_frame()
+home | group:opengl-window | functions | imgui_init(GLFWwindow*)
+home | group:opengl-window | functions | imgui_render_frame(GLFWwindow*)
+home | group:opengl-window | functions | opengl_info_display()
+home | group:opengl-window | functions | opengl_load_texture_image(std::string const&,GLint,GLint)
+home | group:opengl-window | functions | operator<<(std::ostream&,cache_uniform_location_structure const&)
+home | group:opengl-window | functions | str(cache_uniform_location_structure const&)
+home | group:random-noise | functions | noise_perlin(float,int,float,float)
+home | group:random-noise | functions | rand_initialize_generator()
+home | group:random-noise | functions | rand_normal(float const,float const)
+home | group:random-noise | functions | rand_uniform(float const,float const)
+home | group:scalar-math | functions | abs(char)
+home | group:scalar-math | functions | abs(double)
+home | group:scalar-math | functions | abs(float)
+home | group:scalar-math | functions | abs(int)
+home | group:scalar-math | functions | abs(long long)
+home | group:scalar-math | functions | abs(long)
+home | group:scalar-math | functions | abs(short)
+home | group:scalar-math | functions | abs(unsigned char)
+home | group:scalar-math | functions | abs(unsigned int)
+home | group:scalar-math | functions | abs(unsigned long long)
+home | group:scalar-math | functions | abs(unsigned long)
+home | group:scalar-math | functions | abs(unsigned short)
+home | group:scalar-math | functions | clamp<T1,T2>(T1,T2,T2)
+home | group:scalar-math | functions | interpolation_linear<T>(float,T const&,T const&)
+home | group:scalar-math | functions | is_equal(char const*,std::string const&)
+home | group:scalar-math | functions | is_equal(double,double)
+home | group:scalar-math | functions | is_equal(double,float)
+home | group:scalar-math | functions | is_equal(float,double)
+home | group:scalar-math | functions | is_equal(float,float)
+home | group:scalar-math | functions | is_equal(std::string const&,char const*)
+home | group:scalar-math | functions | is_equal(std::string const&,std::string const&)
+home | group:scalar-math | functions | is_equal<T1,T2,N>(std::array<T1,N> const&,std::array<T2,N> const&)
+home | group:scalar-math | functions | is_equal<T1,T2>(T1 const&,T2 const&)
+home | group:scalar-math | functions | is_equal<T1,T2>(std::vector<T1> const&,std::vector<T2> const&)
+home | group:strings | functions | contains<T1,T2>(std::map<T1,T2> const&,T1 const&)
+home | group:strings | functions | contains<T>(std::map<std::string,T> const&,char const*)
+home | group:strings | functions | str(char const*)
+home | group:strings | functions | str(char)
+home | group:strings | functions | str(double)
+home | group:strings | functions | str(float)
+home | group:strings | functions | str(int)
+home | group:strings | functions | str(long long)
+home | group:strings | functions | str(long)
+home | group:strings | functions | str(short)
+home | group:strings | functions | str(std::string const&)
+home | group:strings | functions | str(unsigned char)
+home | group:strings | functions | str(unsigned int)
+home | group:strings | functions | str(unsigned long long)
+home | group:strings | functions | str(unsigned long)
+home | group:strings | functions | str(unsigned short)
+home | group:strings | functions | str<T1,T2>(std::map<T1,T2> const&)
+home | group:strings | functions | str_lower(std::string const&)
+home | group:strings | functions | str_upper(std::string const&)
+home | group:strings | functions | str_zero_fill(std::string const&,size_t)
+home | group:strings | functions | type_str(char)
+home | group:strings | functions | type_str(double)
+home | group:strings | functions | type_str(float)
+home | group:strings | functions | type_str(int)
+home | group:strings | functions | type_str(int2 const&)
+home | group:strings | functions | type_str(int3 const&)
+home | group:strings | functions | type_str(int4 const&)
+home | group:strings | functions | type_str(long long)
+home | group:strings | functions | type_str(long)
+home | group:strings | functions | type_str(short)
+home | group:strings | functions | type_str(std::string const&)
+home | group:strings | functions | type_str(uint2 const&)
+home | group:strings | functions | type_str(uint3 const&)
+home | group:strings | functions | type_str(uint4 const&)
+home | group:strings | functions | type_str(unsigned char)
+home | group:strings | functions | type_str(unsigned int)
+home | group:strings | functions | type_str(unsigned long long)
+home | group:strings | functions | type_str(unsigned long)
+home | group:strings | functions | type_str(unsigned short)
+home | group:strings | functions | type_str<T>(T const&)
+home | group:strings | functions | type_str<T>(std::set<T> const&)
+home | group:time | functions | timer_current_time()
+home | group:time | functions | timer_set_time_source(double(*)())
+home | hierarchy_mesh_drawable | takes | draw(hierarchy_mesh_drawable const&,environment_generic_structure const&,int,bool,uniform_generic_structure const&)
+home | hierarchy_mesh_drawable | takes | draw_wireframe(hierarchy_mesh_drawable const&,environment_generic_structure const&,vec3 const&,int,bool,uniform_generic_structure const&)
+home | image_structure | returns | image_load_file(std::string const&)
+home | image_structure | returns | image_load_jpg(std::string const&)
+home | image_structure | returns | image_load_png(std::string const&,image_color_type)
+home | image_structure | takes | convert(image_structure const&,grid_2D<vec3>&)
+home | image_structure | takes | image_save_jpg(std::string const&,image_structure const&)
+home | image_structure | takes | image_save_png(std::string const&,image_structure const&)
+home | image_structure | takes | image_split_grid(image_structure const&,int,int)
+home | image_structure | takes | opengl_load_texture_image(image_structure const&,GLint,GLint)
+home | mat2 | returns | tensor_product(vec2 const&,vec2 const&)
+home | mat2 | takes | det(mat2 const&)
+home | mat2 | takes | inverse(mat2 const&)
+home | mat2 | takes | type_str(mat2 const&)
+home | mat3 | operators | operator*(mat3 const&,affine const&)
+home | mat3 | operators | operator*(mat3 const&,affine_rt const&)
+home | mat3 | operators | operator*(mat3 const&,affine_rts const&)
+home | mat3 | returns | tensor_product(vec3 const&,vec3 const&)
+home | mat3 | takes | det(mat3 const&)
+home | mat3 | takes | inverse(mat3 const&)
+home | mat3 | takes | type_str(mat3 const&)
+home | mat4 | operators | operator*(float,mat4 const&)
+home | mat4 | operators | operator*(mat4 const&,affine const&)
+home | mat4 | operators | operator*(mat4 const&,affine_rt const&)
+home | mat4 | operators | operator*(mat4 const&,affine_rts const&)
+home | mat4 | operators | operator*(mat4 const&,mat4 const&)
+home | mat4 | operators | operator*=(mat4&,float)
+home | mat4 | operators | operator*=(mat4&,mat4 const&)
+home | mat4 | operators | operator+=(mat4&,mat4 const&)
+home | mat4 | returns | projection_orthographic(float,float,float,float,float,float)
+home | mat4 | returns | projection_orthographic_inverse(float,float,float,float,float,float)
+home | mat4 | returns | projection_perspective(float,float,float,float)
+home | mat4 | returns | projection_perspective_inverse(float,float,float,float)
+home | mat4 | returns | tensor_product(vec4 const&,vec4 const&)
+home | mat4 | takes | camera_ray_direction(mat4 const&,mat4 const&,vec2 const&)
+home | mat4 | takes | det(mat4 const&)
+home | mat4 | takes | inverse(mat4 const&)
+home | mat4 | takes | type_str(mat4 const&)
+home | matN | operators | operator*<T,N1,N2,N3>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N2,N3> const&)
+home | matN | operators | operator*<T,N1,N2,S>(S,matrix_stack<T,N1,N2> const&)
+home | matN | operators | operator*<T,N1,N2,S>(matrix_stack<T,N1,N2> const&,S)
+home | matN | operators | operator*<T,N1,N2>(matrix_stack<T,N1,N2> const&,numarray_stack<T,N2> const&)
+home | matN | operators | operator*=<T,N1,N2,S>(matrix_stack<T,N1,N2>&,S)
+home | matN | operators | operator*=<T,N>(matrix_stack<T,N,N>&,matrix_stack<T,N,N> const&)
+home | matN | operators | operator+<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&)
+home | matN | operators | operator+=<T,N1,N2>(matrix_stack<T,N1,N2>&,matrix_stack<T,N1,N2> const&)
+home | matN | operators | operator-<T,N1,N2>(matrix_stack<T,N1,N2> const&)
+home | matN | operators | operator-<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&)
+home | matN | operators | operator-=<T,N1,N2>(matrix_stack<T,N1,N2>&,matrix_stack<T,N1,N2> const&)
+home | matN | operators | operator/<T,N1,N2,S>(matrix_stack<T,N1,N2> const&,S)
+home | matN | operators | operator/=<T,N1,N2,S>(matrix_stack<T,N1,N2>&,S)
+home | matN | operators | operator<<<T,N1,N2>(std::ostream&,matrix_stack<T,N1,N2> const&)
+home | matN | takes | check_index_bounds<T,N1,N2>(int,int,matrix_stack<T,N1,N2> const&)
+home | matN | takes | check_index_bounds<T,N1,N2>(int,matrix_stack<T,N1,N2> const&)
+home | matN | takes | check_offset_bounds<T,N1,N2>(int,matrix_stack<T,N1,N2> const&)
+home | matN | takes | get<idx1,T,N1,N2>(matrix_stack<T,N1,N2> const&)
+home | matN | takes | get<idx1,idx2,T,N1,N2>(matrix_stack<T,N1,N2> const&)
+home | matN | takes | get_offset<offset,T,N1,N2>(matrix_stack<T,N1,N2> const&)
+home | matN | takes | is_equal<Ta,Tb,Na1,Na2,Nb1,Nb2>(matrix_stack<Ta,Na1,Na2> const&,matrix_stack<Tb,Nb1,Nb2> const&)
+home | matN | takes | multiply_componentwise<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&)
+home | matN | takes | norm<T,N1,N2>(matrix_stack<T,N1,N2> const&)
+home | matN | takes | ptr<T,N1,N2>(matrix_stack<T,N1,N2> const&)
+home | matN | takes | read_from_stream<T,N1,N2>(std::istream&,matrix_stack<T,N1,N2>&)
+home | matN | takes | size_in_memory<T,N1,N2>(matrix_stack<T,N1,N2> const&)
+home | matN | takes | str<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&)
+home | matN | takes | str_2D<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&)
+home | matN | takes | str_pretty<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&)
+home | matN | takes | trace<T,N>(matrix_stack<T,N,N> const&)
+home | matN | takes | transpose<T,N1,N2>(matrix_stack<T,N1,N2> const&)
+home | matN | takes | type_str<T,N1,N2>(matrix_stack<T,N1,N2> const&)
+home | mesh | returns | mesh_load_file_obj(std::string const&)
+home | mesh | returns | mesh_primitive_arrow(vec3 const&,vec3 const&,float,float,float,int)
+home | mesh | returns | mesh_primitive_cone(float,float,vec3 const&,vec3 const&,bool,int,int)
+home | mesh | returns | mesh_primitive_cube(vec3 const&,float)
+home | mesh | returns | mesh_primitive_cubic_grid(vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,int,int,int)
+home | mesh | returns | mesh_primitive_cylinder(float,vec3 const&,vec3 const&,int,int,bool)
+home | mesh | returns | mesh_primitive_disc(float,vec3 const&,vec3 const&,int)
+home | mesh | returns | mesh_primitive_ellipsoid(vec3,vec3 const&,int,int)
+home | mesh | returns | mesh_primitive_frame(frame const&,float,vec3 const&,vec3 const&,vec3 const&,vec3 const&,float)
+home | mesh | returns | mesh_primitive_grid(vec3 const&,vec3 const&,vec3 const&,vec3 const&,int,int)
+home | mesh | returns | mesh_primitive_quadrangle(vec3 const&,vec3 const&,vec3 const&,vec3 const&)
+home | mesh | returns | mesh_primitive_sphere(float,vec3 const&,int,int)
+home | mesh | returns | mesh_primitive_tetrahedron(vec3 const&,vec3 const&,vec3 const&,vec3 const&)
+home | mesh | returns | mesh_primitive_torus(float,float,vec3 const&,vec3 const&,int,int)
+home | mesh | returns | mesh_primitive_triangle(vec3 const&,vec3 const&,vec3 const&)
+home | mesh | takes | mesh_check(mesh const&)
+home | mesh | takes | mesh_save_file_obj(std::string const&,mesh const&)
+home | mesh | takes | str(mesh const&)
+home | mesh | takes | type_str(mesh const&)
+home | mesh_drawable | takes | draw(mesh_drawable const&,environment_generic_structure const&,int,bool,uniform_generic_structure const&,GLenum,material_mesh_drawable_phong const*)
+home | mesh_drawable | takes | draw_wireframe(mesh_drawable const&,environment_generic_structure const&,vec3 const&,int,bool,uniform_generic_structure const&)
+home | numarray | operators | operator*<T>(float,numarray<T> const&)
+home | numarray | operators | operator*<T>(numarray<T> const&,float)
+home | numarray | operators | operator*<T>(numarray<T> const&,numarray<T> const&)
+home | numarray | operators | operator*=<T>(numarray<T>&,float)
+home | numarray | operators | operator*=<T>(numarray<T>&,numarray<T> const&)
+home | numarray | operators | operator+<T>(T const&,numarray<T> const&)
+home | numarray | operators | operator+<T>(numarray<T> const&,T const&)
+home | numarray | operators | operator+<T>(numarray<T> const&,numarray<T> const&)
+home | numarray | operators | operator+=<T>(numarray<T>&,T const&)
+home | numarray | operators | operator+=<T>(numarray<T>&,numarray<T> const&)
+home | numarray | operators | operator-<T>(numarray<T> const&)
+home | numarray | operators | operator-<T>(numarray<T> const&,numarray<T> const&)
+home | numarray | operators | operator-=<T>(numarray<T>&,T const&)
+home | numarray | operators | operator-=<T>(numarray<T>&,numarray<T> const&)
+home | numarray | operators | operator/<T>(numarray<T> const&,float)
+home | numarray | operators | operator/<T>(numarray<T> const&,numarray<T> const&)
+home | numarray | operators | operator/=<T>(numarray<T>&,float)
+home | numarray | operators | operator/=<T>(numarray<T>&,numarray<T> const&)
+home | numarray | operators | operator<<<T>(std::ostream&,numarray<T> const&)
+home | numarray | returns | curve_primitive_circle(float,vec3 const&,vec3 const&,int)
+home | numarray | returns | obj_read_faces(std::string const&,obj_type const)
+home | numarray | takes | add<T>(T const&,numarray<T> const&)
+home | numarray | takes | add<T>(numarray<T> const&,T const&)
+home | numarray | takes | average<T>(numarray<T> const&)
+home | numarray | takes | check_index_bounds<T>(int,numarray<T> const&)
+home | numarray | takes | connectivity_one_ring(numarray<uint3> const&,int)
+home | numarray | takes | curve_to_segments(numarray<vec3> const&)
+home | numarray | takes | div<T>(T const&,numarray<T> const&)
+home | numarray | takes | div<T>(numarray<T> const&,T const&)
+home | numarray | takes | is_equal<T1,T2>(numarray<T1> const&,numarray<T2> const&)
+home | numarray | takes | is_equal<T>(numarray<T> const&,numarray<T> const&)
+home | numarray | takes | max<T>(numarray<T> const&)
+home | numarray | takes | mesh_load_file_obj(std::string const&,numarray<numarray<int>>&)
+home | numarray | takes | min<T>(numarray<T> const&)
+home | numarray | takes | mul<T>(T const&,numarray<T> const&)
+home | numarray | takes | mul<T>(numarray<T> const&,T const&)
+home | numarray | takes | normal_per_vertex(numarray<vec3> const&,numarray<uint3> const&,bool)
+home | numarray | takes | normal_per_vertex(numarray<vec3> const&,numarray<uint3> const&,numarray<vec3>&,bool)
+home | numarray | takes | ptr<T>(numarray<T> const&)
+home | numarray | takes | read_from_file<T>(std::string const&,numarray<numarray<T>>&)
+home | numarray | takes | read_from_stream<T>(std::istream&,numarray<T>&)
+home | numarray | takes | read_from_stream_per_line<T>(std::istream&,numarray<T>&)
+home | numarray | takes | size_in_memory<T,N>(numarray<numarray_stack<T,N>> const&)
+home | numarray | takes | size_in_memory<T>(numarray<T> const&)
+home | numarray | takes | str<T>(numarray<T> const&,std::string const&,std::string const&,std::string const&)
+home | numarray | takes | sub<T>(T const&,numarray<T> const&)
+home | numarray | takes | sub<T>(numarray<T> const&,T const&)
+home | numarray | takes | sum<T>(numarray<T> const&)
+home | numarray | takes | type_str<T>(numarray<T> const&)
+home | opengl_shader_structure | takes | opengl_uniform(opengl_shader_structure const&,std::string const&,GLuint,bool)
+home | opengl_shader_structure | takes | opengl_uniform(opengl_shader_structure const&,std::string const&,float,bool)
+home | opengl_shader_structure | takes | opengl_uniform(opengl_shader_structure const&,std::string const&,float,float,bool)
+home | opengl_shader_structure | takes | opengl_uniform(opengl_shader_structure const&,std::string const&,float,float,float,bool)
+home | opengl_shader_structure | takes | opengl_uniform(opengl_shader_structure const&,std::string const&,float,float,float,float,bool)
+home | opengl_shader_structure | takes | opengl_uniform(opengl_shader_structure const&,std::string const&,int,bool)
+home | opengl_shader_structure | takes | opengl_uniform(opengl_shader_structure const&,std::string const&,mat2 const&,bool)
+home | opengl_shader_structure | takes | opengl_uniform(opengl_shader_structure const&,std::string const&,mat3 const&,bool)
+home | opengl_shader_structure | takes | opengl_uniform(opengl_shader_structure const&,std::string const&,mat4 const&,bool)
+home | opengl_shader_structure | takes | opengl_uniform(opengl_shader_structure const&,std::string const&,vec2 const&,bool)
+home | opengl_shader_structure | takes | opengl_uniform(opengl_shader_structure const&,std::string const&,vec3 const&,bool)
+home | opengl_shader_structure | takes | opengl_uniform(opengl_shader_structure const&,std::string const&,vec4 const&,bool)
+home | opengl_vbo_structure | takes | opengl_set_vao_location(opengl_vbo_structure const&,GLuint)
+home | quaternion | operators | operator*(float,quaternion const&)
+home | quaternion | operators | operator*(quaternion const&,float)
+home | quaternion | operators | operator*(quaternion const&,quaternion const&)
+home | quaternion | operators | operator*=(quaternion&,quaternion const&)
+home | quaternion | operators | operator+(quaternion const&,quaternion const&)
+home | quaternion | operators | operator+=(quaternion&,quaternion const&)
+home | quaternion | operators | operator-(quaternion const&,quaternion const&)
+home | quaternion | operators | operator-=(quaternion&,quaternion const&)
+home | quaternion | operators | operator/(float,quaternion const&)
+home | quaternion | operators | operator/(quaternion const&,float)
+home | quaternion | operators | operator/(quaternion const&,quaternion const&)
+home | quaternion | operators | operator/=(quaternion&,quaternion const&)
+home | quaternion | operators | operator>>(std::istream&,quaternion&)
+home | quaternion | takes | conjugate(quaternion const&)
+home | quaternion | takes | inverse(quaternion const&)
+home | quaternion | takes | normalize(quaternion const&)
+home | quaternion | takes | type_str(quaternion const&)
+home | rotation_transform | operators | operator*(float,rotation_transform const&)
+home | rotation_transform | operators | operator*(rotation_transform const&,affine_rt const&)
+home | rotation_transform | operators | operator*(rotation_transform const&,affine_rts const&)
+home | rotation_transform | operators | operator*(rotation_transform const&,float)
+home | rotation_transform | operators | operator*(rotation_transform const&,frame const&)
+home | rotation_transform | operators | operator*(rotation_transform const&,mat3 const&)
+home | rotation_transform | operators | operator*(rotation_transform const&,mat4 const&)
+home | rotation_transform | operators | operator*(rotation_transform const&,rotation_transform const&)
+home | rotation_transform | operators | operator*(rotation_transform const&,vec3 const&)
+home | rotation_transform | operators | operator*(rotation_transform const&,vec4 const&)
+home | rotation_transform | operators | operator*=(rotation_transform&,rotation_transform const&)
+home | rotation_transform | operators | operator<<(std::ostream&,rotation_transform const&)
+home | rotation_transform | returns | rotation_axis_angle(vec3 const&,float)
+home | rotation_transform | returns | trackball_rotation(vec2 const&,vec2 const&)
+home | rotation_transform | takes | inverse(rotation_transform const&)
+home | rotation_transform | takes | rotation_around_center(rotation_transform const&,vec3 const&)
+home | rotation_transform | takes | str(rotation_transform const&)
+home | rotation_transform | takes | type_str(rotation_transform const&)
+home | skybox_drawable | takes | draw(skybox_drawable const&,environment_generic_structure const&)
+home | trajectory_drawable | takes | draw(trajectory_drawable const&,environment_generic_structure const&)
+home | triangles_drawable | takes | draw(triangles_drawable const&,environment_generic_structure const&,uniform_generic_structure const&,material_mesh_drawable_phong const*)
+home | triangles_drawable | takes | draw_wireframe(triangles_drawable const&,environment_generic_structure const&,vec3 const&,uniform_generic_structure const&)
+home | vec2 | takes | check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,2> const&)
+home | vec2 | takes | get<idx,T>(numarray_stack<T,2> const&)
+home | vec2 | takes | noise_perlin(vec2 const&,int,float,float)
+home | vec2 | takes | orthogonal_vector(vec2 const&)
+home | vec2 | takes | picking_mesh_vertex_as_sphere(vec2 const&,numarray<vec3> const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&)
+home | vec2 | takes | picking_plane_orthogonal_to_camera(vec2 const&,vec3 const&,camera_generic_base const&,camera_projection_perspective const&)
+home | vec2 | takes | picking_spheres(vec2 const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&)
+home | vec2 | takes | translation_in_plane(vec2 const&,rotation_transform const&)
+home | vec2 | takes | type_str(vec2 const&)
+home | vec2 | takes | type_str<T>(numarray_stack<T,2> const&)
+home | vec3 | operators | operator+(vec3 const&,affine_rt const&)
+home | vec3 | operators | operator+(vec3 const&,affine_rts const&)
+home | vec3 | operators | operator+(vec3 const&,frame const&)
+home | vec3 | returns | trackball_projection(float,float)
+home | vec3 | takes | check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,3> const&)
+home | vec3 | takes | cross(vec3 const&,vec3 const&)
+home | vec3 | takes | get<idx,T>(numarray_stack<T,3> const&)
+home | vec3 | takes | intersection_ray_plane(vec3 const&,vec3 const&,vec3 const&,vec3 const&)
+home | vec3 | takes | intersection_ray_sphere(vec3 const&,vec3 const&,vec3 const&,float)
+home | vec3 | takes | intersection_ray_spheres_closest(vec3 const&,vec3 const&,numarray<vec3> const&,float,int*)
+home | vec3 | takes | noise_perlin(vec3 const&,int,float,float)
+home | vec3 | takes | orthogonal_vector(vec3 const&)
+home | vec3 | takes | type_str(numarray_stack3<float> const&)
+home | vec3 | takes | type_str<T>(numarray_stack<T,3> const&)
+home | vec4 | takes | check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,4> const&)
+home | vec4 | takes | get<idx,T>(numarray_stack<T,4> const&)
+home | vec4 | takes | type_str(vec4 const&)
+home | vec4 | takes | type_str<T>(numarray_stack<T,4> const&)
+home | vecN | operators | operator*<T,N,S>(S,numarray_stack<T,N> const&)
+home | vecN | operators | operator*<T,N,S>(numarray_stack<T,N> const&,S)
+home | vecN | operators | operator*<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+home | vecN | operators | operator*=<T,N,S>(numarray_stack<T,N>&,S)
+home | vecN | operators | operator*=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&)
+home | vecN | operators | operator+<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+home | vecN | operators | operator+=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&)
+home | vecN | operators | operator-<T,N>(numarray_stack<T,N> const&)
+home | vecN | operators | operator-<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+home | vecN | operators | operator-=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&)
+home | vecN | operators | operator/<T,N,S>(S,numarray_stack<T,N> const&)
+home | vecN | operators | operator/<T,N,S>(numarray_stack<T,N> const&,S)
+home | vecN | operators | operator/<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+home | vecN | operators | operator/=<T,N,S>(numarray_stack<T,N>&,S)
+home | vecN | operators | operator/=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&)
+home | vecN | operators | operator<<<T,N>(std::ostream&,numarray_stack<T,N> const&)
+home | vecN | takes | abs<T,N>(numarray_stack<T,N> const&)
+home | vecN | takes | add<T,N>(T const&,numarray_stack<T,N> const&)
+home | vecN | takes | add<T,N>(numarray_stack<T,N> const&,T const&)
+home | vecN | takes | average<T,N>(numarray_stack<T,N> const&)
+home | vecN | takes | check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,N> const&)
+home | vecN | takes | clamp<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+home | vecN | takes | div<T,N>(T const&,numarray_stack<T,N> const&)
+home | vecN | takes | div<T,N>(numarray_stack<T,N> const&,T const&)
+home | vecN | takes | div<T,N>(numarray_stack<T,N> const&,T)
+home | vecN | takes | dot<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+home | vecN | takes | get<idx,T,N>(numarray_stack<T,N> const&)
+home | vecN | takes | is_equal<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+home | vecN | takes | is_equal<T1,T2,N1,N2>(numarray_stack<T1,N1> const&,numarray_stack<T2,N2> const&)
+home | vecN | takes | max<T,N>(numarray_stack<T,N> const&)
+home | vecN | takes | min<T,N>(numarray_stack<T,N> const&)
+home | vecN | takes | mul<T,N>(T const&,numarray_stack<T,N> const&)
+home | vecN | takes | mul<T,N>(numarray_stack<T,N> const&,T const&)
+home | vecN | takes | mul<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+home | vecN | takes | norm<T,N>(numarray_stack<T,N> const&)
+home | vecN | takes | normalize<T,N>(numarray_stack<T,N> const&)
+home | vecN | takes | normalize<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+home | vecN | takes | ptr<T,N>(numarray_stack<T,N> const&)
+home | vecN | takes | read_from_stream<T,N>(std::istream&,numarray_stack<T,N>&)
+home | vecN | takes | size_in_memory<T,N>(numarray_stack<T,N> const&)
+home | vecN | takes | str<T,N>(numarray_stack<T,N> const&,std::string const&,std::string const&,std::string const&)
+home | vecN | takes | sub<T,N>(T const&,numarray_stack<T,N> const&)
+home | vecN | takes | sub<T,N>(numarray_stack<T,N> const&,T const&)
+home | vecN | takes | sum<T,N>(numarray_stack<T,N> const&)
+home | vecN | takes | type_str<T,N>(numarray_stack<T,N> const&)
+image_structure | returns | io | exact | image_load_file(std::string const&)
+image_structure | returns | io | exact | image_load_jpg(std::string const&)
+image_structure | returns | io | exact | image_load_png(std::string const&,image_color_type)
+image_structure | takes | compute | exact | image_split_grid(image_structure const&,int,int)
+image_structure | takes | convert | exact | convert(image_structure const&,grid_2D<vec3>&)
+image_structure | takes | io | exact | image_save_jpg(std::string const&,image_structure const&)
+image_structure | takes | io | exact | image_save_png(std::string const&,image_structure const&)
+image_structure | takes | io | exact | opengl_load_texture_image(image_structure const&,GLint,GLint)
+intersection_structure | returns | compute | exact | intersection_ray_plane(vec3 const&,vec3 const&,vec3 const&,vec3 const&)
+intersection_structure | returns | compute | exact | intersection_ray_sphere(vec3 const&,vec3 const&,vec3 const&,float)
+intersection_structure | returns | compute | exact | intersection_ray_spheres_closest(vec3 const&,vec3 const&,numarray<vec3> const&,float,int*)
+intersection_structure | returns | compute | exact | picking_plane_orthogonal_to_camera(vec2 const&,vec3 const&,camera_generic_base const&,camera_projection_perspective const&)
+mat2 | operators | operator | generic | operator*<T,N1,N2,N3>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N2,N3> const&) | shared matN
+mat2 | operators | operator | generic | operator*<T,N1,N2,S>(S,matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | operators | operator | generic | operator*<T,N1,N2,S>(matrix_stack<T,N1,N2> const&,S) | shared matN
+mat2 | operators | operator | generic | operator*<T,N1,N2>(matrix_stack<T,N1,N2> const&,numarray_stack<T,N2> const&) | shared matN
+mat2 | operators | operator | generic | operator*=<T,N1,N2,S>(matrix_stack<T,N1,N2>&,S) | shared matN
+mat2 | operators | operator | generic | operator*=<T,N>(matrix_stack<T,N,N>&,matrix_stack<T,N,N> const&) | shared matN
+mat2 | operators | operator | generic | operator+<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | operators | operator | generic | operator+=<T,N1,N2>(matrix_stack<T,N1,N2>&,matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | operators | operator | generic | operator-<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | operators | operator | generic | operator-<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | operators | operator | generic | operator-=<T,N1,N2>(matrix_stack<T,N1,N2>&,matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | operators | operator | generic | operator/<T,N1,N2,S>(matrix_stack<T,N1,N2> const&,S) | shared matN
+mat2 | operators | operator | generic | operator/=<T,N1,N2,S>(matrix_stack<T,N1,N2>&,S) | shared matN
+mat2 | operators | operator | generic | operator<<<T,N1,N2>(std::ostream&,matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | returns | construct | exact | tensor_product(vec2 const&,vec2 const&)
+mat2 | takes | access | generic | check_index_bounds<T,N1,N2>(int,int,matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | takes | access | generic | check_index_bounds<T,N1,N2>(int,matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | takes | access | generic | check_offset_bounds<T,N1,N2>(int,matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | takes | access | generic | get<idx1,T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | takes | access | generic | get<idx1,idx2,T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | takes | access | generic | get_offset<offset,T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | takes | access | generic | is_equal<Ta,Tb,Na1,Na2,Nb1,Nb2>(matrix_stack<Ta,Na1,Na2> const&,matrix_stack<Tb,Nb1,Nb2> const&) | shared matN
+mat2 | takes | access | generic | ptr<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | takes | access | generic | size_in_memory<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | takes | compute | exact | det(mat2 const&)
+mat2 | takes | compute | generic | norm<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | takes | compute | generic | trace<T,N>(matrix_stack<T,N,N> const&) | shared matN
+mat2 | takes | compute | generic | transpose<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | takes | convert | exact | type_str(mat2 const&)
+mat2 | takes | convert | generic | str<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&) | shared matN
+mat2 | takes | convert | generic | str_2D<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&) | shared matN
+mat2 | takes | convert | generic | str_pretty<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&) | shared matN
+mat2 | takes | convert | generic | type_str<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat2 | takes | io | generic | read_from_stream<T,N1,N2>(std::istream&,matrix_stack<T,N1,N2>&) | shared matN
+mat2 | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,mat2 const&,bool)
+mat2 | takes | transform | exact | inverse(mat2 const&)
+mat2 | takes | transform | generic | multiply_componentwise<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | operators | operator | exact | operator*(affine const&,mat3 const&)
+mat3 | operators | operator | exact | operator*(affine_rt const&,mat3 const&)
+mat3 | operators | operator | exact | operator*(affine_rts const&,mat3 const&)
+mat3 | operators | operator | exact | operator*(mat3 const&,affine const&)
+mat3 | operators | operator | exact | operator*(mat3 const&,affine_rt const&)
+mat3 | operators | operator | exact | operator*(mat3 const&,affine_rts const&)
+mat3 | operators | operator | exact | operator*(rotation_transform const&,mat3 const&)
+mat3 | operators | operator | generic | operator*<T,N1,N2,N3>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N2,N3> const&) | shared matN
+mat3 | operators | operator | generic | operator*<T,N1,N2,S>(S,matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | operators | operator | generic | operator*<T,N1,N2,S>(matrix_stack<T,N1,N2> const&,S) | shared matN
+mat3 | operators | operator | generic | operator*<T,N1,N2>(matrix_stack<T,N1,N2> const&,numarray_stack<T,N2> const&) | shared matN
+mat3 | operators | operator | generic | operator*=<T,N1,N2,S>(matrix_stack<T,N1,N2>&,S) | shared matN
+mat3 | operators | operator | generic | operator*=<T,N>(matrix_stack<T,N,N>&,matrix_stack<T,N,N> const&) | shared matN
+mat3 | operators | operator | generic | operator+<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | operators | operator | generic | operator+=<T,N1,N2>(matrix_stack<T,N1,N2>&,matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | operators | operator | generic | operator-<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | operators | operator | generic | operator-<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | operators | operator | generic | operator-=<T,N1,N2>(matrix_stack<T,N1,N2>&,matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | operators | operator | generic | operator/<T,N1,N2,S>(matrix_stack<T,N1,N2> const&,S) | shared matN
+mat3 | operators | operator | generic | operator/=<T,N1,N2,S>(matrix_stack<T,N1,N2>&,S) | shared matN
+mat3 | operators | operator | generic | operator<<<T,N1,N2>(std::ostream&,matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | returns | construct | exact | tensor_product(vec3 const&,vec3 const&)
+mat3 | takes | access | generic | check_index_bounds<T,N1,N2>(int,int,matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | takes | access | generic | check_index_bounds<T,N1,N2>(int,matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | takes | access | generic | check_offset_bounds<T,N1,N2>(int,matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | takes | access | generic | get<idx1,T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | takes | access | generic | get<idx1,idx2,T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | takes | access | generic | get_offset<offset,T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | takes | access | generic | is_equal<Ta,Tb,Na1,Na2,Nb1,Nb2>(matrix_stack<Ta,Na1,Na2> const&,matrix_stack<Tb,Nb1,Nb2> const&) | shared matN
+mat3 | takes | access | generic | ptr<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | takes | access | generic | size_in_memory<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | takes | compute | exact | det(mat3 const&)
+mat3 | takes | compute | generic | norm<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | takes | compute | generic | trace<T,N>(matrix_stack<T,N,N> const&) | shared matN
+mat3 | takes | compute | generic | transpose<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | takes | convert | exact | type_str(mat3 const&)
+mat3 | takes | convert | generic | str<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&) | shared matN
+mat3 | takes | convert | generic | str_2D<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&) | shared matN
+mat3 | takes | convert | generic | str_pretty<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&) | shared matN
+mat3 | takes | convert | generic | type_str<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat3 | takes | io | generic | read_from_stream<T,N1,N2>(std::istream&,matrix_stack<T,N1,N2>&) | shared matN
+mat3 | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,mat3 const&,bool)
+mat3 | takes | transform | exact | inverse(mat3 const&)
+mat3 | takes | transform | generic | multiply_componentwise<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | operators | operator | exact | operator*(affine const&,mat3 const&)
+mat4 | operators | operator | exact | operator*(affine const&,mat4 const&)
+mat4 | operators | operator | exact | operator*(affine_rt const&,mat3 const&)
+mat4 | operators | operator | exact | operator*(affine_rt const&,mat4 const&)
+mat4 | operators | operator | exact | operator*(affine_rts const&,mat3 const&)
+mat4 | operators | operator | exact | operator*(affine_rts const&,mat4 const&)
+mat4 | operators | operator | exact | operator*(float,mat4 const&)
+mat4 | operators | operator | exact | operator*(mat3 const&,affine const&)
+mat4 | operators | operator | exact | operator*(mat3 const&,affine_rt const&)
+mat4 | operators | operator | exact | operator*(mat3 const&,affine_rts const&)
+mat4 | operators | operator | exact | operator*(mat4 const&,affine const&)
+mat4 | operators | operator | exact | operator*(mat4 const&,affine_rt const&)
+mat4 | operators | operator | exact | operator*(mat4 const&,affine_rts const&)
+mat4 | operators | operator | exact | operator*(mat4 const&,mat4 const&)
+mat4 | operators | operator | exact | operator*(rotation_transform const&,mat4 const&)
+mat4 | operators | operator | exact | operator*=(mat4&,float)
+mat4 | operators | operator | exact | operator*=(mat4&,mat4 const&)
+mat4 | operators | operator | exact | operator+=(mat4&,mat4 const&)
+mat4 | operators | operator | generic | operator*<T,N1,N2,N3>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N2,N3> const&) | shared matN
+mat4 | operators | operator | generic | operator*<T,N1,N2,S>(S,matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | operators | operator | generic | operator*<T,N1,N2,S>(matrix_stack<T,N1,N2> const&,S) | shared matN
+mat4 | operators | operator | generic | operator*<T,N1,N2>(matrix_stack<T,N1,N2> const&,numarray_stack<T,N2> const&) | shared matN
+mat4 | operators | operator | generic | operator*=<T,N1,N2,S>(matrix_stack<T,N1,N2>&,S) | shared matN
+mat4 | operators | operator | generic | operator*=<T,N>(matrix_stack<T,N,N>&,matrix_stack<T,N,N> const&) | shared matN
+mat4 | operators | operator | generic | operator+<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | operators | operator | generic | operator+=<T,N1,N2>(matrix_stack<T,N1,N2>&,matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | operators | operator | generic | operator-<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | operators | operator | generic | operator-<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | operators | operator | generic | operator-=<T,N1,N2>(matrix_stack<T,N1,N2>&,matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | operators | operator | generic | operator/<T,N1,N2,S>(matrix_stack<T,N1,N2> const&,S) | shared matN
+mat4 | operators | operator | generic | operator/=<T,N1,N2,S>(matrix_stack<T,N1,N2>&,S) | shared matN
+mat4 | operators | operator | generic | operator<<<T,N1,N2>(std::ostream&,matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | returns | construct | exact | projection_orthographic(float,float,float,float,float,float)
+mat4 | returns | construct | exact | projection_orthographic_inverse(float,float,float,float,float,float)
+mat4 | returns | construct | exact | projection_perspective(float,float,float,float)
+mat4 | returns | construct | exact | projection_perspective_inverse(float,float,float,float)
+mat4 | returns | construct | exact | tensor_product(vec4 const&,vec4 const&)
+mat4 | takes | access | generic | check_index_bounds<T,N1,N2>(int,int,matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | takes | access | generic | check_index_bounds<T,N1,N2>(int,matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | takes | access | generic | check_offset_bounds<T,N1,N2>(int,matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | takes | access | generic | get<idx1,T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | takes | access | generic | get<idx1,idx2,T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | takes | access | generic | get_offset<offset,T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | takes | access | generic | is_equal<Ta,Tb,Na1,Na2,Nb1,Nb2>(matrix_stack<Ta,Na1,Na2> const&,matrix_stack<Tb,Nb1,Nb2> const&) | shared matN
+mat4 | takes | access | generic | ptr<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | takes | access | generic | size_in_memory<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | takes | compute | exact | camera_ray_direction(mat4 const&,mat4 const&,vec2 const&)
+mat4 | takes | compute | exact | det(mat4 const&)
+mat4 | takes | compute | generic | norm<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | takes | compute | generic | trace<T,N>(matrix_stack<T,N,N> const&) | shared matN
+mat4 | takes | compute | generic | transpose<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | takes | convert | exact | type_str(mat4 const&)
+mat4 | takes | convert | generic | str<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&) | shared matN
+mat4 | takes | convert | generic | str_2D<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&) | shared matN
+mat4 | takes | convert | generic | str_pretty<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&) | shared matN
+mat4 | takes | convert | generic | type_str<T,N1,N2>(matrix_stack<T,N1,N2> const&) | shared matN
+mat4 | takes | io | generic | read_from_stream<T,N1,N2>(std::istream&,matrix_stack<T,N1,N2>&) | shared matN
+mat4 | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,mat4 const&,bool)
+mat4 | takes | transform | exact | inverse(mat4 const&)
+mat4 | takes | transform | generic | multiply_componentwise<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&) | shared matN
+matN | operators | operator | generic | operator*<T,N1,N2,N3>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N2,N3> const&)
+matN | operators | operator | generic | operator*<T,N1,N2,S>(S,matrix_stack<T,N1,N2> const&)
+matN | operators | operator | generic | operator*<T,N1,N2,S>(matrix_stack<T,N1,N2> const&,S)
+matN | operators | operator | generic | operator*<T,N1,N2>(matrix_stack<T,N1,N2> const&,numarray_stack<T,N2> const&)
+matN | operators | operator | generic | operator*=<T,N1,N2,S>(matrix_stack<T,N1,N2>&,S)
+matN | operators | operator | generic | operator*=<T,N>(matrix_stack<T,N,N>&,matrix_stack<T,N,N> const&)
+matN | operators | operator | generic | operator+<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&)
+matN | operators | operator | generic | operator+=<T,N1,N2>(matrix_stack<T,N1,N2>&,matrix_stack<T,N1,N2> const&)
+matN | operators | operator | generic | operator-<T,N1,N2>(matrix_stack<T,N1,N2> const&)
+matN | operators | operator | generic | operator-<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&)
+matN | operators | operator | generic | operator-=<T,N1,N2>(matrix_stack<T,N1,N2>&,matrix_stack<T,N1,N2> const&)
+matN | operators | operator | generic | operator/<T,N1,N2,S>(matrix_stack<T,N1,N2> const&,S)
+matN | operators | operator | generic | operator/=<T,N1,N2,S>(matrix_stack<T,N1,N2>&,S)
+matN | operators | operator | generic | operator<<<T,N1,N2>(std::ostream&,matrix_stack<T,N1,N2> const&)
+matN | takes | access | generic | check_index_bounds<T,N1,N2>(int,int,matrix_stack<T,N1,N2> const&)
+matN | takes | access | generic | check_index_bounds<T,N1,N2>(int,matrix_stack<T,N1,N2> const&)
+matN | takes | access | generic | check_offset_bounds<T,N1,N2>(int,matrix_stack<T,N1,N2> const&)
+matN | takes | access | generic | get<idx1,T,N1,N2>(matrix_stack<T,N1,N2> const&)
+matN | takes | access | generic | get<idx1,idx2,T,N1,N2>(matrix_stack<T,N1,N2> const&)
+matN | takes | access | generic | get_offset<offset,T,N1,N2>(matrix_stack<T,N1,N2> const&)
+matN | takes | access | generic | is_equal<Ta,Tb,Na1,Na2,Nb1,Nb2>(matrix_stack<Ta,Na1,Na2> const&,matrix_stack<Tb,Nb1,Nb2> const&)
+matN | takes | access | generic | ptr<T,N1,N2>(matrix_stack<T,N1,N2> const&)
+matN | takes | access | generic | size_in_memory<T,N1,N2>(matrix_stack<T,N1,N2> const&)
+matN | takes | compute | generic | norm<T,N1,N2>(matrix_stack<T,N1,N2> const&)
+matN | takes | compute | generic | trace<T,N>(matrix_stack<T,N,N> const&)
+matN | takes | compute | generic | transpose<T,N1,N2>(matrix_stack<T,N1,N2> const&)
+matN | takes | convert | generic | str<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&)
+matN | takes | convert | generic | str_2D<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&)
+matN | takes | convert | generic | str_pretty<T,N1,N2>(matrix_stack<T,N1,N2> const&,std::string const&,std::string const&,std::string const&,std::string const&,std::string const&)
+matN | takes | convert | generic | type_str<T,N1,N2>(matrix_stack<T,N1,N2> const&)
+matN | takes | io | generic | read_from_stream<T,N1,N2>(std::istream&,matrix_stack<T,N1,N2>&)
+matN | takes | transform | generic | multiply_componentwise<T,N1,N2>(matrix_stack<T,N1,N2> const&,matrix_stack<T,N1,N2> const&)
+material_mesh_drawable_phong | takes | draw | exact | draw(mesh_drawable const&,environment_generic_structure const&,int,bool,uniform_generic_structure const&,GLenum,material_mesh_drawable_phong const*)
+material_mesh_drawable_phong | takes | draw | exact | draw(triangles_drawable const&,environment_generic_structure const&,uniform_generic_structure const&,material_mesh_drawable_phong const*)
+mesh | returns | compute | exact | marching_cube(grid_3D<float> const&,spatial_domain_grid_3D const&,float)
+mesh | returns | construct | exact | mesh_primitive_arrow(vec3 const&,vec3 const&,float,float,float,int)
+mesh | returns | construct | exact | mesh_primitive_cone(float,float,vec3 const&,vec3 const&,bool,int,int)
+mesh | returns | construct | exact | mesh_primitive_cube(vec3 const&,float)
+mesh | returns | construct | exact | mesh_primitive_cubic_grid(vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,int,int,int)
+mesh | returns | construct | exact | mesh_primitive_cylinder(float,vec3 const&,vec3 const&,int,int,bool)
+mesh | returns | construct | exact | mesh_primitive_disc(float,vec3 const&,vec3 const&,int)
+mesh | returns | construct | exact | mesh_primitive_ellipsoid(vec3,vec3 const&,int,int)
+mesh | returns | construct | exact | mesh_primitive_frame(frame const&,float,vec3 const&,vec3 const&,vec3 const&,vec3 const&,float)
+mesh | returns | construct | exact | mesh_primitive_grid(vec3 const&,vec3 const&,vec3 const&,vec3 const&,int,int)
+mesh | returns | construct | exact | mesh_primitive_quadrangle(vec3 const&,vec3 const&,vec3 const&,vec3 const&)
+mesh | returns | construct | exact | mesh_primitive_sphere(float,vec3 const&,int,int)
+mesh | returns | construct | exact | mesh_primitive_tetrahedron(vec3 const&,vec3 const&,vec3 const&,vec3 const&)
+mesh | returns | construct | exact | mesh_primitive_torus(float,float,vec3 const&,vec3 const&,int,int)
+mesh | returns | construct | exact | mesh_primitive_triangle(vec3 const&,vec3 const&,vec3 const&)
+mesh | returns | io | exact | mesh_load_file_obj(std::string const&)
+mesh | returns | io | exact | mesh_load_file_obj(std::string const&,numarray<numarray<int>>&)
+mesh | takes | compute | exact | mesh_check(mesh const&)
+mesh | takes | convert | exact | str(mesh const&)
+mesh | takes | convert | exact | type_str(mesh const&)
+mesh | takes | io | exact | mesh_save_file_obj(std::string const&,mesh const&)
+mesh_drawable | takes | draw | exact | draw(mesh_drawable const&,environment_generic_structure const&,int,bool,uniform_generic_structure const&,GLenum,material_mesh_drawable_phong const*)
+mesh_drawable | takes | draw | exact | draw_wireframe(mesh_drawable const&,environment_generic_structure const&,vec3 const&,int,bool,uniform_generic_structure const&)
+numarray | operators | operator | generic | operator*<T>(float,numarray<T> const&)
+numarray | operators | operator | generic | operator*<T>(numarray<T> const&,float)
+numarray | operators | operator | generic | operator*<T>(numarray<T> const&,numarray<T> const&)
+numarray | operators | operator | generic | operator*=<T>(numarray<T>&,float)
+numarray | operators | operator | generic | operator*=<T>(numarray<T>&,numarray<T> const&)
+numarray | operators | operator | generic | operator+<T>(T const&,numarray<T> const&)
+numarray | operators | operator | generic | operator+<T>(numarray<T> const&,T const&)
+numarray | operators | operator | generic | operator+<T>(numarray<T> const&,numarray<T> const&)
+numarray | operators | operator | generic | operator+=<T>(numarray<T>&,T const&)
+numarray | operators | operator | generic | operator+=<T>(numarray<T>&,numarray<T> const&)
+numarray | operators | operator | generic | operator-<T>(numarray<T> const&)
+numarray | operators | operator | generic | operator-<T>(numarray<T> const&,numarray<T> const&)
+numarray | operators | operator | generic | operator-=<T>(numarray<T>&,T const&)
+numarray | operators | operator | generic | operator-=<T>(numarray<T>&,numarray<T> const&)
+numarray | operators | operator | generic | operator/<T>(numarray<T> const&,float)
+numarray | operators | operator | generic | operator/<T>(numarray<T> const&,numarray<T> const&)
+numarray | operators | operator | generic | operator/=<T>(numarray<T>&,float)
+numarray | operators | operator | generic | operator/=<T>(numarray<T>&,numarray<T> const&)
+numarray | operators | operator | generic | operator<<<T>(std::ostream&,numarray<T> const&)
+numarray | returns | construct | exact | curve_primitive_circle(float,vec3 const&,vec3 const&,int)
+numarray | returns | io | exact | obj_read_faces(std::string const&,obj_type const)
+numarray | takes | access | exact | size_in_memory<T,N>(numarray<numarray_stack<T,N>> const&)
+numarray | takes | access | generic | check_index_bounds<T>(int,numarray<T> const&)
+numarray | takes | access | generic | is_equal<T1,T2>(numarray<T1> const&,numarray<T2> const&)
+numarray | takes | access | generic | is_equal<T>(numarray<T> const&,numarray<T> const&)
+numarray | takes | access | generic | ptr<T>(numarray<T> const&)
+numarray | takes | access | generic | size_in_memory<T>(numarray<T> const&)
+numarray | takes | compute | exact | connectivity_one_ring(numarray<uint3> const&,int)
+numarray | takes | compute | exact | intersection_ray_spheres_closest(vec3 const&,vec3 const&,numarray<vec3> const&,float,int*)
+numarray | takes | compute | exact | picking_mesh_vertex_as_sphere(vec2 const&,numarray<vec3> const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&)
+numarray | takes | compute | exact | picking_spheres(vec2 const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&)
+numarray | takes | compute | generic | average<T>(numarray<T> const&)
+numarray | takes | compute | generic | max<T>(numarray<T> const&)
+numarray | takes | compute | generic | min<T>(numarray<T> const&)
+numarray | takes | compute | generic | sum<T>(numarray<T> const&)
+numarray | takes | convert | generic | str<T>(numarray<T> const&,std::string const&,std::string const&,std::string const&)
+numarray | takes | convert | generic | type_str<T>(numarray<T> const&)
+numarray | takes | io | exact | mesh_load_file_obj(std::string const&,numarray<numarray<int>>&)
+numarray | takes | io | exact | read_from_file<T>(std::string const&,numarray<numarray<T>>&)
+numarray | takes | io | generic | read_from_stream<T>(std::istream&,numarray<T>&)
+numarray | takes | io | generic | read_from_stream_per_line<T>(std::istream&,numarray<T>&)
+numarray | takes | other | exact | normal_per_vertex(numarray<vec3> const&,numarray<uint3> const&,numarray<vec3>&,bool)
+numarray | takes | transform | exact | curve_to_segments(numarray<vec3> const&)
+numarray | takes | transform | exact | normal_per_vertex(numarray<vec3> const&,numarray<uint3> const&,bool)
+numarray | takes | transform | generic | add<T>(T const&,numarray<T> const&)
+numarray | takes | transform | generic | add<T>(numarray<T> const&,T const&)
+numarray | takes | transform | generic | div<T>(T const&,numarray<T> const&)
+numarray | takes | transform | generic | div<T>(numarray<T> const&,T const&)
+numarray | takes | transform | generic | mul<T>(T const&,numarray<T> const&)
+numarray | takes | transform | generic | mul<T>(numarray<T> const&,T const&)
+numarray | takes | transform | generic | sub<T>(T const&,numarray<T> const&)
+numarray | takes | transform | generic | sub<T>(numarray<T> const&,T const&)
+opengl_shader_structure | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,GLuint,bool)
+opengl_shader_structure | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,float,bool)
+opengl_shader_structure | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,float,float,bool)
+opengl_shader_structure | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,float,float,float,bool)
+opengl_shader_structure | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,float,float,float,float,bool)
+opengl_shader_structure | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,int,bool)
+opengl_shader_structure | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,mat2 const&,bool)
+opengl_shader_structure | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,mat3 const&,bool)
+opengl_shader_structure | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,mat4 const&,bool)
+opengl_shader_structure | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,vec2 const&,bool)
+opengl_shader_structure | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,vec3 const&,bool)
+opengl_shader_structure | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,vec4 const&,bool)
+opengl_vbo_structure | takes | other | exact | opengl_set_vao_location(opengl_vbo_structure const&,GLuint)
+picking_structure | returns | compute | exact | picking_mesh_vertex_as_sphere(vec2 const&,numarray<vec3> const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&)
+picking_structure | returns | compute | exact | picking_spheres(vec2 const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&)
+quaternion | operators | operator | exact | operator*(affine const&,vec4 const&) | via numarray_stack<float,4>
+quaternion | operators | operator | exact | operator*(affine_rt const&,vec4 const&) | via numarray_stack<float,4>
+quaternion | operators | operator | exact | operator*(affine_rts const&,vec4 const&) | via numarray_stack<float,4>
+quaternion | operators | operator | exact | operator*(float,quaternion const&)
+quaternion | operators | operator | exact | operator*(quaternion const&,float)
+quaternion | operators | operator | exact | operator*(quaternion const&,quaternion const&)
+quaternion | operators | operator | exact | operator*(rotation_transform const&,vec4 const&) | via numarray_stack<float,4>
+quaternion | operators | operator | exact | operator*=(quaternion&,quaternion const&)
+quaternion | operators | operator | exact | operator+(quaternion const&,quaternion const&)
+quaternion | operators | operator | exact | operator+=(quaternion&,quaternion const&)
+quaternion | operators | operator | exact | operator-(quaternion const&,quaternion const&)
+quaternion | operators | operator | exact | operator-=(quaternion&,quaternion const&)
+quaternion | operators | operator | exact | operator/(float,quaternion const&)
+quaternion | operators | operator | exact | operator/(quaternion const&,float)
+quaternion | operators | operator | exact | operator/(quaternion const&,quaternion const&)
+quaternion | operators | operator | exact | operator/=(quaternion&,quaternion const&)
+quaternion | operators | operator | exact | operator>>(std::istream&,quaternion&)
+quaternion | operators | operator | generic | operator*<T,N,S>(S,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator*<T,N,S>(numarray_stack<T,N> const&,S) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator*<T,N1,N2>(matrix_stack<T,N1,N2> const&,numarray_stack<T,N2> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator*<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator*=<T,N,S>(numarray_stack<T,N>&,S) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator*=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator+<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator+=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator-<T,N>(numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator-<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator-=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator/<T,N,S>(S,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator/<T,N,S>(numarray_stack<T,N> const&,S) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator/<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator/=<T,N,S>(numarray_stack<T,N>&,S) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator/=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | operators | operator | generic | operator<<<T,N>(std::ostream&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | access | generic | check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,4> const&) | via numarray_stack<float,4>
+quaternion | takes | access | generic | check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | access | generic | get<idx,T,N>(numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | access | generic | get<idx,T>(numarray_stack<T,4> const&) | via numarray_stack<float,4>
+quaternion | takes | access | generic | is_equal<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | access | generic | is_equal<T1,T2,N1,N2>(numarray_stack<T1,N1> const&,numarray_stack<T2,N2> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | access | generic | ptr<T,N>(numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | access | generic | size_in_memory<T,N>(numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | compute | generic | average<T,N>(numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | compute | generic | dot<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | compute | generic | max<T,N>(numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | compute | generic | min<T,N>(numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | compute | generic | norm<T,N>(numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | compute | generic | sum<T,N>(numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | construct | exact | tensor_product(vec4 const&,vec4 const&) | via numarray_stack<float,4>
+quaternion | takes | convert | exact | type_str(quaternion const&)
+quaternion | takes | convert | exact | type_str(vec4 const&) | via numarray_stack<float,4>
+quaternion | takes | convert | generic | str<T,N>(numarray_stack<T,N> const&,std::string const&,std::string const&,std::string const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | convert | generic | type_str<T,N>(numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | convert | generic | type_str<T>(numarray_stack<T,4> const&) | via numarray_stack<float,4>
+quaternion | takes | io | generic | read_from_stream<T,N>(std::istream&,numarray_stack<T,N>&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,vec4 const&,bool) | via numarray_stack<float,4>
+quaternion | takes | transform | exact | conjugate(quaternion const&)
+quaternion | takes | transform | exact | inverse(quaternion const&)
+quaternion | takes | transform | exact | normalize(quaternion const&)
+quaternion | takes | transform | generic | abs<T,N>(numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | transform | generic | add<T,N>(T const&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | transform | generic | add<T,N>(numarray_stack<T,N> const&,T const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | transform | generic | clamp<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | transform | generic | div<T,N>(T const&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | transform | generic | div<T,N>(numarray_stack<T,N> const&,T const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | transform | generic | div<T,N>(numarray_stack<T,N> const&,T) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | transform | generic | mul<T,N>(T const&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | transform | generic | mul<T,N>(numarray_stack<T,N> const&,T const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | transform | generic | mul<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | transform | generic | normalize<T,N>(numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | transform | generic | normalize<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | transform | generic | sub<T,N>(T const&,numarray_stack<T,N> const&) | via numarray_stack<float,4> | shared vecN
+quaternion | takes | transform | generic | sub<T,N>(numarray_stack<T,N> const&,T const&) | via numarray_stack<float,4> | shared vecN
+rotation_transform | operators | operator | exact | operator*(affine_rt const&,rotation_transform const&)
+rotation_transform | operators | operator | exact | operator*(affine_rts const&,rotation_transform const&)
+rotation_transform | operators | operator | exact | operator*(float,rotation_transform const&)
+rotation_transform | operators | operator | exact | operator*(rotation_transform const&,affine_rt const&)
+rotation_transform | operators | operator | exact | operator*(rotation_transform const&,affine_rts const&)
+rotation_transform | operators | operator | exact | operator*(rotation_transform const&,float)
+rotation_transform | operators | operator | exact | operator*(rotation_transform const&,frame const&)
+rotation_transform | operators | operator | exact | operator*(rotation_transform const&,mat3 const&)
+rotation_transform | operators | operator | exact | operator*(rotation_transform const&,mat4 const&)
+rotation_transform | operators | operator | exact | operator*(rotation_transform const&,rotation_transform const&)
+rotation_transform | operators | operator | exact | operator*(rotation_transform const&,vec3 const&)
+rotation_transform | operators | operator | exact | operator*(rotation_transform const&,vec4 const&)
+rotation_transform | operators | operator | exact | operator*=(rotation_transform&,rotation_transform const&)
+rotation_transform | operators | operator | exact | operator<<(std::ostream&,rotation_transform const&)
+rotation_transform | returns | construct | exact | rotation_axis_angle(vec3 const&,float)
+rotation_transform | returns | construct | exact | trackball_rotation(vec2 const&,vec2 const&)
+rotation_transform | takes | compute | exact | rotation_around_center(rotation_transform const&,vec3 const&)
+rotation_transform | takes | compute | exact | translation_in_plane(vec2 const&,rotation_transform const&)
+rotation_transform | takes | convert | exact | str(rotation_transform const&)
+rotation_transform | takes | convert | exact | type_str(rotation_transform const&)
+rotation_transform | takes | transform | exact | inverse(rotation_transform const&)
+skybox_drawable | takes | draw | exact | draw(skybox_drawable const&,environment_generic_structure const&)
+trajectory_drawable | takes | draw | exact | draw(trajectory_drawable const&,environment_generic_structure const&)
+triangles_drawable | takes | draw | exact | draw(triangles_drawable const&,environment_generic_structure const&,uniform_generic_structure const&,material_mesh_drawable_phong const*)
+triangles_drawable | takes | draw | exact | draw_wireframe(triangles_drawable const&,environment_generic_structure const&,vec3 const&,uniform_generic_structure const&)
+uniform_generic_structure | takes | draw | exact | draw(hierarchy_mesh_drawable const&,environment_generic_structure const&,int,bool,uniform_generic_structure const&)
+uniform_generic_structure | takes | draw | exact | draw(mesh_drawable const&,environment_generic_structure const&,int,bool,uniform_generic_structure const&,GLenum,material_mesh_drawable_phong const*)
+uniform_generic_structure | takes | draw | exact | draw(triangles_drawable const&,environment_generic_structure const&,uniform_generic_structure const&,material_mesh_drawable_phong const*)
+uniform_generic_structure | takes | draw | exact | draw_wireframe(hierarchy_mesh_drawable const&,environment_generic_structure const&,vec3 const&,int,bool,uniform_generic_structure const&)
+uniform_generic_structure | takes | draw | exact | draw_wireframe(mesh_drawable const&,environment_generic_structure const&,vec3 const&,int,bool,uniform_generic_structure const&)
+uniform_generic_structure | takes | draw | exact | draw_wireframe(triangles_drawable const&,environment_generic_structure const&,vec3 const&,uniform_generic_structure const&)
+vec2 | operators | operator | generic | operator*<T,N,S>(S,numarray_stack<T,N> const&) | shared vecN
+vec2 | operators | operator | generic | operator*<T,N,S>(numarray_stack<T,N> const&,S) | shared vecN
+vec2 | operators | operator | generic | operator*<T,N1,N2>(matrix_stack<T,N1,N2> const&,numarray_stack<T,N2> const&) | shared vecN
+vec2 | operators | operator | generic | operator*<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec2 | operators | operator | generic | operator*=<T,N,S>(numarray_stack<T,N>&,S) | shared vecN
+vec2 | operators | operator | generic | operator*=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | shared vecN
+vec2 | operators | operator | generic | operator+<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec2 | operators | operator | generic | operator+=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | shared vecN
+vec2 | operators | operator | generic | operator-<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec2 | operators | operator | generic | operator-<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec2 | operators | operator | generic | operator-=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | shared vecN
+vec2 | operators | operator | generic | operator/<T,N,S>(S,numarray_stack<T,N> const&) | shared vecN
+vec2 | operators | operator | generic | operator/<T,N,S>(numarray_stack<T,N> const&,S) | shared vecN
+vec2 | operators | operator | generic | operator/<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec2 | operators | operator | generic | operator/=<T,N,S>(numarray_stack<T,N>&,S) | shared vecN
+vec2 | operators | operator | generic | operator/=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | shared vecN
+vec2 | operators | operator | generic | operator<<<T,N>(std::ostream&,numarray_stack<T,N> const&) | shared vecN
+vec2 | returns | access | generic | get<idx1,T,N1,N2>(matrix_stack<T,N1,N2> const&)
+vec2 | takes | access | generic | check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,2> const&)
+vec2 | takes | access | generic | check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | access | generic | get<idx,T,N>(numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | access | generic | get<idx,T>(numarray_stack<T,2> const&)
+vec2 | takes | access | generic | is_equal<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | access | generic | is_equal<T1,T2,N1,N2>(numarray_stack<T1,N1> const&,numarray_stack<T2,N2> const&) | shared vecN
+vec2 | takes | access | generic | ptr<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | access | generic | size_in_memory<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | compute | exact | camera_ray_direction(mat4 const&,mat4 const&,vec2 const&)
+vec2 | takes | compute | exact | noise_perlin(vec2 const&,int,float,float)
+vec2 | takes | compute | exact | picking_mesh_vertex_as_sphere(vec2 const&,numarray<vec3> const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&)
+vec2 | takes | compute | exact | picking_plane_orthogonal_to_camera(vec2 const&,vec3 const&,camera_generic_base const&,camera_projection_perspective const&)
+vec2 | takes | compute | exact | picking_spheres(vec2 const&,numarray<vec3> const&,float,camera_generic_base const&,camera_projection_perspective const&)
+vec2 | takes | compute | exact | translation_in_plane(vec2 const&,rotation_transform const&)
+vec2 | takes | compute | generic | average<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | compute | generic | dot<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | compute | generic | max<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | compute | generic | min<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | compute | generic | norm<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | compute | generic | sum<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | construct | exact | tensor_product(vec2 const&,vec2 const&)
+vec2 | takes | construct | exact | trackball_rotation(vec2 const&,vec2 const&)
+vec2 | takes | convert | exact | type_str(vec2 const&)
+vec2 | takes | convert | generic | str<T,N>(numarray_stack<T,N> const&,std::string const&,std::string const&,std::string const&) | shared vecN
+vec2 | takes | convert | generic | type_str<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | convert | generic | type_str<T>(numarray_stack<T,2> const&)
+vec2 | takes | io | generic | read_from_stream<T,N>(std::istream&,numarray_stack<T,N>&) | shared vecN
+vec2 | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,vec2 const&,bool)
+vec2 | takes | transform | exact | orthogonal_vector(vec2 const&)
+vec2 | takes | transform | generic | abs<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | transform | generic | add<T,N>(T const&,numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | transform | generic | add<T,N>(numarray_stack<T,N> const&,T const&) | shared vecN
+vec2 | takes | transform | generic | clamp<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | transform | generic | div<T,N>(T const&,numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | transform | generic | div<T,N>(numarray_stack<T,N> const&,T const&) | shared vecN
+vec2 | takes | transform | generic | div<T,N>(numarray_stack<T,N> const&,T) | shared vecN
+vec2 | takes | transform | generic | mul<T,N>(T const&,numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | transform | generic | mul<T,N>(numarray_stack<T,N> const&,T const&) | shared vecN
+vec2 | takes | transform | generic | mul<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | transform | generic | normalize<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | transform | generic | normalize<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | transform | generic | sub<T,N>(T const&,numarray_stack<T,N> const&) | shared vecN
+vec2 | takes | transform | generic | sub<T,N>(numarray_stack<T,N> const&,T const&) | shared vecN
+vec3 | operators | operator | exact | operator*(affine const&,vec3 const&)
+vec3 | operators | operator | exact | operator*(affine_rt const&,vec3 const&)
+vec3 | operators | operator | exact | operator*(affine_rts const&,vec3 const&)
+vec3 | operators | operator | exact | operator*(rotation_transform const&,vec3 const&)
+vec3 | operators | operator | exact | operator+(affine_rt const&,vec3 const&)
+vec3 | operators | operator | exact | operator+(affine_rts const&,vec3 const&)
+vec3 | operators | operator | exact | operator+(frame const&,vec3 const&)
+vec3 | operators | operator | exact | operator+(vec3 const&,affine_rt const&)
+vec3 | operators | operator | exact | operator+(vec3 const&,affine_rts const&)
+vec3 | operators | operator | exact | operator+(vec3 const&,frame const&)
+vec3 | operators | operator | exact | operator-(affine_rt const&,vec3 const&)
+vec3 | operators | operator | exact | operator-(affine_rts const&,vec3 const&)
+vec3 | operators | operator | exact | operator-(frame const&,vec3 const&)
+vec3 | operators | operator | generic | operator*<T,N,S>(S,numarray_stack<T,N> const&) | shared vecN
+vec3 | operators | operator | generic | operator*<T,N,S>(numarray_stack<T,N> const&,S) | shared vecN
+vec3 | operators | operator | generic | operator*<T,N1,N2>(matrix_stack<T,N1,N2> const&,numarray_stack<T,N2> const&) | shared vecN
+vec3 | operators | operator | generic | operator*<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec3 | operators | operator | generic | operator*=<T,N,S>(numarray_stack<T,N>&,S) | shared vecN
+vec3 | operators | operator | generic | operator*=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | shared vecN
+vec3 | operators | operator | generic | operator+<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec3 | operators | operator | generic | operator+=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | shared vecN
+vec3 | operators | operator | generic | operator-<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec3 | operators | operator | generic | operator-<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec3 | operators | operator | generic | operator-=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | shared vecN
+vec3 | operators | operator | generic | operator/<T,N,S>(S,numarray_stack<T,N> const&) | shared vecN
+vec3 | operators | operator | generic | operator/<T,N,S>(numarray_stack<T,N> const&,S) | shared vecN
+vec3 | operators | operator | generic | operator/<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec3 | operators | operator | generic | operator/=<T,N,S>(numarray_stack<T,N>&,S) | shared vecN
+vec3 | operators | operator | generic | operator/=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | shared vecN
+vec3 | operators | operator | generic | operator<<<T,N>(std::ostream&,numarray_stack<T,N> const&) | shared vecN
+vec3 | returns | access | generic | get<idx1,T,N1,N2>(matrix_stack<T,N1,N2> const&)
+vec3 | returns | compute | exact | camera_ray_direction(mat4 const&,mat4 const&,vec2 const&)
+vec3 | returns | compute | exact | translation_in_plane(vec2 const&,rotation_transform const&)
+vec3 | returns | construct | exact | trackball_projection(float,float)
+vec3 | takes | access | generic | check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,3> const&)
+vec3 | takes | access | generic | check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | access | generic | get<idx,T,N>(numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | access | generic | get<idx,T>(numarray_stack<T,3> const&)
+vec3 | takes | access | generic | is_equal<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | access | generic | is_equal<T1,T2,N1,N2>(numarray_stack<T1,N1> const&,numarray_stack<T2,N2> const&) | shared vecN
+vec3 | takes | access | generic | ptr<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | access | generic | size_in_memory<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | compute | exact | cross(vec3 const&,vec3 const&)
+vec3 | takes | compute | exact | intersection_ray_plane(vec3 const&,vec3 const&,vec3 const&,vec3 const&)
+vec3 | takes | compute | exact | intersection_ray_sphere(vec3 const&,vec3 const&,vec3 const&,float)
+vec3 | takes | compute | exact | intersection_ray_spheres_closest(vec3 const&,vec3 const&,numarray<vec3> const&,float,int*)
+vec3 | takes | compute | exact | noise_perlin(vec3 const&,int,float,float)
+vec3 | takes | compute | exact | picking_plane_orthogonal_to_camera(vec2 const&,vec3 const&,camera_generic_base const&,camera_projection_perspective const&)
+vec3 | takes | compute | exact | rotation_around_center(rotation_transform const&,vec3 const&)
+vec3 | takes | compute | generic | average<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | compute | generic | dot<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | compute | generic | max<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | compute | generic | min<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | compute | generic | norm<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | compute | generic | sum<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | construct | exact | camera_frame_look_at(vec3 const&,vec3 const&,vec3 const&)
+vec3 | takes | construct | exact | curve_primitive_circle(float,vec3 const&,vec3 const&,int)
+vec3 | takes | construct | exact | mesh_primitive_arrow(vec3 const&,vec3 const&,float,float,float,int)
+vec3 | takes | construct | exact | mesh_primitive_cone(float,float,vec3 const&,vec3 const&,bool,int,int)
+vec3 | takes | construct | exact | mesh_primitive_cube(vec3 const&,float)
+vec3 | takes | construct | exact | mesh_primitive_cubic_grid(vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,vec3 const&,int,int,int)
+vec3 | takes | construct | exact | mesh_primitive_cylinder(float,vec3 const&,vec3 const&,int,int,bool)
+vec3 | takes | construct | exact | mesh_primitive_disc(float,vec3 const&,vec3 const&,int)
+vec3 | takes | construct | exact | mesh_primitive_ellipsoid(vec3,vec3 const&,int,int)
+vec3 | takes | construct | exact | mesh_primitive_frame(frame const&,float,vec3 const&,vec3 const&,vec3 const&,vec3 const&,float)
+vec3 | takes | construct | exact | mesh_primitive_grid(vec3 const&,vec3 const&,vec3 const&,vec3 const&,int,int)
+vec3 | takes | construct | exact | mesh_primitive_quadrangle(vec3 const&,vec3 const&,vec3 const&,vec3 const&)
+vec3 | takes | construct | exact | mesh_primitive_sphere(float,vec3 const&,int,int)
+vec3 | takes | construct | exact | mesh_primitive_tetrahedron(vec3 const&,vec3 const&,vec3 const&,vec3 const&)
+vec3 | takes | construct | exact | mesh_primitive_torus(float,float,vec3 const&,vec3 const&,int,int)
+vec3 | takes | construct | exact | mesh_primitive_triangle(vec3 const&,vec3 const&,vec3 const&)
+vec3 | takes | construct | exact | rotation_axis_angle(vec3 const&,float)
+vec3 | takes | construct | exact | tensor_product(vec3 const&,vec3 const&)
+vec3 | takes | convert | exact | type_str(numarray_stack3<float> const&)
+vec3 | takes | convert | generic | str<T,N>(numarray_stack<T,N> const&,std::string const&,std::string const&,std::string const&) | shared vecN
+vec3 | takes | convert | generic | type_str<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | convert | generic | type_str<T>(numarray_stack<T,3> const&)
+vec3 | takes | draw | exact | draw_wireframe(hierarchy_mesh_drawable const&,environment_generic_structure const&,vec3 const&,int,bool,uniform_generic_structure const&)
+vec3 | takes | draw | exact | draw_wireframe(mesh_drawable const&,environment_generic_structure const&,vec3 const&,int,bool,uniform_generic_structure const&)
+vec3 | takes | draw | exact | draw_wireframe(triangles_drawable const&,environment_generic_structure const&,vec3 const&,uniform_generic_structure const&)
+vec3 | takes | io | generic | read_from_stream<T,N>(std::istream&,numarray_stack<T,N>&) | shared vecN
+vec3 | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,vec3 const&,bool)
+vec3 | takes | transform | exact | orthogonal_vector(vec3 const&)
+vec3 | takes | transform | generic | abs<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | transform | generic | add<T,N>(T const&,numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | transform | generic | add<T,N>(numarray_stack<T,N> const&,T const&) | shared vecN
+vec3 | takes | transform | generic | clamp<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | transform | generic | div<T,N>(T const&,numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | transform | generic | div<T,N>(numarray_stack<T,N> const&,T const&) | shared vecN
+vec3 | takes | transform | generic | div<T,N>(numarray_stack<T,N> const&,T) | shared vecN
+vec3 | takes | transform | generic | mul<T,N>(T const&,numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | transform | generic | mul<T,N>(numarray_stack<T,N> const&,T const&) | shared vecN
+vec3 | takes | transform | generic | mul<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | transform | generic | normalize<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | transform | generic | normalize<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | transform | generic | sub<T,N>(T const&,numarray_stack<T,N> const&) | shared vecN
+vec3 | takes | transform | generic | sub<T,N>(numarray_stack<T,N> const&,T const&) | shared vecN
+vec4 | operators | operator | exact | operator*(affine const&,vec4 const&)
+vec4 | operators | operator | exact | operator*(affine_rt const&,vec4 const&)
+vec4 | operators | operator | exact | operator*(affine_rts const&,vec4 const&)
+vec4 | operators | operator | exact | operator*(rotation_transform const&,vec4 const&)
+vec4 | operators | operator | generic | operator*<T,N,S>(S,numarray_stack<T,N> const&) | shared vecN
+vec4 | operators | operator | generic | operator*<T,N,S>(numarray_stack<T,N> const&,S) | shared vecN
+vec4 | operators | operator | generic | operator*<T,N1,N2>(matrix_stack<T,N1,N2> const&,numarray_stack<T,N2> const&) | shared vecN
+vec4 | operators | operator | generic | operator*<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec4 | operators | operator | generic | operator*=<T,N,S>(numarray_stack<T,N>&,S) | shared vecN
+vec4 | operators | operator | generic | operator*=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | shared vecN
+vec4 | operators | operator | generic | operator+<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec4 | operators | operator | generic | operator+=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | shared vecN
+vec4 | operators | operator | generic | operator-<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec4 | operators | operator | generic | operator-<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec4 | operators | operator | generic | operator-=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | shared vecN
+vec4 | operators | operator | generic | operator/<T,N,S>(S,numarray_stack<T,N> const&) | shared vecN
+vec4 | operators | operator | generic | operator/<T,N,S>(numarray_stack<T,N> const&,S) | shared vecN
+vec4 | operators | operator | generic | operator/<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec4 | operators | operator | generic | operator/=<T,N,S>(numarray_stack<T,N>&,S) | shared vecN
+vec4 | operators | operator | generic | operator/=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&) | shared vecN
+vec4 | operators | operator | generic | operator<<<T,N>(std::ostream&,numarray_stack<T,N> const&) | shared vecN
+vec4 | returns | access | generic | get<idx1,T,N1,N2>(matrix_stack<T,N1,N2> const&)
+vec4 | takes | access | generic | check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,4> const&)
+vec4 | takes | access | generic | check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | access | generic | get<idx,T,N>(numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | access | generic | get<idx,T>(numarray_stack<T,4> const&)
+vec4 | takes | access | generic | is_equal<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | access | generic | is_equal<T1,T2,N1,N2>(numarray_stack<T1,N1> const&,numarray_stack<T2,N2> const&) | shared vecN
+vec4 | takes | access | generic | ptr<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | access | generic | size_in_memory<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | compute | generic | average<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | compute | generic | dot<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | compute | generic | max<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | compute | generic | min<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | compute | generic | norm<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | compute | generic | sum<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | construct | exact | tensor_product(vec4 const&,vec4 const&)
+vec4 | takes | convert | exact | type_str(vec4 const&)
+vec4 | takes | convert | generic | str<T,N>(numarray_stack<T,N> const&,std::string const&,std::string const&,std::string const&) | shared vecN
+vec4 | takes | convert | generic | type_str<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | convert | generic | type_str<T>(numarray_stack<T,4> const&)
+vec4 | takes | io | generic | read_from_stream<T,N>(std::istream&,numarray_stack<T,N>&) | shared vecN
+vec4 | takes | other | exact | opengl_uniform(opengl_shader_structure const&,std::string const&,vec4 const&,bool)
+vec4 | takes | transform | generic | abs<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | transform | generic | add<T,N>(T const&,numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | transform | generic | add<T,N>(numarray_stack<T,N> const&,T const&) | shared vecN
+vec4 | takes | transform | generic | clamp<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | transform | generic | div<T,N>(T const&,numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | transform | generic | div<T,N>(numarray_stack<T,N> const&,T const&) | shared vecN
+vec4 | takes | transform | generic | div<T,N>(numarray_stack<T,N> const&,T) | shared vecN
+vec4 | takes | transform | generic | mul<T,N>(T const&,numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | transform | generic | mul<T,N>(numarray_stack<T,N> const&,T const&) | shared vecN
+vec4 | takes | transform | generic | mul<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | transform | generic | normalize<T,N>(numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | transform | generic | normalize<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | transform | generic | sub<T,N>(T const&,numarray_stack<T,N> const&) | shared vecN
+vec4 | takes | transform | generic | sub<T,N>(numarray_stack<T,N> const&,T const&) | shared vecN
+vecN | operators | operator | generic | operator*<T,N,S>(S,numarray_stack<T,N> const&)
+vecN | operators | operator | generic | operator*<T,N,S>(numarray_stack<T,N> const&,S)
+vecN | operators | operator | generic | operator*<T,N1,N2>(matrix_stack<T,N1,N2> const&,numarray_stack<T,N2> const&)
+vecN | operators | operator | generic | operator*<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+vecN | operators | operator | generic | operator*=<T,N,S>(numarray_stack<T,N>&,S)
+vecN | operators | operator | generic | operator*=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&)
+vecN | operators | operator | generic | operator+<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+vecN | operators | operator | generic | operator+=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&)
+vecN | operators | operator | generic | operator-<T,N>(numarray_stack<T,N> const&)
+vecN | operators | operator | generic | operator-<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+vecN | operators | operator | generic | operator-=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&)
+vecN | operators | operator | generic | operator/<T,N,S>(S,numarray_stack<T,N> const&)
+vecN | operators | operator | generic | operator/<T,N,S>(numarray_stack<T,N> const&,S)
+vecN | operators | operator | generic | operator/<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+vecN | operators | operator | generic | operator/=<T,N,S>(numarray_stack<T,N>&,S)
+vecN | operators | operator | generic | operator/=<T,N>(numarray_stack<T,N>&,numarray_stack<T,N> const&)
+vecN | operators | operator | generic | operator<<<T,N>(std::ostream&,numarray_stack<T,N> const&)
+vecN | takes | access | generic | check_index_bounds<T,N,INDEX_TYPE>(INDEX_TYPE,numarray_stack<T,N> const&)
+vecN | takes | access | generic | get<idx,T,N>(numarray_stack<T,N> const&)
+vecN | takes | access | generic | is_equal<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+vecN | takes | access | generic | is_equal<T1,T2,N1,N2>(numarray_stack<T1,N1> const&,numarray_stack<T2,N2> const&)
+vecN | takes | access | generic | ptr<T,N>(numarray_stack<T,N> const&)
+vecN | takes | access | generic | size_in_memory<T,N>(numarray_stack<T,N> const&)
+vecN | takes | compute | generic | average<T,N>(numarray_stack<T,N> const&)
+vecN | takes | compute | generic | dot<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+vecN | takes | compute | generic | max<T,N>(numarray_stack<T,N> const&)
+vecN | takes | compute | generic | min<T,N>(numarray_stack<T,N> const&)
+vecN | takes | compute | generic | norm<T,N>(numarray_stack<T,N> const&)
+vecN | takes | compute | generic | sum<T,N>(numarray_stack<T,N> const&)
+vecN | takes | convert | generic | str<T,N>(numarray_stack<T,N> const&,std::string const&,std::string const&,std::string const&)
+vecN | takes | convert | generic | type_str<T,N>(numarray_stack<T,N> const&)
+vecN | takes | io | generic | read_from_stream<T,N>(std::istream&,numarray_stack<T,N>&)
+vecN | takes | transform | generic | abs<T,N>(numarray_stack<T,N> const&)
+vecN | takes | transform | generic | add<T,N>(T const&,numarray_stack<T,N> const&)
+vecN | takes | transform | generic | add<T,N>(numarray_stack<T,N> const&,T const&)
+vecN | takes | transform | generic | clamp<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+vecN | takes | transform | generic | div<T,N>(T const&,numarray_stack<T,N> const&)
+vecN | takes | transform | generic | div<T,N>(numarray_stack<T,N> const&,T const&)
+vecN | takes | transform | generic | div<T,N>(numarray_stack<T,N> const&,T)
+vecN | takes | transform | generic | mul<T,N>(T const&,numarray_stack<T,N> const&)
+vecN | takes | transform | generic | mul<T,N>(numarray_stack<T,N> const&,T const&)
+vecN | takes | transform | generic | mul<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+vecN | takes | transform | generic | normalize<T,N>(numarray_stack<T,N> const&)
+vecN | takes | transform | generic | normalize<T,N>(numarray_stack<T,N> const&,numarray_stack<T,N> const&)
+vecN | takes | transform | generic | sub<T,N>(T const&,numarray_stack<T,N> const&)
+vecN | takes | transform | generic | sub<T,N>(numarray_stack<T,N> const&,T const&)

@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 396" width="700" height="396">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .sm { fill: #555; font-size: 13px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .o { font-size: 13px; fill: #a85000; }
+    .c { fill: #666666; }
+    .k { fill: #2b66ad; }
+    .b { font-weight: bold; }
+    .cell { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.2; }
+    .celt { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.2; }
+    .cellg { fill: #f2f2f2; stroke: #aaa; stroke-width: 1.2; }
+    .br { stroke-width: 1.5; fill: none; }
+    .ar { stroke: #888; stroke-width: 1.5; fill: none; marker-end: url(#a); }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker>
+  </defs>
+
+  <text x="20" y="24" class="b" style="fill:#2b66ad">mat4 = matrix_stack&lt;float,4,4&gt;: stored row by row</text>
+  <text x="20" y="46" class="sm">M(i,j) = row i, column j.  Orange number = position in memory (4*i + j).</text>
+
+  <!-- column accessors -->
+  <g class="m" text-anchor="middle">
+    <text x="106" y="76" class="m" text-anchor="middle" style="fill:#555">col_x()</text>
+    <text x="170" y="76" class="m" text-anchor="middle" style="fill:#555">col_y()</text>
+    <text x="234" y="76" class="m" text-anchor="middle" style="fill:#555">col_z()</text>
+    <text x="298" y="76" class="m" text-anchor="middle" style="fill:#555">col_w()</text>
+  </g>
+  <!-- row accessors -->
+  <text x="66" y="109" text-anchor="end" class="m b">M[0]</text>
+  <text x="66" y="153" text-anchor="end" class="m b">M[1]</text>
+  <text x="66" y="197" text-anchor="end" class="m b">M[2]</text>
+  <text x="66" y="241" text-anchor="end" class="m b">M[3]</text>
+
+  <!-- cells -->
+  <g>
+    <rect x="74" y="82" width="64" height="44" class="cell"/>
+    <text x="106" y="112" text-anchor="middle" class="m">(0,0)</text>
+    <text x="78" y="96" class="o">0</text>
+    <rect x="138" y="82" width="64" height="44" class="cell"/>
+    <text x="170" y="112" text-anchor="middle" class="m">(0,1)</text>
+    <text x="142" y="96" class="o">1</text>
+    <rect x="202" y="82" width="64" height="44" class="cell"/>
+    <text x="234" y="112" text-anchor="middle" class="m">(0,2)</text>
+    <text x="206" y="96" class="o">2</text>
+    <rect x="266" y="82" width="64" height="44" class="celt"/>
+    <text x="298" y="112" text-anchor="middle" class="m">(0,3)</text>
+    <text x="270" y="96" class="o">3</text>
+    <rect x="74" y="126" width="64" height="44" class="cell"/>
+    <text x="106" y="156" text-anchor="middle" class="m">(1,0)</text>
+    <text x="78" y="140" class="o">4</text>
+    <rect x="138" y="126" width="64" height="44" class="cell"/>
+    <text x="170" y="156" text-anchor="middle" class="m">(1,1)</text>
+    <text x="142" y="140" class="o">5</text>
+    <rect x="202" y="126" width="64" height="44" class="cell"/>
+    <text x="234" y="156" text-anchor="middle" class="m">(1,2)</text>
+    <text x="206" y="140" class="o">6</text>
+    <rect x="266" y="126" width="64" height="44" class="celt"/>
+    <text x="298" y="156" text-anchor="middle" class="m">(1,3)</text>
+    <text x="270" y="140" class="o">7</text>
+    <rect x="74" y="170" width="64" height="44" class="cell"/>
+    <text x="106" y="200" text-anchor="middle" class="m">(2,0)</text>
+    <text x="78" y="184" class="o">8</text>
+    <rect x="138" y="170" width="64" height="44" class="cell"/>
+    <text x="170" y="200" text-anchor="middle" class="m">(2,1)</text>
+    <text x="142" y="184" class="o">9</text>
+    <rect x="202" y="170" width="64" height="44" class="cell"/>
+    <text x="234" y="200" text-anchor="middle" class="m">(2,2)</text>
+    <text x="206" y="184" class="o">10</text>
+    <rect x="266" y="170" width="64" height="44" class="celt"/>
+    <text x="298" y="200" text-anchor="middle" class="m">(2,3)</text>
+    <text x="270" y="184" class="o">11</text>
+    <rect x="74" y="214" width="64" height="44" class="cellg"/>
+    <text x="106" y="244" text-anchor="middle" class="m">(3,0)</text>
+    <text x="78" y="228" class="o">12</text>
+    <rect x="138" y="214" width="64" height="44" class="cellg"/>
+    <text x="170" y="244" text-anchor="middle" class="m">(3,1)</text>
+    <text x="142" y="228" class="o">13</text>
+    <rect x="202" y="214" width="64" height="44" class="cellg"/>
+    <text x="234" y="244" text-anchor="middle" class="m">(3,2)</text>
+    <text x="206" y="228" class="o">14</text>
+    <rect x="266" y="214" width="64" height="44" class="cellg"/>
+    <text x="298" y="244" text-anchor="middle" class="m">(3,3)</text>
+    <text x="270" y="228" class="o">15</text>
+  </g>
+  <!-- row 1 highlighted as a vec4 -->
+  <rect x="75.5" y="127.5" width="253" height="41" fill="none" stroke="#4a86d0" stroke-width="2.5"/>
+
+  <!-- block labels -->
+  <path d="M74,264 V270 H266 V264" class="br" style="stroke:#4a86d0"/>
+  <text x="170" y="288" text-anchor="middle" class="m" style="fill:#2b66ad">get_block_linear()</text>
+  <text x="170" y="305" text-anchor="middle" class="sm">mat3: rotation, scaling</text>
+  <path d="M338,82 H344 V214 H338" class="br" style="stroke:#e07b1a"/>
+  <text x="350" y="138" class="sm">trans-</text>
+  <text x="350" y="155" class="sm">lation</text>
+  <text x="350" y="172" class="sm">t</text>
+  <text x="338" y="234" class="sm">0 0 0 1</text>
+  <text x="338" y="250" class="sm">if affine</text>
+  <text x="20" y="340" class="sm">M[i] is a vec4 reference to row i. mat2, mat3: same scheme.</text>
+  <text x="20" y="358" class="sm">Uniforms are sent with transpose = GL_TRUE, so M * p</text>
+  <text x="20" y="376" class="sm">means the same product in GLSL and in C++.</text>
+
+  <!-- code panel -->
+  <rect x="412" y="62" width="276" height="320" rx="6" fill="#f6f6f6" stroke="#ccc"/>
+  <text x="424" y="86" class="m">mat4 M = mat4::<tspan class="k">build_affine</tspan>(</text>
+  <text x="520" y="104" class="m">L, t);</text>
+  <text x="424" y="132" class="m">M(1,3) = 2.0f;</text>
+  <text x="424" y="150" class="m"><tspan class="c">// row 1, column 3</tspan></text>
+  <text x="424" y="172" class="m">vec4&amp; r = M[1];</text>
+  <text x="424" y="194" class="m">vec4 c = M.<tspan class="k">col_y</tspan>();</text>
+  <text x="424" y="222" class="m">vec4 q = M * vec4(p, 1.0f);</text>
+  <text x="424" y="244" class="m">vec3 a = M.<tspan class="k">transform_position</tspan>(p);</text>
+  <text x="424" y="272" class="m">vec3 t2 =</text>
+  <text x="440" y="290" class="m">M.<tspan class="k">get_block_translation</tspan>();</text>
+  <text x="424" y="318" class="m">mat4 Mi = <tspan class="k">inverse</tspan>(M);</text>
+  <text x="424" y="340" class="m">mat4 Mt = <tspan class="k">transpose</tspan>(M);</text>
+  <text x="424" y="368" class="m">mat4 I = mat4::<tspan class="k">build_identity</tspan>();</text>
+</svg>

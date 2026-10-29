@@ -1,0 +1,8 @@
+Origin: CGP example of github.com/drohmer/epita_ani3d_lab_code-2027
+(examples/08_instancing/01_instancing_position, commit bbe7095), code unchanged.
+Assets reduced to fit the web demo (same file names):
+ - palm_tree/palm_tree.obj (palm tree by Emmanuel Puybaret / eTeks and Scopia, CC BY 3.0, see
+   palm_tree/LICENSE.TXT): positions rounded to 3 decimals, uv to 3 decimals, normals
+   normalized and rounded to 2 decimals, duplicated values merged, comments removed
+   (8.2 -> 4.1 MB; same faces, same objects and materials);
+ - grass.png: resized from 1024 to 512 pixels.

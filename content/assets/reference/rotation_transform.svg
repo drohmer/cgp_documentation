@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 470" width="700" height="470">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .sm { fill: #555; font-size: 13px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .c { fill: #666666; }
+    .k { fill: #2b66ad; }
+    .b { font-weight: bold; }
+    .arrow { stroke: #888; stroke-width: 2; fill: none; marker-end: url(#a); }
+    .ab { stroke: #4a86d0; stroke-width: 2.5; fill: none; marker-end: url(#ab); }
+    .ao { stroke: #e07b1a; stroke-width: 2.5; fill: none; marker-end: url(#ao); }
+    .ag { stroke: #888; stroke-width: 1.5; fill: none; marker-end: url(#a); }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#4a86d0"/></marker>
+    <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+  </defs>
+
+  <!-- the struct -->
+  <rect x="215" y="14" width="270" height="58" rx="6" fill="#e3eefb" stroke="#6b9bd8" stroke-width="1.5"/>
+  <text x="350" y="37" text-anchor="middle" class="in b">rotation_transform</text>
+  <text x="350" y="59" text-anchor="middle" class="m">quaternion data; <tspan class="c">// unit</tspan></text>
+
+  <path d="M182,88 C182,60 200,50 213,47" class="arrow"/>
+  <path d="M487,47 C500,50 518,60 518,88" class="arrow"/>
+
+  <!-- build panel -->
+  <rect x="14" y="92" width="330" height="246" rx="6" fill="#f6f6f6" stroke="#ccc"/>
+  <text x="26" y="114" class="in b">Build</text>
+  <text x="26" y="136" class="m c">rotation_transform::</text>
+  <text x="42" y="156" class="m"><tspan class="k">from_axis_angle</tspan>(axis, angle)</text>
+  <text x="42" y="176" class="m"><tspan class="k">from_vector_transform</tspan>(</text>
+  <text x="74" y="194" class="m">e_source, e_target)</text>
+  <text x="42" y="214" class="m"><tspan class="k">from_frame_transform</tspan>(e1, e2,</text>
+  <text x="74" y="232" class="m">e1_target, e2_target)</text>
+  <text x="42" y="252" class="m"><tspan class="k">from_matrix</tspan>(M) <tspan class="c">// mat3</tspan></text>
+  <text x="42" y="272" class="m"><tspan class="k">from_quaternion</tspan>(q)</text>
+  <text x="26" y="300" class="m"><tspan class="k">rotation_axis_angle</tspan>(axis, angle)</text>
+  <text x="26" y="322" class="m">rotation_transform() <tspan class="c">// identity</tspan></text>
+
+  <!-- use panel -->
+  <rect x="356" y="92" width="332" height="246" rx="6" fill="#f6f6f6" stroke="#ccc"/>
+  <text x="368" y="114" class="in b">Use</text>
+  <text x="368" y="138" class="m">vec3 q = R * p; <tspan class="c">// rotate p</tspan></text>
+  <text x="368" y="162" class="m">R12 = R1 * R2;</text>
+  <text x="368" y="180" class="m c">// apply R2 first, then R1</text>
+  <text x="368" y="204" class="m">Ri = <tspan class="k">inverse</tspan>(R);</text>
+  <text x="368" y="228" class="m">mat3 M = R.<tspan class="k">matrix</tspan>();</text>
+  <text x="368" y="252" class="m">R.<tspan class="k">to_axis_angle</tspan>(axis, angle);</text>
+  <text x="368" y="276" class="m">rotation_transform::<tspan class="k">lerp</tspan>(</text>
+  <text x="400" y="294" class="m">R1, R2, alpha)</text>
+  <text x="368" y="322" class="m">shape.model.rotation = R;</text>
+
+  <!-- from_vector_transform picture -->
+  <text x="20" y="372" class="in b">from_vector_transform(e_source, e_target)</text>
+  <text x="20" y="394" class="sm">Smallest rotation sending e_source onto e_target</text>
+  <text x="20" y="412" class="sm">(both of unit norm):</text>
+  <text x="20" y="434" class="m">axis = normalize(cross(e_source, e_target))</text>
+  <text x="20" y="454" class="m">angle = acos(dot(e_source, e_target))</text>
+
+  <circle cx="520" cy="438" r="3.5" fill="#333"/>
+  <path d="M520,438 L640,438" class="ab"/>
+  <path d="M520,438 L577,358" class="ao"/>
+  <path d="M590,438 A70,70 0 0,0 562,382" class="ag"/>
+  <text x="604" y="430" class="m" style="fill:#2b66ad">e_source</text>
+  <text x="586" y="360" class="m" style="fill:#a85000">e_target</text>
+  <text x="592" y="406" class="sm">angle</text>
+  <circle cx="520" cy="438" r="10" fill="none" stroke="#333" stroke-width="1.2"/>
+  <text x="502" y="443" text-anchor="end" class="sm">axis (toward you)</text>
+</svg>

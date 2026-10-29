@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 404" width="700" height="404">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .cm { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #666666; }
+    .b { font-weight: bold; }
+    .s { font-size: 13px; }
+  </style>
+
+  <text x="20" y="24" class="b" style="fill:#2b66ad">texture wrapping: uv outside [0,1] (here the quad has uv in [0,2])</text>
+  <text x="20" y="52" class="m">mesh quad = mesh_primitive_quadrangle();  quad.uv *= 2.0f;</text>
+  <text x="20" y="74" class="m">shape.texture.load_and_initialize_texture_2d_on_gpu(file, GL_REPEAT, GL_REPEAT);</text>
+  <text x="20" y="96" class="m">shape.texture.update_wrap(GL_MIRRORED_REPEAT, GL_MIRRORED_REPEAT);</text><text x="566" y="96" class="cm">// later</text>
+  <text x="130" y="134" class="m b" text-anchor="middle">GL_REPEAT</text>
+  <rect x="40" y="236" width="45" height="45" fill="#4a86d0"/>
+  <rect x="85" y="236" width="45" height="45" fill="#e07b1a"/>
+  <rect x="40" y="281" width="45" height="45" fill="#5aa55a"/>
+  <rect x="85" y="281" width="45" height="45" fill="#c8c8c8"/>
+  <rect x="130" y="236" width="45" height="45" fill="#4a86d0"/>
+  <rect x="175" y="236" width="45" height="45" fill="#e07b1a"/>
+  <rect x="130" y="281" width="45" height="45" fill="#5aa55a"/>
+  <rect x="175" y="281" width="45" height="45" fill="#c8c8c8"/>
+  <rect x="40" y="146" width="45" height="45" fill="#4a86d0"/>
+  <rect x="85" y="146" width="45" height="45" fill="#e07b1a"/>
+  <rect x="40" y="191" width="45" height="45" fill="#5aa55a"/>
+  <rect x="85" y="191" width="45" height="45" fill="#c8c8c8"/>
+  <rect x="130" y="146" width="45" height="45" fill="#4a86d0"/>
+  <rect x="175" y="146" width="45" height="45" fill="#e07b1a"/>
+  <rect x="130" y="191" width="45" height="45" fill="#5aa55a"/>
+  <rect x="175" y="191" width="45" height="45" fill="#c8c8c8"/>
+  <rect x="40" y="146" width="180" height="180" fill="none" stroke="#666" stroke-width="1"/>
+  <rect x="40" y="236" width="90" height="90" fill="none" stroke="#333" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="40" y="344" class="s" text-anchor="middle">0</text>
+  <text x="34" y="331" class="s" text-anchor="end">0</text>
+  <text x="130" y="344" class="s" text-anchor="middle">1</text>
+  <text x="34" y="241" class="s" text-anchor="end">1</text>
+  <text x="220" y="344" class="s" text-anchor="middle">2</text>
+  <text x="34" y="151" class="s" text-anchor="end">2</text>
+  <text x="360" y="134" class="m b" text-anchor="middle">GL_MIRRORED_REPEAT</text>
+  <rect x="270" y="236" width="45" height="45" fill="#4a86d0"/>
+  <rect x="315" y="236" width="45" height="45" fill="#e07b1a"/>
+  <rect x="270" y="281" width="45" height="45" fill="#5aa55a"/>
+  <rect x="315" y="281" width="45" height="45" fill="#c8c8c8"/>
+  <rect x="360" y="236" width="45" height="45" fill="#e07b1a"/>
+  <rect x="405" y="236" width="45" height="45" fill="#4a86d0"/>
+  <rect x="360" y="281" width="45" height="45" fill="#c8c8c8"/>
+  <rect x="405" y="281" width="45" height="45" fill="#5aa55a"/>
+  <rect x="270" y="146" width="45" height="45" fill="#5aa55a"/>
+  <rect x="315" y="146" width="45" height="45" fill="#c8c8c8"/>
+  <rect x="270" y="191" width="45" height="45" fill="#4a86d0"/>
+  <rect x="315" y="191" width="45" height="45" fill="#e07b1a"/>
+  <rect x="360" y="146" width="45" height="45" fill="#c8c8c8"/>
+  <rect x="405" y="146" width="45" height="45" fill="#5aa55a"/>
+  <rect x="360" y="191" width="45" height="45" fill="#e07b1a"/>
+  <rect x="405" y="191" width="45" height="45" fill="#4a86d0"/>
+  <rect x="270" y="146" width="180" height="180" fill="none" stroke="#666" stroke-width="1"/>
+  <rect x="270" y="236" width="90" height="90" fill="none" stroke="#333" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="270" y="344" class="s" text-anchor="middle">0</text>
+  <text x="264" y="331" class="s" text-anchor="end">0</text>
+  <text x="360" y="344" class="s" text-anchor="middle">1</text>
+  <text x="264" y="241" class="s" text-anchor="end">1</text>
+  <text x="450" y="344" class="s" text-anchor="middle">2</text>
+  <text x="264" y="151" class="s" text-anchor="end">2</text>
+  <text x="590" y="134" class="m b" text-anchor="middle">GL_CLAMP_TO_EDGE</text>
+  <rect x="500" y="236" width="45" height="45" fill="#4a86d0"/>
+  <rect x="545" y="236" width="45" height="45" fill="#e07b1a"/>
+  <rect x="500" y="281" width="45" height="45" fill="#5aa55a"/>
+  <rect x="545" y="281" width="45" height="45" fill="#c8c8c8"/>
+  <rect x="590" y="236" width="45" height="45" fill="#e07b1a"/>
+  <rect x="635" y="236" width="45" height="45" fill="#e07b1a"/>
+  <rect x="590" y="281" width="45" height="45" fill="#c8c8c8"/>
+  <rect x="635" y="281" width="45" height="45" fill="#c8c8c8"/>
+  <rect x="500" y="146" width="45" height="45" fill="#4a86d0"/>
+  <rect x="545" y="146" width="45" height="45" fill="#e07b1a"/>
+  <rect x="500" y="191" width="45" height="45" fill="#4a86d0"/>
+  <rect x="545" y="191" width="45" height="45" fill="#e07b1a"/>
+  <rect x="590" y="146" width="45" height="45" fill="#e07b1a"/>
+  <rect x="635" y="146" width="45" height="45" fill="#e07b1a"/>
+  <rect x="590" y="191" width="45" height="45" fill="#e07b1a"/>
+  <rect x="635" y="191" width="45" height="45" fill="#e07b1a"/>
+  <rect x="500" y="146" width="180" height="180" fill="none" stroke="#666" stroke-width="1"/>
+  <rect x="500" y="236" width="90" height="90" fill="none" stroke="#333" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="500" y="344" class="s" text-anchor="middle">0</text>
+  <text x="494" y="331" class="s" text-anchor="end">0</text>
+  <text x="590" y="344" class="s" text-anchor="middle">1</text>
+  <text x="494" y="241" class="s" text-anchor="end">1</text>
+  <text x="680" y="344" class="s" text-anchor="middle">2</text>
+  <text x="494" y="151" class="s" text-anchor="end">2</text>
+  <text x="590" y="366" class="s" text-anchor="middle">default: the edge texels are stretched</text>
+  <text x="130" y="366" class="s" text-anchor="middle">the image is tiled</text>
+  <text x="360" y="366" class="s" text-anchor="middle">every other copy is flipped</text>
+  <text x="20" y="394" class="s">dashed square: uv in [0,1] x [0,1], the image itself (u to the right, v upward)</text>
+</svg>

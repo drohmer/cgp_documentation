@@ -1,0 +1,3 @@
+Origin: EPITA Ani3D repository github.com/drohmer/epita_ani3d_lab_code-2027
+(examples/06_multipass/01_image_filter). The shaders shaders/screen_effect/ are the ones
+of the page. No asset.

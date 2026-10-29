@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 340" width="700" height="340">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .b { font-weight: bold; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+  </style>
+  <text x="20" y="28" class="b in">Texels of the shadow map around the pixel</text>
+  <rect x="40" y="60" width="60" height="60" fill="#f4f4f4" stroke="#999999"/>
+  <rect x="100" y="60" width="60" height="60" fill="#f4f4f4" stroke="#999999"/>
+  <rect x="160" y="60" width="60" height="60" fill="#bdbdbd" stroke="#999999"/>
+  <rect x="220" y="60" width="60" height="60" fill="#bdbdbd" stroke="#999999"/>
+  <rect x="40" y="120" width="60" height="60" fill="#f4f4f4" stroke="#999999"/>
+  <rect x="100" y="120" width="60" height="60" fill="#f4f4f4" stroke="#999999"/>
+  <rect x="160" y="120" width="60" height="60" fill="#bdbdbd" stroke="#999999"/>
+  <rect x="220" y="120" width="60" height="60" fill="#bdbdbd" stroke="#999999"/>
+  <rect x="40" y="180" width="60" height="60" fill="#f4f4f4" stroke="#999999"/>
+  <rect x="100" y="180" width="60" height="60" fill="#f4f4f4" stroke="#999999"/>
+  <rect x="160" y="180" width="60" height="60" fill="#bdbdbd" stroke="#999999"/>
+  <rect x="220" y="180" width="60" height="60" fill="#bdbdbd" stroke="#999999"/>
+  <rect x="40" y="240" width="60" height="60" fill="#f4f4f4" stroke="#999999"/>
+  <rect x="100" y="240" width="60" height="60" fill="#f4f4f4" stroke="#999999"/>
+  <rect x="160" y="240" width="60" height="60" fill="#bdbdbd" stroke="#999999"/>
+  <rect x="220" y="240" width="60" height="60" fill="#bdbdbd" stroke="#999999"/>
+  <text x="220" y="322" class="in" text-anchor="middle">occluder in front</text>
+  <text x="100" y="322" class="in" text-anchor="middle">nothing in front</text>
+  <circle cx="94.0" cy="120.0" r="5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="124.0" cy="120.0" r="5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="154.0" cy="120.0" r="5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="184.0" cy="120.0" r="5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="214.0" cy="120.0" r="5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="94.0" cy="150.0" r="5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="124.0" cy="150.0" r="5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="154.0" cy="150.0" r="5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="184.0" cy="150.0" r="5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="214.0" cy="150.0" r="5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="94.0" cy="180.0" r="5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="124.0" cy="180.0" r="5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="154.0" cy="180.0" r="5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="184.0" cy="180.0" r="5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="214.0" cy="180.0" r="5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="94.0" cy="210.0" r="5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="124.0" cy="210.0" r="5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="154.0" cy="210.0" r="5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="184.0" cy="210.0" r="5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="214.0" cy="210.0" r="5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="94.0" cy="240.0" r="5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="124.0" cy="240.0" r="5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="154.0" cy="240.0" r="5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="184.0" cy="240.0" r="5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+  <circle cx="214.0" cy="240.0" r="5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+  <rect x="86" y="112" width="136" height="136" fill="none" stroke="#4a86d0" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="340" y="90" class="in">25 samples, half a texel apart:</text>
+  <text x="340" y="112" class="m">projCoords.xy + 0.5*vec2(x, y)*texelSize</text>
+  <text x="340" y="134" class="m">x, y = -2 .. 2</text>
+  <circle cx="346" cy="166" r="5" fill="#e07b1a"/><text x="360" y="171" class="in">depth of the pixel - bias &gt; depth stored: in shadow</text>
+  <circle cx="346" cy="192" r="5" fill="#fff" stroke="#e07b1a" stroke-width="1.5"/><text x="360" y="197" class="in">lit</text>
+  <text x="340" y="236" class="in">shadow = 10 / 25 = 0.40: the diffuse and specular</text>
+  <text x="340" y="256" class="in">terms are multiplied by 1 - shadow. Near the border of</text>
+  <text x="340" y="276" class="in">a shadow the fraction goes from 0 to 1 over about two</text>
+  <text x="340" y="296" class="in">texels: a soft edge instead of a staircase.</text>
+</svg>

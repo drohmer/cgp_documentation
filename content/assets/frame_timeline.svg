@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 30 700 250" width="700" height="250">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .b { font-weight: bold; }
+    .app { fill: #ececec; stroke: #999; stroke-width: 1.5; }
+    .scn { fill: #dff0dc; stroke: #5aa55a; stroke-width: 1.5; }
+    .next { fill: none; stroke: #999; stroke-width: 1.5; stroke-dasharray: 5 4; }
+    .lead { stroke: #888; stroke-width: 1.5; fill: none; }
+    .arrow { stroke: #888; stroke-width: 2; fill: none; marker-end: url(#a); }
+    .ag { stroke: #5aa55a; stroke-width: 2; fill: none; marker-end: url(#ag); }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5aa55a"/></marker>
+  </defs>
+
+  <!-- annotations above -->
+  <path d="M55,90 V62" class="lead"/>
+  <text x="20" y="54">projection matrix, clear</text>
+  <path d="M380,90 V62" class="lead"/>
+  <text x="380" y="54" text-anchor="middle">you copy the view matrix</text>
+
+  <!-- segments of frame N -->
+  <rect x="20" y="90" width="70" height="50" class="app"/>
+  <text x="55" y="120" class="in" text-anchor="middle">clear</text>
+  <rect x="90" y="90" width="120" height="50" class="scn"/>
+  <text x="150" y="120" class="in" text-anchor="middle">display_gui()</text>
+  <rect x="210" y="90" width="100" height="50" class="scn"/>
+  <text x="260" y="120" class="in" text-anchor="middle">idle_frame()</text>
+  <rect x="310" y="90" width="140" height="50" class="scn"/>
+  <text x="380" y="120" class="in b" text-anchor="middle">display_frame()</text>
+  <rect x="450" y="90" width="70" height="50" class="app"/>
+  <text x="485" y="120" class="in" text-anchor="middle">swap</text>
+  <rect x="520" y="90" width="80" height="50" class="scn"/>
+  <text x="560" y="120" class="in" text-anchor="middle">events</text>
+  <rect x="604" y="90" width="76" height="50" class="next"/>
+  <text x="642" y="120" text-anchor="middle">...</text>
+
+  <!-- time axis -->
+  <path d="M20,152 H688" class="arrow"/>
+  <path d="M20,146 V158 M600,146 V158" class="lead"/>
+  <text x="24" y="174" class="b">frame N</text>
+  <text x="642" y="174" text-anchor="middle">frame N+1</text>
+
+  <!-- slider used in the same frame -->
+  <path d="M150,140 C150,215 380,215 380,145" class="ag"/>
+  <text x="265" y="228" text-anchor="middle" style="fill:#2a7330">a slider value is used by the draw calls of the same frame</text>
+
+  <!-- callbacks -->
+  <path d="M560,140 C560,200 600,240 600,248" class="lead"/>
+  <text x="680" y="268" text-anchor="end">mouse and keyboard callbacks run here, between two frames</text>
+</svg>

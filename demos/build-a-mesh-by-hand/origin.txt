@@ -1,0 +1,2 @@
+Asset: assets/checkerboard.png from github.com/drohmer/csc43043ep-lab-code,
+  05_shaders/a_shader_manipulation/assets/checkerboard.png

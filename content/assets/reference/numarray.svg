@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 372" width="700" height="372">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .mo { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #a85000; }
+    .cm { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #666666; }
+    .b { font-weight: bold; }
+    .s { font-size: 13px; }
+    .cell { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.2; }
+    .new { fill: #fdebd6; stroke: #e07b1a; stroke-width: 1.5; stroke-dasharray: 5 3; }
+    .res { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.2; }
+    .ao { stroke: #e07b1a; stroke-width: 2; fill: none; marker-end: url(#ao); }
+  </style>
+  <defs>
+    <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+  </defs>
+
+  <!-- Part 1: storage and push_back -->
+  <text x="20" y="24" class="b" style="fill:#2b66ad">numarray&lt;T&gt;: dynamic array, elements contiguous in data (std::vector&lt;T&gt;)</text>
+  <text x="20" y="52" class="m">numarray&lt;float&gt; a = {2.0f, 5.0f, 1.0f, 4.0f};</text>
+
+  <text x="100" y="97" text-anchor="end" class="m">a.data</text>
+  <rect x="110" y="74" width="60" height="34" class="cell"/>
+  <rect x="170" y="74" width="60" height="34" class="cell"/>
+  <rect x="230" y="74" width="60" height="34" class="cell"/>
+  <rect x="290" y="74" width="60" height="34" class="cell"/>
+  <rect x="351" y="75" width="58" height="32" class="new"/>
+  <g class="m" text-anchor="middle">
+    <text x="140" y="96" class="m" text-anchor="middle">2</text>
+    <text x="200" y="96" class="m" text-anchor="middle">5</text>
+    <text x="260" y="96" class="m" text-anchor="middle">1</text>
+    <text x="320" y="96" class="m" text-anchor="middle">4</text>
+    <text x="380" y="96" class="m" text-anchor="middle">7</text>
+  </g>
+  <text x="100" y="128" text-anchor="end" class="s">index</text>
+  <text x="140" y="128" text-anchor="middle" class="s">0</text>
+  <text x="200" y="128" text-anchor="middle" class="s">1</text>
+  <text x="260" y="128" text-anchor="middle" class="s">2</text>
+  <text x="320" y="128" text-anchor="middle" class="s">3</text>
+  <text x="380" y="128" text-anchor="middle" class="s" style="fill:#a85000">4</text>
+
+  <path d="M462,91 L416,91" class="ao"/>
+  <text x="470" y="88" class="mo">a.push_back(7.0f);</text>
+  <text x="470" y="108" class="cm">// a.size(): 4 -&gt; 5</text>
+
+  <text x="20" y="160" class="in"><tspan class="m">a[i]</tspan>, <tspan class="m">a(i)</tspan>: bound-checked unless CGP_NO_DEBUG is defined;  <tspan class="m">a.at(i)</tspan>: never checked</text>
+
+  <line x1="20" y1="182" x2="680" y2="182" stroke="#ddd" stroke-width="1"/>
+
+  <!-- Part 2: element-wise operations -->
+  <text x="20" y="208" class="b">element-wise operations (sizes must match)</text>
+
+  <text x="80" y="244" text-anchor="end" class="m">u</text>
+  <rect x="90" y="224" width="44" height="30" class="cell"/><rect x="134" y="224" width="44" height="30" class="cell"/><rect x="178" y="224" width="44" height="30" class="cell"/><rect x="222" y="224" width="44" height="30" class="cell"/>
+  <text x="112" y="244" class="m" text-anchor="middle">2</text><text x="156" y="244" class="m" text-anchor="middle">5</text><text x="200" y="244" class="m" text-anchor="middle">1</text><text x="244" y="244" class="m" text-anchor="middle">4</text>
+
+  <text x="80" y="282" text-anchor="end" class="m">v</text>
+  <rect x="90" y="262" width="44" height="30" class="cell"/><rect x="134" y="262" width="44" height="30" class="cell"/><rect x="178" y="262" width="44" height="30" class="cell"/><rect x="222" y="262" width="44" height="30" class="cell"/>
+  <text x="112" y="282" class="m" text-anchor="middle">1</text><text x="156" y="282" class="m" text-anchor="middle">1</text><text x="200" y="282" class="m" text-anchor="middle">2</text><text x="244" y="282" class="m" text-anchor="middle">0</text>
+
+  <line x1="90" y1="302" x2="266" y2="302" stroke="#888" stroke-width="1.2"/>
+  <text x="80" y="330" text-anchor="end" class="m">u + v</text>
+  <rect x="90" y="310" width="44" height="30" class="res"/><rect x="134" y="310" width="44" height="30" class="res"/><rect x="178" y="310" width="44" height="30" class="res"/><rect x="222" y="310" width="44" height="30" class="res"/>
+  <text x="112" y="330" class="m" text-anchor="middle">3</text><text x="156" y="330" class="m" text-anchor="middle">6</text><text x="200" y="330" class="m" text-anchor="middle">3</text><text x="244" y="330" class="m" text-anchor="middle">4</text>
+
+  <g>
+    <text x="310" y="244" class="m">numarray&lt;float&gt; w = u + v;</text>
+    <text x="310" y="270" class="m">w *= 0.5f;</text><text x="470" y="270" class="cm">// every element</text>
+    <text x="310" y="296" class="m">float s = sum(w);</text><text x="470" y="296" class="cm">// also min, max, average</text>
+    <text x="310" y="322" class="m">for (float&amp; x : w) x += 1.0f;</text>
+  </g>
+
+  <text x="20" y="362" class="s">T is often vec3 or vec2: mesh.position is a numarray&lt;vec3&gt;, mesh.uv a numarray&lt;vec2&gt;.</text>
+</svg>

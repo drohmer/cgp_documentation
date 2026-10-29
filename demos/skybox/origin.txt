@@ -1,0 +1,5 @@
+Origin: CGP example of github.com/drohmer/epita_ani3d_lab_code-2027
+(examples/05_environment_map/01_skybox, commit bbe7095), code unchanged.
+Assets reduced to fit the web demo:
+ - skybox_01.jpg: resized from 3200 x 2400 to 2048 x 1536 (same file as demos/add-a-skybox);
+ - skybox_02.jpg and skybox_debug.png removed: only named in comments of scene.cpp, not loaded.

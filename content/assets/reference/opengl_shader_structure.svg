@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" width="700" height="420">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .cm { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #666666; }
+    .b { font-weight: bold; }
+    .s { font-size: 13px; }
+    .sh { fill: #dff0dc; stroke: #5aa55a; stroke-width: 1.5; }
+    .gpu { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.5; }
+    .cpu { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.5; }
+    .ag { stroke: #5aa55a; stroke-width: 2; fill: none; marker-end: url(#ag); }
+    .ae { stroke: #4a86d0; stroke-width: 2; fill: none; marker-end: url(#ae); }
+  </style>
+  <defs>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5aa55a"/></marker>
+    <marker id="ae" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#4a86d0"/></marker>
+  </defs>
+
+  <text x="20" y="24" class="b" style="fill:#2a7330">shader files</text>
+  <text x="330" y="24" class="b" text-anchor="middle" style="fill:#a85000">GPU program</text>
+  <text x="450" y="24" class="b" style="fill:#2b66ad">opengl_shader_structure (copies)</text>
+
+  <!-- Row 1: default shader shared by copies -->
+  <rect x="20" y="52" width="150" height="30" rx="4" class="sh"/><text x="95" y="72" class="m" text-anchor="middle">mesh.vert.glsl</text>
+  <rect x="20" y="92" width="150" height="30" rx="4" class="sh"/><text x="95" y="112" class="m" text-anchor="middle">mesh.frag.glsl</text>
+  <text x="215" y="56" class="s" text-anchor="middle" style="fill:#2a7330">compile, link</text>
+  <path d="M172,67 L256,84" class="ag"/>
+  <path d="M172,107 L256,98" class="ag"/>
+  <rect x="260" y="62" width="140" height="56" rx="6" class="gpu"/>
+  <text x="330" y="84" class="in" text-anchor="middle">program</text>
+  <text x="330" y="106" class="m b" text-anchor="middle">id = 3</text>
+
+  <rect x="450" y="44" width="230" height="28" rx="4" class="cpu"/><text x="462" y="63" class="m">default_shader.id == 3</text>
+  <rect x="450" y="78" width="230" height="28" rx="4" class="cpu"/><text x="462" y="97" class="m">sphere.shader.id == 3</text>
+  <rect x="450" y="112" width="230" height="28" rx="4" class="cpu"/><text x="462" y="131" class="m">cube.shader.id == 3</text>
+  <path d="M448,58 L404,80" class="ae"/>
+  <path d="M448,92 L404,90" class="ae"/>
+  <path d="M448,126 L404,102" class="ae"/>
+
+  <text x="20" y="166" class="m">mesh_drawable::default_shader.load(vert, frag);</text><text x="470" y="166" class="cm">// by CGP at start</text>
+  <text x="20" y="186" class="m">sphere.initialize_data_on_gpu(mesh_primitive_sphere());</text><text x="470" y="186" class="cm">// copies the struct</text>
+
+  <line x1="20" y1="204" x2="680" y2="204" stroke="#ddd" stroke-width="1"/>
+
+  <!-- Row 2: a drawable with its own shader -->
+  <rect x="20" y="220" width="150" height="30" rx="4" class="sh"/><text x="95" y="240" class="m" text-anchor="middle">water.vert.glsl</text>
+  <rect x="20" y="260" width="150" height="30" rx="4" class="sh"/><text x="95" y="280" class="m" text-anchor="middle">water.frag.glsl</text>
+  <path d="M172,235 L256,252" class="ag"/>
+  <path d="M172,275 L256,266" class="ag"/>
+  <rect x="260" y="230" width="140" height="56" rx="6" class="gpu"/>
+  <text x="330" y="252" class="in" text-anchor="middle">program</text>
+  <text x="330" y="274" class="m b" text-anchor="middle">id = 7</text>
+  <rect x="450" y="244" width="230" height="28" rx="4" class="cpu"/><text x="462" y="263" class="m">water.shader.id == 7</text>
+  <path d="M448,258 L404,258" class="ae"/>
+  <text x="565" y="290" class="s" text-anchor="middle">(was 3: program 3 is kept)</text>
+
+  <text x="20" y="320" class="m">water.shader.load(vert_water, frag_water);</text><text x="470" y="320" class="cm">// others keep id 3</text>
+
+  <line x1="20" y1="338" x2="680" y2="338" stroke="#ddd" stroke-width="1"/>
+
+  <text x="20" y="362" class="in"><tspan class="m">load()</tspan> replaces <tspan class="m">id</tspan> without deleting the previous program, which other copies may use.</text>
+  <text x="20" y="384" class="in"><tspan class="m">clear()</tspan> deletes the program and sets <tspan class="m">id = 0</tspan>: every other copy then holds a dead id.</text>
+  <text x="20" y="406" class="in"><tspan class="m">draw(shape, environment)</tspan> uses the program <tspan class="m">shape.shader.id</tspan> (id values are examples).</text>
+</svg>

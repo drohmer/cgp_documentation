@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 456" width="700" height="456">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .cm { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #666666; }
+    .b { font-weight: bold; }
+    .s { font-size: 13px; }
+    .cpu { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.5; }
+    .gpu { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.5; }
+    .ar { stroke: #e07b1a; stroke-width: 2; fill: none; marker-end: url(#ar); }
+    .q1 { fill: #4a86d0; } .q2 { fill: #e07b1a; } .q3 { fill: #5aa55a; } .q4 { fill: #c8c8c8; }
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+  </defs>
+
+  <text x="20" y="24" class="b" style="fill:#2b66ad">image_structure (CPU)</text>
+  <text x="305" y="24" class="b" style="fill:#a85000">opengl_texture_image_structure (GPU)</text>
+
+  <!-- CPU image -->
+  <rect x="20" y="36" width="210" height="170" rx="8" class="cpu"/>
+  <text x="125" y="60" class="m" text-anchor="middle">im</text>
+  <text x="125" y="80" class="s" text-anchor="middle">first row of the file</text>
+  <rect x="75" y="88" width="50" height="50" class="q1"/><rect x="125" y="88" width="50" height="50" class="q2"/>
+  <rect x="75" y="138" width="50" height="50" class="q3"/><rect x="125" y="138" width="50" height="50" class="q4"/>
+  <rect x="75" y="88" width="100" height="100" fill="none" stroke="#666" stroke-width="1"/>
+
+  <path d="M236,121 L298,121" class="ar"/>
+  <text x="267" y="112" class="s" text-anchor="middle" style="fill:#a85000">copy</text>
+
+  <!-- GPU texture -->
+  <rect x="305" y="36" width="375" height="170" rx="8" class="gpu"/>
+  <text x="320" y="62" class="m">tex.id</text><text x="470" y="62" class="cm">// GL name, 0 if none</text>
+  <text x="320" y="88" class="m">tex.width</text><text x="470" y="88" class="cm">// = im.width</text>
+  <text x="320" y="114" class="m">tex.height</text><text x="470" y="114" class="cm">// = im.height</text>
+  <text x="320" y="140" class="m">tex.format</text><text x="470" y="140" class="cm">// GL_RGBA8 or GL_RGB8</text>
+  <text x="320" y="166" class="m">tex.texture_type</text><text x="470" y="166" class="cm">// GL_TEXTURE_2D</text>
+  <text x="320" y="192" class="s">pixels live in GPU memory, not in the struct</text>
+
+  <!-- code -->
+  <text x="20" y="236" class="m">tex.initialize_texture_2d_on_gpu(im);</text><text x="372" y="236" class="cm">// from an image_structure</text>
+  <text x="20" y="258" class="m">shape.texture.load_and_initialize_texture_2d_on_gpu(filename);</text>
+  <text x="20" y="280" class="cm">// = image_load_file + initialize; defaults: GL_CLAMP_TO_EDGE, mipmaps</text>
+
+  <line x1="20" y1="298" x2="680" y2="298" stroke="#ddd" stroke-width="1"/>
+
+  <!-- On a mesh -->
+  <text x="20" y="322" class="b">on a mesh: uv coordinates</text>
+  <rect x="80" y="340" width="50" height="50" class="q1"/><rect x="130" y="340" width="50" height="50" class="q2"/>
+  <rect x="80" y="390" width="50" height="50" class="q3"/><rect x="130" y="390" width="50" height="50" class="q4"/>
+  <rect x="80" y="340" width="100" height="100" fill="none" stroke="#666" stroke-width="1.5"/>
+  <circle cx="80" cy="440" r="4" fill="#333"/><circle cx="180" cy="440" r="4" fill="#333"/><circle cx="180" cy="340" r="4" fill="#333"/><circle cx="80" cy="340" r="4" fill="#333"/>
+  <text x="74" y="444" class="m" text-anchor="end">(0,0)</text>
+  <text x="186" y="444" class="m">(1,0)</text>
+  <text x="186" y="344" class="m">(1,1)</text>
+  <text x="74" y="344" class="m" text-anchor="end">(0,1)</text>
+
+  <text x="260" y="350" class="in"><tspan class="m">mesh_primitive_quadrangle()</tspan> puts uv (0,0) to (1,1)</text>
+  <text x="260" y="370" class="in">on its corners. The default shader reads the texture</text>
+  <text x="260" y="390" class="in">at (u, 1-v) since <tspan class="m">material.texture_settings.inverse_v</tspan></text>
+  <text x="260" y="410" class="in">is true: the first row of the file shows at v = 1.</text>
+  <text x="260" y="436" class="in"><tspan class="m">draw()</tspan> binds <tspan class="m">shape.texture</tspan> to the uniform <tspan class="m">image_texture</tspan>.</text>
+</svg>

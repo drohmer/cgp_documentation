@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 390" width="700" height="390">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .cm { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #666666; }
+    .b { font-weight: bold; }
+    .s { font-size: 13px; }
+    .k0 { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.2; }
+    .k1 { fill: #f7fbff; stroke: #6b9bd8; stroke-width: 1.2; }
+    .hl { fill: #fdebd6; stroke: #e07b1a; stroke-width: 2.5; }
+    .ax { stroke: #888; stroke-width: 1.5; fill: none; marker-end: url(#ag); }
+  </style>
+  <defs>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker>
+  </defs>
+
+  <text x="20" y="24" class="b" style="fill:#2b66ad">grid_3D&lt;float&gt; g(3, 2, 2): element (i, j, k) and its offset in g.data</text>
+
+  <!-- slice k = 0 -->
+  <text x="125" y="54" class="s b" text-anchor="middle">slice k = 0</text>
+  <rect x="56" y="64" width="46" height="40" class="k0"/><rect x="102" y="64" width="46" height="40" class="k0"/><rect x="148" y="64" width="46" height="40" class="k0"/>
+  <rect x="56" y="104" width="46" height="40" class="k0"/><rect x="102" y="104" width="46" height="40" class="k0"/><rect x="148" y="104" width="46" height="40" class="k0"/>
+  <text x="79" y="89" class="m" text-anchor="middle">3</text><text x="125" y="89" class="m" text-anchor="middle">4</text><text x="171" y="89" class="m" text-anchor="middle">5</text>
+  <text x="79" y="129" class="m" text-anchor="middle">0</text><text x="125" y="129" class="m" text-anchor="middle">1</text><text x="171" y="129" class="m" text-anchor="middle">2</text>
+  <text x="46" y="89" class="s" text-anchor="end">1</text><text x="46" y="129" class="s" text-anchor="end">0</text>
+  <text x="79" y="162" class="s" text-anchor="middle">0</text><text x="125" y="162" class="s" text-anchor="middle">1</text><text x="171" y="162" class="s" text-anchor="middle">2</text>
+
+  <!-- slice k = 1 -->
+  <text x="285" y="54" class="s b" text-anchor="middle">slice k = 1</text>
+  <rect x="216" y="64" width="46" height="40" class="k1"/><rect x="262" y="64" width="46" height="40" class="hl"/><rect x="308" y="64" width="46" height="40" class="k1"/>
+  <rect x="216" y="104" width="46" height="40" class="k1"/><rect x="262" y="104" width="46" height="40" class="k1"/><rect x="308" y="104" width="46" height="40" class="k1"/>
+  <text x="239" y="89" class="m" text-anchor="middle">9</text><text x="285" y="89" class="m b" text-anchor="middle" style="fill:#a85000">10</text><text x="331" y="89" class="m" text-anchor="middle">11</text>
+  <text x="239" y="129" class="m" text-anchor="middle">6</text><text x="285" y="129" class="m" text-anchor="middle">7</text><text x="331" y="129" class="m" text-anchor="middle">8</text>
+  <text x="239" y="162" class="s" text-anchor="middle">0</text><text x="285" y="162" class="s" text-anchor="middle">1</text><text x="331" y="162" class="s" text-anchor="middle">2</text>
+
+  <!-- axes -->
+  <path d="M56,176 L200,176" class="ax"/>
+  <text x="56" y="194" class="s">i  (dimension.x = 3)</text>
+  <path d="M28,144 L28,62" class="ax"/>
+  <text x="20" y="104" class="s" text-anchor="middle" transform="rotate(-90 20 104)">j  (dim.y = 2)</text>
+  <text x="216" y="194" class="s">k  (dimension.z = 2)</text>
+
+  <!-- code -->
+  <text x="380" y="70" class="m">grid_3D&lt;float&gt; g(3, 2, 2);</text>
+  <text x="380" y="90" class="cm">// g.dimension == {3, 2, 2}</text>
+  <text x="380" y="118" class="m">g(1, 1, 1) = 1.0f;</text>
+  <text x="380" y="138" class="cm">// g.data[1 + 3*(1 + 2*1)]</text>
+  <text x="380" y="156" class="cm">//  = g.data[10]</text>
+  <text x="380" y="184" class="m">g.offset_to_index(10)</text><text x="566" y="184" class="cm">// {1,1,1}</text>
+
+  <text x="20" y="216" class="in">offset = i + dimension.x * (j + dimension.y * k) :  <tspan class="b">i fastest, then j, then k</tspan></text>
+
+  <!-- linear storage -->
+  <text x="20" y="243" class="s">g.data  (slice k = 0, then slice k = 1)</text>
+  <g>
+    <rect x="60" y="250" width="50" height="34" class="k0"/><rect x="110" y="250" width="50" height="34" class="k0"/><rect x="160" y="250" width="50" height="34" class="k0"/>
+    <rect x="210" y="250" width="50" height="34" class="k0"/><rect x="260" y="250" width="50" height="34" class="k0"/><rect x="310" y="250" width="50" height="34" class="k0"/>
+    <rect x="360" y="250" width="50" height="34" class="k1"/><rect x="410" y="250" width="50" height="34" class="k1"/><rect x="460" y="250" width="50" height="34" class="k1"/>
+    <rect x="510" y="250" width="50" height="34" class="k1"/><rect x="560" y="250" width="50" height="34" class="hl"/><rect x="610" y="250" width="50" height="34" class="k1"/>
+  </g>
+  <g>
+    <text x="85" y="272" class="m" text-anchor="middle">0,0,0</text><text x="135" y="272" class="m" text-anchor="middle">1,0,0</text><text x="185" y="272" class="m" text-anchor="middle">2,0,0</text>
+    <text x="235" y="272" class="m" text-anchor="middle">0,1,0</text><text x="285" y="272" class="m" text-anchor="middle">1,1,0</text><text x="335" y="272" class="m" text-anchor="middle">2,1,0</text>
+    <text x="385" y="272" class="m" text-anchor="middle">0,0,1</text><text x="435" y="272" class="m" text-anchor="middle">1,0,1</text><text x="485" y="272" class="m" text-anchor="middle">2,0,1</text>
+    <text x="535" y="272" class="m" text-anchor="middle">0,1,1</text><text x="585" y="272" class="m b" text-anchor="middle" style="fill:#a85000">1,1,1</text><text x="635" y="272" class="m" text-anchor="middle">2,1,1</text>
+  </g>
+  <text x="50" y="302" class="s" text-anchor="end">offset</text>
+  <g>
+    <text x="85" y="302" class="s" text-anchor="middle">0</text><text x="135" y="302" class="s" text-anchor="middle">1</text><text x="185" y="302" class="s" text-anchor="middle">2</text>
+    <text x="235" y="302" class="s" text-anchor="middle">3</text><text x="285" y="302" class="s" text-anchor="middle">4</text><text x="335" y="302" class="s" text-anchor="middle">5</text>
+    <text x="385" y="302" class="s" text-anchor="middle">6</text><text x="435" y="302" class="s" text-anchor="middle">7</text><text x="485" y="302" class="s" text-anchor="middle">8</text>
+    <text x="535" y="302" class="s" text-anchor="middle">9</text><text x="585" y="302" class="s" text-anchor="middle" style="fill:#a85000">10</text><text x="635" y="302" class="s" text-anchor="middle">11</text>
+  </g>
+  <!-- row brackets -->
+  <path d="M62,312 L62,318 L208,318 L208,312" stroke="#aaa" fill="none"/>
+  <path d="M212,312 L212,318 L358,318 L358,312" stroke="#aaa" fill="none"/>
+  <path d="M362,312 L362,318 L508,318 L508,312" stroke="#aaa" fill="none"/>
+  <path d="M512,312 L512,318 L658,318 L658,312" stroke="#aaa" fill="none"/>
+  <text x="135" y="334" class="s" text-anchor="middle">j = 0</text>
+  <text x="285" y="334" class="s" text-anchor="middle">j = 1</text>
+  <text x="435" y="334" class="s" text-anchor="middle">j = 0</text>
+  <text x="585" y="334" class="s" text-anchor="middle">j = 1</text>
+  <!-- slice brackets -->
+  <path d="M62,344 L62,350 L358,350 L358,344" stroke="#6b9bd8" fill="none"/>
+  <path d="M362,344 L362,350 L658,350 L658,344" stroke="#6b9bd8" fill="none"/>
+  <text x="210" y="370" class="s" text-anchor="middle" style="fill:#2b66ad">slice k = 0</text>
+  <text x="510" y="370" class="s" text-anchor="middle" style="fill:#2b66ad">slice k = 1</text>
+</svg>

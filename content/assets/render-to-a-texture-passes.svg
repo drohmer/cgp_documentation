@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 372" width="700" height="372">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .lab { font-size: 13px; }
+    .b { font-weight: bold; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 12px; fill: #333; }
+    .cpu { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.5; }
+    .gpu { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.5; }
+    .sh { fill: #dff0dc; stroke: #5aa55a; stroke-width: 1.5; }
+    .img { fill: #ffffff; stroke: #999; stroke-width: 1; }
+    .ar { stroke: #e07b1a; stroke-width: 2; fill: none; marker-end: url(#ar); }
+    .ak { stroke: #555; stroke-width: 2; fill: none; marker-end: url(#ak); }
+    .shape { fill: #c9c9c9; stroke: #9a9a9a; stroke-width: 1; }
+    .edge { fill: none; stroke: #222; stroke-width: 1.6; }
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+    <marker id="ak" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#555"/></marker>
+  </defs>
+
+  <!-- Pass 1 -->
+  <text x="20" y="24" class="b in">Pass 1: the scene, into the FBO</text>
+  <rect x="20" y="44" width="166" height="104" rx="6" class="sh"/>
+  <text x="32" y="66" class="in b">shapes of the scene</text>
+  <text x="32" y="90" class="m">draw(sphere, ...)</text>
+  <text x="32" y="110" class="m">draw(cylinder, ...)</text>
+  <text x="32" y="134" class="lab">default shader</text>
+
+  <text x="226" y="86" class="m" text-anchor="middle" style="fill:#a85000">fbo.bind()</text>
+  <path d="M186,96 H262" class="ar"/>
+
+  <rect x="266" y="36" width="250" height="120" rx="8" class="gpu"/>
+  <text x="280" y="58" class="in b">fbo (opengl_fbo_structure)</text>
+  <rect x="280" y="68" width="100" height="76" class="img"/>
+  <circle cx="312" cy="108" r="20" class="shape"/>
+  <rect x="340" y="88" width="24" height="44" class="shape"/>
+  <text x="392" y="94" class="m">fbo.texture</text>
+  <text x="392" y="112" class="lab">color image</text>
+  <text x="392" y="132" class="lab">+ depth buffer</text>
+
+  <text x="532" y="86" class="m" style="fill:#a85000">fbo.unbind()</text>
+  <text x="532" y="106" class="lab">drawing goes</text>
+  <text x="532" y="122" class="lab">back to the window</text>
+
+  <!-- link -->
+  <path d="M330,146 V226" class="ak"/>
+  <text x="340" y="184" class="m">screen_quad.texture = fbo.texture</text>
+  <text x="340" y="202" class="lab">(set once in initialize)</text>
+
+  <!-- Pass 2 -->
+  <text x="20" y="196" class="b in">Pass 2: filter, to the window</text>
+  <text x="20" y="252" class="m">glDisable(GL_DEPTH_TEST)</text>
+  <text x="20" y="272" class="m">draw(screen_quad,</text>
+  <text x="20" y="288" class="m">  environment, 1, false)</text>
+  <path d="M200,280 H262" class="ak"/>
+
+  <rect x="266" y="230" width="210" height="110" rx="8" class="sh"/>
+  <text x="280" y="252" class="in b">screen_quad</text>
+  <text x="280" y="272" class="lab">quad from (-1,-1) to (1,1)</text>
+  <text x="280" y="292" class="lab">shader screen_effect:</text>
+  <text x="280" y="310" class="lab">each pixel combines</text>
+  <text x="280" y="328" class="lab">its 4 neighbors</text>
+
+  <path d="M476,282 H526" class="ak"/>
+  <text x="530" y="226" class="in b">window</text>
+  <rect x="530" y="236" width="150" height="104" class="img" style="stroke:#555"/>
+  <circle cx="580" cy="292" r="24" class="edge"/>
+  <rect x="616" y="266" width="28" height="52" class="edge"/>
+  <path d="M544,328 h22" style="stroke:#d0605a;stroke-width:2.5"/>
+  <path d="M544,328 v-22" style="stroke:#4a86d0;stroke-width:2.5"/>
+
+  <text x="350" y="364" text-anchor="middle">Shapes drawn after pass 2 (here global_frame) are on top, not filtered.</text>
+</svg>

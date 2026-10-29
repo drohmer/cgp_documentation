@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 450" width="700" height="450">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; }
+    .note { fill: #555; font-size: 14px; }
+    .b { font-weight: bold; }
+    .file { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #666666; }
+    .app { fill: #ececec; stroke: #999; stroke-width: 1.5; }
+    .scn { fill: #dff0dc; stroke: #5aa55a; stroke-width: 1.5; }
+    .arrow { stroke: #888; stroke-width: 2; fill: none; marker-end: url(#a); }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#888"/>
+    </marker>
+  </defs>
+
+  <!-- Startup: left column -->
+  <text x="20" y="16" class="b">Startup (once)</text>
+
+  <rect x="20" y="28" width="260" height="50" rx="6" class="app"/>
+  <text x="34" y="51" class="in b">main()</text>
+  <text x="34" y="69" class="note">creates scene and app</text>
+  <text x="280" y="94" class="file" text-anchor="end">src/main.cpp</text>
+
+  <path d="M90,78 V110" class="arrow"/>
+
+  <rect x="20" y="112" width="260" height="200" rx="6" class="app"/>
+  <text x="34" y="135" class="in b">app.initialize()</text>
+  <text x="34" y="155" class="note">1. window, ImGui, input callbacks</text>
+  <text x="34" y="174" class="note">2. project::path</text>
+  <text x="34" y="193" class="note">3. default shaders and texture</text>
+  <text x="34" y="214" class="note">4. calls:</text>
+
+  <rect x="44" y="224" width="222" height="56" rx="6" class="scn"/>
+  <text x="58" y="247" class="in b">scene.initialize()</text>
+  <text x="58" y="267" class="note">build meshes, send to GPU</text>
+  <text x="266" y="298" class="file" text-anchor="end">src/scene.cpp</text>
+  <text x="280" y="328" class="file" text-anchor="end">src/application.cpp</text>
+
+  <!-- into the loop, once app.initialize() returns -->
+  <path d="M280,190 H302 V88 H336" class="arrow"/>
+
+  <!-- Legend -->
+  <rect x="20" y="372" width="22" height="16" rx="3" class="app"/>
+  <text x="52" y="385">application: rarely edited</text>
+  <rect x="20" y="402" width="22" height="16" rx="3" class="scn"/>
+  <text x="52" y="415">your scene: you write it</text>
+
+  <!-- Frame loop: right column -->
+  <rect x="318" y="28" width="362" height="412" rx="10" fill="none" stroke="#999" stroke-width="1.5" stroke-dasharray="6 4"/>
+  <text x="330" y="16" class="b">app.start_loop(): every frame</text>
+
+  <rect x="338" y="66" width="300" height="44" rx="6" class="app"/>
+  <text x="352" y="93" class="in">1. projection matrix, clear</text>
+
+  <path d="M488,110 V122" class="arrow"/>
+  <rect x="338" y="124" width="300" height="44" rx="6" class="scn"/>
+  <text x="352" y="151" class="in b">2. scene.display_gui()</text>
+  <text x="626" y="151" class="note" text-anchor="end">widgets</text>
+
+  <path d="M488,168 V180" class="arrow"/>
+  <rect x="338" y="182" width="300" height="44" rx="6" class="scn"/>
+  <text x="352" y="209" class="in b">3. scene.idle_frame()</text>
+  <text x="626" y="209" class="note" text-anchor="end">camera</text>
+
+  <path d="M488,226 V238" class="arrow"/>
+  <rect x="338" y="240" width="300" height="44" rx="6" class="scn"/>
+  <text x="352" y="267" class="in b">4. scene.display_frame()</text>
+  <text x="626" y="267" class="note" text-anchor="end">draw</text>
+
+  <path d="M488,284 V296" class="arrow"/>
+  <rect x="338" y="298" width="300" height="44" rx="6" class="app"/>
+  <text x="352" y="325" class="in">5. render GUI, swap buffers</text>
+
+  <path d="M488,342 V354" class="arrow"/>
+  <rect x="338" y="356" width="300" height="66" rx="6" class="scn"/>
+  <text x="352" y="380" class="in">6. poll events: callbacks</text>
+  <text x="352" y="402" class="note">mouse_move_event(), keyboard_event()...</text>
+
+  <!-- loop back -->
+  <path d="M638,389 H662 V88 H642" class="arrow"/>
+</svg>

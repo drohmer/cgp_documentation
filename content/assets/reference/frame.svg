@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" width="700" height="420">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .sm { fill: #555; font-size: 13px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .c { fill: #666666; }
+    .k { fill: #2b66ad; }
+    .b { font-weight: bold; }
+    .aw { stroke: #aaa; stroke-width: 1.5; fill: none; marker-end: url(#aw); }
+    .ap { stroke: #555; stroke-width: 1.5; stroke-dasharray: 6,4; fill: none; marker-end: url(#ap); }
+  </style>
+  <defs>
+    <marker id="aw" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#aaa"/></marker>
+    <marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#555"/></marker>
+    <marker id="m0" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d0605a"/></marker>
+    <marker id="m1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5aa55a"/></marker>
+    <marker id="m2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#4a86d0"/></marker>
+  </defs>
+
+  <text x="20" y="24" class="b" style="fill:#2b66ad">frame: an origin (position) and three orthonormal axes (orientation)</text>
+
+  <path d="M110.0,330.0 L240.0,330.0" class="aw"/>
+  <path d="M110.0,330.0 L110.0,200.0" class="aw"/>
+  <path d="M110.0,330.0 L51.5,375.5" class="aw"/>
+  <text x="250.0" y="335.0" class="sm">x</text>
+  <text x="106.0" y="190.0" class="sm">y</text>
+  <text x="36.8" y="387.6" class="sm">z</text>
+  <circle cx="110" cy="330" r="3.5" fill="#888"/>
+  <text x="60" y="356" class="sm">world origin</text>
+  <path d="M110.0,330.0 L226.0,173.0" class="ap"/>
+  <text x="178.0" y="270.0" class="m b" style="fill:#555">position</text>
+  <path d="M230.0,170.0 L305.8,121.7" stroke="#d0605a" stroke-width="3" fill="none" marker-end="url(#m0)"/>
+  <text x="311.8" y="135.7" class="m b" style="fill:#b3261e">ux()</text>
+  <path d="M230.0,170.0 L202.9,105.3" stroke="#5aa55a" stroke-width="3" fill="none" marker-end="url(#m1)"/>
+  <text x="208.9" y="99.3" class="m b" style="fill:#2a7330">uy()</text>
+  <path d="M230.0,170.0 L264.8,195.9" stroke="#4a86d0" stroke-width="3" fill="none" marker-end="url(#m2)"/>
+  <text x="226.8" y="213.9" class="m b" style="fill:#2b66ad">uz()</text>
+  <circle cx="230.0" cy="170.0" r="4.5" fill="#333"/>
+  <path d="M305.8,121.7 L289.6,82.9" stroke="#d0605a" stroke-width="1.2" stroke-dasharray="4,3" fill="none"/>
+  <path d="M213.8,131.2 L289.6,82.9" stroke="#5aa55a" stroke-width="1.2" stroke-dasharray="4,3" fill="none"/>
+  <circle cx="289.6" cy="82.9" r="4.5" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <text x="297.6" y="76.9" class="m b">q</text>
+
+  <!-- struct -->
+  <rect x="372" y="44" width="316" height="96" rx="6" fill="#e3eefb" stroke="#6b9bd8" stroke-width="1.5"/>
+  <text x="384" y="66" class="m b">struct frame</text>
+  <text x="400" y="88" class="m">rotation_transform orientation;</text>
+  <text x="400" y="108" class="m">vec3 position;</text>
+  <text x="384" y="130" class="sm">ux(), uy(), uz() = columns of orientation</text>
+
+  <text x="372" y="166" class="sm">Point q with local coordinates (a, b, c):</text>
+  <text x="372" y="186" class="m">q = position + a*ux + b*uy + c*uz</text>
+  <text x="387.6" y="206" class="m">= f.matrix() * vec4(a, b, c, 1)</text>
+
+  <!-- code -->
+  <rect x="372" y="222" width="316" height="190" rx="6" fill="#f6f6f6" stroke="#ccc"/>
+  <text x="384" y="244" class="m">frame f(<tspan class="k">rotation_axis_angle</tspan>(</text>
+  <text x="416" y="262" class="m">{0,0,1}, 0.5f), {2,1,0});</text>
+  <text x="384" y="284" class="m">frame g(ux, uy, position);</text>
+  <text x="384" y="302" class="m c">// uz = cross(ux, uy)</text>
+  <text x="384" y="324" class="m">vec3 a = f.<tspan class="k">ux</tspan>();</text>
+  <text x="384" y="346" class="m">mat4 M = f.<tspan class="k">matrix</tspan>();</text>
+  <text x="384" y="368" class="m">frame h = T * f; <tspan class="c">// T: affine_rt</tspan></text>
+  <text x="384" y="390" class="m">frame fi = <tspan class="k">inverse</tspan>(f);</text>
+</svg>

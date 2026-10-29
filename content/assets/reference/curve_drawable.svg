@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 440" width="700" height="440">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 14px; fill: #666666; }
+    .in { fill: #333; }
+    .b { font-weight: bold; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .s { font-size: 13px; }
+    .cpu { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.5; }
+    .gpu { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.5; }
+    .card { fill: #ffffff; stroke: #cccccc; stroke-width: 1; }
+    .ln { stroke: #e03030; stroke-width: 3; fill: none; stroke-linecap: round; }
+    .pt { fill: #333; }
+    .idx { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #2b66ad; }
+  </style>
+
+  <!-- fields -->
+  <text x="20" y="24" class="b" style="fill:#2b66ad">curve_drawable</text>
+  <rect x="20" y="36" width="250" height="300" rx="8" class="cpu"/>
+  <text x="34" y="62" class="m">display_type</text>
+  <text x="34" y="80" class="s">Curve (default) or Segments</text>
+
+  <rect x="32" y="96" width="226" height="94" rx="6" class="gpu"/>
+  <text x="44" y="118" class="m">vbo_position</text>
+  <text x="44" y="136" class="s">the N points, location 0</text>
+  <text x="44" y="160" class="m">vao</text>
+  <text x="44" y="178" class="s">set by initialize_data_on_gpu</text>
+
+  <text x="34" y="214" class="m">shader</text>
+  <text x="34" y="232" class="s">default_shader if not given</text>
+  <text x="34" y="258" class="m">color</text>
+  <text x="34" y="276" class="s">uniform "color"</text>
+  <text x="34" y="302" class="m">model</text>
+  <text x="34" y="320" class="s">affine, uniform "model"</text>
+
+  <!-- Curve -->
+  <text x="290" y="24" class="m">curve_drawable_display_type::Curve</text>
+  <rect x="290" y="36" width="390" height="150" rx="8" class="card"/>
+  <polyline points="320,120 384,74 448,128 512,82 576,132 640,90" class="ln"/>
+  <g class="pt">
+    <circle cx="320" cy="120" r="4.5"/><circle cx="384" cy="74" r="4.5"/><circle cx="448" cy="128" r="4.5"/>
+    <circle cx="512" cy="82" r="4.5"/><circle cx="576" cy="132" r="4.5"/><circle cx="640" cy="90" r="4.5"/>
+  </g>
+  <text x="320" y="144" class="idx" text-anchor="middle">0</text>
+  <text x="384" y="64" class="idx" text-anchor="middle">1</text>
+  <text x="448" y="152" class="idx" text-anchor="middle">2</text>
+  <text x="512" y="72" class="idx" text-anchor="middle">3</text>
+  <text x="576" y="156" class="idx" text-anchor="middle">4</text>
+  <text x="640" y="80" class="idx" text-anchor="middle">5</text>
+  <text x="302" y="176" class="s in">GL_LINE_STRIP: N points give N-1 lines</text>
+
+  <!-- Segments -->
+  <text x="290" y="222" class="m">curve_drawable_display_type::Segments</text>
+  <rect x="290" y="234" width="390" height="150" rx="8" class="card"/>
+  <line x1="320" y1="318" x2="384" y2="272" class="ln"/>
+  <line x1="448" y1="326" x2="512" y2="280" class="ln"/>
+  <line x1="576" y1="330" x2="640" y2="288" class="ln"/>
+  <g class="pt">
+    <circle cx="320" cy="318" r="4.5"/><circle cx="384" cy="272" r="4.5"/><circle cx="448" cy="326" r="4.5"/>
+    <circle cx="512" cy="280" r="4.5"/><circle cx="576" cy="330" r="4.5"/><circle cx="640" cy="288" r="4.5"/>
+  </g>
+  <text x="320" y="342" class="idx" text-anchor="middle">0</text>
+  <text x="384" y="262" class="idx" text-anchor="middle">1</text>
+  <text x="448" y="350" class="idx" text-anchor="middle">2</text>
+  <text x="512" y="270" class="idx" text-anchor="middle">3</text>
+  <text x="576" y="354" class="idx" text-anchor="middle">4</text>
+  <text x="640" y="278" class="idx" text-anchor="middle">5</text>
+  <text x="302" y="374" class="s in">GL_LINES: pairs (0,1), (2,3), ... give N/2 segments</text>
+
+  <text x="20" y="408" class="s">initialize_data_on_gpu(position) sets color = (1, 0, 0) (red) and model = identity</text>
+  <text x="20" y="428" class="s">draw(curve, environment, N_points) uses only the first N_points (default -1: all points)</text>
+</svg>

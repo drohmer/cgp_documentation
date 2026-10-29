@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 350" width="700" height="350">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .sm { fill: #555; font-size: 13px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .c { fill: #666666; }
+    .k { fill: #2b66ad; }
+    .b { font-weight: bold; }
+    .cell { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.2; }
+    .cellw { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.2; }
+    .br { stroke-width: 1.5; fill: none; }
+    .ax { stroke: #4a86d0; stroke-width: 2.5; fill: none; marker-end: url(#ab); }
+    .ao { stroke: #e07b1a; stroke-width: 2; fill: none; marker-end: url(#ao); }
+    .ag { stroke: #888; stroke-width: 1.5; fill: none; marker-end: url(#ag); }
+  </style>
+  <defs>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#4a86d0"/></marker>
+    <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker>
+  </defs>
+
+  <text x="20" y="24" class="b" style="fill:#2b66ad">quaternion: a vec4 (x, y, z, w) with the scalar part w last</text>
+
+  <!-- geometric meaning -->
+  <ellipse cx="150" cy="170" rx="100" ry="28" fill="#f4f4f4" stroke="#bbb" stroke-width="1.2" stroke-dasharray="5,4"/>
+  <path d="M150,280 V70" class="ax"/>
+  <text x="160" y="76" class="in b" style="fill:#2b66ad">u</text>
+  <text x="160" y="94" class="sm">unit axis</text>
+  <circle cx="150" cy="170" r="3" fill="#888"/>
+  <!-- p at phi=150 deg, Rp at phi=35 deg -->
+  <path d="M150,170 L63.4,184" stroke="#888" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <path d="M150,170 L231.9,186.1" stroke="#888" stroke-width="1.2" stroke-dasharray="4,3"/>
+  <path d="M63.4,184 A100,28 0 0,0 228,187" class="ao"/>
+  <circle cx="63.4" cy="184" r="5" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <circle cx="231.9" cy="186.1" r="5" fill="#e07b1a" stroke="#333" stroke-width="1.5"/>
+  <text x="40" y="214" class="m b">p</text>
+  <text x="226" y="216" class="m b">R*p</text>
+  <text x="150" y="226" text-anchor="middle" class="in b" style="fill:#a85000">theta</text>
+  <text x="20" y="306" class="sm">Rotation of angle theta around u,</text>
+  <text x="20" y="324" class="sm">counterclockwise seen from the tip of u.</text>
+
+  <!-- memory layout -->
+  <text x="330" y="60" class="sm">struct quaternion : vec4</text>
+  <rect x="330" y="72" width="64" height="34" class="cell"/><rect x="394" y="72" width="64" height="34" class="cell"/><rect x="458" y="72" width="64" height="34" class="cell"/><rect x="522" y="72" width="64" height="34" class="cellw"/>
+  <text x="362" y="94" text-anchor="middle" class="m b">x</text><text x="426" y="94" text-anchor="middle" class="m b">y</text><text x="490" y="94" text-anchor="middle" class="m b">z</text><text x="554" y="94" text-anchor="middle" class="m b">w</text>
+  <text x="600" y="94" class="sm">[0..3]</text>
+  <path d="M332,114 V120 H520 V114" class="br" style="stroke:#4a86d0"/>
+  <text x="426" y="138" text-anchor="middle" class="m" style="fill:#2b66ad">sin(theta/2) * u</text>
+  <path d="M524,114 V120 H584 V114" class="br" style="stroke:#e07b1a"/>
+  <text x="554" y="138" text-anchor="middle" class="m" style="fill:#a85000">cos(theta/2)</text>
+  <text x="330" y="164" class="sm">Identity (no rotation): {0, 0, 0, 1}. Rotations use unit q.</text>
+
+  <!-- code panel -->
+  <rect x="330" y="180" width="358" height="160" rx="6" fill="#f6f6f6" stroke="#ccc"/>
+  <text x="342" y="204" class="m">rotation_transform R =</text>
+  <text x="358" y="222" class="m"><tspan class="k">rotation_axis_angle</tspan>(u, theta);</text>
+  <text x="342" y="244" class="m">quaternion q = R.data;</text>
+  <text x="342" y="266" class="m">vec3 Rp = R * p;</text>
+  <text x="342" y="284" class="m"><tspan class="c">// = q * (p,0) * conjugate(q)</tspan></text>
+  <text x="342" y="306" class="m">quaternion q12 = q1 * q2;</text>
+  <text x="342" y="324" class="m"><tspan class="c">// Hamilton product</tspan></text>
+</svg>

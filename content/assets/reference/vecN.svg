@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 346" width="700" height="346">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .sm { fill: #555; font-size: 13px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .c { fill: #666666; }
+    .k { fill: #2b66ad; }
+    .b { font-weight: bold; }
+    .cell { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.2; }
+    .cellw { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.2; }
+    .br { stroke: #e07b1a; stroke-width: 1.5; fill: none; }
+  </style>
+
+  <text x="20" y="26" class="b" style="fill:#2b66ad">vec2 / vec3 / vec4: floats stored side by side</text>
+
+  <!-- index header -->
+  <text x="78" y="58" text-anchor="end" class="sm">index</text>
+  <text x="120" y="58" text-anchor="middle" class="b">0</text>
+  <text x="180" y="58" text-anchor="middle" class="b">1</text>
+  <text x="240" y="58" text-anchor="middle" class="b">2</text>
+  <text x="300" y="58" text-anchor="middle" class="b">3</text>
+
+  <!-- vec2 -->
+  <text x="78" y="87" text-anchor="end" class="m b">vec2</text>
+  <rect x="90" y="66" width="60" height="32" class="cell"/><rect x="150" y="66" width="60" height="32" class="cell"/>
+  <text x="120" y="87" text-anchor="middle" class="m b">x</text><text x="180" y="87" text-anchor="middle" class="m b">y</text>
+
+  <!-- vec3 -->
+  <text x="78" y="127" text-anchor="end" class="m b">vec3</text>
+  <rect x="90" y="106" width="60" height="32" class="cell"/><rect x="150" y="106" width="60" height="32" class="cell"/><rect x="210" y="106" width="60" height="32" class="cell"/>
+  <text x="120" y="127" text-anchor="middle" class="m b">x</text><text x="180" y="127" text-anchor="middle" class="m b">y</text><text x="240" y="127" text-anchor="middle" class="m b">z</text>
+
+  <!-- vec4 -->
+  <text x="78" y="167" text-anchor="end" class="m b">vec4</text>
+  <rect x="90" y="146" width="60" height="32" class="cell"/><rect x="150" y="146" width="60" height="32" class="cell"/><rect x="210" y="146" width="60" height="32" class="cell"/><rect x="270" y="146" width="60" height="32" class="cellw"/>
+  <text x="120" y="167" text-anchor="middle" class="m b">x</text><text x="180" y="167" text-anchor="middle" class="m b">y</text><text x="240" y="167" text-anchor="middle" class="m b">z</text><text x="300" y="167" text-anchor="middle" class="m b">w</text>
+
+  <!-- sub-vectors -->
+  <path d="M92,186 V192 H268 V186" class="br"/>
+  <text x="180" y="208" text-anchor="middle" class="m" style="fill:#a85000">v.xyz()</text>
+  <path d="M92,216 V222 H208 V216" class="br"/>
+  <text x="150" y="238" text-anchor="middle" class="m" style="fill:#a85000">v.xy()</text>
+  <text x="290" y="214" class="sm">sub-vectors</text>
+  <text x="290" y="231" class="sm">(copies)</text>
+
+  <!-- access -->
+  <text x="20" y="270" class="in">Same element, four spellings:</text>
+  <text x="20" y="292" class="m">p.x  ==  p[0]  ==  p(0)  ==  p.at(0)</text>
+  <text x="20" y="318" class="sm">vec3 is numarray_stack&lt;float,3&gt;;</text>
+  <text x="20" y="336" class="sm">int3, uint3: same layout, int / unsigned int</text>
+
+  <!-- code panel -->
+  <rect x="388" y="44" width="296" height="292" rx="6" fill="#f6f6f6" stroke="#ccc"/>
+  <g class="m">
+    <text x="400" y="70" class="m">vec3 p = {1.0f, 2.0f, 3.0f};</text>
+    <text x="400" y="92" class="m">p.y = 5.0f;  <tspan class="c">// same as p[1]</tspan></text>
+    <text x="400" y="122" class="m">float L = <tspan class="k">norm</tspan>(p);</text>
+    <text x="400" y="144" class="m">vec3 u = <tspan class="k">normalize</tspan>(p);</text>
+    <text x="400" y="166" class="m">float d = <tspan class="k">dot</tspan>(u, v);</text>
+    <text x="400" y="188" class="m">vec3 n = <tspan class="k">cross</tspan>(u, v); <tspan class="c">// vec3</tspan></text>
+    <text x="400" y="218" class="m">vec3 w = u * v; <tspan class="c">// per component</tspan></text>
+    <text x="400" y="240" class="m">vec3 s = 2.0f * u;</text>
+    <text x="400" y="262" class="m"><tspan class="c">// u + 2.0f: compile error</tspan></text>
+    <text x="400" y="292" class="m">vec4 h = vec4(p, 1.0f);</text>
+    <text x="400" y="314" class="m">vec3 q = h.xyz();</text>
+  </g>
+</svg>

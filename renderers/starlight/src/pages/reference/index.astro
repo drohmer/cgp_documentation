@@ -1,0 +1,44 @@
+---
+import StarlightPage from '@astrojs/starlight/components/StarlightPage.astro';
+import { referenceGroups, typeHref, isFamily, groupHref, functionCount } from '../../lib/api.mjs';
+
+// Types by group, each family (vecN, matN) first in its group, then the pages of functions of
+// the group (function_groups.yaml, `under`); Utilities last.
+const groups = referenceGroups();
+const count = functionCount;
+// heading id of a group, as in lhtml (gen_reference.py, index_page): the breadcrumb of a type page links to it
+const groupId = (label: string) => label.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+---
+<StarlightPage frontmatter={{ title: 'Reference', description: 'Every CGP type with the functions that apply to it.', section: 'Reference', tableOfContents: false }}>
+	<p>
+		CGP is mostly made of free functions (<code>norm(v)</code>, <code>draw(drawable, environment)</code>).
+		Each type page lists what you can <em>do</em> with the type: the functions taking it, the functions
+		returning it, and its operators. Functions written once for all sizes of vectors or matrices are
+		documented on the family pages <code>vecN</code> and <code>matN</code>.
+	</p>
+	{groups.map((g) => (
+		<>
+			<h2 id={groupId(g.label)}>{g.label}</h2>
+			{g.types.length === 0 && <p>Functions that take or return none of the types of the reference.</p>}
+			<table class="type-index">
+				<thead><tr><th>{g.types.length ? "Type" : "Page"}</th><th>Description</th><th>Functions</th></tr></thead>
+				<tbody>
+					{g.types.map((t: any) => (
+						<tr class={isFamily(t) ? 'type-index__family' : undefined}>
+							<td><a href={typeHref(t)}><code>{t.name}</code></a></td>
+							<td>{t.short}</td>
+							<td class="num">{count(t)}</td>
+						</tr>
+					))}
+					{g.functions.map((f: any) => (
+						<tr class="type-index__functions">
+							<td><a href={groupHref(f)}><em>{f.title}</em></a></td>
+							<td>{f.short}</td>
+							<td class="num">{f.functions.length}</td>
+						</tr>
+					))}
+				</tbody>
+			</table>
+		</>
+	))}
+</StarlightPage>

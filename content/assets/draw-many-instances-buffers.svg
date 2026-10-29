@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 372" width="700" height="372">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .lab { font-size: 13px; }
+    .b { font-weight: bold; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 12px; fill: #333; }
+    .buf { fill: #fff7ec; stroke: #e0912f; stroke-width: 1.2; }
+    .ins { fill: #fff7ec; stroke: #e0912f; stroke-width: 1.2; }
+    .sh { fill: #dff0dc; stroke: #5aa55a; stroke-width: 1.2; }
+    .lk { stroke: #e0912f; stroke-width: 1.2; stroke-dasharray: 3 3; fill: none; }
+    .lp { stroke: #e07b1a; stroke-width: 2; fill: none; marker-end: url(#ap); }
+  </style>
+  <defs>
+    <marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+  </defs>
+  <text x="20" y="24" class="in b">per-vertex buffer: location 0, divisor 0 (one value per vertex)</text>
+  <text x="20" y="60" class="m">vbo_position</text>
+  <rect x="130" y="40" width="48" height="30" class="buf"/>
+  <text x="154.0" y="60" class="m" text-anchor="middle">v0</text>
+  <rect x="178" y="40" width="48" height="30" class="buf"/>
+  <text x="202.0" y="60" class="m" text-anchor="middle">v1</text>
+  <rect x="226" y="40" width="48" height="30" class="buf"/>
+  <text x="250.0" y="60" class="m" text-anchor="middle">v2</text>
+  <rect x="274" y="40" width="48" height="30" class="buf"/>
+  <text x="298.0" y="60" class="m" text-anchor="middle">v3</text>
+  <rect x="322" y="40" width="48" height="30" class="buf"/>
+  <text x="346.0" y="60" class="m" text-anchor="middle">v4</text>
+  <rect x="370" y="40" width="48" height="30" class="buf"/>
+  <text x="394.0" y="60" class="m" text-anchor="middle">v5</text>
+  <rect x="418" y="40" width="48" height="30" class="buf"/>
+  <text x="442.0" y="60" class="m" text-anchor="middle">v6</text>
+  <rect x="466" y="40" width="48" height="30" class="buf"/>
+  <text x="490.0" y="60" class="m" text-anchor="middle">v7</text>
+  <text x="322" y="136" class="lab" text-anchor="middle">vertex shader runs: vertex_position + instance_position</text>
+  <path d="M154.0,70 V124" class="lk"/>
+  <path d="M202.0,70 V124" class="lk"/>
+  <path d="M250.0,70 V124" class="lk"/>
+  <path d="M298.0,70 V124" class="lk"/>
+  <path d="M346.0,70 V124" class="lk"/>
+  <path d="M394.0,70 V124" class="lk"/>
+  <path d="M442.0,70 V124" class="lk"/>
+  <path d="M490.0,70 V124" class="lk"/>
+  <text x="20" y="166" class="in b">instance 0</text>
+  <text x="20" y="184" class="lab">gl_InstanceID=0</text>
+  <rect x="133" y="150" width="42" height="40" rx="3" class="sh"/>
+  <text x="154.0" y="166" class="m" text-anchor="middle">v0</text>
+  <text x="154.0" y="183" class="m" text-anchor="middle" style="fill:#a85000">p0</text>
+  <rect x="181" y="150" width="42" height="40" rx="3" class="sh"/>
+  <text x="202.0" y="166" class="m" text-anchor="middle">v1</text>
+  <text x="202.0" y="183" class="m" text-anchor="middle" style="fill:#a85000">p0</text>
+  <rect x="229" y="150" width="42" height="40" rx="3" class="sh"/>
+  <text x="250.0" y="166" class="m" text-anchor="middle">v2</text>
+  <text x="250.0" y="183" class="m" text-anchor="middle" style="fill:#a85000">p0</text>
+  <rect x="277" y="150" width="42" height="40" rx="3" class="sh"/>
+  <text x="298.0" y="166" class="m" text-anchor="middle">v3</text>
+  <text x="298.0" y="183" class="m" text-anchor="middle" style="fill:#a85000">p0</text>
+  <rect x="325" y="150" width="42" height="40" rx="3" class="sh"/>
+  <text x="346.0" y="166" class="m" text-anchor="middle">v4</text>
+  <text x="346.0" y="183" class="m" text-anchor="middle" style="fill:#a85000">p0</text>
+  <rect x="373" y="150" width="42" height="40" rx="3" class="sh"/>
+  <text x="394.0" y="166" class="m" text-anchor="middle">v5</text>
+  <text x="394.0" y="183" class="m" text-anchor="middle" style="fill:#a85000">p0</text>
+  <rect x="421" y="150" width="42" height="40" rx="3" class="sh"/>
+  <text x="442.0" y="166" class="m" text-anchor="middle">v6</text>
+  <text x="442.0" y="183" class="m" text-anchor="middle" style="fill:#a85000">p0</text>
+  <rect x="469" y="150" width="42" height="40" rx="3" class="sh"/>
+  <text x="490.0" y="166" class="m" text-anchor="middle">v7</text>
+  <text x="490.0" y="183" class="m" text-anchor="middle" style="fill:#a85000">p0</text>
+  <text x="20" y="236" class="in b">instance 1</text>
+  <text x="20" y="254" class="lab">gl_InstanceID=1</text>
+  <rect x="133" y="220" width="42" height="40" rx="3" class="sh"/>
+  <text x="154.0" y="236" class="m" text-anchor="middle">v0</text>
+  <text x="154.0" y="253" class="m" text-anchor="middle" style="fill:#a85000">p1</text>
+  <rect x="181" y="220" width="42" height="40" rx="3" class="sh"/>
+  <text x="202.0" y="236" class="m" text-anchor="middle">v1</text>
+  <text x="202.0" y="253" class="m" text-anchor="middle" style="fill:#a85000">p1</text>
+  <rect x="229" y="220" width="42" height="40" rx="3" class="sh"/>
+  <text x="250.0" y="236" class="m" text-anchor="middle">v2</text>
+  <text x="250.0" y="253" class="m" text-anchor="middle" style="fill:#a85000">p1</text>
+  <rect x="277" y="220" width="42" height="40" rx="3" class="sh"/>
+  <text x="298.0" y="236" class="m" text-anchor="middle">v3</text>
+  <text x="298.0" y="253" class="m" text-anchor="middle" style="fill:#a85000">p1</text>
+  <rect x="325" y="220" width="42" height="40" rx="3" class="sh"/>
+  <text x="346.0" y="236" class="m" text-anchor="middle">v4</text>
+  <text x="346.0" y="253" class="m" text-anchor="middle" style="fill:#a85000">p1</text>
+  <rect x="373" y="220" width="42" height="40" rx="3" class="sh"/>
+  <text x="394.0" y="236" class="m" text-anchor="middle">v5</text>
+  <text x="394.0" y="253" class="m" text-anchor="middle" style="fill:#a85000">p1</text>
+  <rect x="421" y="220" width="42" height="40" rx="3" class="sh"/>
+  <text x="442.0" y="236" class="m" text-anchor="middle">v6</text>
+  <text x="442.0" y="253" class="m" text-anchor="middle" style="fill:#a85000">p1</text>
+  <rect x="469" y="220" width="42" height="40" rx="3" class="sh"/>
+  <text x="490.0" y="236" class="m" text-anchor="middle">v7</text>
+  <text x="490.0" y="253" class="m" text-anchor="middle" style="fill:#a85000">p1</text>
+  <text x="20" y="300" class="lab">... and so on, up to instance N_instances - 1</text>
+  <text x="690" y="96" class="in b" text-anchor="end">per-instance buffer:</text>
+  <text x="690" y="114" class="lab" text-anchor="end">location 4, divisor 1</text>
+  <text x="690" y="130" class="m" text-anchor="end">instance_positions</text>
+  <rect x="576" y="150" width="80" height="40" class="ins"/>
+  <text x="616.0" y="175" class="m" text-anchor="middle">p0</text>
+  <path d="M576,170 H518" class="lp"/>
+  <rect x="576" y="220" width="80" height="40" class="ins"/>
+  <text x="616.0" y="245" class="m" text-anchor="middle">p1</text>
+  <path d="M576,240 H518" class="lp"/>
+  <rect x="576" y="260" width="80" height="22" class="ins" style="stroke-dasharray:3 3"/>
+  <text x="616.0" y="276" class="m" text-anchor="middle">...</text>
+  <rect x="576" y="282" width="80" height="40" class="ins"/>
+  <text x="616.0" y="307" class="m" text-anchor="middle">p5999</text>
+  <text x="350" y="360" text-anchor="middle">draw(grass, environment, N_instances): one call, 8 x N_instances vertex shader runs.</text>
+</svg>

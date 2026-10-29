@@ -1,0 +1,24 @@
+.venv/
+build/
+__pycache__/
+*.egg-info/
+renderers/lhtml/_build/
+renderers/lhtml/dist/
+renderers/lhtml/logs/
+renderers/starlight/node_modules/
+renderers/starlight/dist/
+renderers/starlight/.astro/
+renderers/starlight/logs/
+renderers/starlight/src/content/docs/get-started/
+renderers/starlight/src/content/docs/understand/
+renderers/starlight/src/content/docs/how-to/
+renderers/starlight/src/content/docs/examples/
+tests/e2e/out/
+.DS_Store
+.pytest_cache/
+renderers/lhtml/shots/
+# WebGL demo binaries, rebuilt by make demos (Emscripten); posters and index.html are kept
+content/assets/*-demo/project.*
+renderers/lhtml/.verification/
+.claude/
+renderers/lhtml/.structure/

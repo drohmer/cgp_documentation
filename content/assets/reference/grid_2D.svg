@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 372" width="700" height="372">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .cm { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #666666; }
+    .b { font-weight: bold; }
+    .s { font-size: 13px; }
+    .cell { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.2; }
+    .alt { fill: #f7fbff; stroke: #6b9bd8; stroke-width: 1.2; }
+    .hl { fill: #fdebd6; stroke: #e07b1a; stroke-width: 2.5; }
+    .ax { stroke: #888; stroke-width: 1.5; fill: none; marker-end: url(#ag); }
+  </style>
+  <defs>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#888"/></marker>
+  </defs>
+
+  <text x="20" y="24" class="b" style="fill:#2b66ad">grid_2D&lt;float&gt; g(4, 3): element (i, j) and its offset in g.data</text>
+
+  <!-- 2D view: j drawn upward, cell content = offset -->
+  <!-- row j=2 -->
+  <rect x="70" y="50" width="50" height="40" class="alt"/><rect x="120" y="50" width="50" height="40" class="alt"/><rect x="170" y="50" width="50" height="40" class="alt"/><rect x="220" y="50" width="50" height="40" class="alt"/>
+  <!-- row j=1 -->
+  <rect x="70" y="90" width="50" height="40" class="cell"/><rect x="120" y="90" width="50" height="40" class="cell"/><rect x="170" y="90" width="50" height="40" class="hl"/><rect x="220" y="90" width="50" height="40" class="cell"/>
+  <!-- row j=0 -->
+  <rect x="70" y="130" width="50" height="40" class="alt"/><rect x="120" y="130" width="50" height="40" class="alt"/><rect x="170" y="130" width="50" height="40" class="alt"/><rect x="220" y="130" width="50" height="40" class="alt"/>
+  <g>
+    <text x="95" y="75" class="m" text-anchor="middle">8</text><text x="145" y="75" class="m" text-anchor="middle">9</text><text x="195" y="75" class="m" text-anchor="middle">10</text><text x="245" y="75" class="m" text-anchor="middle">11</text>
+    <text x="95" y="115" class="m" text-anchor="middle">4</text><text x="145" y="115" class="m" text-anchor="middle">5</text><text x="195" y="115" class="m b" text-anchor="middle" style="fill:#a85000">6</text><text x="245" y="115" class="m" text-anchor="middle">7</text>
+    <text x="95" y="155" class="m" text-anchor="middle">0</text><text x="145" y="155" class="m" text-anchor="middle">1</text><text x="195" y="155" class="m" text-anchor="middle">2</text><text x="245" y="155" class="m" text-anchor="middle">3</text>
+  </g>
+  <!-- index labels -->
+  <text x="58" y="75" class="s" text-anchor="end">2</text>
+  <text x="58" y="115" class="s" text-anchor="end">1</text>
+  <text x="58" y="155" class="s" text-anchor="end">0</text>
+  <text x="95" y="188" class="s" text-anchor="middle">0</text><text x="145" y="188" class="s" text-anchor="middle">1</text><text x="195" y="188" class="s" text-anchor="middle">2</text><text x="245" y="188" class="s" text-anchor="middle">3</text>
+  <path d="M70,200 L292,200" class="ax"/>
+  <text x="70" y="218" class="s">i  (dimension.x = 4)</text>
+  <path d="M34,170 L34,44" class="ax"/>
+  <text x="26" y="110" class="s" text-anchor="middle" transform="rotate(-90 26 110)">j  (dimension.y = 3)</text>
+
+  <!-- Code -->
+  <text x="330" y="62" class="m">grid_2D&lt;float&gt; g(4, 3);</text>
+  <text x="330" y="82" class="cm">// g.dimension == {4, 3}, g.size() == 12</text>
+  <text x="330" y="112" class="m">g(2, 1) = 1.0f;</text>
+  <text x="330" y="132" class="cm">// same as g.data[2 + 4*1] = g.data[6]</text>
+  <text x="330" y="162" class="m">g.index_to_offset(2, 1)</text><text x="540" y="162" class="cm">// 6</text>
+  <text x="330" y="184" class="m">g.offset_to_index(6)</text><text x="540" y="184" class="cm">// {2, 1}</text>
+  <text x="330" y="214" class="in">offset = i + dimension.x * j :  <tspan class="b">i varies fastest</tspan></text>
+
+  <!-- Linear storage -->
+  <text x="20" y="250" class="s">g.data  (numarray&lt;float&gt;, one block in memory)</text>
+  <g>
+    <rect x="60" y="262" width="50" height="34" class="alt"/><rect x="110" y="262" width="50" height="34" class="alt"/><rect x="160" y="262" width="50" height="34" class="alt"/><rect x="210" y="262" width="50" height="34" class="alt"/>
+    <rect x="260" y="262" width="50" height="34" class="cell"/><rect x="310" y="262" width="50" height="34" class="cell"/><rect x="360" y="262" width="50" height="34" class="hl"/><rect x="410" y="262" width="50" height="34" class="cell"/>
+    <rect x="460" y="262" width="50" height="34" class="alt"/><rect x="510" y="262" width="50" height="34" class="alt"/><rect x="560" y="262" width="50" height="34" class="alt"/><rect x="610" y="262" width="50" height="34" class="alt"/>
+  </g>
+  <g>
+    <text x="85" y="284" class="m" text-anchor="middle">0,0</text><text x="135" y="284" class="m" text-anchor="middle">1,0</text><text x="185" y="284" class="m" text-anchor="middle">2,0</text><text x="235" y="284" class="m" text-anchor="middle">3,0</text>
+    <text x="285" y="284" class="m" text-anchor="middle">0,1</text><text x="335" y="284" class="m" text-anchor="middle">1,1</text><text x="385" y="284" class="m b" text-anchor="middle" style="fill:#a85000">2,1</text><text x="435" y="284" class="m" text-anchor="middle">3,1</text>
+    <text x="485" y="284" class="m" text-anchor="middle">0,2</text><text x="535" y="284" class="m" text-anchor="middle">1,2</text><text x="585" y="284" class="m" text-anchor="middle">2,2</text><text x="635" y="284" class="m" text-anchor="middle">3,2</text>
+  </g>
+  <g class="s">
+    <text x="85" y="314" class="s" text-anchor="middle">0</text><text x="135" y="314" class="s" text-anchor="middle">1</text><text x="185" y="314" class="s" text-anchor="middle">2</text><text x="235" y="314" class="s" text-anchor="middle">3</text>
+    <text x="285" y="314" class="s" text-anchor="middle">4</text><text x="335" y="314" class="s" text-anchor="middle">5</text><text x="385" y="314" class="s" text-anchor="middle" style="fill:#a85000">6</text><text x="435" y="314" class="s" text-anchor="middle">7</text>
+    <text x="485" y="314" class="s" text-anchor="middle">8</text><text x="535" y="314" class="s" text-anchor="middle">9</text><text x="585" y="314" class="s" text-anchor="middle">10</text><text x="635" y="314" class="s" text-anchor="middle">11</text>
+  </g>
+  <text x="50" y="314" class="s" text-anchor="end">offset</text>
+  <path d="M62,326 L62,332 L258,332 L258,326" stroke="#aaa" fill="none"/>
+  <path d="M262,326 L262,332 L458,332 L458,326" stroke="#aaa" fill="none"/>
+  <path d="M462,326 L462,332 L658,332 L658,326" stroke="#aaa" fill="none"/>
+  <text x="160" y="350" class="s" text-anchor="middle">row j = 0</text>
+  <text x="360" y="350" class="s" text-anchor="middle">row j = 1</text>
+  <text x="560" y="350" class="s" text-anchor="middle">row j = 2</text>
+</svg>

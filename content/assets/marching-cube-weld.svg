@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 14px; fill: #333333; }
+    .b { font-weight: bold; }
+    .s { font-size: 13px; fill: #666666; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 12.5px; fill: #333; }
+  </style>
+  <defs>
+    <marker id="ao" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+  </defs>
+<text x="20" y="28" class="b">Triangle soup (low-level marching_cube)</text>
+<text x="20" y="46" class="s">each cell adds its own vertices</text>
+<line x1="40" y1="100" x2="260" y2="100" stroke="#cccccc" stroke-width="1.5"/>
+<line x1="40" y1="210" x2="260" y2="210" stroke="#cccccc" stroke-width="1.5"/>
+<line x1="40" y1="100" x2="40" y2="210" stroke="#cccccc" stroke-width="1.5"/>
+<line x1="150" y1="100" x2="150" y2="210" stroke="#cccccc" stroke-width="1.5"/>
+<line x1="260" y1="100" x2="260" y2="210" stroke="#cccccc" stroke-width="1.5"/>
+<line x1="150" y1="100" x2="150" y2="210" stroke="#888888" stroke-width="2.5"/>
+<line x1="40" y1="188.0" x2="145" y2="149.5" stroke="#4a86d0" stroke-width="3"/>
+<line x1="155" y1="149.5" x2="260" y2="122.0" stroke="#4a86d0" stroke-width="3"/>
+<circle cx="40" cy="100" r="4.5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+<circle cx="150" cy="100" r="4.5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+<circle cx="260" cy="100" r="4.5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+<circle cx="40" cy="210" r="4.5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+<circle cx="150" cy="210" r="4.5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+<circle cx="260" cy="210" r="4.5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+<text x="158" y="228" class="m">k0</text>
+<text x="158" y="92" class="m">k1</text>
+<circle cx="145" cy="149.5" r="4.5" fill="#4a86d0"/>
+<circle cx="155" cy="149.5" r="4.5" fill="#4a86d0"/>
+<text x="162" y="119.5" class="s">two copies</text>
+<text x="380" y="28" class="b">mesh returned by marching_cube</text>
+<text x="380" y="46" class="s">one vertex per edge (k0, k1) of the grid</text>
+<line x1="400" y1="100" x2="620" y2="100" stroke="#cccccc" stroke-width="1.5"/>
+<line x1="400" y1="210" x2="620" y2="210" stroke="#cccccc" stroke-width="1.5"/>
+<line x1="400" y1="100" x2="400" y2="210" stroke="#cccccc" stroke-width="1.5"/>
+<line x1="510" y1="100" x2="510" y2="210" stroke="#cccccc" stroke-width="1.5"/>
+<line x1="620" y1="100" x2="620" y2="210" stroke="#cccccc" stroke-width="1.5"/>
+<line x1="510" y1="100" x2="510" y2="210" stroke="#888888" stroke-width="2.5"/>
+<line x1="400" y1="188.0" x2="510" y2="149.5" stroke="#4a86d0" stroke-width="3"/>
+<line x1="510" y1="149.5" x2="620" y2="122.0" stroke="#4a86d0" stroke-width="3"/>
+<circle cx="400" cy="100" r="4.5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+<circle cx="510" cy="100" r="4.5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+<circle cx="620" cy="100" r="4.5" fill="#ffffff" stroke="#e07b1a" stroke-width="1.5"/>
+<circle cx="400" cy="210" r="4.5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+<circle cx="510" cy="210" r="4.5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+<circle cx="620" cy="210" r="4.5" fill="#e07b1a" stroke="#e07b1a" stroke-width="1.5"/>
+<text x="518" y="228" class="m">k0</text>
+<text x="518" y="92" class="m">k1</text>
+<circle cx="510" cy="149.5" r="5.5" fill="#4a86d0"/>
+<line x1="510" y1="149.5" x2="495" y2="99.5" stroke="#e07b1a" stroke-width="2" marker-end="url(#ao)"/>
+<text x="488" y="113.5" class="s" text-anchor="end">one normal</text>
+<text x="40" y="250" class="s">the two triangles do not share the vertex:</text>
+<text x="40" y="268" class="s">normals must come from elsewhere (gradient)</text>
+<text x="400" y="250" class="s">shared vertex: fill_empty_field averages</text>
+<text x="400" y="268" class="s">the normals of the triangles around it</text>
+</svg>

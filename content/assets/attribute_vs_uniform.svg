@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 312" width="700" height="312">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .b { font-weight: bold; }
+    .arr { fill: #fff7ec; stroke: #e0912f; stroke-width: 1.5; }
+    .uni { fill: #eee5f8; stroke: #9c6ade; stroke-width: 1.5; }
+    .sh { fill: #dff0dc; stroke: #5aa55a; stroke-width: 1.5; }
+    .ab { stroke: #e07b1a; stroke-width: 2; fill: none; marker-end: url(#ab); }
+    .ap { stroke: #9c6ade; stroke-width: 2; fill: none; }
+    .apa { stroke: #9c6ade; stroke-width: 2; fill: none; marker-end: url(#ap); }
+  </style>
+  <defs>
+    <marker id="ab" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+    <marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9c6ade"/></marker>
+  </defs>
+
+  <!-- small triangle -->
+  <polygon points="40,74 160,74 100,18" fill="none" stroke="#999" stroke-width="1.5"/>
+  <circle cx="40" cy="74" r="7" fill="#d9534f"/>
+  <circle cx="160" cy="74" r="7" fill="#5aa55a"/>
+  <circle cx="100" cy="18" r="7" fill="#4a86d0"/>
+  <text x="180" y="52">one triangle,</text>
+  <text x="180" y="72">three vertices</text>
+
+  <!-- uniforms -->
+  <rect x="470" y="14" width="210" height="62" rx="6" class="uni"/>
+  <text x="484" y="36" class="in b">uniforms</text>
+  <text x="484" y="58" class="m">model view projection</text>
+
+  <!-- column headers -->
+  <text x="40" y="106" style="fill:#a85000">attributes, from the VBOs</text>
+  <text x="330" y="106" style="fill:#2a7330">vertex shader, once per vertex</text>
+
+  <!-- attributes -->
+  <rect x="40" y="114" width="210" height="40" rx="5" class="arr"/>
+  <circle cx="58" cy="134" r="7" fill="#d9534f"/>
+  <text x="74" y="139" class="m">p0  n0  c0  uv0</text>
+  <rect x="40" y="174" width="210" height="40" rx="5" class="arr"/>
+  <circle cx="58" cy="194" r="7" fill="#5aa55a"/>
+  <text x="74" y="199" class="m">p1  n1  c1  uv1</text>
+  <rect x="40" y="234" width="210" height="40" rx="5" class="arr"/>
+  <circle cx="58" cy="254" r="7" fill="#4a86d0"/>
+  <text x="74" y="259" class="m">p2  n2  c2  uv2</text>
+
+  <!-- shader invocations -->
+  <rect x="330" y="114" width="190" height="40" rx="5" class="sh"/>
+  <text x="425" y="139" class="in" text-anchor="middle">main() for vertex 0</text>
+  <rect x="330" y="174" width="190" height="40" rx="5" class="sh"/>
+  <text x="425" y="199" class="in" text-anchor="middle">main() for vertex 1</text>
+  <rect x="330" y="234" width="190" height="40" rx="5" class="sh"/>
+  <text x="425" y="259" class="in" text-anchor="middle">main() for vertex 2</text>
+
+  <path d="M250,134 H327" class="ab"/>
+  <path d="M250,194 H327" class="ab"/>
+  <path d="M250,254 H327" class="ab"/>
+  <text x="289" y="128" text-anchor="middle" style="fill:#a85000; font-size:13px">in</text>
+
+  <!-- uniform bus -->
+  <path d="M620,76 V254" class="ap"/>
+  <path d="M620,134 H523" class="apa"/>
+  <path d="M620,194 H523" class="apa"/>
+  <path d="M620,254 H523" class="apa"/>
+  <text x="630" y="166" style="fill:#7b48c4; font-size:13px">same</text>
+  <text x="630" y="182" style="fill:#7b48c4; font-size:13px">values</text>
+
+  <text x="350" y="302" text-anchor="middle">attribute: one value per vertex. uniform: one value per draw call.</text>
+</svg>

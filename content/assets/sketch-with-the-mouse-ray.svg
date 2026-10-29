@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 362" width="700" height="362">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .lab { font-size: 13px; }
+    .b { font-weight: bold; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 12px; fill: #333; }
+    .win { fill: #f7fbff; stroke: #6b9bd8; stroke-width: 1.5; }
+    .grid { stroke: #c8d8ee; stroke-width: 1; }
+    .ray { stroke: #e07b1a; stroke-width: 2; fill: none; marker-end: url(#ar); }
+    .ak { stroke: #555; stroke-width: 2; fill: none; marker-end: url(#ak); }
+    .plane { stroke: #666; stroke-width: 3; }
+    .axis { stroke: #aaa; stroke-width: 1.2; stroke-dasharray: 5 4; }
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+    <marker id="ak" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#555"/></marker>
+    <marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#666"/></marker>
+  </defs>
+
+  <!-- Left: window -->
+  <text x="20" y="24" class="b in">1. Cursor in the window</text>
+  <rect x="20" y="62" width="220" height="164" class="win"/>
+  <path d="M130,62 V226 M20,144 H240" class="grid"/>
+  <text x="24" y="244" class="lab">(-1,-1)</text>
+  <text x="240" y="54" class="lab" text-anchor="end">(1,1)</text>
+  <text x="134" y="160" class="lab">(0,0)</text>
+  <circle cx="174" cy="119" r="5" style="fill:#d6407a"/>
+  <text x="20" y="270" class="m">inputs.mouse.position.current</text>
+  <text x="20" y="288" class="lab">relative coordinates, here (0.4, 0.3)</text>
+
+  <path d="M250,144 H292" class="ak"/>
+
+  <!-- Right: side view -->
+  <text x="300" y="24" class="b in">2. Ray from the camera, 3. intersection</text>
+  <text x="300" y="44" class="lab">(side view)</text>
+  <path d="M330,210 H640" class="axis"/>
+  <text x="578" y="228" class="lab" text-anchor="end">camera.front()</text>
+
+  <!-- camera -->
+  <path d="M330,210 L310,196 L310,224 Z" style="fill:#2a8f99"/>
+  <circle cx="330" cy="210" r="4" style="fill:#333"/>
+  <text x="300" y="248" class="m">camera.position()</text>
+
+  <!-- image plane -->
+  <path d="M388,166 V254" style="stroke:#6b9bd8;stroke-width:2"/>
+  <circle cx="388" cy="194" r="4.5" style="fill:#d6407a"/>
+  <text x="378" y="276" class="lab" text-anchor="middle">screen</text>
+
+  <!-- ray: from (330,210) through (388,194): slope -16/58 -->
+  <path d="M330,210 L572,143" class="ray"/>
+  <text x="392" y="128" class="m" style="fill:#a85000">camera_ray_direction</text>
+
+  <!-- picking plane: vertical line at x = 590 -->
+  <path d="M590,70 V310" class="plane"/>
+  <circle cx="590" cy="210" r="4" style="fill:#666"/>
+  <text x="600" y="206" class="m">{0,0,0}</text>
+  <path d="M590,286 H630" style="stroke:#666;stroke-width:2;fill:none;marker-end:url(#ap)"/>
+  <text x="598" y="304" class="lab" style="fill:#333">normal</text>
+  <circle cx="590" cy="138" r="6" style="fill:#333"/>
+  <text x="600" y="126" class="m" style="font-weight:bold">I.position</text>
+  <text x="560" y="88" class="lab" text-anchor="end" style="fill:#333">plane facing the camera</text>
+
+  <text x="350" y="350" text-anchor="middle">picking_plane_orthogonal_to_camera returns the point where the ray meets the plane.</text>
+</svg>

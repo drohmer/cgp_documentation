@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 396" width="700" height="396">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .lab { font-size: 13px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .ms { font-family: Menlo, Consolas, monospace; font-size: 12px; fill: #333; }
+    .b { font-weight: bold; }
+    .cpu { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.5; }
+    .gpu { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.5; }
+    .buf { fill: #fff7ec; stroke: #e0912f; stroke-width: 1.2; }
+    .arr { fill: #f7fbff; stroke: #6b9bd8; stroke-width: 1.2; }
+    .sh { fill: #dff0dc; stroke: #5aa55a; stroke-width: 1.5; }
+    .ar { stroke: #e07b1a; stroke-width: 2; fill: none; marker-end: url(#ar); }
+    .ap { stroke: #9c6ade; stroke-width: 2; fill: none; marker-end: url(#ap); }
+    .ag { stroke: #5aa55a; stroke-width: 2; fill: none; marker-end: url(#ag); }
+    .no { stroke: #aaa; stroke-width: 1.5; fill: none; stroke-dasharray: 5 4; marker-end: url(#ano); }
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+    <marker id="ap" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#9c6ade"/></marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#5aa55a"/></marker>
+    <marker id="ano" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#aaa"/></marker>
+  </defs>
+
+  <text x="20" y="26" class="b" style="fill:#2b66ad">CPU: your C++ code, main memory</text>
+  <text x="680" y="26" class="b" text-anchor="end" style="fill:#a85000">GPU: shaders, video memory</text>
+
+  <!-- CPU -->
+  <rect x="20" y="40" width="210" height="306" rx="8" class="cpu"/>
+  <rect x="34" y="54" width="182" height="132" rx="4" class="arr"/>
+  <text x="46" y="74" class="in b">mesh shape</text>
+  <text x="46" y="96" class="m">position</text>
+  <text x="46" y="114" class="m">normal</text>
+  <text x="46" y="132" class="m">color</text>
+  <text x="46" y="150" class="m">uv</text>
+  <text x="46" y="174" class="m">connectivity</text>
+
+  <rect x="34" y="200" width="182" height="62" rx="4" class="arr"/>
+  <text x="46" y="220" class="in b" style="font-size:13px">drawable (mesh_drawable)</text>
+  <text x="46" y="238" class="m">model, material</text>
+  <text x="46" y="254" class="lab">+ the ids of its GPU buffers</text>
+
+  <rect x="34" y="272" width="182" height="62" rx="4" class="arr"/>
+  <text x="46" y="292" class="in b">environment</text>
+  <text x="46" y="310" class="ms">camera_view, light,</text>
+  <text x="46" y="326" class="ms">camera_projection</text>
+
+  <!-- GPU -->
+  <rect x="470" y="40" width="210" height="306" rx="8" class="gpu"/>
+  <rect x="484" y="54" width="182" height="132" rx="4" class="buf"/>
+  <text x="496" y="74" class="in b">buffers (VBO, EBO)</text>
+  <text x="496" y="96" class="m">vbo_position</text>
+  <text x="496" y="114" class="m">vbo_normal</text>
+  <text x="496" y="132" class="m">vbo_color</text>
+  <text x="496" y="150" class="m">vbo_uv</text>
+  <text x="496" y="174" class="m">ebo_connectivity</text>
+
+  <rect x="484" y="200" width="182" height="62" rx="4" class="sh"/>
+  <text x="496" y="220" class="in b">vertex shader</text>
+  <text x="496" y="238" class="lab">runs once per vertex</text>
+  <text x="496" y="254" class="lab">in parallel, reads the VBOs</text>
+
+  <rect x="484" y="272" width="182" height="62" rx="4" class="sh"/>
+  <text x="496" y="292" class="in b">fragment shader</text>
+  <text x="496" y="310" class="lab">runs once per pixel</text>
+  <text x="496" y="326" class="lab">in parallel, writes its color</text>
+
+  <path d="M575,187 V197" class="ag"/>
+  <path d="M575,263 V269" class="ag"/>
+
+  <!-- copy once -->
+  <text x="350" y="96" text-anchor="middle" class="ms" style="fill:#a85000">initialize_data_on_gpu</text>
+  <text x="350" y="138" text-anchor="middle" class="lab" style="fill:#a85000">copy once, in initialize()</text>
+  <path d="M216,116 H481" class="ar"/>
+
+  <!-- no read back -->
+  <path d="M470,168 H220" class="no"/>
+  <text x="350" y="162" text-anchor="middle" class="lab">no copy back to the CPU</text>
+
+  <!-- draw: uniforms -->
+  <text x="350" y="198" text-anchor="middle" class="ms" style="fill:#7b48c4">draw(drawable, environment)</text>
+  <text x="350" y="224" text-anchor="middle" class="lab" style="fill:#7b48c4">uniforms: model, material</text>
+  <path d="M216,233 H481" class="ap"/>
+  <text x="350" y="294" text-anchor="middle" class="lab" style="fill:#7b48c4">uniforms: view, projection, light</text>
+  <path d="M216,303 H481" class="ap"/>
+  <text x="350" y="326" text-anchor="middle" class="lab" style="fill:#a85000">then glDrawElements</text>
+
+  <text x="350" y="380" text-anchor="middle">The arrays are copied once; at every frame only the uniforms are sent.</text>
+</svg>

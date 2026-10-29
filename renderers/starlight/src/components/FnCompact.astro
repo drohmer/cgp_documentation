@@ -1,0 +1,25 @@
+---
+// Functions of this section documented in full on another page (their `home`): one line each,
+// name linked to the home anchor, one-line description, home page. Not indexed by the search:
+// the function is found on its home page.
+interface Props { items: any[] }
+const { items } = Astro.props;
+const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+const inline = (s: string) => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>');
+---
+{items.length > 0 && (
+	<div class="fn-compact-block not-content" data-pagefind-ignore>
+		<p class="fn-compact-title">Documented on another page</p>
+		<ul class="fn-compact-list">
+			{items.map((it: any) => (
+				<li class="fn-compact" data-name={it.name}
+					data-search={[it.name, it.home, it.description ?? '', ...it.fns.map((f: any) => f.signature)].join(' ').toLowerCase()}>
+					{it.href ? <a href={it.href}><code>{it.name}</code></a> : <code>{it.name}</code>}
+					{it.count > 1 && <span class="fn-compact-n">x{it.count}</span>}
+					<span class="fn-compact-desc" set:html={it.description ? inline(it.description) : `${it.count} overloads`} />
+					{it.home && <span class="fn-compact-home">{it.homeIsGroup ? 'in' : 'on'} <code>{it.home}</code></span>}
+				</li>
+			))}
+		</ul>
+	</div>
+)}

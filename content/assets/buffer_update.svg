@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 262" width="700" height="262">
+  <style>
+    text { font-family: Helvetica, Arial, sans-serif; font-size: 15px; fill: #666666; }
+    .in { fill: #333; font-size: 14px; }
+    .m { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #333; }
+    .lab { font-family: Menlo, Consolas, monospace; font-size: 13px; fill: #a85000; }
+    .b { font-weight: bold; }
+    .cpu { fill: #e3eefb; stroke: #6b9bd8; stroke-width: 1.5; }
+    .gpu { fill: #fdebd6; stroke: #e0912f; stroke-width: 1.5; }
+    .buf { fill: #fff7ec; stroke: #e0912f; stroke-width: 1.2; }
+    .arr { fill: #f7fbff; stroke: #6b9bd8; stroke-width: 1.2; }
+    .ar { stroke: #e07b1a; stroke-width: 2; fill: none; marker-end: url(#ar); }
+    .no { stroke: #999; stroke-width: 2; fill: none; stroke-dasharray: 6 4; marker-end: url(#ag); }
+  </style>
+  <defs>
+    <marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#e07b1a"/></marker>
+    <marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#999"/></marker>
+  </defs>
+
+  <text x="20" y="24" class="b" style="fill:#2b66ad">CPU: the reference copy</text>
+  <text x="680" y="24" class="b" text-anchor="end" style="fill:#a85000">GPU</text>
+
+  <rect x="20" y="36" width="250" height="156" rx="8" class="cpu"/>
+  <text x="34" y="60" class="in b">terrain_mesh</text>
+  <rect x="34" y="76" width="160" height="24" class="arr"/><text x="114" y="93" class="m" text-anchor="middle">position</text>
+  <rect x="34" y="116" width="160" height="24" class="arr"/><text x="114" y="133" class="m" text-anchor="middle">normal</text>
+  <text x="34" y="162" class="in">1. edit position[k].z</text>
+  <text x="34" y="182" class="in">2. normal_update()</text>
+
+  <rect x="450" y="36" width="230" height="156" rx="8" class="gpu"/>
+  <text x="464" y="60" class="in b">terrain_drawable</text>
+  <rect x="464" y="76" width="160" height="24" class="buf"/><text x="544" y="93" class="m" text-anchor="middle">vbo_position</text>
+  <rect x="464" y="116" width="160" height="24" class="buf"/><text x="544" y="133" class="m" text-anchor="middle">vbo_normal</text>
+  <text x="464" y="162" class="in">overwritten in place</text>
+  <text x="464" y="182" class="in">(same size, no realloc)</text>
+
+  <text x="360" y="60" class="lab" text-anchor="middle" style="font-size:12px">3. vbo_position.update(</text>
+  <text x="360" y="78" class="lab" text-anchor="middle" style="font-size:12px">terrain_mesh.position)</text>
+  <path d="M194,88 H461" class="ar"/>
+  <text x="360" y="104" class="lab" text-anchor="middle" style="font-size:12px">vbo_normal.update(</text>
+  <text x="360" y="120" class="lab" text-anchor="middle" style="font-size:12px">terrain_mesh.normal)</text>
+  <path d="M194,128 H461" class="ar"/>
+
+  <!-- no read back -->
+  <path d="M565,192 V222 H145 V196" class="no"/>
+  <path d="M345,212 l20,20 M365,212 l-20,20" stroke="#d9534f" stroke-width="3"/>
+  <text x="355" y="252" text-anchor="middle">no function copies a buffer back to the CPU</text>
+</svg>
