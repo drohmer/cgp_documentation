@@ -72,6 +72,15 @@ make site-lhtml   # the site in renderers/lhtml/dist
 without Node, use the lhtml targets only. The WebGL demos need the
 [Emscripten SDK](https://emscripten.org): `make demos` compiles them into `content/assets/`.
 
+## Deploy
+
+The site is published at [graphicscomputing.fr/cgp](https://graphicscomputing.fr/cgp/) (static
+files served by nginx). `make deploy` builds the lhtml site with `base_url: '/cgp/'` (the
+links of the 404 page start at the root of the server) and uploads it with rsync; the demos
+must have been compiled before (`make demos`). The documentation of 2024 is kept in
+`/cgp/archive-2024/`, and its old URLs redirect to the new site (nginx). `DEPLOY_HOST`,
+`DEPLOY_DIR` and `DEPLOY_URL` set another target.
+
 ## Commands
 
 ```sh
@@ -82,6 +91,7 @@ make e2e        # Playwright tests on both sites
 make demos      # compile the WebGL demos (Emscripten SDK) and their posters
 make e2e-demos  # every demo of the pages starts without error, on both sites
 make recipes    # compile the code of the how-to pages natively
+make deploy     # build for graphicscomputing.fr/cgp/ and upload it
 make help       # all targets
 ```
 

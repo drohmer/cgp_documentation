@@ -8,7 +8,7 @@ PY       := .venv/bin/python
 DOCMODEL := .venv/bin/cgp-docmodel
 
 .PHONY: help setup model check report snapshot test test-unit verify \
-        site-lhtml site-starlight sites e2e demos e2e-demos recipes all clean
+        site-lhtml site-starlight sites e2e demos e2e-demos recipes all clean deploy
 
 help:            ## list targets
 	@grep -E '^[a-z0-9-]+:.*## ' $(MAKEFILE_LIST) | sed 's/:.*## /\t/'
@@ -44,6 +44,19 @@ verify: test check snapshot  ## what must pass before handing back any work on d
 # ---------------------------------------------------------------- renderers (stage 2)
 site-lhtml: model      ## renderers/lhtml/dist
 	$(PY) renderers/lhtml/build.py
+
+# ---------------------------------------------------------------- deployment
+# graphicscomputing.fr/cgp/ (nginx, static files). The site is built with its base_url, the
+# demos must have been compiled (make demos), archive-2024/ (the previous documentation) is kept.
+DEPLOY_HOST ?= damien-scaleway
+DEPLOY_DIR  ?= /var/www/graphicscomputing.fr/cgp/
+DEPLOY_URL  ?= /cgp/
+deploy: model    ## build the lhtml site for graphicscomputing.fr/cgp/ and upload it (rsync)
+	@missing=$$(for d in content/assets/*-demo; do test -f $$d/project.wasm || echo $$d; done); \
+	  if [ -n "$$missing" ]; then echo "demos not compiled (make demos): $$missing"; exit 1; fi
+	CGP_BASE_URL=$(DEPLOY_URL) $(PY) renderers/lhtml/build.py
+	rsync -az --delete --filter='P archive-2024/' renderers/lhtml/dist/ $(DEPLOY_HOST):$(DEPLOY_DIR)
+	@echo "deployed: https://graphicscomputing.fr$(DEPLOY_URL)  (make site-lhtml to rebuild for local tests)"
 
 site-starlight: model  ## renderers/starlight/dist
 	npm --prefix renderers/starlight run build

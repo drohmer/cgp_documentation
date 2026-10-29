@@ -22,3 +22,4 @@ content/assets/*-demo/project.*
 renderers/lhtml/.verification/
 .claude/
 renderers/lhtml/.structure/
+renderers/lhtml/.configure-deploy.yaml

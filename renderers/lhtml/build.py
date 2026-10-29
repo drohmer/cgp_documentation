@@ -11,6 +11,7 @@
 3. lhtml-site -i configure.yaml;
 4. Pagefind over dist/.
 """
+import os
 import re
 import shutil
 import subprocess
@@ -158,8 +159,20 @@ def main():
     assemble_theme()
     n = assemble_sources()
     step(f'sources assembled ({n} pages)')
-    subprocess.run([str(BIN / 'lhtml-site'), '-i', str(HERE / 'configure.yaml')], check=True, cwd=HERE)
-    step('lhtml-site build done')
+    # CGP_BASE_URL (make deploy): the path of the site on its server, for the links of the 404
+    # page; a copy of configure.yaml next to it (its paths are relative to its folder)
+    config = HERE / 'configure.yaml'
+    base_url = os.environ.get('CGP_BASE_URL')
+    if base_url:
+        text = re.sub(r"^base_url:.*$", f"base_url: '{base_url}'", config.read_text(encoding='utf-8'), flags=re.M)
+        config = HERE / '.configure-deploy.yaml'
+        config.write_text(text, encoding='utf-8')
+    try:
+        subprocess.run([str(BIN / 'lhtml-site'), '-i', str(config)], check=True, cwd=HERE)
+    finally:
+        if base_url:
+            config.unlink()
+    step(f'lhtml-site build done (base_url {base_url or "of configure.yaml"})')
     # the copy of the sources in the site is not part of the site
     for leftover in (HERE / 'dist').rglob('*.md.j2'):
         leftover.unlink()
