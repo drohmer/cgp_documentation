@@ -21,7 +21,7 @@ keywords:
     logo_svg: '<svg viewBox="0 0 32 32" width="26" height="26"><path d="M16 3 28 10v12L16 29 4 22V10z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M4 10l12 7 12-7M16 17v12" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>'
     repo_url: https://github.com/drohmer/cgp-2027
     repo_label: CGP on GitHub
-    footer: CGP - Computer Graphics Programming. Built with lhtml-site.
+    footer: CGP - Computer Graphics Programming.
     section_index:                    # breadcrumb: the index page of these sections
       How-to: how-to/index.html
       Reference: reference/index.html
