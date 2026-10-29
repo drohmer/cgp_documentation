@@ -39,12 +39,28 @@ function galleryPages(section) {
 // (2) rewrite relative links to .md files into site URLs (../reference/vec3.md -> /reference/vec3/),
 // (3) replace the marker <!-- demo: NAME --> by a click-to-load poster for public/demos/NAME/.
 // (4) replace the marker <!-- gallery: SECTION --> by the posters of the demos of the section.
+// (5) the marker <!-- code-image: PATH | caption --> and the code block after it: side by side with
+//     the image content/assets/PATH (the code block stays a code block, for Expressive Code).
 export function remarkCgp() {
 	return (tree, file) => {
 		const first = tree.children.find((n) => n.type !== 'yaml' && n.type !== 'toml');
 		if (first && first.type === 'heading' && first.depth === 1) tree.children.splice(tree.children.indexOf(first), 1);
 
 		const filePath = file.path || file.history?.[0];
+		// (5) code-image: before the walk, which replaces the html nodes
+		for (let i = 0; i < tree.children.length - 1; i++) {
+			const node = tree.children[i], next = tree.children[i + 1];
+			const m = node.type === 'html' && /^<!--\s*code-image:\s*([^|>]+?)\s*(?:\|\s*(.*?))?\s*-->$/.exec(node.value.trim());
+			if (!m || next.type !== 'code') continue;
+			const caption = m[2] || '';
+			node.value = '<div class="cgp-codeimg"><div class="cgp-codeimg__code">';
+			tree.children.splice(i + 2, 0, {
+				type: 'html',
+				value: `</div><figure class="cgp-codeimg__image not-content" data-pagefind-ignore>` +
+					`<img src="/assets/${esc(m[1])}" alt="${esc(caption)}" loading="lazy">` +
+					(caption ? `<figcaption>${esc(caption)}</figcaption>` : '') + `</figure></div>`,
+			});
+		}
 		walk(tree, (node) => {
 			if (node.type === 'link' && filePath && /^(?![a-z]+:|\/|#)[^#?]*\.mdx?(#.*)?$/i.test(node.url)) {
 				const [target, hash] = node.url.split('#');

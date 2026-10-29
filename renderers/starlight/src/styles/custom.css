@@ -413,3 +413,12 @@ code, pre, kbd, .expressive-code { font-variant-ligatures: none; font-feature-se
 .cgp-gallery__card img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; margin: 0; }
 .cgp-gallery__title { padding: 0.5rem 0.65rem 0.1rem; font-size: 0.875rem; font-weight: 600; line-height: 1.3; }
 .cgp-gallery__group { padding: 0 0.65rem 0.55rem; font-size: 0.78rem; color: var(--sl-color-gray-3); }
+
+/* code next to the image it draws (<!-- code-image: PATH | caption --> + a code block) */
+.cgp-codeimg { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 1.1rem; align-items: center; margin: 1.1rem 0 1.5rem; }
+.cgp-codeimg__code > * { margin-top: 0 !important; }
+.cgp-codeimg__code .expressive-code pre, .cgp-codeimg__code .expressive-code code { font-size: 0.78rem; }
+.cgp-codeimg__image { margin: 0 !important; padding: 6px; border: 1px solid var(--sl-color-gray-5); border-radius: 0.5rem; background: #fff; }
+.cgp-codeimg__image img { display: block; width: 100%; height: auto; margin: 0; border-radius: 4px; }
+.cgp-codeimg__image figcaption { margin: 0.35rem 0.25rem 0; font-size: 0.8rem; color: #555; text-align: center; }
+@media (max-width: 700px) { .cgp-codeimg { grid-template-columns: 1fr; } .cgp-codeimg__image { max-width: 360px; justify-self: center; } }

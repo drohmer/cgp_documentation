@@ -157,6 +157,27 @@ def check_code_links(dist, broken):
     return n
 
 
+def check_code_images(broken):
+    """Each code block of the home page shown next to its image (<!-- code-image: ... -->) is the
+    code that drew the image: every line of it (comments and blank lines aside) is in a region
+    `// snippet: ... // end` of demos/first-look/scene.cpp, the demo the images are captured from
+    (tools/figures/first_look_captures.py). Returns the number of blocks."""
+    import re
+    page = open(os.path.join(ROOT, "content", "index.md"), encoding="utf-8").read()
+    demo = open(os.path.join(ROOT, "demos", "first-look", "scene.cpp"), encoding="utf-8").read()
+    demo_lines = {l.strip() for region in re.findall(r"// snippet:[^\n]*\n(.*?)// end", demo, re.S)
+                  for l in region.splitlines()}
+    blocks = re.findall(r"<!--\s*code-image:[^>]*-->\s*\n```\w*\n(.*?)\n```", page, re.S)
+    for block in blocks:
+        for line in block.splitlines():
+            code = line.strip()
+            if code and not code.startswith("//") and code not in demo_lines:
+                broken.append(f"index.md: code-image line not in demos/first-look/scene.cpp: {code}")
+    if not blocks:
+        broken.append("index.md: no code-image block")
+    return len(blocks)
+
+
 def check_math(dist, broken):
     """The formulas of the content pages (written $x$ or $$x$$) are rendered: one KaTeX element
     per formula of the source, and no TeX delimiter left in the text. Static check of the built
@@ -613,6 +634,7 @@ def run_proto(name, cfg, browser, report):
         # --- inline code links of the guides (content_links of api.json): target page and anchor exist
         res["code_links"] = check_code_links(os.path.join(ROOT, cfg["dist"]), res["broken_links"])
         res["math"] = check_math(os.path.join(ROOT, cfg["dist"]), res["broken_links"])
+        res["code_images"] = check_code_images(res["broken_links"])
         lap("code_links")
         res["home_anchors"] = check_home_anchors(os.path.join(ROOT, cfg["dist"]), res["broken_links"])
         lap("home_anchors")

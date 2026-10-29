@@ -324,3 +324,12 @@ a.code-ref:hover code { border-bottom-style: solid; }
 .cgp-gallery__card img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; margin: 0; border-radius: 0; }
 .cgp-gallery__title { padding: 8px 10px 2px; font-size: 14px; font-weight: 600; line-height: 1.3; }
 .cgp-gallery__group { padding: 0 10px 9px; font-size: 12.5px; color: var(--muted); }
+
+/* code next to the image it draws (<!-- code-image: PATH | caption --> + a code block) */
+.cgp-codeimg { display: grid; grid-template-columns: minmax(0, 1fr) 240px; gap: 18px; align-items: center; margin: 18px 0 24px; }
+.cgp-codeimg__code > pre, .cgp-codeimg__code > div { margin: 0; }
+.cgp-codeimg__code pre, .cgp-codeimg__code pre code { font-size: 12.5px !important; }
+.cgp-codeimg__image { margin: 0; padding: 6px; border: 1px solid var(--figure-card-border); border-radius: var(--radius); background: var(--figure-card); }
+.cgp-codeimg__image img { display: block; width: 100%; height: auto; margin: 0; border-radius: 6px; }
+.cgp-codeimg__image figcaption { margin: 6px 4px 0; font-size: 13px; color: #555; text-align: center; }
+@media (max-width: 700px) { .cgp-codeimg { grid-template-columns: 1fr; } .cgp-codeimg__image { max-width: 360px; justify-self: center; } }

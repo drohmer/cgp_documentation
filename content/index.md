@@ -50,6 +50,68 @@ shader code ([the example](examples/environment-map.md) explains how).
   perspective and orthographic projections, mouse and keyboard, picking, timers, and an ImGui
   window for the GUI.
 
+## A first look
+
+A few lines in the two functions of the scene template, and the image they draw. The
+drawables are declared in `scene_structure` (`mesh_drawable sphere, torus;`); a mesh is
+built once on the CPU, copied to the GPU, then drawn at every frame
+([From CPU to GPU](understand/cpu-to-gpu.md)).
+
+<!-- code-image: first-look/shapes.png | A sphere and a torus, placed and colored -->
+```cpp
+// initialize(): once
+sphere.initialize_data_on_gpu(mesh_primitive_sphere(0.5f));
+sphere.material.color = {1.0f, 0.6f, 0.4f};
+
+mesh torus_mesh = mesh_primitive_torus(0.6f, 0.15f);
+torus.initialize_data_on_gpu(torus_mesh);
+torus.model.translation = {1.4f, 0.0f, 0.0f};
+torus.material.color = {0.4f, 0.6f, 1.0f};
+
+// display_frame(): at every frame
+draw(sphere, environment);
+draw(torus, environment);
+```
+
+The vertices of a mesh are plain arrays that you can modify before sending them to the GPU.
+The faces of the cube do not share their vertices: moving each vertex along its normal
+separates them.
+
+<!-- code-image: first-look/cube.png | Each face pushed along its normal -->
+```cpp
+// initialize()
+mesh cube = mesh_primitive_cube();
+for (int k = 0; k < cube.position.size(); ++k)
+    cube.position[k] += 0.1f * cube.normal[k];
+
+cube_drawable.initialize_data_on_gpu(cube);
+cube_drawable.material.color = {1, 1, 0};
+
+// display_frame()
+draw(cube_drawable, environment);
+```
+
+A grid whose heights come from a Perlin noise is a terrain; `normal_update()` recomputes the
+normals of the deformed surface so that the lighting follows it.
+
+<!-- code-image: first-look/terrain.png | A grid deformed by a Perlin noise -->
+```cpp
+// initialize()
+mesh terrain = mesh_primitive_grid({-2,-2,0}, {2,-2,0},
+    {2,2,0}, {-2,2,0}, 150, 150);
+for (int k = 0; k < terrain.position.size(); ++k) {
+    vec3& p = terrain.position[k];
+    p.z = 0.8f * noise_perlin(0.5f * vec2{p.x, p.y}, 6);
+}
+terrain.normal_update();
+
+terrain_drawable.initialize_data_on_gpu(terrain);
+terrain_drawable.material.color = {0.5f, 0.8f, 0.4f};
+
+// display_frame()
+draw(terrain_drawable, environment);
+```
+
 ## Examples
 
 Complete programs, each explained step by step with its live demo. Click on an image to open
@@ -103,11 +165,3 @@ The sections below follow the order of the menu.
 
 Something else? Use the search box at the top of the page: it covers the guides and every
 function of the reference.
-
-## A first look
-
-```cpp
-mesh_drawable sphere;
-sphere.initialize_data_on_gpu(mesh_primitive_sphere(0.25f)); // once
-draw(sphere, environment);                                   // every frame
-```

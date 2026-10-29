@@ -9,6 +9,7 @@ pre_process (the Markdown source, before Jinja):
     \\( \\) and \\[ \\] away from Markdown, and KaTeX renders them);
   - <!-- demo: NAME --> -> a click-to-load poster of assets/NAME-demo/;
   - <!-- gallery: SECTION --> -> the posters of the demos of a section, linking to its pages;
+  - <!-- code-image: PATH | caption --> + a code block -> the code next to the image;
 post_process (the page HTML):
   - links to .md files -> the generated pages (x/y.md -> x/y/index.html);
   - images relative to the .md file -> relative to the generated page;
@@ -83,6 +84,8 @@ DISPLAY_MATH = re.compile(r'\$\$(.+?)\$\$', re.S)
 INLINE_MATH = re.compile(r'(?<![\\$])\$(?!\s)([^$\n]+?)(?<!\s)\$(?!\$)')
 DEMO = re.compile(r'<!--\s*demo:\s*([\w-]+)\s*-->')
 GALLERY = re.compile(r'<!--\s*gallery:\s*([\w-]+)\s*-->')
+# <!-- code-image: PATH | caption --> followed by a fenced code block: the code and the image side by side
+CODE_IMAGE = re.compile(r'<!--\s*code-image:\s*([^|>]+?)\s*(?:\|\s*(.*?))?\s*-->\s*\n(\s*(`{3,}|~{3,})[^\n]*\n.*?\n\s*\4[ \t]*)(?=\n|$)', re.S)
 
 
 def _content_path(page_dir):
@@ -181,6 +184,17 @@ def _gallery_html(section, root):
     return f'<div class="cgp-gallery" data-pagefind-ignore>{cards}</div>\n\n'
 
 
+def _code_image_html(m, root):
+    """The code block of the marker <!-- code-image: PATH | caption --> next to the image
+    content/assets/PATH. The fence stays Markdown (highlighted as any other block): it is
+    between two HTML blocks, separated by blank lines."""
+    src, caption, fence = m.group(1), m.group(2) or '', m.group(3)
+    cap = f'<figcaption>{html_mod.escape(caption)}</figcaption>' if caption else ''
+    return (f'<div class="cgp-codeimg"><div class="cgp-codeimg__code">\n\n{fence}\n\n'
+            f'</div><figure class="cgp-codeimg__image" data-pagefind-ignore>'
+            f'<img src="{root}assets/{src}" alt="{html_mod.escape(caption)}" loading="lazy">{cap}</figure></div>')
+
+
 def pre_process(text, context):
     page = context.page or {}
     if not page.get('template', '').endswith('.md.j2') or page.get('pagetype', '').startswith('reference'):
@@ -189,6 +203,7 @@ def pre_process(text, context):
         context.warning('the content holds a Jinja marker ({{, {% or {#): it will be read by Jinja')
     root = '../' * page.get('dir', '').count('/')
     text = _convert_math(text)
+    text = CODE_IMAGE.sub(lambda m: _code_image_html(m, root), text)
     text = GALLERY.sub(lambda m: _gallery_html(m.group(1), root), text)
     return DEMO.sub(lambda m: _demo_html(m.group(1), root), text)
 
