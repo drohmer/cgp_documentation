@@ -16,7 +16,7 @@ help:            ## list targets
 setup:           ## create .venv and install cgp-docmodel (editable) with test tools
 	test -d .venv || python3 -m venv .venv
 	.venv/bin/pip install -q -e "docmodel[test]" playwright "pagefind[extended]" \
-		"lhtml-site[math] @ git+https://github.com/drohmer/lhtml-site"   # the docs theme: after 1.0.0
+		"lhtml-site[math]>=1.1"
 	.venv/bin/python -m playwright install --only-shell chromium
 	npm --prefix renderers/starlight ci
 
